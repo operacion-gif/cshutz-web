@@ -1950,7 +1950,12 @@ Un párrafo corto y cálido indicando que este es un diagnóstico preliminar bas
     const resp = await fetch('/.netlify/functions/diagnose',{
       method:'POST',
       headers:{'content-type':'application/json'},
-      body:JSON.stringify({prompt})
+      body:JSON.stringify({prompt, contactData:{
+        nombre:data.name,
+        empresa:data.company,
+        email:data.email,
+        telefono:data.phone||''
+      }})
     });
 
     if(!resp.ok){
