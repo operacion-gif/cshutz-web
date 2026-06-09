@@ -16,19 +16,75 @@
 /* ── LANGUAGE SWITCHER ── */
 const TRANSLATIONS = {
   es: {
-    nav1:'El Problema', nav2:'Soluciones', nav3:'Paquetes', nav4:'Metodología', navCta:'Diagnóstico Gratuito',
-    heroEye:'Ciberseguridad Empresarial', heroTitle:'Tu empresa merece<br><em>protección total</em>',
-    heroCta1:'Diagnóstico Gratuito', heroCta2:'Ver Soluciones'
+    hero_eyebrow: 'Ciberseguridad Empresarial',
+    hero_title: 'Tu empresa merece',
+    hero_em: 'protección total',
+    hero_sub: 'Soluciones de ciberseguridad de primer nivel para empresas en México. Tecnología europea, servicio local, resultados reales.',
+    nav_problem: 'El Problema',
+    nav_solutions: 'Soluciones',
+    nav_packages: 'Paquetes',
+    nav_method: 'Metodología',
+    nav_diag: 'Diagnóstico Gratuito'
   },
   en: {
-    nav1:'The Problem', nav2:'Solutions', nav3:'Packages', nav4:'Methodology', navCta:'Free Diagnosis',
-    heroEye:'Enterprise Cybersecurity', heroTitle:'Your company deserves<br><em>total protection</em>',
-    heroCta1:'Free Diagnosis', heroCta2:'View Solutions'
+    hero_eyebrow: 'Enterprise Cybersecurity',
+    hero_title: 'Your company deserves',
+    hero_em: 'total protection',
+    hero_sub: 'First-class cybersecurity solutions for businesses in Mexico. European technology, local service, real results.',
+    nav_problem: 'The Problem',
+    nav_solutions: 'Solutions',
+    nav_packages: 'Packages',
+    nav_method: 'Methodology',
+    nav_diag: 'Free Diagnosis'
+  },
+  de: {
+    hero_eyebrow: 'Unternehmens-Cybersicherheit',
+    hero_title: 'Ihr Unternehmen verdient',
+    hero_em: 'vollständigen Schutz',
+    hero_sub: 'Erstklassige Cybersicherheitslösungen für Unternehmen in Mexiko. Europäische Technologie, lokaler Service, echte Ergebnisse.',
+    nav_problem: 'Das Problem',
+    nav_solutions: 'Lösungen',
+    nav_packages: 'Pakete',
+    nav_method: 'Methodik',
+    nav_diag: 'Kostenlose Diagnose'
+  },
+  he: {
+    hero_eyebrow: 'אבטחת סייבר עסקית',
+    hero_title: 'החברה שלך ראויה',
+    hero_em: 'להגנה מלאה',
+    hero_sub: 'פתרונות אבטחת סייבר ברמה עולמית לעסקים במקסיקו. טכנולוגיה אירופאית, שירות מקומי, תוצאות אמיתיות.',
+    nav_problem: 'הבעיה',
+    nav_solutions: 'פתרונות',
+    nav_packages: 'חבילות',
+    nav_method: 'מתודולוגיה',
+    nav_diag: 'אבחון חינם'
   }
 };
+
 function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  // Update active button
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === lang));
+  
+  // Apply translations
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.es;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+  
+  // RTL for Hebrew
+  document.documentElement.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', lang);
+  
+  // Store preference
+  localStorage.setItem('cshutz_lang', lang);
 }
+
+// Auto-apply saved language on load
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('cshutz_lang');
+  if (saved && saved !== 'es') setLang(saved);
+});
 
 </script>
 
@@ -806,39 +862,82 @@ section{padding:clamp(80px,12vw,160px) clamp(20px,5vw,80px)}
 /* Result state */
 #form-result{
   display:none;
-  padding:32px;
-}
-.result-header{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:20px;
-}
-.result-icon{
-  width:36px;height:36px;flex-shrink:0;
-  border-radius:50%;
-  background:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1rem;color:var(--ink);
-}
-.result-header h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.2rem;font-weight:400;
+  padding:24px;
 }
 .result-body{
-  font-size:0.875rem;line-height:1.75;
-  color:var(--muted-2);
-  border:1px solid var(--border);
-  border-radius:var(--r-sm);
-  padding:20px;
-  background:var(--ink);
-  max-height:340px;overflow-y:auto;
-  white-space:pre-wrap;
-  margin-bottom:20px;
+  max-height:480px;overflow-y:auto;
+  margin-bottom:16px;
 }
 .result-body::-webkit-scrollbar{width:4px}
 .result-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .result-note{
   font-size:0.78rem;color:var(--muted);
   text-align:center;line-height:1.5;
+}
+/* Professional diagnosis report */
+.diag-report{font-family:'DM Sans',sans-serif;}
+.diag-report-header{
+  background:linear-gradient(135deg,rgba(46,204,113,0.08),rgba(46,204,113,0.03));
+  border:1px solid rgba(46,204,113,0.25);
+  border-radius:8px;
+  padding:16px 20px;
+  margin-bottom:12px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.diag-report-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;color:var(--accent);letter-spacing:0.08em;
+}
+.diag-report-title{
+  font-size:0.65rem;letter-spacing:0.14em;
+  color:var(--muted);text-transform:uppercase;text-align:right;
+}
+.diag-report-sub{
+  font-size:0.72rem;color:var(--muted-2);margin-top:3px;text-align:right;
+}
+.diag-section-card{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px 18px;
+  margin-bottom:8px;
+  background:rgba(255,255,255,0.015);
+}
+.diag-section-card.risk-border-alto{border-left:3px solid #ff4d4f;}
+.diag-section-card.risk-border-critico{border-left:3px solid #cf1322;}
+.diag-section-card.risk-border-medio{border-left:3px solid #faad14;}
+.diag-section-card.risk-border-bajo{border-left:3px solid var(--accent);}
+.diag-section-title{
+  font-size:0.65rem;font-weight:600;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.risk-badge{
+  display:inline-flex;align-items:center;
+  padding:2px 9px;border-radius:4px;
+  font-size:0.68rem;font-weight:700;letter-spacing:0.06em;
+}
+.risk-badge.alto{background:rgba(255,77,79,0.15);color:#ff4d4f;}
+.risk-badge.critico{background:rgba(207,19,34,0.18);color:#ff4d4f;}
+.risk-badge.medio{background:rgba(250,173,20,0.15);color:#faad14;}
+.risk-badge.bajo{background:rgba(46,204,113,0.15);color:var(--accent);}
+.diag-section-body{
+  font-size:0.83rem;line-height:1.75;color:var(--muted-2);
+}
+.diag-section-body p{margin:0 0 6px;}
+.diag-bullet{
+  padding:5px 0 5px 14px;
+  border-left:2px solid rgba(46,204,113,0.2);
+  margin-bottom:5px;
+  font-size:0.83rem;line-height:1.6;color:var(--muted-2);
+}
+.diag-bullet strong{color:var(--fg);font-weight:600;}
+.diag-footer{
+  font-size:0.68rem;color:var(--muted);
+  text-align:center;padding-top:10px;
+  border-top:1px solid var(--border);
+  letter-spacing:0.06em;text-transform:uppercase;
+  margin-top:4px;
 }
 
 /* Error state */
@@ -952,15 +1051,17 @@ footer{
 <nav id="cs-nav">
   <a href="#" class="nav-logo">C<span>·</span>SHUTZ</a>
   <div class="nav-links">
-    <a href="#problem">El Problema</a>
-    <a href="#vendors">Soluciones</a>
-    <a href="#packages">Paquetes</a>
-    <a href="#methodology">Metodología</a>
-    <a href="#diagnostico" class="nav-cta">Diagnóstico Gratuito</a>
+    <a href="#problem" data-i18n="nav_problem">El Problema</a>
+    <a href="#vendors" data-i18n="nav_solutions">Soluciones</a>
+    <a href="#packages" data-i18n="nav_packages">Paquetes</a>
+    <a href="#methodology" data-i18n="nav_method">Metodología</a>
+    <a href="#diagnostico" class="nav-cta" data-i18n="nav_diag">Diagnóstico Gratuito</a>
   </div>
   <div class="lang-switcher">
     <button class="lang-btn active" onclick="setLang('es')">ES</button>
     <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('he')">HE</button>
   </div>
   <button class="nav-burger" id="nav-burger" aria-label="Menú">
     <span></span><span></span><span></span>
@@ -987,12 +1088,12 @@ footer{
   <div class="hero-glow-1"></div>
   <div class="hero-glow-2"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Ciberseguridad Empresarial</div>
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Ciberseguridad Empresarial</div>
     <h1 class="hero-title">
-      Tu empresa merece<br><em>protección total</em>
+      <span data-i18n="hero_title">Tu empresa merece</span><br><em data-i18n="hero_em">protección total</em>
     </h1>
     <p class="hero-sub">
-      Soluciones de ciberseguridad de primer nivel para empresas en México. Tecnología europea, servicio local, resultados reales.
+      <span data-i18n="hero_sub">Soluciones de ciberseguridad de primer nivel para empresas en México. Tecnología europea, servicio local, resultados reales.</span>
     </p>
     <div class="hero-actions">
       <a href="#diagnostico" class="btn-primary">
@@ -1433,12 +1534,8 @@ footer{
 
       <!-- Result -->
       <div id="form-result">
-        <div class="result-header">
-          <div class="result-icon">✓</div>
-          <h3>Diagnóstico Completado</h3>
-        </div>
         <div class="result-body" id="result-text"></div>
-        <p class="result-note">📧 Hemos enviado este reporte a tu correo.<br>Un especialista se pondrá en contacto contigo pronto.</p>
+        <p class="result-note">📧 Hemos enviado este reporte a tu correo.<br>Un especialista de C·SHUTZ se pondrá en contacto contigo en las próximas 24 horas.</p>
       </div>
 
       <!-- Error -->
@@ -1481,7 +1578,7 @@ footer{
     <div class="footer-col">
       <h4>Empresa</h4>
       <ul>
-        <li><a href="#methodology">Metodología</a></li>
+        <li><a href="#methodology" data-i18n="nav_method">Metodología</a></li>
         <li><a href="#diagnostico">Diagnóstico Gratis</a></li>
         <li><a href="mailto:hola@cshutz.net">hola@cshutz.net</a></li>
       </ul>
@@ -1806,36 +1903,48 @@ async function submitDiagnosis(){
   document.querySelector('.form-header').style.display='none';
   document.getElementById('form-analyzing').style.display='block';
 
-  const prompt = `Eres un experto en ciberseguridad empresarial con 20 años de experiencia en México y América Latina. 
-Analiza el siguiente perfil de empresa y genera un diagnóstico profesional de ciberseguridad en ESPAÑOL.
+  const prompt = `Eres un consultor senior de ciberseguridad empresarial con 20 años de experiencia en México y América Latina, con certificaciones CISSP y CISM, y experiencia en firmas como Deloitte Cyber y PwC Security.
+Genera un diagnóstico ejecutivo de ciberseguridad en ESPAÑOL para la siguiente empresa.
 
-DATOS DE LA EMPRESA:
-- Nombre: ${data.company}
+PERFIL DE LA EMPRESA:
+- Empresa: ${data.company}
 - Sector: ${data.sector}
 - Tamaño: ${data.size}
 - Protección actual: ${data.antivirus}
 - Incidentes previos: ${data.incidents}
-- Modelo de trabajo: ${data.remote}
+- Modalidad de trabajo: ${data.remote}
 - Preocupación principal: ${data.concern||'No especificada'}
 
-Tu respuesta debe seguir EXACTAMENTE esta estructura (usa estos títulos):
+INSTRUCCIONES DE FORMATO — SIGUE ESTO AL PIE DE LA LETRA:
+- NO uses markdown: prohibido usar **, *, ##, ___ o cualquier símbolo de formato
+- Inicia cada sección EXACTAMENTE con el emoji indicado seguido de un espacio y el título en mayúsculas
+- Para listas usa el símbolo • al inicio de cada punto
+- Dentro de cada bullet, usa "Título: descripción" (sin negritas)
+- Lenguaje ejecutivo, directo, profesional — como un informe de consultoría
+- Máximo 380 palabras en total
+
+ESTRUCTURA EXACTA A SEGUIR:
 
 🔴 NIVEL DE RIESGO ACTUAL
-[Califica el riesgo: Crítico / Alto / Medio / Bajo y explica brevemente en 2-3 oraciones por qué.]
+Califica el nivel: Crítico, Alto, Medio o Bajo. Escribe 2-3 oraciones ejecutivas que expliquen el porqué basándote en el perfil específico de esta empresa.
 
 ⚠️ VULNERABILIDADES IDENTIFICADAS
-[Lista 3-4 vulnerabilidades específicas para su perfil, con viñetas. Sé específico según el sector y tamaño.]
+• Nombre de vulnerabilidad: descripción concreta de por qué aplica a esta empresa
+• Nombre de vulnerabilidad: descripción concreta
+• Nombre de vulnerabilidad: descripción concreta
+• Nombre de vulnerabilidad: descripción concreta
 
 ✅ RECOMENDACIONES PRIORITARIAS
-[Lista 3-4 acciones concretas que deben implementar INMEDIATAMENTE, con viñetas.]
+• Nombre de acción: qué implementar y por qué es urgente
+• Nombre de acción: qué implementar y por qué es urgente
+• Nombre de acción: qué implementar y por qué es urgente
+• Nombre de acción: qué implementar y por qué es urgente
 
 🛡️ SOLUCIONES SUGERIDAS
-[Menciona cuáles de nuestros productos aplican: Hornetsecurity (email), G DATA (antivirus/endpoint), DriveLock (cifrado/control USB), NCP Engineering (VPN). Solo menciona los relevantes para su perfil.]
+Escribe un párrafo de 3-4 oraciones mencionando solo los productos relevantes para este perfil: Hornetsecurity para protección de correo corporativo, G DATA para antivirus y endpoint, DriveLock para cifrado y control de dispositivos, NCP Engineering para VPN empresarial.
 
 📊 IMPACTO ESTIMADO
-[Si implementan las soluciones, qué mejora pueden esperar. 2-3 oraciones concretas.]
-
-Sé profesional, directo y usa lenguaje empresarial. No uses jerga técnica excesiva. El diagnóstico debe tener máximo 400 palabras.`;
+Escribe 2-3 oraciones con métricas concretas sobre la mejora esperada al implementar las soluciones. Incluye porcentajes o cifras estimadas.`;
 
   try {
     const resp = await fetch('/.netlify/functions/diagnose',{
@@ -1875,7 +1984,7 @@ Sé profesional, directo y usa lenguaje empresarial. No uses jerga técnica exce
     // Show result
     document.getElementById('form-analyzing').style.display='none';
     document.getElementById('form-result').style.display='block';
-    document.getElementById('result-text').textContent=analysis;
+    document.getElementById('result-text').innerHTML=renderDiagnosis(analysis, data.name, data.company);
 
   } catch(err){
     console.error('Diagnosis error:',err);
@@ -1884,6 +1993,70 @@ Sé profesional, directo y usa lenguaje empresarial. No uses jerga técnica exce
     document.getElementById('error-msg').textContent=
       err.message||'Error al procesar el diagnóstico. Por favor intenta de nuevo.';
   }
+}
+
+function renderDiagnosis(text, name, company){
+  const today = new Date().toLocaleDateString('es-MX',{year:'numeric',month:'long',day:'numeric'});
+  const sectionDefs=[
+    {key:'riesgo',   emoji:'🔴', title:'NIVEL DE RIESGO ACTUAL',       end:'⚠️'},
+    {key:'vulns',    emoji:'⚠️', title:'VULNERABILIDADES IDENTIFICADAS',end:'✅'},
+    {key:'recs',     emoji:'✅', title:'RECOMENDACIONES PRIORITARIAS',  end:'🛡️'},
+    {key:'soluciones',emoji:'🛡️',title:'SOLUCIONES SUGERIDAS',         end:'📊'},
+    {key:'impacto',  emoji:'📊', title:'IMPACTO ESTIMADO',             end:null}
+  ];
+  const sections=[];
+  sectionDefs.forEach(s=>{
+    const si=text.indexOf(s.emoji);
+    if(si===-1) return;
+    const ei=s.end?text.indexOf(s.end):text.length;
+    let raw=text.substring(si+s.emoji.length, ei==-1?text.length:ei).trim();
+    // Remove leading title line (all caps)
+    raw=raw.replace(/^[A-ZÁÉÍÓÚÑÜ\s]+\n/,'').trim();
+    sections.push({...s,raw});
+  });
+
+  // Detect risk level
+  const riesgoRaw=sections.find(s=>s.key==='riesgo')?.raw||'';
+  let riskWord='alto', riskLabel='ALTO';
+  if(/cr[ií]tico/i.test(riesgoRaw)){riskWord='critico';riskLabel='CRÍTICO';}
+  else if(/alto/i.test(riesgoRaw)){riskWord='alto';riskLabel='ALTO';}
+  else if(/medio/i.test(riesgoRaw)){riskWord='medio';riskLabel='MEDIO';}
+  else if(/bajo/i.test(riesgoRaw)){riskWord='bajo';riskLabel='BAJO';}
+
+  function formatBody(raw){
+    return raw.split('\n').filter(l=>l.trim()).map(line=>{
+      line=line.trim();
+      // Bullet lines
+      if(/^[•\-]/.test(line)){
+        let content=line.replace(/^[•\-]\s*/,'');
+        // Bold the part before the first colon
+        content=content.replace(/^([^:]+:)/,'<strong>$1</strong>');
+        return `<div class="diag-bullet">${content}</div>`;
+      }
+      return `<p>${line}</p>`;
+    }).join('');
+  }
+
+  const cards=sections.map(s=>`
+    <div class="diag-section-card ${s.key==='riesgo'?'risk-border-'+riskWord:''}">
+      <div class="diag-section-title">
+        <span>${s.emoji}</span><span>${s.title}</span>
+        ${s.key==='riesgo'?`<span class="risk-badge ${riskWord}">${riskLabel}</span>`:''}
+      </div>
+      <div class="diag-section-body">${formatBody(s.raw)}</div>
+    </div>`).join('');
+
+  return `<div class="diag-report">
+    <div class="diag-report-header">
+      <span class="diag-report-brand">C·SHUTZ</span>
+      <div>
+        <div class="diag-report-title">Diagnóstico de Ciberseguridad</div>
+        <div class="diag-report-sub">${company} &nbsp;·&nbsp; ${today}</div>
+      </div>
+    </div>
+    ${cards}
+    <div class="diag-footer">Generado por C·SHUTZ &nbsp;·&nbsp; ${today} &nbsp;·&nbsp; Confidencial</div>
+  </div>`;
 }
 
 function resetForm(){
