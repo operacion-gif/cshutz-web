@@ -64,10 +64,10 @@ const TRANSLATIONS = {
     pkg1_desc: 'Protección esencial para tu correo corporativo. Ideal para empresas que inician su estrategia de ciberseguridad.',
     pkg2_name1: 'Paquete',
     pkg2_name2: 'Total',
-    pkg2_desc: 'Seguridad completa: email, endpoints y control de dispositivos. La solución más elegida por PYMEs en México.',
+    pkg2_desc: 'Seguridad completa: email y endpoints. La solución más elegida por PYMEs en México.',
     pkg3_name1: 'Paquete',
     pkg3_name2: 'Pro',
-    pkg3_desc: 'Seguridad avanzada con acceso remoto seguro. Para empresas con equipos distribuidos o trabajo híbrido.',
+    pkg3_desc: 'Seguridad avanzada con protección extendida de Hornetsecurity y G DATA. Para empresas que requieren el máximo nivel de protección.',
     pkg4_name1: 'Paquete',
     pkg4_name2: 'Legal',
     pkg4_desc: 'Cumplimiento normativo y protección total. Diseñado para despachos, financieras y empresas reguladas.',
@@ -173,10 +173,10 @@ const TRANSLATIONS = {
     pkg1_desc: 'Essential protection for your corporate email. Ideal for companies starting their cybersecurity strategy.',
     pkg2_name1: 'Total',
     pkg2_name2: 'Package',
-    pkg2_desc: 'Complete security: email, endpoints and device control. The most chosen solution by SMEs in Mexico.',
+    pkg2_desc: 'Complete security: email and endpoints. The most chosen solution by SMEs in Mexico.',
     pkg3_name1: 'Pro',
     pkg3_name2: 'Package',
-    pkg3_desc: 'Advanced security with secure remote access. For companies with distributed teams or hybrid work.',
+    pkg3_desc: 'Advanced security with extended Hornetsecurity and G DATA protection. For companies requiring the highest level of protection.',
     pkg4_name1: 'Legal',
     pkg4_name2: 'Package',
     pkg4_desc: 'Regulatory compliance and total protection. Designed for law firms, financial companies and regulated businesses.',
@@ -282,10 +282,10 @@ const TRANSLATIONS = {
     pkg1_desc: 'Grundlegender Schutz für Ihre Unternehmens-E-Mail. Ideal für Unternehmen, die ihre Cybersicherheitsstrategie beginnen.',
     pkg2_name1: 'Total',
     pkg2_name2: 'Paket',
-    pkg2_desc: 'Vollständige Sicherheit: E-Mail, Endpunkte und Gerätekontrolle. Die meistgewählte Lösung für KMU in Mexiko.',
+    pkg2_desc: 'Vollständige Sicherheit: E-Mail und Endpunkte. Die meistgewählte Lösung für KMU in Mexiko.',
     pkg3_name1: 'Pro',
     pkg3_name2: 'Paket',
-    pkg3_desc: 'Erweiterte Sicherheit mit sicherem Fernzugriff. Für Unternehmen mit verteilten Teams oder hybrider Arbeit.',
+    pkg3_desc: 'Erweiterte Sicherheit mit erweitertem Hornetsecurity- und G DATA-Schutz. Für Unternehmen, die maximalen Schutz benötigen.',
     pkg4_name1: 'Rechts',
     pkg4_name2: 'Paket',
     pkg4_desc: 'Regulatorische Compliance und Totalschutz. Entwickelt für Kanzleien, Finanzunternehmen und regulierte Betriebe.',
@@ -391,10 +391,10 @@ const TRANSLATIONS = {
     pkg1_desc: 'הגנה חיונית לדוא"ל הארגוני שלך. אידיאלי לחברות המתחילות את אסטרטגיית אבטחת הסייבר שלהן.',
     pkg2_name1: 'חבילה',
     pkg2_name2: 'מלאה',
-    pkg2_desc: 'אבטחה מלאה: דוא"ל, נקודות קצה ובקרת מכשירים. הפתרון הנבחר ביותר על ידי עסקים קטנים ובינוניים במקסיקו.',
+    pkg2_desc: 'אבטחה מלאה: דוא"ל ונקודות קצה. הפתרון הנבחר ביותר על ידי עסקים קטנים ובינוניים במקסיקו.',
     pkg3_name1: 'חבילה',
     pkg3_name2: 'פרו',
-    pkg3_desc: 'אבטחה מתקדמת עם גישה מרחוק מאובטחת. לחברות עם צוותים מבוזרים או עבודה היברידית.',
+    pkg3_desc: 'אבטחה מתקדמת עם הגנה מורחבת של Hornetsecurity ו-G DATA. לחברות הדורשות את הרמה הגבוהה ביותר של הגנה.',
     pkg4_name1: 'חבילה',
     pkg4_name2: 'משפטית',
     pkg4_desc: 'עמידה בדרישות רגולציה והגנה מוחלטת. מיועד למשרדי עורכי דין, חברות פיננסיות ועסקים מפוקחים.',
@@ -483,6 +483,27 @@ function setLang(lang) {
 document.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem('cshutz_lang');
   if (saved && saved !== 'es') setLang(saved);
+});
+
+// Active nav section highlighting
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav .nav-links a[href^="#"]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('nav-active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('nav-active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(section => observer.observe(section));
 });
 
 </script>
@@ -639,6 +660,7 @@ body:not(:hover) #cs-cursor,body:not(:hover) #cs-ring{opacity:0}
 }
 .nav-links a:hover{color:var(--white)}
 .nav-links a:hover::after{transform:scaleX(1)}
+.nav-links a.nav-active{color:#2ecc71}
 .nav-cta{
   padding:9px 22px;
   border:1px solid var(--accent);
@@ -1517,22 +1539,14 @@ footer{
   <div class="ticker-track" id="ticker">
     <div class="ticker-item"><span class="dot"></span>Hornetsecurity</div>
     <div class="ticker-item"><span class="dot"></span>G DATA</div>
-    <div class="ticker-item"><span class="dot"></span>DriveLock</div>
-    <div class="ticker-item"><span class="dot"></span>NCP Engineering</div>
-    <div class="ticker-item"><span class="dot"></span>ISO 27001 Ready</div>
     <div class="ticker-item"><span class="dot"></span>Protección 24/7</div>
     <div class="ticker-item"><span class="dot"></span>+500 Empresas</div>
-    <div class="ticker-item"><span class="dot"></span>Respuesta &lt;2h</div>
     <div class="ticker-item"><span class="dot"></span>Tecnología Alemana</div>
     <!-- duplicate for seamless loop -->
     <div class="ticker-item"><span class="dot"></span>Hornetsecurity</div>
     <div class="ticker-item"><span class="dot"></span>G DATA</div>
-    <div class="ticker-item"><span class="dot"></span>DriveLock</div>
-    <div class="ticker-item"><span class="dot"></span>NCP Engineering</div>
-    <div class="ticker-item"><span class="dot"></span>ISO 27001 Ready</div>
     <div class="ticker-item"><span class="dot"></span>Protección 24/7</div>
     <div class="ticker-item"><span class="dot"></span>+500 Empresas</div>
-    <div class="ticker-item"><span class="dot"></span>Respuesta &lt;2h</div>
     <div class="ticker-item"><span class="dot"></span>Tecnología Alemana</div>
   </div>
 </div>
@@ -1610,32 +1624,6 @@ footer{
         </div>
       </div>
 
-      <div class="vendor-card reveal" data-tilt>
-        <div class="vendor-badge">🔒</div>
-        <div class="vendor-tag" data-i18n="drivelock_tag">Device Control</div>
-        <h3 class="vendor-name">DriveLock</h3>
-        <p class="vendor-desc" data-i18n="drivelock_desc">Control total de dispositivos y datos. Previene fugas de información con gestión de USBs, cifrado de disco y políticas de acceso granulares.</p>
-        <div class="vendor-features">
-          <div class="vendor-feat">Cifrado completo de disco (BitLocker)</div>
-          <div class="vendor-feat">Control de puertos USB y periféricos</div>
-          <div class="vendor-feat">Prevención de pérdida de datos (DLP)</div>
-          <div class="vendor-feat">Reportes de cumplimiento automatizados</div>
-        </div>
-      </div>
-
-      <div class="vendor-card reveal" data-tilt>
-        <div class="vendor-badge">🌐</div>
-        <div class="vendor-tag" data-i18n="ncp_tag">Secure Access</div>
-        <h3 class="vendor-name">NCP Engineering</h3>
-        <p class="vendor-desc" data-i18n="ncp_desc">Soluciones VPN empresariales de máxima seguridad. Acceso remoto seguro para equipos distribuidos con autenticación multifactor.</p>
-        <div class="vendor-features">
-          <div class="vendor-feat">VPN empresarial con MFA integrado</div>
-          <div class="vendor-feat">Acceso Zero Trust Network</div>
-          <div class="vendor-feat">Compatible con todos los dispositivos</div>
-          <div class="vendor-feat">Gestión centralizada de usuarios</div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1678,13 +1666,13 @@ footer{
 
       <div class="pkg-card reveal">
         <div class="pkg-name"><span data-i18n="pkg3_name1">Paquete</span><br><span data-i18n="pkg3_name2">Pro</span></div>
-        <p class="pkg-desc" data-i18n="pkg3_desc">Seguridad avanzada con acceso remoto seguro. Para empresas con equipos distribuidos o trabajo híbrido.</p>
+        <p class="pkg-desc" data-i18n="pkg3_desc">Seguridad avanzada con protección extendida de Hornetsecurity y G DATA. Para empresas que requieren el máximo nivel de protección.</p>
         <div class="pkg-features">
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Todo lo de Paquete Total</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>NCP VPN empresarial</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Autenticación multifactor</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Gestión de accesos remotos</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>SLA respuesta 4 horas</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Advanced Threat Protection</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Email Security Plus (Hornetsecurity avanzado)</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Soporte prioritario 24/7</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reportes de seguridad mensuales</div>
         </div>
         <a href="#diagnostico" class="pkg-cta" data-i18n="pkg_cta">Solicitar Información</a>
       </div>
@@ -1694,9 +1682,9 @@ footer{
         <p class="pkg-desc" data-i18n="pkg4_desc">Cumplimiento normativo y protección total. Diseñado para despachos, financieras y empresas reguladas.</p>
         <div class="pkg-features">
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Todo lo de Paquete Pro</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>DriveLock cifrado total</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reportes de cumplimiento</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Prevención pérdida de datos</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Módulo de compliance Hornetsecurity completo</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Archivado de email 10 años</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reportes de cumplimiento normativo</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Auditoría de seguridad anual</div>
         </div>
         <a href="#diagnostico" class="pkg-cta" data-i18n="pkg_cta">Solicitar Información</a>
@@ -1965,8 +1953,6 @@ footer{
       <ul>
         <li><a href="#vendors">Hornetsecurity</a></li>
         <li><a href="#vendors">G DATA</a></li>
-        <li><a href="#vendors">DriveLock</a></li>
-        <li><a href="#vendors">NCP Engineering</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -2340,7 +2326,7 @@ ACCIONES RECOMENDADAS
 • (3 acciones máximo, ordenadas por prioridad)
 
 SOLUCIONES POTENCIALES
-Un párrafo breve (2-3 oraciones) mencionando únicamente los productos de C·SHUTZ que son relevantes para este perfil: Hornetsecurity (email), G DATA (endpoint), DriveLock (cifrado/USB), NCP Engineering (VPN). No menciones los que no apliquen.
+Un párrafo breve (2-3 oraciones) mencionando únicamente los productos de C·SHUTZ que son relevantes para este perfil: Hornetsecurity (email y compliance), G DATA (endpoint y protección avanzada). No menciones los que no apliquen.
 
 PRÓXIMOS PASOS
 Un párrafo corto y cálido indicando que este es un diagnóstico preliminar basado en información general. Que el equipo de C·SHUTZ se pondrá en contacto personalmente para conocer a fondo la situación específica de la empresa, entender sus procesos y diseñar una solución verdaderamente ajustada a sus necesidades. Sin compromisos.`;
