@@ -659,9 +659,7 @@ footer{border-top:1px solid var(--border);padding:48px 24px;background:var(--bg2
 
 <script>
 // ── CONFIG ──
-window.CSHUTZ_CONFIG = {
-  ANTHROPIC_KEY: 'TU_API_KEY_AQUI'
-};
+window.CSHUTZ_CONFIG = {};
 const EMAILJS_SERVICE = 'service_usxovaf';
 const EMAILJS_TPLT_OP = '9ddmkdp';
 const EMAILJS_TPLT_CL = '6a1lffi';
@@ -1089,19 +1087,10 @@ Tu respuesta debe seguir EXACTAMENTE esta estructura (usa estos títulos):
 Sé profesional, directo y usa lenguaje empresarial. No uses jerga técnica excesiva. El diagnóstico debe tener máximo 400 palabras.`;
 
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    const resp = await fetch('/.netlify/functions/diagnose', {
       method: 'POST',
-      headers: {
-        'x-api-key': window.CSHUTZ_CONFIG.ANTHROPIC_KEY,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true',
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1024,
-        messages: [{ role: 'user', content: prompt }]
-      })
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ prompt })
     });
     if (!resp.ok) {
       const err = await resp.json().catch(() => ({}));
