@@ -21,62 +21,460 @@ const TRANSLATIONS = {
     hero_title: 'Tu empresa merece',
     hero_em: 'protección total',
     hero_sub: 'Soluciones de ciberseguridad de primer nivel para empresas en México. Tecnología europea, servicio local, resultados reales.',
+    hero_cta1: 'Diagnóstico Gratuito',
+    hero_cta2: 'Ver Soluciones',
+    hero_scroll: 'Explorar',
     nav_problem: 'El Problema',
     nav_solutions: 'Soluciones',
     nav_packages: 'Paquetes',
     nav_method: 'Metodología',
-    nav_diag: 'Diagnóstico Gratuito'
+    nav_diag: 'Diagnóstico Gratuito',
+    mob_problem: 'El Problema',
+    mob_solutions: 'Soluciones',
+    mob_packages: 'Paquetes',
+    mob_method: 'Metodología',
+    mob_diag: 'Diagnóstico',
+    problem_label: 'La Realidad',
+    problem_title: 'Las empresas mexicanas están',
+    problem_em: 'desprotegidas',
+    problem_sub: 'El 91% de las empresas han sufrido al menos un incidente de ciberseguridad. La pregunta no es si tu empresa será atacada, sino cuándo.',
+    problem_note: 'El costo promedio de un ciberataque para una PYME en México supera los $2 millones de pesos. La prevención cuesta 10 veces menos.',
+    stat1_label: 'empresas no tienen ningún protocolo de seguridad activo',
+    stat2_label: 'han experimentado un incidente de seguridad en el último año',
+    stat3_label: 'más barata es la prevención vs. la recuperación de un ataque',
+    stat4_label: 'promedio para detectar una brecha de seguridad sin monitoreo',
+    vendors_label: 'Nuestros Aliados',
+    vendors_title: 'Tecnología de',
+    vendors_em: 'clase mundial',
+    vendors_sub: 'Representamos las mejores marcas de ciberseguridad de Europa, certificadas y probadas en miles de empresas globales.',
+    hornet_tag: 'Email Security',
+    hornet_desc: 'Protección avanzada de correo electrónico basada en IA. Filtra spam, phishing, malware y ataques de ransomware antes de que lleguen a tu bandeja de entrada.',
+    gdata_tag: 'Endpoint Protection',
+    gdata_desc: 'Antivirus y seguridad endpoint de origen alemán. Protección multicapa con análisis de comportamiento y respuesta automática ante amenazas.',
+    drivelock_tag: 'Device Control',
+    drivelock_desc: 'Control total de dispositivos y datos. Previene fugas de información con gestión de USBs, cifrado de disco y políticas de acceso granulares.',
+    ncp_tag: 'Secure Access',
+    ncp_desc: 'Soluciones VPN empresariales de máxima seguridad. Acceso remoto seguro para equipos distribuidos con autenticación multifactor.',
+    pkgs_label: 'Paquetes',
+    pkgs_title: 'Protección diseñada para',
+    pkgs_em: 'cada empresa',
+    pkgs_sub: 'Desde protección básica hasta seguridad total. Todos los paquetes incluyen soporte en español y configuración inicial.',
+    pkg1_name1: 'Blindado',
+    pkg1_name2: 'Email',
+    pkg1_desc: 'Protección esencial para tu correo corporativo. Ideal para empresas que inician su estrategia de ciberseguridad.',
+    pkg2_name1: 'Paquete',
+    pkg2_name2: 'Total',
+    pkg2_desc: 'Seguridad completa: email, endpoints y control de dispositivos. La solución más elegida por PYMEs en México.',
+    pkg3_name1: 'Paquete',
+    pkg3_name2: 'Pro',
+    pkg3_desc: 'Seguridad avanzada con acceso remoto seguro. Para empresas con equipos distribuidos o trabajo híbrido.',
+    pkg4_name1: 'Paquete',
+    pkg4_name2: 'Legal',
+    pkg4_desc: 'Cumplimiento normativo y protección total. Diseñado para despachos, financieras y empresas reguladas.',
+    pkg_badge: 'Popular',
+    pkg_cta: 'Solicitar Información',
+    method_label: 'Cómo Trabajamos',
+    method_title: 'Un proceso',
+    method_em: 'probado',
+    method_title2: 'en cientos de empresas',
+    method_sub: 'Nuestro método garantiza una implementación sin fricciones y resultados medibles desde el primer mes.',
+    step1_title: 'Diagnóstico',
+    step1_desc: 'Evaluamos el estado actual de tu ciberseguridad: vulnerabilidades, infraestructura, procesos y cultura de seguridad.',
+    step2_title: 'Propuesta',
+    step2_desc: 'Diseñamos un plan personalizado con las soluciones exactas que tu empresa necesita, sin pagar por lo que no uses.',
+    step3_title: 'Implementación',
+    step3_desc: 'Desplegamos las soluciones en menos de 72 horas, con capacitación a tu equipo y configuración optimizada.',
+    step4_title: 'Monitoreo',
+    step4_desc: 'Supervisión continua, actualizaciones automáticas y reportes mensuales para que siempre estés informado.',
+    team_label: 'Nuestro equipo',
+    team_title: 'Los socios detrás de',
+    team_sub: 'Especialistas en ciberseguridad con presencia en México.',
+    founder_role: 'Socio Co-fundador',
+    diag_label: 'Diagnóstico IA',
+    diag_title: 'Conoce el nivel de riesgo de tu',
+    diag_em: 'empresa',
+    diag_sub: 'Responde 6 preguntas y nuestra IA analiza tu situación actual. Recibirás un reporte personalizado en minutos — completamente gratis.',
+    benefit1_title: 'Análisis con Inteligencia Artificial',
+    benefit1_desc: 'Claude AI analiza tu perfil de riesgo y genera recomendaciones específicas para tu industria y tamaño de empresa.',
+    benefit2_title: 'Reporte en tu correo',
+    benefit2_desc: 'Recibes el diagnóstico detallado en tu email para compartirlo con tu equipo directivo y consejo.',
+    benefit3_title: 'Seguimiento personalizado',
+    benefit3_desc: 'Un especialista te contactará para resolver dudas y presentar soluciones adaptadas a tu empresa.',
+    form_title: 'Diagnóstico de Seguridad',
+    form_sub: 'Análisis personalizado impulsado por IA · 3 minutos',
+    f_name_label: 'Nombre completo',
+    f_name_ph: 'Tu nombre',
+    f_email_label: 'Correo electrónico',
+    f_company_label: 'Empresa',
+    f_company_ph: 'Nombre de tu empresa',
+    f_phone_label: 'Teléfono',
+    btn_continue: 'Continuar',
+    btn_back: 'Atrás',
+    f_sector_label: 'Sector / Industria',
+    f_size_label: 'Número de empleados',
+    f_antivirus_label: '¿Tienen antivirus o protección activa?',
+    f_incidents_label: '¿Han tenido incidentes de seguridad?',
+    f_remote_label: '¿Tienen trabajo remoto o híbrido?',
+    f_concern_label: '¿Cuál es tu mayor preocupación? (opcional)',
+    f_concern_ph: 'Ej: proteger el correo, evitar ransomware, cumplimiento legal...',
+    btn_analyze: 'Analizar con IA',
+    analyzing_title: 'Analizando tu empresa',
+    analyzing_sub: 'La IA está procesando tu perfil de riesgo.\nEsto tomará unos segundos.',
+    result_note: '📧 Hemos enviado este reporte a tu correo.\nUn especialista de C·SHUTZ se pondrá en contacto contigo en las próximas 24 horas.',
+    error_title: 'Algo salió mal',
+    error_msg: 'Hubo un error al procesar tu diagnóstico. Por favor intenta de nuevo.',
+    btn_retry: 'Intentar de nuevo'
   },
   en: {
     hero_eyebrow: 'Enterprise Cybersecurity',
     hero_title: 'Your company deserves',
     hero_em: 'total protection',
     hero_sub: 'First-class cybersecurity solutions for businesses in Mexico. European technology, local service, real results.',
+    hero_cta1: 'Free Diagnosis',
+    hero_cta2: 'View Solutions',
+    hero_scroll: 'Explore',
     nav_problem: 'The Problem',
     nav_solutions: 'Solutions',
     nav_packages: 'Packages',
     nav_method: 'Methodology',
-    nav_diag: 'Free Diagnosis'
+    nav_diag: 'Free Diagnosis',
+    mob_problem: 'The Problem',
+    mob_solutions: 'Solutions',
+    mob_packages: 'Packages',
+    mob_method: 'Methodology',
+    mob_diag: 'Diagnosis',
+    problem_label: 'The Reality',
+    problem_title: 'Mexican companies are',
+    problem_em: 'unprotected',
+    problem_sub: '91% of companies have suffered at least one cybersecurity incident. The question is not if your company will be attacked, but when.',
+    problem_note: 'The average cost of a cyberattack on an SME in Mexico exceeds $2 million pesos. Prevention costs 10 times less.',
+    stat1_label: 'companies have no active security protocol',
+    stat2_label: 'have experienced a security incident in the last year',
+    stat3_label: 'cheaper is prevention vs. recovering from an attack',
+    stat4_label: 'average time to detect a breach without monitoring',
+    vendors_label: 'Our Partners',
+    vendors_title: 'World-class',
+    vendors_em: 'technology',
+    vendors_sub: 'We represent Europe\'s best cybersecurity brands, certified and proven across thousands of global companies.',
+    hornet_tag: 'Email Security',
+    hornet_desc: 'Advanced AI-powered email protection. Filters spam, phishing, malware and ransomware attacks before they reach your inbox.',
+    gdata_tag: 'Endpoint Protection',
+    gdata_desc: 'German-made antivirus and endpoint security. Multilayer protection with behavioral analysis and automatic threat response.',
+    drivelock_tag: 'Device Control',
+    drivelock_desc: 'Total device and data control. Prevents data leaks with USB management, disk encryption and granular access policies.',
+    ncp_tag: 'Secure Access',
+    ncp_desc: 'Enterprise VPN solutions with maximum security. Secure remote access for distributed teams with multifactor authentication.',
+    pkgs_label: 'Packages',
+    pkgs_title: 'Protection designed for',
+    pkgs_em: 'every company',
+    pkgs_sub: 'From basic protection to total security. All packages include Spanish-language support and initial setup.',
+    pkg1_name1: 'Email',
+    pkg1_name2: 'Shield',
+    pkg1_desc: 'Essential protection for your corporate email. Ideal for companies starting their cybersecurity strategy.',
+    pkg2_name1: 'Total',
+    pkg2_name2: 'Package',
+    pkg2_desc: 'Complete security: email, endpoints and device control. The most chosen solution by SMEs in Mexico.',
+    pkg3_name1: 'Pro',
+    pkg3_name2: 'Package',
+    pkg3_desc: 'Advanced security with secure remote access. For companies with distributed teams or hybrid work.',
+    pkg4_name1: 'Legal',
+    pkg4_name2: 'Package',
+    pkg4_desc: 'Regulatory compliance and total protection. Designed for law firms, financial companies and regulated businesses.',
+    pkg_badge: 'Popular',
+    pkg_cta: 'Request Information',
+    method_label: 'How We Work',
+    method_title: 'A',
+    method_em: 'proven',
+    method_title2: 'process in hundreds of companies',
+    method_sub: 'Our method guarantees frictionless implementation and measurable results from the first month.',
+    step1_title: 'Diagnosis',
+    step1_desc: 'We assess your current cybersecurity status: vulnerabilities, infrastructure, processes and security culture.',
+    step2_title: 'Proposal',
+    step2_desc: 'We design a personalized plan with the exact solutions your company needs, without paying for what you don\'t use.',
+    step3_title: 'Implementation',
+    step3_desc: 'We deploy solutions in less than 72 hours, with team training and optimized configuration.',
+    step4_title: 'Monitoring',
+    step4_desc: 'Continuous supervision, automatic updates and monthly reports so you\'re always informed.',
+    team_label: 'Our Team',
+    team_title: 'The partners behind',
+    team_sub: 'Cybersecurity specialists with presence in Mexico.',
+    founder_role: 'Co-founding Partner',
+    diag_label: 'AI Diagnosis',
+    diag_title: 'Know your',
+    diag_em: 'company\'s risk level',
+    diag_sub: 'Answer 6 questions and our AI analyzes your current situation. You\'ll receive a personalized report in minutes — completely free.',
+    benefit1_title: 'AI-Powered Analysis',
+    benefit1_desc: 'Claude AI analyzes your risk profile and generates specific recommendations for your industry and company size.',
+    benefit2_title: 'Report to your inbox',
+    benefit2_desc: 'You receive the detailed diagnosis in your email to share with your management team and board.',
+    benefit3_title: 'Personalized follow-up',
+    benefit3_desc: 'A specialist will contact you to answer questions and present solutions tailored to your company.',
+    form_title: 'Security Diagnosis',
+    form_sub: 'Personalized AI-powered analysis · 3 minutes',
+    f_name_label: 'Full name',
+    f_name_ph: 'Your name',
+    f_email_label: 'Email address',
+    f_company_label: 'Company',
+    f_company_ph: 'Your company name',
+    f_phone_label: 'Phone',
+    btn_continue: 'Continue',
+    btn_back: 'Back',
+    f_sector_label: 'Sector / Industry',
+    f_size_label: 'Number of employees',
+    f_antivirus_label: 'Do you have active antivirus or protection?',
+    f_incidents_label: 'Have you had security incidents?',
+    f_remote_label: 'Do you have remote or hybrid work?',
+    f_concern_label: 'What is your main concern? (optional)',
+    f_concern_ph: 'e.g.: protect email, avoid ransomware, legal compliance...',
+    btn_analyze: 'Analyze with AI',
+    analyzing_title: 'Analyzing your company',
+    analyzing_sub: 'AI is processing your risk profile.\nThis will take a few seconds.',
+    result_note: '📧 We\'ve sent this report to your email.\nA C·SHUTZ specialist will contact you within the next 24 hours.',
+    error_title: 'Something went wrong',
+    error_msg: 'There was an error processing your diagnosis. Please try again.',
+    btn_retry: 'Try again'
   },
   de: {
     hero_eyebrow: 'Unternehmens-Cybersicherheit',
     hero_title: 'Ihr Unternehmen verdient',
     hero_em: 'vollständigen Schutz',
     hero_sub: 'Erstklassige Cybersicherheitslösungen für Unternehmen in Mexiko. Europäische Technologie, lokaler Service, echte Ergebnisse.',
+    hero_cta1: 'Kostenlose Diagnose',
+    hero_cta2: 'Lösungen ansehen',
+    hero_scroll: 'Erkunden',
     nav_problem: 'Das Problem',
     nav_solutions: 'Lösungen',
     nav_packages: 'Pakete',
     nav_method: 'Methodik',
-    nav_diag: 'Kostenlose Diagnose'
+    nav_diag: 'Kostenlose Diagnose',
+    mob_problem: 'Das Problem',
+    mob_solutions: 'Lösungen',
+    mob_packages: 'Pakete',
+    mob_method: 'Methodik',
+    mob_diag: 'Diagnose',
+    problem_label: 'Die Realität',
+    problem_title: 'Mexikanische Unternehmen sind',
+    problem_em: 'ungeschützt',
+    problem_sub: '91 % der Unternehmen haben mindestens einen Cybersicherheitsvorfall erlitten. Die Frage ist nicht, ob Ihr Unternehmen angegriffen wird, sondern wann.',
+    problem_note: 'Die durchschnittlichen Kosten eines Cyberangriffs auf ein KMU in Mexiko übersteigen 2 Millionen Pesos. Prävention kostet zehnmal weniger.',
+    stat1_label: 'Unternehmen haben kein aktives Sicherheitsprotokoll',
+    stat2_label: 'haben im letzten Jahr einen Sicherheitsvorfall erlebt',
+    stat3_label: 'günstiger ist Prävention gegenüber der Wiederherstellung nach einem Angriff',
+    stat4_label: 'durchschnittliche Zeit, um einen Sicherheitsbruch ohne Überwachung zu erkennen',
+    vendors_label: 'Unsere Partner',
+    vendors_title: 'Technologie der',
+    vendors_em: 'Weltklasse',
+    vendors_sub: 'Wir vertreten Europas beste Cybersicherheitsmarken, zertifiziert und bewährt in Tausenden von Unternehmen weltweit.',
+    hornet_tag: 'E-Mail-Sicherheit',
+    hornet_desc: 'Fortschrittlicher KI-gestützter E-Mail-Schutz. Filtert Spam, Phishing, Malware und Ransomware-Angriffe, bevor sie Ihren Posteingang erreichen.',
+    gdata_tag: 'Endpunkt-Schutz',
+    gdata_desc: 'Deutsches Antivirus und Endpunktsicherheit. Mehrschichtiger Schutz mit Verhaltensanalyse und automatischer Bedrohungsreaktion.',
+    drivelock_tag: 'Gerätekontrolle',
+    drivelock_desc: 'Vollständige Geräte- und Datenkontrolle. Verhindert Datenlecks durch USB-Verwaltung, Festplattenverschlüsselung und granulare Zugriffsrichtlinien.',
+    ncp_tag: 'Sicherer Zugriff',
+    ncp_desc: 'Unternehmens-VPN-Lösungen mit maximaler Sicherheit. Sicherer Fernzugriff für verteilte Teams mit Multi-Faktor-Authentifizierung.',
+    pkgs_label: 'Pakete',
+    pkgs_title: 'Schutz entwickelt für',
+    pkgs_em: 'jedes Unternehmen',
+    pkgs_sub: 'Von grundlegendem Schutz bis zur totalen Sicherheit. Alle Pakete umfassen Support auf Spanisch und die Ersteinrichtung.',
+    pkg1_name1: 'E-Mail',
+    pkg1_name2: 'Schutz',
+    pkg1_desc: 'Grundlegender Schutz für Ihre Unternehmens-E-Mail. Ideal für Unternehmen, die ihre Cybersicherheitsstrategie beginnen.',
+    pkg2_name1: 'Total',
+    pkg2_name2: 'Paket',
+    pkg2_desc: 'Vollständige Sicherheit: E-Mail, Endpunkte und Gerätekontrolle. Die meistgewählte Lösung für KMU in Mexiko.',
+    pkg3_name1: 'Pro',
+    pkg3_name2: 'Paket',
+    pkg3_desc: 'Erweiterte Sicherheit mit sicherem Fernzugriff. Für Unternehmen mit verteilten Teams oder hybrider Arbeit.',
+    pkg4_name1: 'Rechts',
+    pkg4_name2: 'Paket',
+    pkg4_desc: 'Regulatorische Compliance und Totalschutz. Entwickelt für Kanzleien, Finanzunternehmen und regulierte Betriebe.',
+    pkg_badge: 'Beliebt',
+    pkg_cta: 'Information anfordern',
+    method_label: 'So arbeiten wir',
+    method_title: 'Ein',
+    method_em: 'bewährter',
+    method_title2: 'Prozess in Hunderten von Unternehmen',
+    method_sub: 'Unsere Methode garantiert eine reibungslose Implementierung und messbare Ergebnisse ab dem ersten Monat.',
+    step1_title: 'Diagnose',
+    step1_desc: 'Wir bewerten Ihren aktuellen Cybersicherheitsstatus: Schwachstellen, Infrastruktur, Prozesse und Sicherheitskultur.',
+    step2_title: 'Angebot',
+    step2_desc: 'Wir entwerfen einen personalisierten Plan mit den genauen Lösungen, die Ihr Unternehmen benötigt, ohne für Unnötiges zu zahlen.',
+    step3_title: 'Implementierung',
+    step3_desc: 'Wir setzen Lösungen in weniger als 72 Stunden um, mit Teamschulung und optimierter Konfiguration.',
+    step4_title: 'Überwachung',
+    step4_desc: 'Kontinuierliche Überwachung, automatische Updates und monatliche Berichte, damit Sie stets informiert sind.',
+    team_label: 'Unser Team',
+    team_title: 'Die Partner hinter',
+    team_sub: 'Cybersicherheitsspezialisten mit Präsenz in Mexiko.',
+    founder_role: 'Mitgründender Partner',
+    diag_label: 'KI-Diagnose',
+    diag_title: 'Kennen Sie das Risikoniveau Ihres',
+    diag_em: 'Unternehmens',
+    diag_sub: 'Beantworten Sie 6 Fragen und unsere KI analysiert Ihre aktuelle Situation. Sie erhalten in wenigen Minuten einen personalisierten Bericht — völlig kostenlos.',
+    benefit1_title: 'KI-gestützte Analyse',
+    benefit1_desc: 'Claude AI analysiert Ihr Risikoprofil und generiert spezifische Empfehlungen für Ihre Branche und Unternehmensgröße.',
+    benefit2_title: 'Bericht in Ihr Postfach',
+    benefit2_desc: 'Sie erhalten die detaillierte Diagnose per E-Mail, um sie mit Ihrem Führungsteam und Vorstand zu teilen.',
+    benefit3_title: 'Persönliche Nachverfolgung',
+    benefit3_desc: 'Ein Spezialist wird sich mit Ihnen in Verbindung setzen, um Fragen zu beantworten und auf Ihr Unternehmen zugeschnittene Lösungen vorzustellen.',
+    form_title: 'Sicherheitsdiagnose',
+    form_sub: 'Personalisierte KI-gestützte Analyse · 3 Minuten',
+    f_name_label: 'Vollständiger Name',
+    f_name_ph: 'Ihr Name',
+    f_email_label: 'E-Mail-Adresse',
+    f_company_label: 'Unternehmen',
+    f_company_ph: 'Name Ihres Unternehmens',
+    f_phone_label: 'Telefon',
+    btn_continue: 'Weiter',
+    btn_back: 'Zurück',
+    f_sector_label: 'Sektor / Branche',
+    f_size_label: 'Anzahl der Mitarbeiter',
+    f_antivirus_label: 'Haben Sie aktiven Virenschutz oder Schutz?',
+    f_incidents_label: 'Hatten Sie Sicherheitsvorfälle?',
+    f_remote_label: 'Haben Sie Remote- oder hybride Arbeit?',
+    f_concern_label: 'Was ist Ihr Hauptanliegen? (optional)',
+    f_concern_ph: 'z.B.: E-Mail schützen, Ransomware vermeiden, rechtliche Compliance...',
+    btn_analyze: 'Mit KI analysieren',
+    analyzing_title: 'Ihr Unternehmen wird analysiert',
+    analyzing_sub: 'Die KI verarbeitet Ihr Risikoprofil.\nDies dauert einige Sekunden.',
+    result_note: '📧 Wir haben diesen Bericht an Ihre E-Mail gesendet.\nEin C·SHUTZ-Spezialist wird sich innerhalb der nächsten 24 Stunden mit Ihnen in Verbindung setzen.',
+    error_title: 'Etwas ist schiefgelaufen',
+    error_msg: 'Bei der Verarbeitung Ihrer Diagnose ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
+    btn_retry: 'Erneut versuchen'
   },
   he: {
     hero_eyebrow: 'אבטחת סייבר עסקית',
     hero_title: 'החברה שלך ראויה',
     hero_em: 'להגנה מלאה',
     hero_sub: 'פתרונות אבטחת סייבר ברמה עולמית לעסקים במקסיקו. טכנולוגיה אירופאית, שירות מקומי, תוצאות אמיתיות.',
+    hero_cta1: 'אבחון חינם',
+    hero_cta2: 'צפה בפתרונות',
+    hero_scroll: 'לחקור',
     nav_problem: 'הבעיה',
     nav_solutions: 'פתרונות',
     nav_packages: 'חבילות',
     nav_method: 'מתודולוגיה',
-    nav_diag: 'אבחון חינם'
+    nav_diag: 'אבחון חינם',
+    mob_problem: 'הבעיה',
+    mob_solutions: 'פתרונות',
+    mob_packages: 'חבילות',
+    mob_method: 'מתודולוגיה',
+    mob_diag: 'אבחון',
+    problem_label: 'המציאות',
+    problem_title: 'חברות מקסיקניות הן',
+    problem_em: 'חשופות לסכנה',
+    problem_sub: '91% מהחברות סבלו מלפחות אירוע אבטחת סייבר אחד. השאלה אינה אם החברה שלך תותקף, אלא מתי.',
+    problem_note: 'העלות הממוצעת של מתקפת סייבר על עסק קטן ובינוני במקסיקו עולה על 2 מיליון פסו. המניעה עולה פי עשרה פחות.',
+    stat1_label: 'חברות אין להן פרוטוקול אבטחה פעיל',
+    stat2_label: 'חוו אירוע אבטחה בשנה האחרונה',
+    stat3_label: 'זולה יותר המניעה לעומת ההתאוששות מתקיפה',
+    stat4_label: 'זמן ממוצע לגילוי פרצת אבטחה ללא ניטור',
+    vendors_label: 'השותפים שלנו',
+    vendors_title: 'טכנולוגיה',
+    vendors_em: 'ברמה עולמית',
+    vendors_sub: 'אנו מייצגים את מיטב מותגי אבטחת הסייבר של אירופה, מאושרים ומוכחים באלפי חברות ברחבי העולם.',
+    hornet_tag: 'אבטחת דוא"ל',
+    hornet_desc: 'הגנת דוא"ל מתקדמת המופעלת על ידי בינה מלאכותית. מסנן ספאם, פישינג, תוכנות זדוניות ומתקפות כופרה לפני שמגיעים לתיבת הדואר שלך.',
+    gdata_tag: 'הגנת נקודות קצה',
+    gdata_desc: 'אנטי-וירוס ואבטחת נקודות קצה מתוצרת גרמנית. הגנה רב-שכבתית עם ניתוח התנהגות ותגובה אוטומטית לאיומים.',
+    drivelock_tag: 'בקרת מכשירים',
+    drivelock_desc: 'שליטה מוחלטת במכשירים ובנתונים. מונע דליפות מידע עם ניהול USB, הצפנת דיסק ומדיניות גישה פרטנית.',
+    ncp_tag: 'גישה מאובטחת',
+    ncp_desc: 'פתרונות VPN ארגוניים עם אבטחה מקסימלית. גישה מרחוק מאובטחת לצוותים מבוזרים עם אימות רב-גורמי.',
+    pkgs_label: 'חבילות',
+    pkgs_title: 'הגנה המתוכננת עבור',
+    pkgs_em: 'כל חברה',
+    pkgs_sub: 'מהגנה בסיסית ועד אבטחה מוחלטת. כל החבילות כוללות תמיכה בשפה הספרדית והגדרה ראשונית.',
+    pkg1_name1: 'מגן',
+    pkg1_name2: 'דוא"ל',
+    pkg1_desc: 'הגנה חיונית לדוא"ל הארגוני שלך. אידיאלי לחברות המתחילות את אסטרטגיית אבטחת הסייבר שלהן.',
+    pkg2_name1: 'חבילה',
+    pkg2_name2: 'מלאה',
+    pkg2_desc: 'אבטחה מלאה: דוא"ל, נקודות קצה ובקרת מכשירים. הפתרון הנבחר ביותר על ידי עסקים קטנים ובינוניים במקסיקו.',
+    pkg3_name1: 'חבילה',
+    pkg3_name2: 'פרו',
+    pkg3_desc: 'אבטחה מתקדמת עם גישה מרחוק מאובטחת. לחברות עם צוותים מבוזרים או עבודה היברידית.',
+    pkg4_name1: 'חבילה',
+    pkg4_name2: 'משפטית',
+    pkg4_desc: 'עמידה בדרישות רגולציה והגנה מוחלטת. מיועד למשרדי עורכי דין, חברות פיננסיות ועסקים מפוקחים.',
+    pkg_badge: 'פופולרי',
+    pkg_cta: 'בקש מידע',
+    method_label: 'איך אנחנו עובדים',
+    method_title: 'תהליך',
+    method_em: 'מוכח',
+    method_title2: 'במאות חברות',
+    method_sub: 'השיטה שלנו מבטיחה יישום ללא חיכוך ותוצאות מדידות מהחודש הראשון.',
+    step1_title: 'אבחון',
+    step1_desc: 'אנו מעריכים את מצב אבטחת הסייבר הנוכחי שלך: פגיעויות, תשתית, תהליכים ותרבות אבטחה.',
+    step2_title: 'הצעה',
+    step2_desc: 'אנו מעצבים תוכנית מותאמת אישית עם הפתרונות המדויקים שהחברה שלך צריכה, ללא תשלום על מה שאינך משתמש.',
+    step3_title: 'יישום',
+    step3_desc: 'אנו פורסים פתרונות בפחות מ-72 שעות, עם הדרכת הצוות ותצורה מיטבית.',
+    step4_title: 'ניטור',
+    step4_desc: 'פיקוח רציף, עדכונים אוטומטיים ודוחות חודשיים כדי שתהיה תמיד מעודכן.',
+    team_label: 'הצוות שלנו',
+    team_title: 'השותפים מאחורי',
+    team_sub: 'מומחי אבטחת סייבר עם נוכחות במקסיקו.',
+    founder_role: 'שותף מייסד',
+    diag_label: 'אבחון בינה מלאכותית',
+    diag_title: 'דע את רמת הסיכון של',
+    diag_em: 'החברה שלך',
+    diag_sub: 'ענה על 6 שאלות והבינה המלאכותית שלנו מנתחת את מצבך הנוכחי. תקבל דוח מותאם אישית תוך דקות — בחינם לחלוטין.',
+    benefit1_title: 'ניתוח מופעל בינה מלאכותית',
+    benefit1_desc: 'Claude AI מנתח את פרופיל הסיכון שלך ומייצר המלצות ספציפיות לתעשייה ולגודל החברה שלך.',
+    benefit2_title: 'דוח לתיבת הדואר שלך',
+    benefit2_desc: 'תקבל את האבחון המפורט בדוא"ל שלך לשיתוף עם צוות ההנהלה והדירקטוריון שלך.',
+    benefit3_title: 'מעקב מותאם אישית',
+    benefit3_desc: 'מומחה ייצור איתך קשר כדי לענות על שאלות ולהציג פתרונות המותאמים לחברה שלך.',
+    form_title: 'אבחון אבטחה',
+    form_sub: 'ניתוח מותאם אישית מופעל בינה מלאכותית · 3 דקות',
+    f_name_label: 'שם מלא',
+    f_name_ph: 'שמך',
+    f_email_label: 'כתובת דוא"ל',
+    f_company_label: 'חברה',
+    f_company_ph: 'שם החברה שלך',
+    f_phone_label: 'טלפון',
+    btn_continue: 'המשך',
+    btn_back: 'חזרה',
+    f_sector_label: 'מגזר / תעשייה',
+    f_size_label: 'מספר עובדים',
+    f_antivirus_label: 'האם יש לכם אנטי-וירוס או הגנה פעילה?',
+    f_incidents_label: 'האם היו לכם אירועי אבטחה?',
+    f_remote_label: 'האם יש לכם עבודה מרחוק או היברידית?',
+    f_concern_label: 'מה הדאגה העיקרית שלך? (אופציונלי)',
+    f_concern_ph: 'לדוגמה: הגנה על דוא"ל, מניעת כופרה, עמידה בחוק...',
+    btn_analyze: 'נתח עם בינה מלאכותית',
+    analyzing_title: 'מנתח את החברה שלך',
+    analyzing_sub: 'הבינה המלאכותית מעבדת את פרופיל הסיכון שלך.\nזה ייקח כמה שניות.',
+    result_note: '📧 שלחנו את הדוח הזה לדוא"ל שלך.\nמומחה C·SHUTZ ייצור איתך קשר תוך 24 השעות הקרובות.',
+    error_title: 'משהו השתבש',
+    error_msg: 'אירעה שגיאה בעיבוד האבחון שלך. אנא נסה שוב.',
+    btn_retry: 'נסה שוב'
   }
 };
 
 function setLang(lang) {
   // Update active button
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === lang));
-  
+
   // Apply translations
   const t = TRANSLATIONS[lang] || TRANSLATIONS.es;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (t[key]) el.textContent = t[key];
   });
-  
+
+  // Handle placeholders
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    if (t[key]) el.setAttribute('placeholder', t[key]);
+  });
+
   // RTL for Hebrew
   document.documentElement.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
   document.documentElement.setAttribute('lang', lang);
-  
+
   // Store preference
   localStorage.setItem('cshutz_lang', lang);
 }
@@ -1080,11 +1478,11 @@ footer{
 
 <!-- Mobile menu -->
 <div id="cs-mobile-menu">
-  <a href="#problem" class="menu-link">El Problema</a>
-  <a href="#vendors" class="menu-link">Soluciones</a>
-  <a href="#packages" class="menu-link">Paquetes</a>
-  <a href="#methodology" class="menu-link">Metodología</a>
-  <a href="#diagnostico" class="menu-link">Diagnóstico</a>
+  <a href="#problem" class="menu-link" data-i18n="mob_problem">El Problema</a>
+  <a href="#vendors" class="menu-link" data-i18n="mob_solutions">Soluciones</a>
+  <a href="#packages" class="menu-link" data-i18n="mob_packages">Paquetes</a>
+  <a href="#methodology" class="menu-link" data-i18n="mob_method">Metodología</a>
+  <a href="#diagnostico" class="menu-link" data-i18n="mob_diag">Diagnóstico</a>
 </div>
 
 <!-- ── HERO ── -->
@@ -1102,14 +1500,14 @@ footer{
     </p>
     <div class="hero-actions">
       <a href="#diagnostico" class="btn-primary">
-        Diagnóstico Gratuito
+        <span data-i18n="hero_cta1">Diagnóstico Gratuito</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="#vendors" class="btn-ghost">Ver Soluciones</a>
+      <a href="#vendors" class="btn-ghost"><span data-i18n="hero_cta2">Ver Soluciones</span></a>
     </div>
   </div>
   <div class="hero-scroll">
-    <span>Explorar</span>
+    <span data-i18n="hero_scroll">Explorar</span>
     <div class="scroll-line"></div>
   </div>
 </section>
@@ -1143,32 +1541,32 @@ footer{
 <section id="problem">
   <div class="problem-inner">
     <div class="problem-text reveal">
-      <div class="section-label">La Realidad</div>
-      <h2 class="section-title">Las empresas mexicanas están <em>desprotegidas</em></h2>
-      <p class="section-sub" style="margin:20px 0 32px">
+      <div class="section-label" data-i18n="problem_label">La Realidad</div>
+      <h2 class="section-title"><span data-i18n="problem_title">Las empresas mexicanas están</span> <em data-i18n="problem_em">desprotegidas</em></h2>
+      <p class="section-sub" style="margin:20px 0 32px" data-i18n="problem_sub">
         El 91% de las empresas han sufrido al menos un incidente de ciberseguridad. La pregunta no es si tu empresa será atacada, sino cuándo.
       </p>
       <div class="problem-note">
         <div class="note-icon">⚠️</div>
-        <p>El costo promedio de un ciberataque para una PYME en México supera los $2 millones de pesos. La prevención cuesta 10 veces menos.</p>
+        <p data-i18n="problem_note">El costo promedio de un ciberataque para una PYME en México supera los $2 millones de pesos. La prevención cuesta 10 veces menos.</p>
       </div>
     </div>
     <div class="stats-grid reveal">
       <div class="stat-card">
         <div class="stat-num"><span class="counter" data-target="6" data-suffix="/10">0</span></div>
-        <div class="stat-label">empresas no tienen ningún protocolo de seguridad activo</div>
+        <div class="stat-label" data-i18n="stat1_label">empresas no tienen ningún protocolo de seguridad activo</div>
       </div>
       <div class="stat-card">
         <div class="stat-num"><span class="counter" data-target="91" data-suffix="%">0</span></div>
-        <div class="stat-label">han experimentado un incidente de seguridad en el último año</div>
+        <div class="stat-label" data-i18n="stat2_label">han experimentado un incidente de seguridad en el último año</div>
       </div>
       <div class="stat-card">
         <div class="stat-num"><span class="counter" data-target="10" data-suffix="×">0</span></div>
-        <div class="stat-label">más barata es la prevención vs. la recuperación de un ataque</div>
+        <div class="stat-label" data-i18n="stat3_label">más barata es la prevención vs. la recuperación de un ataque</div>
       </div>
       <div class="stat-card">
         <div class="stat-num"><span class="counter" data-target="72" data-suffix="h">0</span></div>
-        <div class="stat-label">promedio para detectar una brecha de seguridad sin monitoreo</div>
+        <div class="stat-label" data-i18n="stat4_label">promedio para detectar una brecha de seguridad sin monitoreo</div>
       </div>
     </div>
   </div>
@@ -1179,18 +1577,18 @@ footer{
   <div class="vendors-inner">
     <div class="vendors-header reveal">
       <div>
-        <div class="section-label">Nuestros Aliados</div>
-        <h2 class="section-title">Tecnología de <em>clase mundial</em></h2>
+        <div class="section-label" data-i18n="vendors_label">Nuestros Aliados</div>
+        <h2 class="section-title"><span data-i18n="vendors_title">Tecnología de</span> <em data-i18n="vendors_em">clase mundial</em></h2>
       </div>
-      <p class="section-sub">Representamos las mejores marcas de ciberseguridad de Europa, certificadas y probadas en miles de empresas globales.</p>
+      <p class="section-sub" data-i18n="vendors_sub">Representamos las mejores marcas de ciberseguridad de Europa, certificadas y probadas en miles de empresas globales.</p>
     </div>
     <div class="vendors-grid">
 
       <div class="vendor-card reveal" data-tilt>
         <div class="vendor-badge">✉️</div>
-        <div class="vendor-tag">Email Security</div>
+        <div class="vendor-tag" data-i18n="hornet_tag">Email Security</div>
         <h3 class="vendor-name">Hornetsecurity</h3>
-        <p class="vendor-desc">Protección avanzada de correo electrónico basada en IA. Filtra spam, phishing, malware y ataques de ransomware antes de que lleguen a tu bandeja de entrada.</p>
+        <p class="vendor-desc" data-i18n="hornet_desc">Protección avanzada de correo electrónico basada en IA. Filtra spam, phishing, malware y ataques de ransomware antes de que lleguen a tu bandeja de entrada.</p>
         <div class="vendor-features">
           <div class="vendor-feat">Filtrado AI de amenazas en tiempo real</div>
           <div class="vendor-feat">Archivado legal y cumplimiento</div>
@@ -1201,9 +1599,9 @@ footer{
 
       <div class="vendor-card reveal" data-tilt>
         <div class="vendor-badge">🛡️</div>
-        <div class="vendor-tag">Endpoint Protection</div>
+        <div class="vendor-tag" data-i18n="gdata_tag">Endpoint Protection</div>
         <h3 class="vendor-name">G DATA</h3>
-        <p class="vendor-desc">Antivirus y seguridad endpoint de origen alemán. Protección multicapa con análisis de comportamiento y respuesta automática ante amenazas.</p>
+        <p class="vendor-desc" data-i18n="gdata_desc">Antivirus y seguridad endpoint de origen alemán. Protección multicapa con análisis de comportamiento y respuesta automática ante amenazas.</p>
         <div class="vendor-features">
           <div class="vendor-feat">Protección contra ransomware avanzada</div>
           <div class="vendor-feat">Análisis de comportamiento en tiempo real</div>
@@ -1214,9 +1612,9 @@ footer{
 
       <div class="vendor-card reveal" data-tilt>
         <div class="vendor-badge">🔒</div>
-        <div class="vendor-tag">Device Control</div>
+        <div class="vendor-tag" data-i18n="drivelock_tag">Device Control</div>
         <h3 class="vendor-name">DriveLock</h3>
-        <p class="vendor-desc">Control total de dispositivos y datos. Previene fugas de información con gestión de USBs, cifrado de disco y políticas de acceso granulares.</p>
+        <p class="vendor-desc" data-i18n="drivelock_desc">Control total de dispositivos y datos. Previene fugas de información con gestión de USBs, cifrado de disco y políticas de acceso granulares.</p>
         <div class="vendor-features">
           <div class="vendor-feat">Cifrado completo de disco (BitLocker)</div>
           <div class="vendor-feat">Control de puertos USB y periféricos</div>
@@ -1227,9 +1625,9 @@ footer{
 
       <div class="vendor-card reveal" data-tilt>
         <div class="vendor-badge">🌐</div>
-        <div class="vendor-tag">Secure Access</div>
+        <div class="vendor-tag" data-i18n="ncp_tag">Secure Access</div>
         <h3 class="vendor-name">NCP Engineering</h3>
-        <p class="vendor-desc">Soluciones VPN empresariales de máxima seguridad. Acceso remoto seguro para equipos distribuidos con autenticación multifactor.</p>
+        <p class="vendor-desc" data-i18n="ncp_desc">Soluciones VPN empresariales de máxima seguridad. Acceso remoto seguro para equipos distribuidos con autenticación multifactor.</p>
         <div class="vendor-features">
           <div class="vendor-feat">VPN empresarial con MFA integrado</div>
           <div class="vendor-feat">Acceso Zero Trust Network</div>
@@ -1246,28 +1644,28 @@ footer{
 <section id="packages">
   <div class="packages-inner">
     <div class="packages-header reveal">
-      <div class="section-label">Paquetes</div>
-      <h2 class="section-title">Protección diseñada para <em>cada empresa</em></h2>
-      <p class="section-sub" style="margin-top:16px">Desde protección básica hasta seguridad total. Todos los paquetes incluyen soporte en español y configuración inicial.</p>
+      <div class="section-label" data-i18n="pkgs_label">Paquetes</div>
+      <h2 class="section-title"><span data-i18n="pkgs_title">Protección diseñada para</span> <em data-i18n="pkgs_em">cada empresa</em></h2>
+      <p class="section-sub" style="margin-top:16px" data-i18n="pkgs_sub">Desde protección básica hasta seguridad total. Todos los paquetes incluyen soporte en español y configuración inicial.</p>
     </div>
     <div class="packages-grid">
 
       <div class="pkg-card reveal">
-        <div class="pkg-name">Blindado<br>Email</div>
-        <p class="pkg-desc">Protección esencial para tu correo corporativo. Ideal para empresas que inician su estrategia de ciberseguridad.</p>
+        <div class="pkg-name"><span data-i18n="pkg1_name1">Blindado</span><br><span data-i18n="pkg1_name2">Email</span></div>
+        <p class="pkg-desc" data-i18n="pkg1_desc">Protección esencial para tu correo corporativo. Ideal para empresas que inician su estrategia de ciberseguridad.</p>
         <div class="pkg-features">
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Security</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Filtrado anti-spam y phishing</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Archivado de correos 10 años</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Soporte técnico en español</div>
         </div>
-        <a href="#diagnostico" class="pkg-cta">Solicitar Información</a>
+        <a href="#diagnostico" class="pkg-cta" data-i18n="pkg_cta">Solicitar Información</a>
       </div>
 
       <div class="pkg-card featured reveal">
-        <div class="pkg-badge">Popular</div>
-        <div class="pkg-name">Paquete<br>Total</div>
-        <p class="pkg-desc">Seguridad completa: email, endpoints y control de dispositivos. La solución más elegida por PYMEs en México.</p>
+        <div class="pkg-badge" data-i18n="pkg_badge">Popular</div>
+        <div class="pkg-name"><span data-i18n="pkg2_name1">Paquete</span><br><span data-i18n="pkg2_name2">Total</span></div>
+        <p class="pkg-desc" data-i18n="pkg2_desc">Seguridad completa: email, endpoints y control de dispositivos. La solución más elegida por PYMEs en México.</p>
         <div class="pkg-features">
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity + G DATA</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Protección endpoints completa</div>
@@ -1275,12 +1673,12 @@ footer{
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Monitoreo 24/7 + reportes</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Onboarding personalizado</div>
         </div>
-        <a href="#diagnostico" class="pkg-cta">Solicitar Información</a>
+        <a href="#diagnostico" class="pkg-cta" data-i18n="pkg_cta">Solicitar Información</a>
       </div>
 
       <div class="pkg-card reveal">
-        <div class="pkg-name">Paquete<br>Pro</div>
-        <p class="pkg-desc">Seguridad avanzada con acceso remoto seguro. Para empresas con equipos distribuidos o trabajo híbrido.</p>
+        <div class="pkg-name"><span data-i18n="pkg3_name1">Paquete</span><br><span data-i18n="pkg3_name2">Pro</span></div>
+        <p class="pkg-desc" data-i18n="pkg3_desc">Seguridad avanzada con acceso remoto seguro. Para empresas con equipos distribuidos o trabajo híbrido.</p>
         <div class="pkg-features">
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Todo lo de Paquete Total</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>NCP VPN empresarial</div>
@@ -1288,12 +1686,12 @@ footer{
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Gestión de accesos remotos</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>SLA respuesta 4 horas</div>
         </div>
-        <a href="#diagnostico" class="pkg-cta">Solicitar Información</a>
+        <a href="#diagnostico" class="pkg-cta" data-i18n="pkg_cta">Solicitar Información</a>
       </div>
 
       <div class="pkg-card reveal">
-        <div class="pkg-name">Paquete<br>Legal</div>
-        <p class="pkg-desc">Cumplimiento normativo y protección total. Diseñado para despachos, financieras y empresas reguladas.</p>
+        <div class="pkg-name"><span data-i18n="pkg4_name1">Paquete</span><br><span data-i18n="pkg4_name2">Legal</span></div>
+        <p class="pkg-desc" data-i18n="pkg4_desc">Cumplimiento normativo y protección total. Diseñado para despachos, financieras y empresas reguladas.</p>
         <div class="pkg-features">
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Todo lo de Paquete Pro</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>DriveLock cifrado total</div>
@@ -1301,7 +1699,7 @@ footer{
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Prevención pérdida de datos</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Auditoría de seguridad anual</div>
         </div>
-        <a href="#diagnostico" class="pkg-cta">Solicitar Información</a>
+        <a href="#diagnostico" class="pkg-cta" data-i18n="pkg_cta">Solicitar Información</a>
       </div>
 
     </div>
@@ -1313,31 +1711,31 @@ footer{
   <div class="method-inner">
     <div class="method-header">
       <div class="reveal">
-        <div class="section-label">Cómo Trabajamos</div>
-        <h2 class="section-title">Un proceso <em>probado</em> en cientos de empresas</h2>
+        <div class="section-label" data-i18n="method_label">Cómo Trabajamos</div>
+        <h2 class="section-title"><span data-i18n="method_title">Un proceso</span> <em data-i18n="method_em">probado</em> <span data-i18n="method_title2">en cientos de empresas</span></h2>
       </div>
-      <p class="section-sub reveal">Nuestro método garantiza una implementación sin fricciones y resultados medibles desde el primer mes.</p>
+      <p class="section-sub reveal" data-i18n="method_sub">Nuestro método garantiza una implementación sin fricciones y resultados medibles desde el primer mes.</p>
     </div>
     <div class="method-steps">
       <div class="method-step reveal">
         <div class="step-num">01</div>
-        <h3 class="step-title">Diagnóstico</h3>
-        <p class="step-desc">Evaluamos el estado actual de tu ciberseguridad: vulnerabilidades, infraestructura, procesos y cultura de seguridad.</p>
+        <h3 class="step-title" data-i18n="step1_title">Diagnóstico</h3>
+        <p class="step-desc" data-i18n="step1_desc">Evaluamos el estado actual de tu ciberseguridad: vulnerabilidades, infraestructura, procesos y cultura de seguridad.</p>
       </div>
       <div class="method-step reveal">
         <div class="step-num">02</div>
-        <h3 class="step-title">Propuesta</h3>
-        <p class="step-desc">Diseñamos un plan personalizado con las soluciones exactas que tu empresa necesita, sin pagar por lo que no uses.</p>
+        <h3 class="step-title" data-i18n="step2_title">Propuesta</h3>
+        <p class="step-desc" data-i18n="step2_desc">Diseñamos un plan personalizado con las soluciones exactas que tu empresa necesita, sin pagar por lo que no uses.</p>
       </div>
       <div class="method-step reveal">
         <div class="step-num">03</div>
-        <h3 class="step-title">Implementación</h3>
-        <p class="step-desc">Desplegamos las soluciones en menos de 72 horas, con capacitación a tu equipo y configuración optimizada.</p>
+        <h3 class="step-title" data-i18n="step3_title">Implementación</h3>
+        <p class="step-desc" data-i18n="step3_desc">Desplegamos las soluciones en menos de 72 horas, con capacitación a tu equipo y configuración optimizada.</p>
       </div>
       <div class="method-step reveal">
         <div class="step-num">04</div>
-        <h3 class="step-title">Monitoreo</h3>
-        <p class="step-desc">Supervisión continua, actualizaciones automáticas y reportes mensuales para que siempre estés informado.</p>
+        <h3 class="step-title" data-i18n="step4_title">Monitoreo</h3>
+        <p class="step-desc" data-i18n="step4_desc">Supervisión continua, actualizaciones automáticas y reportes mensuales para que siempre estés informado.</p>
       </div>
     </div>
   </div>
@@ -1347,19 +1745,19 @@ footer{
 <!-- ── FOUNDERS ── -->
 <section id="nosotros" style="padding:clamp(60px,10vw,120px) clamp(20px,5vw,80px)">
   <div style="max-width:900px;margin:0 auto">
-    <div class="section-label" style="margin-bottom:12px">Nuestro equipo</div>
-    <h2 class="section-title" style="margin-bottom:8px">Los socios detrás de <em>C·SHUTZ</em></h2>
-    <p class="section-sub" style="margin-bottom:0">Especialistas en ciberseguridad con presencia en México.</p>
+    <div class="section-label" style="margin-bottom:12px" data-i18n="team_label">Nuestro equipo</div>
+    <h2 class="section-title" style="margin-bottom:8px"><span data-i18n="team_title">Los socios detrás de</span> <em>C·SHUTZ</em></h2>
+    <p class="section-sub" style="margin-bottom:0" data-i18n="team_sub">Especialistas en ciberseguridad con presencia en México.</p>
     <div class="founders-grid">
       <div class="founder-card">
         <div class="founder-avatar">PP</div>
         <div class="founder-name">Patricio Perez</div>
-        <div class="founder-role">Socio Co-fundador</div>
+        <div class="founder-role" data-i18n="founder_role">Socio Co-fundador</div>
       </div>
       <div class="founder-card">
         <div class="founder-avatar" style="background:linear-gradient(135deg,#3498db,#2980b9)">MG</div>
         <div class="founder-name">Mariano Gamboa</div>
-        <div class="founder-role">Socio Co-fundador</div>
+        <div class="founder-role" data-i18n="founder_role">Socio Co-fundador</div>
       </div>
     </div>
   </div>
@@ -1368,31 +1766,31 @@ footer{
 <section id="diagnostico">
   <div class="diag-inner">
     <div class="diag-left reveal">
-      <div class="section-label">Diagnóstico IA</div>
-      <h2 class="section-title">Conoce el nivel de riesgo de tu <em>empresa</em></h2>
-      <p class="section-sub" style="margin:20px 0 40px">
+      <div class="section-label" data-i18n="diag_label">Diagnóstico IA</div>
+      <h2 class="section-title"><span data-i18n="diag_title">Conoce el nivel de riesgo de tu</span> <em data-i18n="diag_em">empresa</em></h2>
+      <p class="section-sub" style="margin:20px 0 40px" data-i18n="diag_sub">
         Responde 6 preguntas y nuestra IA analiza tu situación actual. Recibirás un reporte personalizado en minutos — completamente gratis.
       </p>
       <div class="diag-benefits">
         <div class="diag-benefit">
           <div class="benefit-icon">🤖</div>
           <div class="benefit-text">
-            <h4>Análisis con Inteligencia Artificial</h4>
-            <p>Claude AI analiza tu perfil de riesgo y genera recomendaciones específicas para tu industria y tamaño de empresa.</p>
+            <h4 data-i18n="benefit1_title">Análisis con Inteligencia Artificial</h4>
+            <p data-i18n="benefit1_desc">Claude AI analiza tu perfil de riesgo y genera recomendaciones específicas para tu industria y tamaño de empresa.</p>
           </div>
         </div>
         <div class="diag-benefit">
           <div class="benefit-icon">📧</div>
           <div class="benefit-text">
-            <h4>Reporte en tu correo</h4>
-            <p>Recibes el diagnóstico detallado en tu email para compartirlo con tu equipo directivo y consejo.</p>
+            <h4 data-i18n="benefit2_title">Reporte en tu correo</h4>
+            <p data-i18n="benefit2_desc">Recibes el diagnóstico detallado en tu email para compartirlo con tu equipo directivo y consejo.</p>
           </div>
         </div>
         <div class="diag-benefit">
           <div class="benefit-icon">📞</div>
           <div class="benefit-text">
-            <h4>Seguimiento personalizado</h4>
-            <p>Un especialista te contactará para resolver dudas y presentar soluciones adaptadas a tu empresa.</p>
+            <h4 data-i18n="benefit3_title">Seguimiento personalizado</h4>
+            <p data-i18n="benefit3_desc">Un especialista te contactará para resolver dudas y presentar soluciones adaptadas a tu empresa.</p>
           </div>
         </div>
       </div>
@@ -1400,8 +1798,8 @@ footer{
 
     <div class="diag-form-wrap reveal">
       <div class="form-header">
-        <h3>Diagnóstico de Seguridad</h3>
-        <p>Análisis personalizado impulsado por IA · 3 minutos</p>
+        <h3 data-i18n="form_title">Diagnóstico de Seguridad</h3>
+        <p data-i18n="form_sub">Análisis personalizado impulsado por IA · 3 minutos</p>
       </div>
 
       <!-- Step indicator -->
@@ -1418,26 +1816,26 @@ footer{
         <!-- Step 1 -->
         <div class="form-step active" id="step-1">
           <div class="field">
-            <label>Nombre completo</label>
-            <input type="text" id="f-name" placeholder="Tu nombre">
+            <label data-i18n="f_name_label">Nombre completo</label>
+            <input type="text" id="f-name" placeholder="Tu nombre" data-i18n-ph="f_name_ph">
           </div>
           <div class="field">
-            <label>Correo electrónico</label>
+            <label data-i18n="f_email_label">Correo electrónico</label>
             <input type="email" id="f-email" placeholder="tu@empresa.com">
           </div>
           <div class="field-row">
             <div class="field">
-              <label>Empresa</label>
-              <input type="text" id="f-company" placeholder="Nombre de tu empresa">
+              <label data-i18n="f_company_label">Empresa</label>
+              <input type="text" id="f-company" placeholder="Nombre de tu empresa" data-i18n-ph="f_company_ph">
             </div>
             <div class="field">
-              <label>Teléfono</label>
+              <label data-i18n="f_phone_label">Teléfono</label>
               <input type="tel" id="f-phone" placeholder="+52 55 0000 0000">
             </div>
           </div>
           <div class="form-nav">
             <button class="btn-next" onclick="nextStep(1)">
-              Continuar
+              <span data-i18n="btn_continue">Continuar</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
@@ -1446,7 +1844,7 @@ footer{
         <!-- Step 2 -->
         <div class="form-step" id="step-2">
           <div class="field">
-            <label>Sector / Industria</label>
+            <label data-i18n="f_sector_label">Sector / Industria</label>
             <select id="f-sector">
               <option value="" disabled selected>Selecciona tu sector</option>
               <option>Manufactura</option>
@@ -1462,7 +1860,7 @@ footer{
             </select>
           </div>
           <div class="field">
-            <label>Número de empleados</label>
+            <label data-i18n="f_size_label">Número de empleados</label>
             <select id="f-size">
               <option value="" disabled selected>Tamaño de la empresa</option>
               <option>1–10 empleados</option>
@@ -1473,7 +1871,7 @@ footer{
             </select>
           </div>
           <div class="field">
-            <label>¿Tienen antivirus o protección activa?</label>
+            <label data-i18n="f_antivirus_label">¿Tienen antivirus o protección activa?</label>
             <select id="f-antivirus">
               <option value="" disabled selected>Selecciona una opción</option>
               <option>Sí, solución empresarial</option>
@@ -1483,9 +1881,9 @@ footer{
             </select>
           </div>
           <div class="form-nav">
-            <button class="btn-prev" onclick="prevStep(2)">Atrás</button>
+            <button class="btn-prev" onclick="prevStep(2)" data-i18n="btn_back">Atrás</button>
             <button class="btn-next" onclick="nextStep(2)">
-              Continuar
+              <span data-i18n="btn_continue">Continuar</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
@@ -1494,7 +1892,7 @@ footer{
         <!-- Step 3 -->
         <div class="form-step" id="step-3">
           <div class="field">
-            <label>¿Han tenido incidentes de seguridad?</label>
+            <label data-i18n="f_incidents_label">¿Han tenido incidentes de seguridad?</label>
             <select id="f-incidents">
               <option value="" disabled selected>Selecciona una opción</option>
               <option>Sí, en el último año</option>
@@ -1504,7 +1902,7 @@ footer{
             </select>
           </div>
           <div class="field">
-            <label>¿Tienen trabajo remoto o híbrido?</label>
+            <label data-i18n="f_remote_label">¿Tienen trabajo remoto o híbrido?</label>
             <select id="f-remote">
               <option value="" disabled selected>Selecciona una opción</option>
               <option>Sí, la mayoría trabaja remoto</option>
@@ -1513,13 +1911,13 @@ footer{
             </select>
           </div>
           <div class="field">
-            <label>¿Cuál es tu mayor preocupación? (opcional)</label>
-            <textarea id="f-concern" placeholder="Ej: proteger el correo, evitar ransomware, cumplimiento legal..."></textarea>
+            <label data-i18n="f_concern_label">¿Cuál es tu mayor preocupación? (opcional)</label>
+            <textarea id="f-concern" placeholder="Ej: proteger el correo, evitar ransomware, cumplimiento legal..." data-i18n-ph="f_concern_ph"></textarea>
           </div>
           <div class="form-nav">
-            <button class="btn-prev" onclick="prevStep(3)">Atrás</button>
+            <button class="btn-prev" onclick="prevStep(3)" data-i18n="btn_back">Atrás</button>
             <button class="btn-submit" onclick="submitDiagnosis()">
-              Analizar con IA
+              <span data-i18n="btn_analyze">Analizar con IA</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l6 6-6 6M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
@@ -1533,22 +1931,22 @@ footer{
             <path d="M14 4v4M14 20v4M4 14H8M20 14h4M6.34 6.34l2.83 2.83M18.83 18.83l2.83 2.83M6.34 21.66l2.83-2.83M18.83 9.17l2.83-2.83" stroke="#2ecc71" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </div>
-        <h3>Analizando tu empresa<span class="analyzing-dots"></span></h3>
-        <p>La IA está procesando tu perfil de riesgo.<br>Esto tomará unos segundos.</p>
+        <h3><span data-i18n="analyzing_title">Analizando tu empresa</span><span class="analyzing-dots"></span></h3>
+        <p data-i18n="analyzing_sub">La IA está procesando tu perfil de riesgo.<br>Esto tomará unos segundos.</p>
       </div>
 
       <!-- Result -->
       <div id="form-result">
         <div class="result-body" id="result-text"></div>
-        <p class="result-note">📧 Hemos enviado este reporte a tu correo.<br>Un especialista de C·SHUTZ se pondrá en contacto contigo en las próximas 24 horas.</p>
+        <p class="result-note" data-i18n="result_note">📧 Hemos enviado este reporte a tu correo.<br>Un especialista de C·SHUTZ se pondrá en contacto contigo en las próximas 24 horas.</p>
       </div>
 
       <!-- Error -->
       <div id="form-error">
         <div class="error-icon">⚠️</div>
-        <h3>Algo salió mal</h3>
-        <p id="error-msg">Hubo un error al procesar tu diagnóstico. Por favor intenta de nuevo.</p>
-        <button class="btn-retry" onclick="resetForm()">Intentar de nuevo</button>
+        <h3 data-i18n="error_title">Algo salió mal</h3>
+        <p id="error-msg" data-i18n="error_msg">Hubo un error al procesar tu diagnóstico. Por favor intenta de nuevo.</p>
+        <button class="btn-retry" onclick="resetForm()" data-i18n="btn_retry">Intentar de nuevo</button>
       </div>
 
     </div>
