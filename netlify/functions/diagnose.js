@@ -101,6 +101,34 @@ exports.handler = async function(event) {
       await Promise.allSettled([clientEmail, teamEmail]);
     }
 
+    // 3. Create contact in HubSpot CRM
+    if (contactData && process.env.HUBSPOT_ACCESS_TOKEN) {
+      const { nombre, empresa, email, telefono } = contactData;
+      const nameParts = nombre.trim().split(' ');
+      const firstname = nameParts[0];
+      const lastname = nameParts.slice(1).join(' ') || '';
+
+      await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.HUBSPOT_ACCESS_TOKEN}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          properties: {
+            email,
+            firstname,
+            lastname,
+            company: empresa,
+            phone: telefono || '',
+            lifecyclestage: 'lead',
+            hs_lead_status: 'NEW',
+            description: `Diagnóstico C·SHUTZ:\n${analysis}`
+          }
+        })
+      }).catch(() => {});
+    }
+
     return {
       statusCode: 200,
       headers: {
