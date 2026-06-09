@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C·SHUTZ — Ciberseguridad Empresarial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+:root {
+  --bg: #080b10;
+  --bg2: #0d1117;
+  --bg3: #111827;
+  --border: rgba(255,255,255,0.07);
+  --accent: #00d4aa;
+  --accent2: #0099ff;
+  --text: #e8eaed;
+  --text2: #8b95a1;
+  --card: rgba(255,255,255,0.04);
+  --radius: 14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden}
+body[dir="rtl"]{font-family:'Heebo',sans-serif}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(8,11,16,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:8px}
+.nav-logo{font-size:18px;font-weight:800;letter-spacing:1px;cursor:pointer;flex-shrink:0;margin-right:16px}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2px;flex:1}
+.nav-link{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:.2s;border:none;background:none;white-space:nowrap}
+.nav-link:hover{color:var(--text);background:var(--card)}
+.nav-link.active{color:var(--accent);background:rgba(0,212,170,0.1)}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.lang-btn{padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;border:1px solid var(--border);background:none;transition:.2s}
+.lang-btn:hover,.lang-btn.active{color:var(--accent);border-color:var(--accent);background:rgba(0,212,170,0.08)}
+.nav-wa{padding:7px 16px;border-radius:8px;font-size:13px;font-weight:600;color:#fff;background:linear-gradient(135deg,#25d366,#128c7e);cursor:pointer;border:none;text-decoration:none;display:flex;align-items:center;gap:6px;transition:.2s}
+.nav-wa:hover{opacity:.9;transform:translateY(-1px)}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;padding-top:64px;animation:fadeIn .35s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── HERO ── */
+.hero{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:60px 24px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,212,170,0.06) 0%, transparent 70%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%)}
+.hero-content{position:relative;max-width:800px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;border:1px solid rgba(0,212,170,0.3);background:rgba(0,212,170,0.08);font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.5px;margin-bottom:32px}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:24px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.15rem;color:var(--text2);line-height:1.7;max-width:560px;margin:0 auto 40px}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--accent),#00b894);border:none;cursor:pointer;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,212,170,0.35)}
+.btn-secondary{padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;color:var(--text);background:var(--card);border:1px solid var(--border);cursor:pointer;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary:hover{border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.08)}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:64px;padding-top:48px;border-top:1px solid var(--border)}
+.stat-item{text-align:center}
+.stat-num{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:12px;color:var(--text2);margin-top:4px;font-weight:500}
+
+/* ── SECTIONS ── */
+.section{padding:80px 24px;max-width:1200px;margin:0 auto}
+.section-tag{display:inline-flex;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent);background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.2);margin-bottom:16px}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;letter-spacing:-0.5px;margin-bottom:16px}
+.section-title em{font-style:normal;color:var(--accent)}
+.section-sub{font-size:1.05rem;color:var(--text2);line-height:1.7;max-width:560px}
+.section-header{margin-bottom:56px}
+
+/* ── PACKAGES ── */
+.packages-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start}
+.pkg-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:.2s;position:relative;overflow:hidden}
+.pkg-card:hover{border-color:rgba(0,212,170,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.pkg-card.featured{border-color:rgba(0,212,170,0.4);background:linear-gradient(135deg,rgba(0,212,170,0.06),rgba(0,153,255,0.04))}
+.pkg-card.featured::before{content:'RECOMENDADO';position:absolute;top:16px;right:-28px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 40px;transform:rotate(45deg)}
+.pkg-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;background:rgba(0,212,170,0.1)}
+.pkg-name{font-size:13px;font-weight:700;letter-spacing:1.5px;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+.pkg-title{font-size:1.3rem;font-weight:700;margin-bottom:12px}
+.pkg-desc{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:24px}
+.pkg-features{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.pkg-features li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text2)}
+.pkg-features li::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0;margin-top:1px}
+.pkg-cta{width:100%;padding:11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;border:1px solid rgba(0,212,170,0.4);color:var(--accent);background:rgba(0,212,170,0.06)}
+.pkg-cta:hover{background:rgba(0,212,170,0.15)}
+.pkg-card.featured .pkg-cta{background:linear-gradient(135deg,var(--accent),#00b894);color:#000;border:none}
+.pkg-card.featured .pkg-cta:hover{opacity:.9}
+.pkg-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;margin-bottom:16px}
+.pkg-badge.hornetsec{background:rgba(255,107,53,0.12);color:#ff6b35;border:1px solid rgba(255,107,53,0.25)}
+.pkg-badge.gdata{background:rgba(0,153,255,0.12);color:#3aa0ff;border:1px solid rgba(0,153,255,0.25)}
+.pkg-badge.both{background:rgba(0,212,170,0.12);color:var(--accent);border:1px solid rgba(0,212,170,0.25)}
+
+/* ── PARTNERS ── */
+.partners-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
+.partner-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px;transition:.2s}
+.partner-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-3px)}
+.partner-logo{font-size:26px;font-weight:900;letter-spacing:-0.5px;margin-bottom:8px}
+.partner-type{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-bottom:20px}
+.partner-desc{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:24px}
+.partner-tags{display:flex;flex-wrap:wrap;gap:8px}
+.partner-tag{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:500;background:rgba(255,255,255,0.06);color:var(--text2);border:1px solid var(--border)}
+
+/* ── NOSOTROS ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-text p{color:var(--text2);line-height:1.8;font-size:15px;margin-bottom:16px}
+.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.value-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.value-icon{font-size:20px;margin-bottom:10px}
+.value-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.value-desc{font-size:13px;color:var(--text2);line-height:1.55}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px;text-align:center}
+.team-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#000;margin:0 auto 20px}
+.team-name{font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.team-role{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:12px}
+.team-bio{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start}
+.contact-info h3{font-size:1.4rem;font-weight:700;margin-bottom:12px}
+.contact-info p{color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:32px}
+.contact-links{display:flex;flex-direction:column;gap:12px}
+.contact-link{display:flex;align-items:center;gap:12px;padding:16px;border-radius:10px;background:var(--card);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:.2s}
+.contact-link:hover{border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.05)}
+.contact-link-icon{width:38px;height:38px;border-radius:8px;background:rgba(0,212,170,0.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.contact-link-text{font-size:13px;font-weight:600}
+.contact-link-sub{font-size:12px;color:var(--text2)}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px}
+.cf-title{font-size:1.15rem;font-weight:700;margin-bottom:24px}
+.cf-field{margin-bottom:16px}
+.cf-field label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;letter-spacing:.3px}
+.cf-field input,.cf-field textarea,.cf-field select{width:100%;padding:11px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:.2s}
+.cf-field input:focus,.cf-field textarea:focus,.cf-field select:focus{border-color:rgba(0,212,170,0.5);background:rgba(0,212,170,0.04)}
+.cf-field textarea{min-height:110px;resize:vertical}
+.cf-field select option{background:#1a2030}
+.btn-send{width:100%;padding:13px;border-radius:8px;font-size:14px;font-weight:600;color:#000;background:linear-gradient(135deg,var(--accent),#00b894);border:none;cursor:pointer;transition:.2s;margin-top:8px}
+.btn-send:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,212,170,0.3)}
+
+/* ── DIAGNOSIS SECTION ── */
+.diag-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:start}
+.diag-info h3{font-size:1.5rem;font-weight:700;margin-bottom:12px}
+.diag-info p{color:var(--text2);font-size:14px;line-height:1.75;margin-bottom:28px}
+.diag-benefits{display:flex;flex-direction:column;gap:16px}
+.diag-benefit{display:flex;gap:14px;align-items:flex-start}
+.benefit-icon{width:40px;height:40px;border-radius:10px;background:rgba(0,212,170,0.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.benefit-text h4{font-size:14px;font-weight:600;margin-bottom:4px}
+.benefit-text p{font-size:13px;color:var(--text2);line-height:1.55}
+
+/* ── FORM (PRESERVED STRUCTURE) ── */
+.diag-form-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.form-header{padding:28px 32px 0;border-bottom:1px solid var(--border);padding-bottom:20px}
+.form-header h3{font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.form-header p{font-size:13px;color:var(--text2)}
+.step-indicator{display:flex;align-items:center;padding:20px 32px;gap:0}
+.step-dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text2);transition:.3s;flex-shrink:0}
+.step-dot.active{border-color:var(--accent);color:var(--accent);background:rgba(0,212,170,0.1)}
+.step-dot.done{background:var(--accent);border-color:var(--accent);color:#000}
+.step-line{flex:1;height:1px;background:var(--border)}
+.step-line.done{background:var(--accent)}
+.form-body{padding:24px 32px 32px}
+.form-step{display:none}
+.form-step.active{display:block}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;padding:10px 13px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:.2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(0,212,170,0.5)}
+.field select option{background:#1a2030}
+.field textarea{min-height:90px;resize:vertical}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:10px}
+.btn-next,.btn-submit{display:flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;color:#000;background:linear-gradient(135deg,var(--accent),#00b894);border:none;cursor:pointer;transition:.2s;margin-left:auto}
+.btn-next:hover,.btn-submit:hover{opacity:.9}
+.btn-prev{padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--text2);background:none;border:1px solid var(--border);cursor:pointer;transition:.2s}
+.btn-prev:hover{border-color:rgba(255,255,255,0.2);color:var(--text)}
+#form-analyzing,#form-result,#form-error{display:none;text-align:center;padding:48px 32px}
+#form-analyzing .analyzing-icon{width:60px;height:60px;border-radius:50%;background:rgba(0,212,170,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+#form-analyzing h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+#form-analyzing p{font-size:13px;color:var(--text2)}
+.analyzing-dots::after{content:'...';animation:dots 1.5s infinite}
+@keyframes dots{0%{content:'.'}33%{content:'..'}66%{content:'...'}100%{content:'.'}}
+.result-header{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:24px}
+.result-icon{width:50px;height:50px;border-radius:50%;background:rgba(0,212,170,0.15);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700}
+#form-result h3{font-size:1.1rem;font-weight:700}
+.result-body{font-size:13px;color:var(--text2);line-height:1.75;text-align:left;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px;white-space:pre-wrap;max-height:300px;overflow-y:auto}
+.result-note{font-size:12px;color:var(--text2)}
+.error-icon{font-size:36px;margin-bottom:12px}
+#form-error h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+#form-error p{font-size:13px;color:var(--text2);margin-bottom:20px}
+.btn-retry{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;color:var(--text);background:var(--card);border:1px solid var(--border);cursor:pointer}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 24px rgba(37,211,102,0.4);transition:.2s}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,0.5)}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:48px 24px;background:var(--bg2)}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px}
+.footer-brand .brand-logo{font-size:20px;font-weight:800;letter-spacing:1px;margin-bottom:12px}
+.footer-brand .brand-logo span{color:var(--accent)}
+.footer-brand p{font-size:13px;color:var(--text2);line-height:1.7;max-width:240px}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text2);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:var(--text2);text-decoration:none;margin-bottom:8px;transition:.2s;cursor:pointer}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{max-width:1200px;margin:32px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text2)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .about-grid,.contact-grid,.diag-wrap{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:28px}
+}
+@media(max-width:680px){
+  .nav-links{display:none}
+  .packages-grid{grid-template-columns:1fr}
+  .partners-grid{grid-template-columns:1fr}
+  .hero-stats{flex-wrap:wrap;gap:20px}
+  .footer-inner{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+}
+
+/* RTL overrides */
+[dir="rtl"] .nav-inner{flex-direction:row-reverse}
+[dir="rtl"] .nav-links{flex-direction:row-reverse}
+[dir="rtl"] .hero-ctas{flex-direction:row-reverse}
+[dir="rtl"] .diag-wrap,[dir="rtl"] .contact-grid,[dir="rtl"] .about-grid{direction:rtl}
+[dir="rtl"] .pkg-card.featured::before{right:auto;left:-28px;transform:rotate(-45deg)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('inicio')">C<span>·</span>SHUTZ</div>
+    <div class="nav-links">
+      <button class="nav-link active" id="nav-inicio" onclick="showPage('inicio')" data-i18n="nav_inicio">Inicio</button>
+      <button class="nav-link" id="nav-nosotros" onclick="showPage('nosotros')" data-i18n="nav_nosotros">Nosotros</button>
+      <button class="nav-link" id="nav-soluciones" onclick="showPage('soluciones')" data-i18n="nav_soluciones">Soluciones</button>
+      <button class="nav-link" id="nav-fabricantes" onclick="showPage('fabricantes')" data-i18n="nav_fabricantes">Fabricantes</button>
+      <button class="nav-link" id="nav-diagnostico" onclick="showPage('diagnostico')" data-i18n="nav_diagnostico">Diagnóstico</button>
+      <button class="nav-link" id="nav-contacto" onclick="showPage('contacto')" data-i18n="nav_contacto">Contacto</button>
+    </div>
+    <div class="nav-right">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" onclick="setLang('he')">HE</button>
+      <a class="nav-wa" href="https://wa.me/525523236244" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════ PAGE: INICIO ══════════════════════════════════ -->
+<div class="page active" id="page-inicio">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🛡 <span data-i18n="hero_badge">Ciberseguridad Empresarial · México</span></div>
+      <h1 data-i18n="hero_title">Protegemos tu empresa con tecnología de <em>clase mundial</em></h1>
+      <p data-i18n="hero_sub">Soluciones de ciberseguridad europeas con servicio personalizado. G DATA y Hornetsecurity, implementados por expertos en México.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="showPage('diagnostico')" data-i18n="hero_cta1">Diagnóstico gratuito</button>
+        <button class="btn-secondary" onclick="showPage('soluciones')" data-i18n="hero_cta2">Ver soluciones</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stat1">Tecnología europea</div></div>
+        <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label" data-i18n="stat2">Soporte en español</div></div>
+        <div class="stat-item"><div class="stat-num">2</div><div class="stat-label" data-i18n="stat3">Fabricantes líderes</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: NOSOTROS ══════════════════════════════════ -->
+<div class="page" id="page-nosotros">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="about_tag">Quiénes somos</div>
+      <h2 class="section-title" data-i18n="about_title">Ciberseguridad con <em>propósito</em></h2>
+      <p class="section-sub" data-i18n="about_sub">Somos una empresa mexicana especializada en ciberseguridad empresarial. Distribuimos e implementamos las mejores soluciones de seguridad de Europa.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p data-i18n="about_p1">C·SHUTZ nació con una misión clara: llevar tecnología de ciberseguridad de clase mundial a empresas mexicanas, con el servicio cercano y personalizado que merecen.</p>
+        <p data-i18n="about_p2">Somos distribuidores certificados de G DATA y Hornetsecurity, dos de las empresas de seguridad más reconocidas de Europa, con presencia en más de 90 países.</p>
+        <p data-i18n="about_p3">Nuestro equipo combina experiencia técnica con conocimiento profundo del mercado mexicano, ofreciendo soluciones adaptadas a la realidad de cada empresa.</p>
+        <div class="values-grid" style="margin-top:32px">
+          <div class="value-card">
+            <div class="value-icon">🎯</div>
+            <div class="value-title" data-i18n="val1_title">Enfoque empresarial</div>
+            <div class="value-desc" data-i18n="val1_desc">Soluciones diseñadas para las necesidades reales de las empresas, no para el mercado de consumo.</div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <div class="value-title" data-i18n="val2_title">Relación directa</div>
+            <div class="value-desc" data-i18n="val2_desc">Trabajamos de la mano con cada cliente. Sin intermediarios, sin burocracia.</div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🌍</div>
+            <div class="value-title" data-i18n="val3_title">Tecnología europea</div>
+            <div class="value-desc" data-i18n="val3_desc">Fabricantes con estándares ISO 27001 y cumplimiento GDPR desde su diseño.</div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">⚡</div>
+            <div class="value-title" data-i18n="val4_title">Respuesta rápida</div>
+            <div class="value-desc" data-i18n="val4_desc">Soporte y respuesta a incidentes en tiempo real, en español.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="team-card" style="margin-bottom:20px">
+          <div class="team-avatar">PP</div>
+          <div class="team-name">Patricio Perez</div>
+          <div class="team-role" data-i18n="team1_role">CEO & Director Comercial</div>
+          <div class="team-bio" data-i18n="team1_bio">Responsable de la dirección estratégica, relaciones con fabricantes y desarrollo de negocio en México y LATAM.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background:linear-gradient(135deg,#0099ff,#6c5ce7)">MG</div>
+          <div class="team-name">Mariano Gámez</div>
+          <div class="team-role" data-i18n="team2_role">Director de Operaciones</div>
+          <div class="team-bio" data-i18n="team2_bio">Gestión de operaciones y soporte técnico especializado para garantizar la calidad del servicio.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: SOLUCIONES ══════════════════════════════════ -->
+<div class="page" id="page-soluciones">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="sol_tag">Nuestros Paquetes</div>
+      <h2 class="section-title" data-i18n="sol_title">Escudos diseñados para <em>tu empresa</em></h2>
+      <p class="section-sub" data-i18n="sol_sub">Cinco paquetes de protección que cubren desde necesidades específicas hasta seguridad integral gestionada. Todos incluyen soporte directo en español.</p>
+    </div>
+    <div class="packages-grid">
+
+      <!-- ESCUDO EMAIL -->
+      <div class="pkg-card">
+        <div class="pkg-icon">📧</div>
+        <div class="pkg-badge hornetsec">Hornetsecurity</div>
+        <div class="pkg-name">ESCUDO EMAIL</div>
+        <div class="pkg-title" data-i18n="pkg1_title">Protección de Correo Empresarial</div>
+        <div class="pkg-desc" data-i18n="pkg1_desc">Defensa completa para tu correo corporativo. Filtra spam, phishing, malware y ataques BEC antes de que lleguen a tus empleados.</div>
+        <ul class="pkg-features">
+          <li data-i18n="pkg1_f1">Filtrado anti-phishing avanzado con IA</li>
+          <li data-i18n="pkg1_f2">Protección contra ransomware por email</li>
+          <li data-i18n="pkg1_f3">Archivado y continuidad del correo</li>
+          <li data-i18n="pkg1_f4">Firma y cifrado de mensajes</li>
+          <li data-i18n="pkg1_f5">Cumplimiento regulatorio (NOM-151)</li>
+        </ul>
+        <button class="pkg-cta" onclick="showPage('contacto')" data-i18n="pkg_cta">Solicitar información</button>
+      </div>
+
+      <!-- ESCUDO ENDPOINT -->
+      <div class="pkg-card">
+        <div class="pkg-icon">🖥</div>
+        <div class="pkg-badge gdata">G DATA</div>
+        <div class="pkg-name">ESCUDO ENDPOINT</div>
+        <div class="pkg-title" data-i18n="pkg2_title">Protección de Dispositivos</div>
+        <div class="pkg-desc" data-i18n="pkg2_desc">Antivirus y EDR de clase empresarial para laptops, PCs y servidores. Detección y respuesta ante amenazas en tiempo real.</div>
+        <ul class="pkg-features">
+          <li data-i18n="pkg2_f1">Antivirus con doble motor de detección</li>
+          <li data-i18n="pkg2_f2">EDR con análisis de comportamiento</li>
+          <li data-i18n="pkg2_f3">Control de dispositivos USB</li>
+          <li data-i18n="pkg2_f4">Cifrado de disco y datos sensibles</li>
+          <li data-i18n="pkg2_f5">Gestión centralizada en la nube</li>
+        </ul>
+        <button class="pkg-cta" onclick="showPage('contacto')" data-i18n="pkg_cta">Solicitar información</button>
+      </div>
+
+      <!-- ESCUDO 360 — FEATURED -->
+      <div class="pkg-card featured">
+        <div class="pkg-icon">🛡</div>
+        <div class="pkg-badge both">G DATA + Hornetsecurity</div>
+        <div class="pkg-name">ESCUDO 360</div>
+        <div class="pkg-title" data-i18n="pkg3_title">Protección Integral Total</div>
+        <div class="pkg-desc" data-i18n="pkg3_desc">La combinación más completa: email, endpoints y gestión unificada. El paquete más elegido por empresas que no pueden permitirse una brecha de seguridad.</div>
+        <ul class="pkg-features">
+          <li data-i18n="pkg3_f1">Todo de ESCUDO EMAIL incluido</li>
+          <li data-i18n="pkg3_f2">Todo de ESCUDO ENDPOINT incluido</li>
+          <li data-i18n="pkg3_f3">Consola de gestión unificada</li>
+          <li data-i18n="pkg3_f4">Reportes ejecutivos mensuales</li>
+          <li data-i18n="pkg3_f5">Respuesta a incidentes prioritaria</li>
+        </ul>
+        <button class="pkg-cta" onclick="showPage('contacto')" data-i18n="pkg3_cta">Obtener cotización</button>
+      </div>
+
+      <!-- ESCUDO MODULAR -->
+      <div class="pkg-card">
+        <div class="pkg-icon">🔧</div>
+        <div class="pkg-badge both">Flexible</div>
+        <div class="pkg-name">ESCUDO MODULAR</div>
+        <div class="pkg-title" data-i18n="pkg4_title">Soluciones Individuales</div>
+        <div class="pkg-desc" data-i18n="pkg4_desc">Elige exactamente lo que necesitas. Licencias individuales de cualquier producto de nuestro portafolio, sin paquetes forzados.</div>
+        <ul class="pkg-features">
+          <li data-i18n="pkg4_f1">Selección a la carta del catálogo completo</li>
+          <li data-i18n="pkg4_f2">Licencias desde 1 usuario</li>
+          <li data-i18n="pkg4_f3">Sin mínimos de compra obligatorios</li>
+          <li data-i18n="pkg4_f4">Escalable según crecimiento</li>
+          <li data-i18n="pkg4_f5">Ideal para necesidades específicas</li>
+        </ul>
+        <button class="pkg-cta" onclick="showPage('contacto')" data-i18n="pkg_cta">Solicitar información</button>
+      </div>
+
+      <!-- ESCUDO GESTIONADO -->
+      <div class="pkg-card">
+        <div class="pkg-icon">⚙️</div>
+        <div class="pkg-badge both">Servicio Gestionado</div>
+        <div class="pkg-name">ESCUDO GESTIONADO</div>
+        <div class="pkg-title" data-i18n="pkg5_title">Seguridad como Servicio</div>
+        <div class="pkg-desc" data-i18n="pkg5_desc">Nosotros gestionamos toda tu seguridad. Monitoreo, actualizaciones, respuesta a incidentes y reportes — sin que tengas que preocuparte por nada.</div>
+        <ul class="pkg-features">
+          <li data-i18n="pkg5_f1">Monitoreo 24/7 de amenazas</li>
+          <li data-i18n="pkg5_f2">Gestión y actualización continua</li>
+          <li data-i18n="pkg5_f3">Respuesta a incidentes incluida</li>
+          <li data-i18n="pkg5_f4">Reportes ejecutivos y técnicos</li>
+          <li data-i18n="pkg5_f5">SLA garantizado de tiempo de respuesta</li>
+        </ul>
+        <button class="pkg-cta" onclick="showPage('contacto')" data-i18n="pkg_cta">Solicitar información</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: FABRICANTES ══════════════════════════════════ -->
+<div class="page" id="page-fabricantes">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="fab_tag">Fabricantes</div>
+      <h2 class="section-title" data-i18n="fab_title">Tecnología <em>europea líder</em></h2>
+      <p class="section-sub" data-i18n="fab_sub">Distribuidores certificados de los mejores fabricantes de ciberseguridad europeos. Respaldo técnico directo del fabricante para cada implementación.</p>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-logo" style="color:#3aa0ff">G DATA</div>
+        <div class="partner-type" data-i18n="gdata_type">Seguridad de Endpoints · Alemania</div>
+        <div class="partner-desc" data-i18n="gdata_desc">Fundada en 1985 en Bochum, Alemania, G DATA es pionera en antivirus y seguridad endpoint. Su tecnología de doble motor de detección es reconocida como una de las más eficaces del mundo. Certificada por AV-TEST, AV-Comparatives y múltiples organizaciones independientes.</div>
+        <div class="partner-tags">
+          <span class="partner-tag">Antivirus</span>
+          <span class="partner-tag">EDR</span>
+          <span class="partner-tag">Cifrado</span>
+          <span class="partner-tag">Control USB</span>
+          <span class="partner-tag">MDM</span>
+          <span class="partner-tag">ISO 27001</span>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo" style="color:#ff6b35">Hornetsecurity</div>
+        <div class="partner-type" data-i18n="hornetsec_type">Seguridad de Email · Alemania</div>
+        <div class="partner-desc" data-i18n="hornetsec_desc">Líder europeo en seguridad de correo electrónico en la nube. Con más de 60,000 clientes en 30 países, Hornetsecurity protege la comunicación empresarial con IA avanzada. Solución 100% cloud, sin hardware requerido y con activación en minutos.</div>
+        <div class="partner-tags">
+          <span class="partner-tag">Email Security</span>
+          <span class="partner-tag">Anti-Phishing</span>
+          <span class="partner-tag">Archivado</span>
+          <span class="partner-tag">Cifrado</span>
+          <span class="partner-tag">Backup 365</span>
+          <span class="partner-tag">GDPR</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:48px;padding:40px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
+      <div style="font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-bottom:12px" data-i18n="cert_title">Distribuidores Certificados</div>
+      <div style="font-size:1.1rem;font-weight:700;margin-bottom:10px" data-i18n="cert_sub">Respaldo técnico directo del fabricante</div>
+      <p style="font-size:14px;color:var(--text2);max-width:500px;margin:0 auto" data-i18n="cert_desc">Como distribuidores certificados, tenemos acceso directo a soporte técnico de primer nivel, actualizaciones prioritarias y materiales de capacitación exclusivos para garantizar las mejores implementaciones.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: DIAGNÓSTICO ══════════════════════════════════ -->
+<div class="page" id="page-diagnostico">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="diag_tag">Diagnóstico IA</div>
+      <h2 class="section-title" data-i18n="diag_title">Conoce el riesgo de tu <em>empresa</em></h2>
+    </div>
+    <div class="diag-wrap">
+      <div class="diag-info">
+        <p data-i18n="diag_info_p">Responde 6 preguntas y nuestra IA analiza tu situación actual. Recibirás un reporte personalizado en minutos — completamente gratis.</p>
+        <div class="diag-benefits">
+          <div class="diag-benefit">
+            <div class="benefit-icon">🤖</div>
+            <div class="benefit-text">
+              <h4 data-i18n="diag_b1_title">Análisis con Inteligencia Artificial</h4>
+              <p data-i18n="diag_b1_desc">Claude AI analiza tu perfil de riesgo y genera recomendaciones específicas para tu industria y tamaño de empresa.</p>
+            </div>
+          </div>
+          <div class="diag-benefit">
+            <div class="benefit-icon">📧</div>
+            <div class="benefit-text">
+              <h4 data-i18n="diag_b2_title">Reporte en tu correo</h4>
+              <p data-i18n="diag_b2_desc">Recibes el diagnóstico detallado en tu email para compartirlo con tu equipo directivo.</p>
+            </div>
+          </div>
+          <div class="diag-benefit">
+            <div class="benefit-icon">📞</div>
+            <div class="benefit-text">
+              <h4 data-i18n="diag_b3_title">Seguimiento personalizado</h4>
+              <p data-i18n="diag_b3_desc">Un especialista te contactará para resolver dudas y presentar soluciones adaptadas a tu empresa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="diag-form-wrap">
+        <div class="form-header">
+          <h3 data-i18n="form_title">Diagnóstico de Seguridad</h3>
+          <p data-i18n="form_sub">Análisis personalizado impulsado por IA · 3 minutos</p>
+        </div>
+        <div class="step-indicator" id="step-indicator">
+          <div class="step-dot active" id="dot-1">1</div>
+          <div class="step-line" id="line-1"></div>
+          <div class="step-dot" id="dot-2">2</div>
+          <div class="step-line" id="line-2"></div>
+          <div class="step-dot" id="dot-3">3</div>
+        </div>
+        <div class="form-body">
+          <div class="form-step active" id="step-1">
+            <div class="field"><label data-i18n="f_name">Nombre completo</label><input type="text" id="f-name" placeholder="Tu nombre"></div>
+            <div class="field"><label data-i18n="f_email">Correo electrónico</label><input type="email" id="f-email" placeholder="tu@empresa.com"></div>
+            <div class="field-row">
+              <div class="field"><label data-i18n="f_company">Empresa</label><input type="text" id="f-company" placeholder="Nombre de tu empresa"></div>
+              <div class="field"><label data-i18n="f_phone">Teléfono</label><input type="tel" id="f-phone" placeholder="+52 55 0000 0000"></div>
+            </div>
+            <div class="form-nav"><button class="btn-next" onclick="nextStep(1)" data-i18n="btn_next">Continuar <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+          </div>
+          <div class="form-step" id="step-2">
+            <div class="field"><label data-i18n="f_sector">Sector / Industria</label>
+              <select id="f-sector"><option value="" disabled selected data-i18n="sel_sector">Selecciona tu sector</option><option>Manufactura</option><option>Servicios Financieros</option><option>Salud / Clínicas</option><option>Legal / Despacho</option><option>Retail / Comercio</option><option>Tecnología</option><option>Educación</option><option>Gobierno / Público</option><option>Logística / Transporte</option><option>Otro</option></select>
+            </div>
+            <div class="field"><label data-i18n="f_size">Número de empleados</label>
+              <select id="f-size"><option value="" disabled selected data-i18n="sel_size">Tamaño de la empresa</option><option>1–10 empleados</option><option>11–50 empleados</option><option>51–200 empleados</option><option>201–500 empleados</option><option>Más de 500</option></select>
+            </div>
+            <div class="field"><label data-i18n="f_antivirus">¿Tienen antivirus o protección activa?</label>
+              <select id="f-antivirus"><option value="" disabled selected>Selecciona una opción</option><option>Sí, solución empresarial</option><option>Sí, pero gratuita o básica</option><option>No tenemos</option><option>No sé / No estoy seguro</option></select>
+            </div>
+            <div class="form-nav">
+              <button class="btn-prev" onclick="prevStep(2)" data-i18n="btn_prev">Atrás</button>
+              <button class="btn-next" onclick="nextStep(2)" data-i18n="btn_next">Continuar <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+          <div class="form-step" id="step-3">
+            <div class="field"><label data-i18n="f_incidents">¿Han tenido incidentes de seguridad?</label>
+              <select id="f-incidents"><option value="" disabled selected>Selecciona una opción</option><option>Sí, en el último año</option><option>Sí, hace más de un año</option><option>No que sepamos</option><option>Preferimos no decir</option></select>
+            </div>
+            <div class="field"><label data-i18n="f_remote">¿Tienen trabajo remoto o híbrido?</label>
+              <select id="f-remote"><option value="" disabled selected>Selecciona una opción</option><option>Sí, la mayoría trabaja remoto</option><option>Sí, modelo híbrido</option><option>No, todos en oficina</option></select>
+            </div>
+            <div class="field"><label data-i18n="f_concern">¿Cuál es tu mayor preocupación? (opcional)</label><textarea id="f-concern" placeholder="Ej: proteger el correo, evitar ransomware..."></textarea></div>
+            <div class="form-nav">
+              <button class="btn-prev" onclick="prevStep(3)" data-i18n="btn_prev">Atrás</button>
+              <button class="btn-submit" onclick="submitDiagnosis()" data-i18n="btn_analyze">Analizar con IA <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2l6 6-6 6M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div id="form-analyzing">
+          <div class="analyzing-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4v4M14 20v4M4 14H8M20 14h4M6.34 6.34l2.83 2.83M18.83 18.83l2.83 2.83M6.34 21.66l2.83-2.83M18.83 9.17l2.83-2.83" stroke="#00d4aa" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3 data-i18n="analyzing">Analizando tu empresa<span class="analyzing-dots"></span></h3>
+          <p data-i18n="analyzing_sub">La IA está procesando tu perfil de riesgo.<br>Esto tomará unos segundos.</p>
+        </div>
+        <div id="form-result">
+          <div class="result-header"><div class="result-icon">✓</div><h3 data-i18n="result_title">Diagnóstico Completado</h3></div>
+          <div class="result-body" id="result-text"></div>
+          <p class="result-note" data-i18n="result_note">📧 Hemos enviado este reporte a tu correo.<br>Un especialista se pondrá en contacto contigo pronto.</p>
+        </div>
+        <div id="form-error">
+          <div class="error-icon">⚠️</div>
+          <h3 data-i18n="error_title">Algo salió mal</h3>
+          <p id="error-msg" data-i18n="error_msg">Hubo un error al procesar tu diagnóstico. Por favor intenta de nuevo.</p>
+          <button class="btn-retry" onclick="resetForm()" data-i18n="btn_retry">Intentar de nuevo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ PAGE: CONTACTO ══════════════════════════════════ -->
+<div class="page" id="page-contacto">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="contact_tag">Contacto</div>
+      <h2 class="section-title" data-i18n="contact_title">Hablemos de tu <em>seguridad</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3 data-i18n="contact_sub_title">Estamos para ayudarte</h3>
+        <p data-i18n="contact_sub_desc">Cuéntanos sobre tu empresa y tus necesidades de seguridad. Te responderemos en menos de 24 horas hábiles con una propuesta personalizada.</p>
+        <div class="contact-links">
+          <a class="contact-link" href="https://wa.me/525523236244" target="_blank">
+            <div class="contact-link-icon">💬</div>
+            <div><div class="contact-link-text">WhatsApp</div><div class="contact-link-sub">+52 55 2323 6244</div></div>
+          </a>
+          <a class="contact-link" href="mailto:operacion@cshutz.net">
+            <div class="contact-link-icon">📧</div>
+            <div><div class="contact-link-text">Email</div><div class="contact-link-sub">operacion@cshutz.net</div></div>
+          </a>
+          <a class="contact-link" href="#">
+            <div class="contact-link-icon">📍</div>
+            <div><div class="contact-link-text" data-i18n="contact_location">Ubicación</div><div class="contact-link-sub">Ciudad de México, México</div></div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="cf-title" data-i18n="cf_title">Envíanos un mensaje</div>
+        <div class="cf-field"><label data-i18n="cf_name">Nombre</label><input type="text" id="cf-name" placeholder="Tu nombre completo"></div>
+        <div class="cf-field"><label data-i18n="cf_email">Correo electrónico</label><input type="email" id="cf-email" placeholder="tu@empresa.com"></div>
+        <div class="cf-field"><label data-i18n="cf_company">Empresa</label><input type="text" id="cf-company" placeholder="Nombre de tu empresa"></div>
+        <div class="cf-field"><label data-i18n="cf_msg">Mensaje</label><textarea id="cf-msg" placeholder="Cuéntanos sobre tus necesidades de seguridad..."></textarea></div>
+        <button class="btn-send" onclick="sendContact()" data-i18n="cf_send">Enviar mensaje</button>
+        <div id="cf-success" style="display:none;margin-top:16px;padding:12px;border-radius:8px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);font-size:13px;color:var(--accent);text-align:center" data-i18n="cf_success">✓ Mensaje enviado. Te contactaremos pronto.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand-logo">C<span>·</span>SHUTZ</div>
+      <p data-i18n="footer_desc">Ciberseguridad empresarial con tecnología europea y servicio personalizado en México.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_nav">Navegación</h4>
+      <a onclick="showPage('inicio')" data-i18n="nav_inicio">Inicio</a>
+      <a onclick="showPage('nosotros')" data-i18n="nav_nosotros">Nosotros</a>
+      <a onclick="showPage('soluciones')" data-i18n="nav_soluciones">Soluciones</a>
+      <a onclick="showPage('fabricantes')" data-i18n="nav_fabricantes">Fabricantes</a>
+      <a onclick="showPage('diagnostico')" data-i18n="nav_diagnostico">Diagnóstico</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_contact">Contacto</h4>
+      <a href="mailto:operacion@cshutz.net">operacion@cshutz.net</a>
+      <a href="https://wa.me/525523236244" target="_blank">+52 55 2323 6244</a>
+      <a>Ciudad de México</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 CHUTZ S.A.S. de C.V. — C·SHUTZ</span>
+    <span data-i18n="footer_rights">Todos los derechos reservados</span>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a class="wa-float" href="https://wa.me/525523236244" target="_blank" title="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ── CONFIG ──
+window.CSHUTZ_CONFIG = {
+  ANTHROPIC_KEY: 'TU_API_KEY_AQUI'
+};
+const EMAILJS_SERVICE = 'service_usxovaf';
+const EMAILJS_TPLT_OP = '9ddmkdp';
+const EMAILJS_TPLT_CL = '6a1lffi';
+emailjs.init('8yo3lfnoEyXJTof35');
+
+// ── ROUTING ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  const link = document.getElementById('nav-' + id);
+  if (page) page.classList.add('active');
+  if (link) link.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ── FORM STEPS ──
+function showStep(n) {
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  const s = document.getElementById('step-' + n);
+  if (s) s.classList.add('active');
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot-' + i);
+    if (dot) {
+      dot.classList.remove('active', 'done');
+      if (i < n) dot.classList.add('done');
+      else if (i === n) dot.classList.add('active');
+    }
+    if (i < 3) {
+      const line = document.getElementById('line-' + i);
+      if (line) line.classList.toggle('done', i < n);
+    }
+  }
+}
+function nextStep(current) {
+  if (current === 1) {
+    const name = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    if (!name || !email) { alert(T('fill_required')); return; }
+  }
+  if (current === 2) {
+    const sector = document.getElementById('f-sector').value;
+    const size = document.getElementById('f-size').value;
+    const av = document.getElementById('f-antivirus').value;
+    if (!sector || !size || !av) { alert(T('fill_required')); return; }
+  }
+  showStep(current + 1);
+}
+function prevStep(current) { showStep(current - 1); }
+
+// ── I18N ──
+const LANGS = {
+  es: {
+    nav_inicio:'Inicio', nav_nosotros:'Nosotros', nav_soluciones:'Soluciones',
+    nav_fabricantes:'Fabricantes', nav_diagnostico:'Diagnóstico', nav_contacto:'Contacto',
+    hero_badge:'Ciberseguridad Empresarial · México',
+    hero_title:'Protegemos tu empresa con tecnología de clase mundial',
+    hero_sub:'Soluciones de ciberseguridad europeas con servicio personalizado. G DATA y Hornetsecurity, implementados por expertos en México.',
+    hero_cta1:'Diagnóstico gratuito', hero_cta2:'Ver soluciones',
+    stat1:'Tecnología europea', stat2:'Soporte en español', stat3:'Fabricantes líderes',
+    about_tag:'Quiénes somos', about_title:'Ciberseguridad con propósito',
+    about_sub:'Somos una empresa mexicana especializada en ciberseguridad empresarial.',
+    about_p1:'C·SHUTZ nació con una misión clara: llevar tecnología de ciberseguridad de clase mundial a empresas mexicanas, con el servicio cercano y personalizado que merecen.',
+    about_p2:'Somos distribuidores certificados de G DATA y Hornetsecurity, dos de las empresas de seguridad más reconocidas de Europa.',
+    about_p3:'Nuestro equipo combina experiencia técnica con conocimiento profundo del mercado mexicano.',
+    val1_title:'Enfoque empresarial', val1_desc:'Soluciones diseñadas para las necesidades reales de las empresas.',
+    val2_title:'Relación directa', val2_desc:'Trabajamos de la mano con cada cliente. Sin intermediarios.',
+    val3_title:'Tecnología europea', val3_desc:'Fabricantes con estándares ISO 27001 y cumplimiento GDPR.',
+    val4_title:'Respuesta rápida', val4_desc:'Soporte y respuesta a incidentes en tiempo real, en español.',
+    team1_role:'CEO & Director Comercial', team1_bio:'Responsable de la dirección estratégica, relaciones con fabricantes y desarrollo de negocio.',
+    team2_role:'Director de Operaciones', team2_bio:'Gestión de operaciones y soporte técnico especializado.',
+    sol_tag:'Nuestros Paquetes', sol_title:'Escudos diseñados para tu empresa',
+    sol_sub:'Cinco paquetes de protección que cubren desde necesidades específicas hasta seguridad integral gestionada.',
+    pkg1_title:'Protección de Correo Empresarial', pkg1_desc:'Defensa completa para tu correo corporativo. Filtra spam, phishing, malware y ataques BEC.',
+    pkg1_f1:'Filtrado anti-phishing avanzado con IA', pkg1_f2:'Protección contra ransomware por email',
+    pkg1_f3:'Archivado y continuidad del correo', pkg1_f4:'Firma y cifrado de mensajes', pkg1_f5:'Cumplimiento regulatorio (NOM-151)',
+    pkg2_title:'Protección de Dispositivos', pkg2_desc:'Antivirus y EDR de clase empresarial para laptops, PCs y servidores.',
+    pkg2_f1:'Antivirus con doble motor de detección', pkg2_f2:'EDR con análisis de comportamiento',
+    pkg2_f3:'Control de dispositivos USB', pkg2_f4:'Cifrado de disco y datos sensibles', pkg2_f5:'Gestión centralizada en la nube',
+    pkg3_title:'Protección Integral Total', pkg3_desc:'La combinación más completa: email, endpoints y gestión unificada.',
+    pkg3_f1:'Todo de ESCUDO EMAIL incluido', pkg3_f2:'Todo de ESCUDO ENDPOINT incluido',
+    pkg3_f3:'Consola de gestión unificada', pkg3_f4:'Reportes ejecutivos mensuales', pkg3_f5:'Respuesta a incidentes prioritaria',
+    pkg3_cta:'Obtener cotización',
+    pkg4_title:'Soluciones Individuales', pkg4_desc:'Elige exactamente lo que necesitas. Licencias individuales sin paquetes forzados.',
+    pkg4_f1:'Selección a la carta del catálogo', pkg4_f2:'Licencias desde 1 usuario',
+    pkg4_f3:'Sin mínimos de compra', pkg4_f4:'Escalable según crecimiento', pkg4_f5:'Ideal para necesidades específicas',
+    pkg5_title:'Seguridad como Servicio', pkg5_desc:'Nosotros gestionamos toda tu seguridad. Monitoreo, actualizaciones y respuesta a incidentes.',
+    pkg5_f1:'Monitoreo 24/7 de amenazas', pkg5_f2:'Gestión y actualización continua',
+    pkg5_f3:'Respuesta a incidentes incluida', pkg5_f4:'Reportes ejecutivos y técnicos', pkg5_f5:'SLA garantizado',
+    pkg_cta:'Solicitar información',
+    fab_tag:'Fabricantes', fab_title:'Tecnología europea líder',
+    fab_sub:'Distribuidores certificados de los mejores fabricantes de ciberseguridad europeos.',
+    gdata_type:'Seguridad de Endpoints · Alemania',
+    gdata_desc:'Fundada en 1985 en Bochum, Alemania, G DATA es pionera en antivirus y seguridad endpoint. Su tecnología de doble motor de detección es reconocida como una de las más eficaces del mundo.',
+    hornetsec_type:'Seguridad de Email · Alemania',
+    hornetsec_desc:'Líder europeo en seguridad de correo electrónico en la nube. Con más de 60,000 clientes en 30 países, protege la comunicación empresarial con IA avanzada.',
+    cert_title:'Distribuidores Certificados', cert_sub:'Respaldo técnico directo del fabricante',
+    cert_desc:'Como distribuidores certificados, tenemos acceso directo a soporte técnico de primer nivel y actualizaciones prioritarias.',
+    diag_tag:'Diagnóstico IA', diag_title:'Conoce el riesgo de tu empresa',
+    diag_info_p:'Responde 6 preguntas y nuestra IA analiza tu situación actual. Reporte personalizado gratis.',
+    diag_b1_title:'Análisis con Inteligencia Artificial', diag_b1_desc:'Claude AI analiza tu perfil de riesgo y genera recomendaciones específicas.',
+    diag_b2_title:'Reporte en tu correo', diag_b2_desc:'Recibes el diagnóstico detallado en tu email.',
+    diag_b3_title:'Seguimiento personalizado', diag_b3_desc:'Un especialista te contactará con soluciones adaptadas.',
+    form_title:'Diagnóstico de Seguridad', form_sub:'Análisis personalizado impulsado por IA · 3 minutos',
+    f_name:'Nombre completo', f_email:'Correo electrónico', f_company:'Empresa', f_phone:'Teléfono',
+    f_sector:'Sector / Industria', f_size:'Número de empleados', f_antivirus:'¿Tienen antivirus o protección activa?',
+    f_incidents:'¿Han tenido incidentes de seguridad?', f_remote:'¿Tienen trabajo remoto o híbrido?',
+    f_concern:'¿Cuál es tu mayor preocupación? (opcional)',
+    sel_sector:'Selecciona tu sector', sel_size:'Tamaño de la empresa',
+    btn_next:'Continuar', btn_prev:'Atrás', btn_analyze:'Analizar con IA',
+    analyzing:'Analizando tu empresa', analyzing_sub:'La IA está procesando tu perfil de riesgo.',
+    result_title:'Diagnóstico Completado', result_note:'📧 Hemos enviado este reporte a tu correo.',
+    error_title:'Algo salió mal', error_msg:'Error al procesar. Por favor intenta de nuevo.', btn_retry:'Intentar de nuevo',
+    contact_tag:'Contacto', contact_title:'Hablemos de tu seguridad',
+    contact_sub_title:'Estamos para ayudarte', contact_sub_desc:'Cuéntanos sobre tu empresa. Te respondemos en menos de 24 horas hábiles.',
+    contact_location:'Ubicación',
+    cf_title:'Envíanos un mensaje', cf_name:'Nombre', cf_email:'Correo electrónico', cf_company:'Empresa',
+    cf_msg:'Mensaje', cf_send:'Enviar mensaje', cf_success:'✓ Mensaje enviado. Te contactaremos pronto.',
+    footer_desc:'Ciberseguridad empresarial con tecnología europea y servicio personalizado en México.',
+    footer_nav:'Navegación', footer_contact:'Contacto', footer_rights:'Todos los derechos reservados',
+    fill_required:'Por favor completa todos los campos requeridos.'
+  },
+  en: {
+    nav_inicio:'Home', nav_nosotros:'About', nav_soluciones:'Solutions',
+    nav_fabricantes:'Partners', nav_diagnostico:'Diagnosis', nav_contacto:'Contact',
+    hero_badge:'Enterprise Cybersecurity · Mexico',
+    hero_title:'We protect your business with world-class technology',
+    hero_sub:'European cybersecurity solutions with personalized service. G DATA and Hornetsecurity, implemented by experts in Mexico.',
+    hero_cta1:'Free diagnosis', hero_cta2:'View solutions',
+    stat1:'European technology', stat2:'Spanish support 24/7', stat3:'Leading vendors',
+    about_tag:'Who we are', about_title:'Cybersecurity with purpose',
+    about_sub:'We are a Mexican company specialized in enterprise cybersecurity.',
+    about_p1:'C·SHUTZ was founded with a clear mission: to bring world-class cybersecurity technology to Mexican businesses with the close, personalized service they deserve.',
+    about_p2:'We are certified distributors of G DATA and Hornetsecurity, two of Europe\'s most recognized security companies.',
+    about_p3:'Our team combines technical expertise with deep knowledge of the Mexican market.',
+    val1_title:'Business focus', val1_desc:'Solutions designed for real business needs, not consumer markets.',
+    val2_title:'Direct relationship', val2_desc:'We work side by side with every client. No intermediaries.',
+    val3_title:'European technology', val3_desc:'Vendors with ISO 27001 standards and GDPR compliance by design.',
+    val4_title:'Fast response', val4_desc:'Real-time support and incident response, in Spanish.',
+    team1_role:'CEO & Commercial Director', team1_bio:'Responsible for strategic direction, vendor relationships, and business development.',
+    team2_role:'Operations Director', team2_bio:'Operations management and specialized technical support.',
+    sol_tag:'Our Packages', sol_title:'Shields designed for your business',
+    sol_sub:'Five protection packages covering specific needs through fully managed security.',
+    pkg1_title:'Business Email Protection', pkg1_desc:'Complete defense for your corporate email. Filters spam, phishing, malware and BEC attacks.',
+    pkg1_f1:'AI-powered anti-phishing filtering', pkg1_f2:'Email ransomware protection',
+    pkg1_f3:'Email archiving and continuity', pkg1_f4:'Message signing and encryption', pkg1_f5:'Regulatory compliance (NOM-151)',
+    pkg2_title:'Endpoint Protection', pkg2_desc:'Enterprise-grade antivirus and EDR for laptops, PCs and servers.',
+    pkg2_f1:'Dual-engine antivirus detection', pkg2_f2:'EDR with behavioral analysis',
+    pkg2_f3:'USB device control', pkg2_f4:'Disk and sensitive data encryption', pkg2_f5:'Cloud-based centralized management',
+    pkg3_title:'Total Comprehensive Protection', pkg3_desc:'The most complete combination: email, endpoints and unified management.',
+    pkg3_f1:'Everything in ESCUDO EMAIL included', pkg3_f2:'Everything in ESCUDO ENDPOINT included',
+    pkg3_f3:'Unified management console', pkg3_f4:'Monthly executive reports', pkg3_f5:'Priority incident response',
+    pkg3_cta:'Get a quote',
+    pkg4_title:'Individual Solutions', pkg4_desc:'Choose exactly what you need. Individual licenses without forced packages.',
+    pkg4_f1:'À la carte catalog selection', pkg4_f2:'Licenses from 1 user',
+    pkg4_f3:'No minimum purchase required', pkg4_f4:'Scalable as you grow', pkg4_f5:'Ideal for specific needs',
+    pkg5_title:'Security as a Service', pkg5_desc:'We manage all your security. Monitoring, updates and incident response included.',
+    pkg5_f1:'24/7 threat monitoring', pkg5_f2:'Continuous management and updates',
+    pkg5_f3:'Incident response included', pkg5_f4:'Executive and technical reports', pkg5_f5:'Guaranteed SLA',
+    pkg_cta:'Request information',
+    fab_tag:'Vendors', fab_title:'Leading European technology',
+    fab_sub:'Certified distributors of the best European cybersecurity vendors.',
+    gdata_type:'Endpoint Security · Germany',
+    gdata_desc:'Founded in 1985 in Bochum, Germany, G DATA is a pioneer in antivirus and endpoint security. Its dual-engine detection technology is recognized as one of the most effective in the world.',
+    hornetsec_type:'Email Security · Germany',
+    hornetsec_desc:'European leader in cloud email security. With over 60,000 customers in 30 countries, protecting business communications with advanced AI.',
+    cert_title:'Certified Distributors', cert_sub:'Direct technical support from the vendor',
+    cert_desc:'As certified distributors, we have direct access to first-level technical support and priority updates.',
+    diag_tag:'AI Diagnosis', diag_title:'Know your company\'s risk level',
+    diag_info_p:'Answer 6 questions and our AI analyzes your current situation. Free personalized report in minutes.',
+    diag_b1_title:'Artificial Intelligence Analysis', diag_b1_desc:'Claude AI analyzes your risk profile and generates specific recommendations.',
+    diag_b2_title:'Report to your email', diag_b2_desc:'Receive the detailed diagnosis in your email.',
+    diag_b3_title:'Personalized follow-up', diag_b3_desc:'A specialist will contact you with tailored solutions.',
+    form_title:'Security Diagnosis', form_sub:'AI-powered personalized analysis · 3 minutes',
+    f_name:'Full name', f_email:'Email address', f_company:'Company', f_phone:'Phone',
+    f_sector:'Sector / Industry', f_size:'Number of employees', f_antivirus:'Do you have active antivirus protection?',
+    f_incidents:'Have you had security incidents?', f_remote:'Do you have remote or hybrid work?',
+    f_concern:'What is your main concern? (optional)',
+    sel_sector:'Select your sector', sel_size:'Company size',
+    btn_next:'Continue', btn_prev:'Back', btn_analyze:'Analyze with AI',
+    analyzing:'Analyzing your company', analyzing_sub:'AI is processing your risk profile.',
+    result_title:'Diagnosis Completed', result_note:'📧 We have sent this report to your email.',
+    error_title:'Something went wrong', error_msg:'Error processing. Please try again.', btn_retry:'Try again',
+    contact_tag:'Contact', contact_title:'Let\'s talk about your security',
+    contact_sub_title:'We\'re here to help', contact_sub_desc:'Tell us about your company. We respond within 24 business hours.',
+    contact_location:'Location',
+    cf_title:'Send us a message', cf_name:'Name', cf_email:'Email', cf_company:'Company',
+    cf_msg:'Message', cf_send:'Send message', cf_success:'✓ Message sent. We will contact you soon.',
+    footer_desc:'Enterprise cybersecurity with European technology and personalized service in Mexico.',
+    footer_nav:'Navigation', footer_contact:'Contact', footer_rights:'All rights reserved',
+    fill_required:'Please fill in all required fields.'
+  },
+  de: {
+    nav_inicio:'Start', nav_nosotros:'Über uns', nav_soluciones:'Lösungen',
+    nav_fabricantes:'Hersteller', nav_diagnostico:'Diagnose', nav_contacto:'Kontakt',
+    hero_badge:'Unternehmens-Cybersicherheit · Mexiko',
+    hero_title:'Wir schützen Ihr Unternehmen mit Weltklasse-Technologie',
+    hero_sub:'Europäische Cybersicherheitslösungen mit persönlichem Service. G DATA und Hornetsecurity, implementiert von Experten in Mexiko.',
+    hero_cta1:'Kostenlose Diagnose', hero_cta2:'Lösungen ansehen',
+    stat1:'Europäische Technologie', stat2:'Support auf Spanisch', stat3:'Führende Hersteller',
+    about_tag:'Wer wir sind', about_title:'Cybersicherheit mit Zweck',
+    about_sub:'Wir sind ein mexikanisches Unternehmen, spezialisiert auf Unternehmens-Cybersicherheit.',
+    about_p1:'C·SHUTZ wurde mit einer klaren Mission gegründet: Weltklasse-Cybersicherheitstechnologie zu mexikanischen Unternehmen zu bringen.',
+    about_p2:'Wir sind zertifizierte Distributoren von G DATA und Hornetsecurity, zwei der bekanntesten Sicherheitsunternehmen Europas.',
+    about_p3:'Unser Team kombiniert technisches Know-how mit tiefem Wissen über den mexikanischen Markt.',
+    val1_title:'Unternehmens-Fokus', val1_desc:'Lösungen für echte Geschäftsanforderungen konzipiert.',
+    val2_title:'Direkte Beziehung', val2_desc:'Wir arbeiten Hand in Hand mit jedem Kunden.',
+    val3_title:'Europäische Technologie', val3_desc:'Hersteller mit ISO 27001 und DSGVO-Konformität.',
+    val4_title:'Schnelle Reaktion', val4_desc:'Echtzeit-Support und Incident Response auf Spanisch.',
+    team1_role:'CEO & Vertriebsleiter', team1_bio:'Verantwortlich für strategische Ausrichtung und Herstellerbeziehungen.',
+    team2_role:'Betriebsleiter', team2_bio:'Betriebsmanagement und spezialisierter technischer Support.',
+    sol_tag:'Unsere Pakete', sol_title:'Schutzschilde für Ihr Unternehmen',
+    sol_sub:'Fünf Schutzpakete von spezifischen Bedürfnissen bis zu vollständig verwalteter Sicherheit.',
+    pkg1_title:'E-Mail-Schutz für Unternehmen', pkg1_desc:'Vollständiger Schutz für Ihre Unternehmens-E-Mail gegen Spam, Phishing und Malware.',
+    pkg1_f1:'KI-gestütztes Anti-Phishing', pkg1_f2:'E-Mail-Ransomware-Schutz',
+    pkg1_f3:'E-Mail-Archivierung und -Kontinuität', pkg1_f4:'Nachrichten-Signierung und -Verschlüsselung', pkg1_f5:'Regulatorische Compliance',
+    pkg2_title:'Endpunkt-Schutz', pkg2_desc:'Enterprise-Antivirus und EDR für Laptops, PCs und Server.',
+    pkg2_f1:'Antivirus mit Doppelmotor', pkg2_f2:'EDR mit Verhaltensanalyse',
+    pkg2_f3:'USB-Gerätekontrolle', pkg2_f4:'Festplatten- und Datenverschlüsselung', pkg2_f5:'Cloud-basiertes Management',
+    pkg3_title:'Totaler Rundumschutz', pkg3_desc:'Die vollständigste Kombination: E-Mail, Endpunkte und einheitliches Management.',
+    pkg3_f1:'Alles aus ESCUDO EMAIL inklusive', pkg3_f2:'Alles aus ESCUDO ENDPOINT inklusive',
+    pkg3_f3:'Einheitliche Verwaltungskonsole', pkg3_f4:'Monatliche Führungsberichte', pkg3_f5:'Prioritäts-Incident-Response',
+    pkg3_cta:'Angebot anfordern',
+    pkg4_title:'Einzellösungen', pkg4_desc:'Wählen Sie genau das, was Sie brauchen. Einzellizenzen ohne Zwangspakete.',
+    pkg4_f1:'À-la-carte-Katalogauswahl', pkg4_f2:'Lizenzen ab 1 Benutzer',
+    pkg4_f3:'Kein Mindestkauf', pkg4_f4:'Skalierbar nach Wachstum', pkg4_f5:'Ideal für spezifische Anforderungen',
+    pkg5_title:'Sicherheit als Service', pkg5_desc:'Wir verwalten Ihre gesamte Sicherheit. Monitoring, Updates und Incident Response inklusive.',
+    pkg5_f1:'24/7 Bedrohungsüberwachung', pkg5_f2:'Kontinuierliches Management',
+    pkg5_f3:'Incident Response inklusive', pkg5_f4:'Executive und technische Berichte', pkg5_f5:'Garantiertes SLA',
+    pkg_cta:'Informationen anfordern',
+    fab_tag:'Hersteller', fab_title:'Führende europäische Technologie',
+    fab_sub:'Zertifizierte Distributoren der besten europäischen Cybersicherheitshersteller.',
+    gdata_type:'Endpunkt-Sicherheit · Deutschland',
+    gdata_desc:'1985 in Bochum gegründet, ist G DATA ein Pionier in Antivirus und Endpunkt-Sicherheit. Die Doppelmotor-Erkennungstechnologie gilt als eine der effektivsten weltweit.',
+    hornetsec_type:'E-Mail-Sicherheit · Deutschland',
+    hornetsec_desc:'Europäischer Marktführer für Cloud-E-Mail-Sicherheit. Mit über 60.000 Kunden in 30 Ländern, schützt die Unternehmenskommunikation mit fortschrittlicher KI.',
+    cert_title:'Zertifizierte Distributoren', cert_sub:'Direkter technischer Support vom Hersteller',
+    cert_desc:'Als zertifizierte Distributoren haben wir direkten Zugang zu erstklassigem technischem Support und Prioritätsupdates.',
+    diag_tag:'KI-Diagnose', diag_title:'Kennen Sie das Risiko Ihres Unternehmens',
+    diag_info_p:'Beantworten Sie 6 Fragen und unsere KI analysiert Ihre aktuelle Situation. Kostenloser Bericht in Minuten.',
+    diag_b1_title:'Analyse mit Künstlicher Intelligenz', diag_b1_desc:'Claude AI analysiert Ihr Risikoprofil und erstellt spezifische Empfehlungen.',
+    diag_b2_title:'Bericht per E-Mail', diag_b2_desc:'Sie erhalten die detaillierte Diagnose in Ihrer E-Mail.',
+    diag_b3_title:'Persönliches Follow-up', diag_b3_desc:'Ein Spezialist kontaktiert Sie mit maßgeschneiderten Lösungen.',
+    form_title:'Sicherheitsdiagnose', form_sub:'KI-gestützte personalisierte Analyse · 3 Minuten',
+    f_name:'Vollständiger Name', f_email:'E-Mail-Adresse', f_company:'Unternehmen', f_phone:'Telefon',
+    f_sector:'Sektor / Branche', f_size:'Anzahl der Mitarbeiter', f_antivirus:'Haben Sie aktiven Antivirenschutz?',
+    f_incidents:'Hatten Sie Sicherheitsvorfälle?', f_remote:'Haben Sie Remote- oder Hybridarbeit?',
+    f_concern:'Was ist Ihr Hauptanliegen? (optional)',
+    sel_sector:'Sektor auswählen', sel_size:'Unternehmensgröße',
+    btn_next:'Weiter', btn_prev:'Zurück', btn_analyze:'Mit KI analysieren',
+    analyzing:'Ihr Unternehmen wird analysiert', analyzing_sub:'KI verarbeitet Ihr Risikoprofil.',
+    result_title:'Diagnose abgeschlossen', result_note:'📧 Wir haben diesen Bericht an Ihre E-Mail gesendet.',
+    error_title:'Etwas ist schiefgelaufen', error_msg:'Verarbeitungsfehler. Bitte versuchen Sie es erneut.', btn_retry:'Erneut versuchen',
+    contact_tag:'Kontakt', contact_title:'Sprechen wir über Ihre Sicherheit',
+    contact_sub_title:'Wir sind für Sie da', contact_sub_desc:'Erzählen Sie uns von Ihrem Unternehmen. Wir antworten innerhalb von 24 Geschäftsstunden.',
+    contact_location:'Standort',
+    cf_title:'Senden Sie uns eine Nachricht', cf_name:'Name', cf_email:'E-Mail', cf_company:'Unternehmen',
+    cf_msg:'Nachricht', cf_send:'Nachricht senden', cf_success:'✓ Nachricht gesendet. Wir werden Sie kontaktieren.',
+    footer_desc:'Unternehmens-Cybersicherheit mit europäischer Technologie und persönlichem Service in Mexiko.',
+    footer_nav:'Navigation', footer_contact:'Kontakt', footer_rights:'Alle Rechte vorbehalten',
+    fill_required:'Bitte füllen Sie alle Pflichtfelder aus.'
+  },
+  he: {
+    nav_inicio:'דף הבית', nav_nosotros:'אודות', nav_soluciones:'פתרונות',
+    nav_fabricantes:'יצרנים', nav_diagnostico:'אבחון', nav_contacto:'צור קשר',
+    hero_badge:'אבטחת סייבר עסקית · מקסיקו',
+    hero_title:'אנחנו מגנים על העסק שלך עם טכנולוגיה ברמה עולמית',
+    hero_sub:'פתרונות אבטחת סייבר אירופיים עם שירות אישי. G DATA ו-Hornetsecurity, מיושמים על ידי מומחים במקסיקו.',
+    hero_cta1:'אבחון חינם', hero_cta2:'צפה בפתרונות',
+    stat1:'טכנולוגיה אירופית', stat2:'תמיכה 24/7', stat3:'יצרנים מובילים',
+    about_tag:'מי אנחנו', about_title:'אבטחת סייבר עם מטרה',
+    about_sub:'אנו חברה מקסיקנית המתמחה באבטחת סייבר עסקית.',
+    about_p1:'C·SHUTZ נוסדה עם משימה ברורה: להביא טכנולוגיית אבטחת סייבר ברמה עולמית לעסקים מקסיקנים.',
+    about_p2:'אנחנו מפיצים מוסמכים של G DATA ו-Hornetsecurity, שתי מחברות האבטחה המוכרות ביותר באירופה.',
+    about_p3:'הצוות שלנו משלב מומחיות טכנית עם ידע עמוק בשוק המקסיקני.',
+    val1_title:'מיקוד עסקי', val1_desc:'פתרונות המיועדים לצרכים עסקיים אמיתיים.',
+    val2_title:'קשר ישיר', val2_desc:'אנחנו עובדים יד ביד עם כל לקוח.',
+    val3_title:'טכנולוגיה אירופית', val3_desc:'יצרנים עם תקנים ISO 27001 ועמידה ב-GDPR.',
+    val4_title:'תגובה מהירה', val4_desc:'תמיכה ותגובה לאירועים בזמן אמת.',
+    team1_role:'מנכ"ל ומנהל מסחרי', team1_bio:'אחראי על הכיוון האסטרטגי, קשרי יצרנים ופיתוח עסקי.',
+    team2_role:'מנהל תפעול', team2_bio:'ניהול תפעולי ותמיכה טכנית מתמחה.',
+    sol_tag:'החבילות שלנו', sol_title:'מגנים שתוכננו לעסק שלך',
+    sol_sub:'חמש חבילות הגנה המכסות מצרכים ספציפיים ועד אבטחה מנוהלת מלאה.',
+    pkg1_title:'הגנת דואר אלקטרוני עסקי', pkg1_desc:'הגנה מלאה עבור הדואר האלקטרוני הארגוני שלך.',
+    pkg1_f1:'סינון אנטי-פישינג מבוסס בינה מלאכותית', pkg1_f2:'הגנה מפני כופרה בדואר אלקטרוני',
+    pkg1_f3:'ארכיון והמשכיות דואר', pkg1_f4:'חתימה והצפנת הודעות', pkg1_f5:'עמידה ברגולציה',
+    pkg2_title:'הגנת נקודות קצה', pkg2_desc:'אנטי-וירוס ו-EDR ברמה עסקית.',
+    pkg2_f1:'אנטי-וירוס עם מנוע כפול', pkg2_f2:'EDR עם ניתוח התנהגות',
+    pkg2_f3:'בקרת התקני USB', pkg2_f4:'הצפנת דיסק ונתונים', pkg2_f5:'ניהול מרכזי בענן',
+    pkg3_title:'הגנה מקיפה מלאה', pkg3_desc:'השילוב המושלם: דואר, נקודות קצה וניהול מאוחד.',
+    pkg3_f1:'כל ESCUDO EMAIL כלול', pkg3_f2:'כל ESCUDO ENDPOINT כלול',
+    pkg3_f3:'קונסולת ניהול מאוחדת', pkg3_f4:'דוחות ניהוליים חודשיים', pkg3_f5:'תגובה לאירועים בעדיפות',
+    pkg3_cta:'קבל הצעת מחיר',
+    pkg4_title:'פתרונות פרטניים', pkg4_desc:'בחר בדיוק מה שאתה צריך. רישיונות פרטניים ללא חבילות כפויות.',
+    pkg4_f1:'בחירה מהקטלוג', pkg4_f2:'רישיונות מ-1 משתמש',
+    pkg4_f3:'ללא מינימום רכישה', pkg4_f4:'גמיש לצמיחה', pkg4_f5:'אידיאלי לצרכים ספציפיים',
+    pkg5_title:'אבטחה כשירות', pkg5_desc:'אנחנו מנהלים את כל האבטחה שלך. ניטור, עדכונים ותגובה לאירועים.',
+    pkg5_f1:'ניטור 24/7', pkg5_f2:'ניהול ועדכון מתמשך',
+    pkg5_f3:'תגובה לאירועים כלולה', pkg5_f4:'דוחות ניהוליים וטכניים', pkg5_f5:'SLA מובטח',
+    pkg_cta:'בקש מידע',
+    fab_tag:'יצרנים', fab_title:'טכנולוגיה אירופית מובילה',
+    fab_sub:'מפיצים מוסמכים של יצרני אבטחת הסייבר האירופיים הטובים ביותר.',
+    gdata_type:'אבטחת נקודות קצה · גרמניה',
+    gdata_desc:'נוסדה ב-1985 בבוכום, גרמניה, G DATA היא חלוצה באנטי-וירוס ואבטחת נקודות קצה.',
+    hornetsec_type:'אבטחת דואר · גרמניה',
+    hornetsec_desc:'מובילה אירופית באבטחת דואר אלקטרוני בענן. עם למעלה מ-60,000 לקוחות ב-30 מדינות.',
+    cert_title:'מפיצים מוסמכים', cert_sub:'תמיכה טכנית ישירה מהיצרן',
+    cert_desc:'כמפיצים מוסמכים, יש לנו גישה ישירה לתמיכה טכנית ועדכונים בעדיפות.',
+    diag_tag:'אבחון בינה מלאכותית', diag_title:'הכר את רמת הסיכון של העסק שלך',
+    diag_info_p:'ענה על 6 שאלות והבינה המלאכותית שלנו תנתח את המצב הנוכחי שלך.',
+    diag_b1_title:'ניתוח עם בינה מלאכותית', diag_b1_desc:'Claude AI מנתחת את פרופיל הסיכון שלך.',
+    diag_b2_title:'דוח לדואר האלקטרוני', diag_b2_desc:'מקבל את האבחון המפורט בדואר.',
+    diag_b3_title:'מעקב אישי', diag_b3_desc:'מומחה יצור איתך קשר עם פתרונות מותאמים.',
+    form_title:'אבחון אבטחה', form_sub:'ניתוח מותאם אישית · 3 דקות',
+    f_name:'שם מלא', f_email:'כתובת דואר אלקטרוני', f_company:'חברה', f_phone:'טלפון',
+    f_sector:'מגזר / תעשייה', f_size:'מספר עובדים', f_antivirus:'האם יש לך הגנת אנטי-וירוס?',
+    f_incidents:'האם היו לך אירועי אבטחה?', f_remote:'האם יש עבודה מרחוק?',
+    f_concern:'מה הדאגה העיקרית שלך? (אופציונלי)',
+    sel_sector:'בחר את המגזר שלך', sel_size:'גודל החברה',
+    btn_next:'המשך', btn_prev:'חזרה', btn_analyze:'נתח עם בינה מלאכותית',
+    analyzing:'מנתח את החברה שלך', analyzing_sub:'הבינה המלאכותית מעבדת את פרופיל הסיכון שלך.',
+    result_title:'האבחון הושלם', result_note:'📧 שלחנו דוח זה לדואר האלקטרוני שלך.',
+    error_title:'משהו השתבש', error_msg:'שגיאה בעיבוד. אנא נסה שוב.', btn_retry:'נסה שוב',
+    contact_tag:'צור קשר', contact_title:'בואו נדבר על האבטחה שלך',
+    contact_sub_title:'אנחנו כאן לעזור', contact_sub_desc:'ספר לנו על העסק שלך. אנחנו מגיבים תוך 24 שעות עסקיות.',
+    contact_location:'מיקום',
+    cf_title:'שלח לנו הודעה', cf_name:'שם', cf_email:'דואר אלקטרוני', cf_company:'חברה',
+    cf_msg:'הודעה', cf_send:'שלח הודעה', cf_success:'✓ הודעה נשלחה. נצור איתך קשר בקרוב.',
+    footer_desc:'אבטחת סייבר עסקית עם טכנולוגיה אירופית ושירות אישי במקסיקו.',
+    footer_nav:'ניווט', footer_contact:'צור קשר', footer_rights:'כל הזכויות שמורות',
+    fill_required:'אנא מלא את כל השדות הנדרשים.'
+  }
+};
+
+let currentLang = 'es';
+function T(key) { return (LANGS[currentLang] && LANGS[currentLang][key]) || (LANGS.es[key]) || key; }
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(b => { if (b.textContent.toLowerCase() === lang) b.classList.add('active'); });
+  document.documentElement.lang = lang;
+  document.body.dir = lang === 'he' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = T(key);
+    if (val) el.textContent = val;
+  });
+  // Update nav active link text
+  const pages = ['inicio','nosotros','soluciones','fabricantes','diagnostico','contacto'];
+  pages.forEach(p => {
+    const link = document.getElementById('nav-' + p);
+    if (link) link.textContent = T('nav_' + p);
+  });
+}
+
+// ── CONTACT FORM ──
+function sendContact() {
+  const name = document.getElementById('cf-name').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const company = document.getElementById('cf-company').value.trim();
+  const msg = document.getElementById('cf-msg').value.trim();
+  if (!name || !email || !msg) { alert(T('fill_required')); return; }
+  emailjs.send(EMAILJS_SERVICE, EMAILJS_TPLT_OP, {
+    nombre: name, email: email, empresa: company || 'N/A',
+    sector: 'Contacto directo', tamano: 'N/A', antivirus: 'N/A',
+    incidentes: 'N/A', remoto: 'N/A', preocupacion: msg, analisis: 'Contacto directo desde formulario web.'
+  }).then(() => {
+    document.getElementById('cf-success').style.display = 'block';
+    document.getElementById('cf-success').textContent = T('cf_success');
+    ['cf-name','cf-email','cf-company','cf-msg'].forEach(id => { document.getElementById(id).value = ''; });
+  }).catch(() => { alert(T('error_msg')); });
+}
+
+// ── DIAGNOSIS (PRESERVED) ──
+async function submitDiagnosis() {
+  const incidents = document.getElementById('f-incidents').value;
+  const remote = document.getElementById('f-remote').value;
+  if (!incidents || !remote) { alert(T('fill_required')); return; }
+  const data = {
+    name: document.getElementById('f-name').value.trim(),
+    email: document.getElementById('f-email').value.trim(),
+    company: document.getElementById('f-company').value.trim(),
+    phone: document.getElementById('f-phone').value.trim(),
+    sector: document.getElementById('f-sector').value,
+    size: document.getElementById('f-size').value,
+    antivirus: document.getElementById('f-antivirus').value,
+    incidents, remote,
+    concern: document.getElementById('f-concern').value.trim()
+  };
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-indicator').style.display = 'none';
+  document.querySelector('.form-header').style.display = 'none';
+  document.getElementById('form-analyzing').style.display = 'block';
+
+  const prompt = `Eres un experto en ciberseguridad empresarial con 20 años de experiencia en México y América Latina.
+Analiza el siguiente perfil de empresa y genera un diagnóstico profesional de ciberseguridad en ESPAÑOL.
+
+DATOS DE LA EMPRESA:
+- Nombre: ${data.company}
+- Sector: ${data.sector}
+- Tamaño: ${data.size}
+- Protección actual: ${data.antivirus}
+- Incidentes previos: ${data.incidents}
+- Modelo de trabajo: ${data.remote}
+- Preocupación principal: ${data.concern || 'No especificada'}
+
+Tu respuesta debe seguir EXACTAMENTE esta estructura (usa estos títulos):
+
+🔴 NIVEL DE RIESGO ACTUAL
+[Califica el riesgo: Crítico / Alto / Medio / Bajo y explica brevemente en 2-3 oraciones por qué.]
+
+⚠️ VULNERABILIDADES IDENTIFICADAS
+[Lista 3-4 vulnerabilidades específicas para su perfil, con viñetas. Sé específico según el sector y tamaño.]
+
+✅ RECOMENDACIONES PRIORITARIAS
+[Lista 3-4 acciones concretas que deben implementar INMEDIATAMENTE, con viñetas.]
+
+🛡️ SOLUCIONES SUGERIDAS
+[Menciona cuáles de nuestros productos aplican: Hornetsecurity (seguridad de email, anti-phishing, archivado), G DATA (antivirus endpoint, EDR, control USB, cifrado). Solo menciona los relevantes para su perfil.]
+
+📊 IMPACTO ESTIMADO
+[Si implementan las soluciones, qué mejora pueden esperar. 2-3 oraciones concretas.]
+
+Sé profesional, directo y usa lenguaje empresarial. No uses jerga técnica excesiva. El diagnóstico debe tener máximo 400 palabras.`;
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': window.CSHUTZ_CONFIG.ANTHROPIC_KEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1024,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.error?.message || 'API error ' + resp.status);
+    }
+    const json = await resp.json();
+    const analysis = json.content[0].text;
+    const emailParams = {
+      nombre: data.name, empresa: data.company, email: data.email,
+      telefono: data.phone || 'N/A', sector: data.sector, tamano: data.size,
+      antivirus: data.antivirus, incidentes: data.incidents,
+      remoto: data.remote, preocupacion: data.concern || 'N/A', analisis: analysis
+    };
+    await Promise.allSettled([
+      emailjs.send(EMAILJS_SERVICE, EMAILJS_TPLT_OP, emailParams),
+      emailjs.send(EMAILJS_SERVICE, EMAILJS_TPLT_CL, emailParams)
+    ]);
+    document.getElementById('form-analyzing').style.display = 'none';
+    document.getElementById('form-result').style.display = 'block';
+    document.getElementById('result-text').textContent = analysis;
+  } catch (err) {
+    console.error('Diagnosis error:', err);
+    document.getElementById('form-analyzing').style.display = 'none';
+    document.getElementById('form-error').style.display = 'block';
+    document.getElementById('error-msg').textContent = err.message || T('error_msg');
+  }
+}
+
+function resetForm() {
+  document.getElementById('form-error').style.display = 'none';
+  document.getElementById('form-result').style.display = 'none';
+  document.getElementById('step-indicator').style.display = 'flex';
+  document.querySelector('.form-header').style.display = 'block';
+  showStep(1);
+  ['f-name','f-email','f-company','f-phone','f-concern'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  ['f-sector','f-size','f-antivirus','f-incidents','f-remote'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.selectedIndex = 0;
+  });
+}
+</script>
+</body>
+</html>
