@@ -456,7 +456,9 @@ async function submitDiagnosis(){
     if(!resp.ok){const err=await resp.json().catch(()=>({}));throw new Error(err.error?.message||'API error '+resp.status)}
     const json=await resp.json();const analysis=json.content[0].text;
     const emailParams={nombre:data.name,empresa:data.company,email:data.email,telefono:data.phone||'N/A',sector:data.sector,tamano:data.size,antivirus:data.antivirus,incidentes:data.incidents,remoto:data.remote,preocupacion:data.concern||'N/A',analisis:analysis};
-    await Promise.allSettled([emailjs.send(EMAILJS_SERVICE,EMAILJS_TPLT_OP,emailParams),emailjs.send(EMAILJS_SERVICE,EMAILJS_TPLT_CL,emailParams)]);
+    const [resOP,resCL]=await Promise.allSettled([emailjs.send(EMAILJS_SERVICE,EMAILJS_TPLT_OP,emailParams),emailjs.send(EMAILJS_SERVICE,EMAILJS_TPLT_CL,emailParams)]);
+    if(resOP.status==='rejected')console.error('EmailJS OP error:',resOP.reason);
+    if(resCL.status==='rejected')console.error('EmailJS CLIENT error:',resCL.reason);
     document.getElementById('form-analyzing').style.display='none';
     document.getElementById('form-result').style.display='block';
     document.getElementById('result-text').innerHTML=renderDiagnosis(analysis,data.name,data.company);
