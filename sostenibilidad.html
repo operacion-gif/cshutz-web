@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="C·SHUTZ — Sostenibilidad. Nuestro compromiso con el medio ambiente y la responsabilidad empresarial.">
+<title>Sostenibilidad — C·SHUTZ</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#080909;
+  --surface:#0d0d0d;
+  --surface-2:#111111;
+  --surface-3:#161616;
+  --border:rgba(255,255,255,0.08);
+  --accent:#2ecc71;
+  --accent-dim:rgba(46,204,113,0.10);
+  --accent-glow:rgba(46,204,113,0.22);
+  --muted:#6e6e73;
+  --muted-2:#aeaeb2;
+  --white:#ffffff;
+  --nav-h:60px;
+  --ease:cubic-bezier(0.4,0,0.6,1);
+  --dur:0.28s;
+  --r-sm:12px;
+  --r-md:20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);
+  color:var(--white);
+  font-family:'DM Sans',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ── NAV ── */
+#cs-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,60px);background:rgba(8,9,9,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;letter-spacing:0.2em;}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:18px}
+.nav-links>a{font-size:13px;color:rgba(255,255,255,0.55);transition:color var(--dur)}
+.nav-links>a:hover{color:var(--white)}
+.nav-cta{padding:8px 20px;border:1px solid rgba(46,204,113,0.4);border-radius:980px;color:var(--accent)!important;font-size:13px!important;font-weight:500;transition:border-color var(--dur),background var(--dur)}
+.nav-cta:hover{background:var(--accent);color:var(--ink)!important;border-color:var(--accent)}
+.nav-burger{display:none;flex-direction:column;gap:4.5px;padding:8px;cursor:pointer}
+.nav-burger span{width:22px;height:1.5px;background:var(--white);display:block;border-radius:2px;transition:transform 0.3s,opacity 0.3s}
+@media(max-width:768px){.nav-links{display:none}.nav-burger{display:flex}}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-drop-trigger{font-size:14px;color:rgba(255,255,255,0.55);padding:4px 0;transition:color var(--dur);display:flex;align-items:center;gap:5px;user-select:none;cursor:default}
+.nav-drop-trigger::after{content:'▾';font-size:9px;opacity:.7}
+.nav-dropdown:hover .nav-drop-trigger{color:var(--white)}
+.nav-drop-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:#161616;border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:6px;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s,transform .22s;box-shadow:0 16px 40px rgba(0,0,0,0.6);z-index:200}
+.nav-dropdown:hover .nav-drop-panel{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.nav-drop-panel a{display:block;padding:9px 14px;font-size:13px;color:rgba(255,255,255,0.6);border-radius:9px;transition:background .18s,color .18s;white-space:nowrap}
+.nav-drop-panel a:hover{background:rgba(46,204,113,0.12);color:var(--white)}
+#cs-mobile-menu{position:fixed;inset:0;z-index:800;background:rgba(8,9,9,0.97);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;visibility:hidden;transition:opacity 0.4s,visibility 0.4s}
+#cs-mobile-menu.open{opacity:1;visibility:visible}
+#cs-mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,6vw,3rem);font-weight:300;letter-spacing:0.1em;color:var(--muted-2);transition:color var(--dur)}
+#cs-mobile-menu a:hover{color:var(--white)}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9999;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:.2s}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+
+/* ── HERO ── */
+.page-hero-wrap{
+  position:relative;overflow:hidden;
+  background:url('imagenes/img-bosque.png') center/cover no-repeat;
+}
+.page-hero-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,9,9,0.80) 0%,rgba(8,9,9,0.93) 100%);
+  z-index:0;
+}
+.page-hero{
+  position:relative;z-index:1;
+  padding:calc(var(--nav-h) + 100px) clamp(20px,5vw,60px) 100px;
+  max-width:900px;margin:0 auto;text-align:center;
+}
+.page-eyebrow{
+  display:inline-block;
+  font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;margin-bottom:20px;
+}
+.page-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,6vw,5rem);
+  font-weight:300;line-height:1.1;margin-bottom:24px;
+}
+.page-title em{color:var(--accent);font-style:italic}
+.page-sub{
+  font-size:clamp(15px,2vw,18px);
+  color:rgba(255,255,255,0.55);
+  max-width:640px;margin:0 auto;line-height:1.7;
+}
+
+/* ── DIVIDER ── */
+.section-divider{width:60px;height:1px;background:var(--accent);margin:60px auto;opacity:.5}
+
+/* ── COMMITMENT STRIP ── */
+.commit-section{
+  padding:0 clamp(20px,5vw,60px) 80px;
+  max-width:1100px;margin:0 auto;
+}
+.commit-strip{
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  padding:clamp(32px,5vw,56px);
+  display:flex;gap:clamp(24px,4vw,56px);
+  align-items:flex-start;flex-wrap:wrap;
+}
+.commit-main{flex:1;min-width:260px}
+.commit-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:14px}
+.commit-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;line-height:1.2;margin-bottom:18px;
+}
+.commit-body{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.75}
+.commit-year{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--accent-dim);
+  border:1px solid rgba(46,204,113,.2);
+  border-radius:var(--r-sm);
+  padding:28px 36px;min-width:160px;text-align:center;flex-shrink:0;
+}
+.commit-year-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3.5rem;font-weight:300;color:var(--accent);line-height:1;
+}
+.commit-year-label{font-size:12px;color:rgba(255,255,255,.5);margin-top:8px;letter-spacing:.05em}
+
+/* ── PILLARS ── */
+.pillars-section{padding:0 clamp(20px,5vw,60px) 80px;max-width:1100px;margin:0 auto}
+.section-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:14px}
+.section-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:48px;
+}
+.section-heading em{color:var(--accent);font-style:italic}
+.pillars-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:16px;
+}
+.pillar-card{
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  padding:36px;
+  transition:border-color var(--dur),transform var(--dur);
+  display:flex;flex-direction:column;gap:16px;
+}
+.pillar-card:hover{border-color:rgba(46,204,113,.3);transform:translateY(-4px)}
+.pillar-icon{
+  width:48px;height:48px;
+  background:var(--accent-dim);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+.pillar-icon svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.pillar-title{font-size:17px;font-weight:600;color:var(--white)}
+.pillar-body{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7}
+
+/* ── TREE COUNTER ── */
+.trees-section{
+  padding:0 clamp(20px,5vw,60px) 100px;
+  max-width:1100px;margin:0 auto;
+}
+.trees-box{
+  background:linear-gradient(135deg,rgba(46,204,113,0.08) 0%,rgba(46,204,113,0.03) 100%);
+  border:1px solid rgba(46,204,113,0.2);
+  border-radius:var(--r-md);
+  padding:clamp(40px,6vw,72px) clamp(24px,5vw,60px);
+  display:flex;align-items:center;gap:clamp(32px,5vw,64px);
+  flex-wrap:wrap;
+}
+.trees-left{flex:1;min-width:240px}
+.trees-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:14px}
+.trees-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.2;margin-bottom:18px;
+}
+.trees-body{font-size:15px;color:rgba(255,255,255,.6);line-height:1.75;max-width:480px}
+.trees-right{
+  display:flex;flex-direction:column;align-items:center;
+  gap:8px;flex-shrink:0;
+}
+.tree-icon-row{display:flex;gap:12px}
+.tree-icon{font-size:3rem;line-height:1}
+.trees-caption{font-size:13px;color:rgba(255,255,255,.4);text-align:center;margin-top:4px}
+.trees-tagline{
+  display:inline-block;
+  font-size:14px;color:rgba(255,255,255,.7);
+  background:var(--accent-dim);
+  border:1px solid rgba(46,204,113,.15);
+  border-radius:8px;
+  padding:8px 16px;margin-top:20px;
+}
+
+/* ── FOOTER MINI ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:40px clamp(20px,5vw,60px);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;
+}
+footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid var(--border);background:var(--surface)}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(32px,4vw,60px)}
+.footer-brand .brand-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;letter-spacing:0.15em;margin-bottom:16px}
+.footer-brand .brand-logo span{color:var(--accent)}
+.footer-brand p{font-size:0.85rem;color:var(--muted-2);line-height:1.65;max-width:280px}
+.footer-col h4{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.footer-col ul{display:flex;flex-direction:column;gap:12px;list-style:none}
+.footer-col ul li a{font-size:0.85rem;color:var(--muted-2);transition:color var(--dur)}
+.footer-col ul li a:hover{color:var(--white)}
+.footer-bottom{max-width:1200px;margin:48px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-bottom p{font-size:0.78rem;color:var(--muted)}
+.footer-accent{color:var(--accent)}
+
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.footer-inner{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .commit-strip{flex-direction:column}
+  .commit-year{width:100%;padding:24px}
+  .trees-box{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- WA float -->
+<a class="wa-float" href="https://wa.me/525510532492" target="_blank" title="WhatsApp C·SHUTZ">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Nav -->
+<nav id="cs-nav">
+  <a href="index.html" class="nav-logo">C<span>·</span>SHUTZ</a>
+  <div class="nav-links">
+    <a href="problema.html">El Problema</a>
+    <a href="soluciones.html">Soluciones</a>
+    <a href="paquetes.html">Paquetes</a>
+    <a href="metodologia.html">Metodología</a>
+    <a href="mision.html">Misión y Visión</a>
+    <a href="sostenibilidad.html">Sostenibilidad</a>
+    <a href="academico.html">Académico</a>
+    <a href="diagnostico.html" class="nav-cta">Diagnóstico Gratuito</a>
+  </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- Mobile menu -->
+<div id="cs-mobile-menu">
+  <a href="problema.html" class="menu-link">El Problema</a>
+  <a href="soluciones.html" class="menu-link">Soluciones</a>
+  <a href="paquetes.html" class="menu-link">Paquetes</a>
+  <a href="metodologia.html" class="menu-link">Metodología</a>
+  <a href="diagnostico.html" class="menu-link">Diagnóstico</a>
+  <a href="mision.html" class="menu-link">Misión y Visión</a>
+  <a href="sostenibilidad.html" class="menu-link">Sostenibilidad</a>
+  <a href="academico.html" class="menu-link">Dpto. Académico</a>
+</div>
+
+<!-- Hero -->
+<div class="page-hero-wrap">
+  <div class="page-hero">
+    <div class="page-eyebrow">Responsabilidad empresarial</div>
+    <h1 class="page-title">Sosteni<em>bilidad</em></h1>
+    <p class="page-sub">La seguridad digital y la responsabilidad ambiental no son opuestos — son dos caras del mismo compromiso con el futuro.</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- Energy Commitment -->
+<div class="commit-section">
+  <div class="commit-strip">
+    <div class="commit-main">
+      <div class="commit-label">Energía renovable</div>
+      <h2 class="commit-heading">100% energía renovable<br>para nuestras operaciones</h2>
+      <p class="commit-body">C·SHUTZ se compromete a operar exclusivamente con fuentes de energía renovable para el año 2030. Esto incluye nuestras operaciones de oficina, infraestructura tecnológica, servidores y todos los proveedores con los que colaboramos directamente.<br><br>Estamos en el proceso de evaluar y migrar progresivamente hacia proveedores de energía verde certificada, reduciendo nuestra huella de carbono año con año hasta alcanzar la neutralidad climática.</p>
+    </div>
+    <div class="commit-year">
+      <div class="commit-year-num">2030</div>
+      <div class="commit-year-label">Meta de energía<br>100% renovable</div>
+    </div>
+  </div>
+</div>
+
+<!-- Pillars -->
+<div class="pillars-section">
+  <div class="section-label">Nuestro enfoque</div>
+  <h2 class="section-heading">Tres pilares de<br><em>responsabilidad</em></h2>
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="pillar-title">Conciencia ambiental</div>
+      <p class="pillar-body">Integramos criterios ambientales en cada decisión de negocio: desde la selección de proveedores hasta el diseño de nuestros servicios. Preferimos aliados que compartan nuestros valores de sostenibilidad.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <div class="pillar-title">Eficiencia energética</div>
+      <p class="pillar-body">La ciberseguridad basada en la nube reduce naturalmente el consumo energético de nuestros clientes al eliminar infraestructura física local. Digitalizamos para proteger y para reducir el impacto ambiental.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <div class="pillar-title">Transparencia y reporte</div>
+      <p class="pillar-body">Publicaremos anualmente un reporte de sostenibilidad con métricas reales: emisiones, consumo energético, progreso hacia renovables y el número acumulado de árboles plantados.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Tree Program -->
+<div class="trees-section">
+  <div class="trees-box">
+    <div class="trees-left">
+      <div class="trees-label">Programa Raíces</div>
+      <h2 class="trees-heading">3 árboles plantados por cada factura mensual emitida</h2>
+      <p class="trees-body">Por cada factura mensual que emitimos a nuestros clientes, C·SHUTZ planta tres árboles en México a través de organizaciones de reforestación certificadas.<br><br>Este compromiso es permanente y automático — no requiere ninguna acción por parte de nuestros clientes. Al contratar cualquier paquete de C·SHUTZ, contribuyes directamente a la reforestación del país.<br><br>A medida que crece nuestra base de clientes, crece también nuestro impacto ambiental.</p>
+      <div class="trees-tagline">Cada cliente de C·SHUTZ es también un cliente del planeta</div>
+    </div>
+    <div class="trees-right">
+      <div class="tree-icon-row">
+        <div class="tree-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-7"/><path d="M5 9l7-7 7 7"/><path d="M3 13l9-9 9 9"/><path d="M4 17l8-8 8 8"/></svg></div>
+        <div class="tree-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-7"/><path d="M5 9l7-7 7 7"/><path d="M3 13l9-9 9 9"/><path d="M4 17l8-8 8 8"/></svg></div>
+        <div class="tree-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-7"/><path d="M5 9l7-7 7 7"/><path d="M3 13l9-9 9 9"/><path d="M4 17l8-8 8 8"/></svg></div>
+      </div>
+      <div class="trees-caption">3 árboles · 1 factura · 1 mes</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand-logo">C<span>·</span>SHUTZ</div>
+      <p>Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Soluciones</h4>
+      <ul>
+        <li><a href="soluciones.html">Hornetsecurity</a></li>
+        <li><a href="soluciones.html">G DATA</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Paquetes</h4>
+      <ul>
+        <li><a href="paquetes.html">Escudo Email</a></li>
+        <li><a href="paquetes.html">Paquete Empresarial</a></li>
+        <li><a href="paquetes.html">Paquete Ejecutivo</a></li>
+        <li><a href="paquetes.html">Paquete Gestionado</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="metodologia.html">Metodología</a></li>
+        <li><a href="diagnostico.html">Diagnóstico Gratis</a></li>
+        <li><a href="mision.html">Misión y Visión</a></li>
+        <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+        <li><a href="academico.html">Dpto. Académico</a></li>
+        <li><a href="mailto:hola@cshutz.net">hola@cshutz.net</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 C·SHUTZ. Todos los derechos reservados.</p>
+    <p>Hecho con <span class="footer-accent">seguridad</span> en México</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('cs-nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+})();
+(function(){
+  const burger=document.getElementById('nav-burger');
+  const menu=document.getElementById('cs-mobile-menu');
+  let open=false;
+  function toggle(){
+    open=!open;menu.classList.toggle('open',open);
+    const spans=burger.querySelectorAll('span');
+    if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)';}
+    else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''});}
+  }
+  burger.addEventListener('click',toggle);
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(open)toggle()}));
+})();
+</script>
+</body>
+</html>

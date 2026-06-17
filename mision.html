@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="C·SHUTZ — Misión y Visión. Conoce los principios y objetivos que guían nuestra empresa de ciberseguridad.">
+<title>Misión y Visión — C·SHUTZ</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#080909;
+  --ink-2:#1a1a1a;
+  --surface:#0d0d0d;
+  --surface-2:#111111;
+  --border:rgba(255,255,255,0.08);
+  --accent:#2ecc71;
+  --accent-dim:rgba(46,204,113,0.10);
+  --accent-glow:rgba(46,204,113,0.22);
+  --muted:#6e6e73;
+  --muted-2:#aeaeb2;
+  --white:#ffffff;
+  --nav-h:60px;
+  --ease:cubic-bezier(0.4,0,0.6,1);
+  --dur:0.28s;
+  --r-sm:12px;
+  --r-md:20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);
+  color:var(--white);
+  font-family:'DM Sans',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ── NAV ── */
+#cs-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,60px);background:rgba(8,9,9,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;letter-spacing:0.2em;}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:18px}
+.nav-links>a{font-size:13px;color:rgba(255,255,255,0.55);transition:color var(--dur)}
+.nav-links>a:hover{color:var(--white)}
+.nav-cta{padding:8px 20px;border:1px solid rgba(46,204,113,0.4);border-radius:980px;color:var(--accent)!important;font-size:13px!important;font-weight:500;transition:border-color var(--dur),background var(--dur)}
+.nav-cta:hover{background:var(--accent);color:var(--ink)!important;border-color:var(--accent)}
+.nav-burger{display:none;flex-direction:column;gap:4.5px;padding:8px;cursor:pointer}
+.nav-burger span{width:22px;height:1.5px;background:var(--white);display:block;border-radius:2px;transition:transform 0.3s,opacity 0.3s}
+@media(max-width:768px){.nav-links{display:none}.nav-burger{display:flex}}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-drop-trigger{font-size:14px;color:rgba(255,255,255,0.55);padding:4px 0;transition:color var(--dur);display:flex;align-items:center;gap:5px;user-select:none;cursor:default}
+.nav-drop-trigger::after{content:'▾';font-size:9px;opacity:.7}
+.nav-dropdown:hover .nav-drop-trigger{color:var(--white)}
+.nav-drop-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:#161616;border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:6px;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s,transform .22s;box-shadow:0 16px 40px rgba(0,0,0,0.6);z-index:200}
+.nav-dropdown:hover .nav-drop-panel{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.nav-drop-panel a{display:block;padding:9px 14px;font-size:13px;color:rgba(255,255,255,0.6);border-radius:9px;transition:background .18s,color .18s;white-space:nowrap}
+.nav-drop-panel a:hover{background:rgba(46,204,113,0.12);color:var(--white)}
+#cs-mobile-menu{position:fixed;inset:0;z-index:800;background:rgba(8,9,9,0.97);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;visibility:hidden;transition:opacity 0.4s,visibility 0.4s}
+#cs-mobile-menu.open{opacity:1;visibility:visible}
+#cs-mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,6vw,3rem);font-weight:300;letter-spacing:0.1em;color:var(--muted-2);transition:color var(--dur)}
+#cs-mobile-menu a:hover{color:var(--white)}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9999;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:.2s}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+
+/* ── PAGE HERO ── */
+.page-hero-wrap{
+  position:relative;overflow:hidden;
+  background:url('imagenes/img-equipo.png') center/cover no-repeat;
+}
+.page-hero-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,9,9,0.85) 0%,rgba(8,9,9,0.95) 100%);
+  z-index:0;
+}
+.page-hero{
+  position:relative;z-index:1;
+  padding:calc(var(--nav-h) + 100px) clamp(20px,5vw,60px) 100px;
+  max-width:900px;margin:0 auto;text-align:center;
+}
+.page-eyebrow{
+  display:inline-block;
+  font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;
+  margin-bottom:20px;
+}
+.page-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,6vw,5rem);
+  font-weight:300;line-height:1.1;
+  margin-bottom:24px;
+}
+.page-title em{color:var(--accent);font-style:italic}
+.page-sub{
+  font-size:clamp(15px,2vw,18px);
+  color:rgba(255,255,255,0.55);
+  max-width:600px;margin:0 auto;
+  line-height:1.7;
+}
+
+/* ── DIVIDER ── */
+.section-divider{
+  width:60px;height:1px;
+  background:var(--accent);
+  margin:60px auto;
+  opacity:.5;
+}
+
+/* ── MV CARDS ── */
+.mv-section{
+  padding:0 clamp(20px,5vw,60px) 100px;
+  max-width:1100px;margin:0 auto;
+}
+.mv-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:2px;
+  background:var(--border);
+  border-radius:var(--r-md);
+  overflow:hidden;
+  margin-bottom:80px;
+}
+.mv-card{
+  background:var(--surface-2);
+  padding:clamp(36px,5vw,56px);
+}
+.mv-card-icon{
+  width:44px;height:44px;
+  background:var(--accent-dim);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:28px;
+}
+.mv-card-icon svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.mv-card-label{
+  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;margin-bottom:12px;
+}
+.mv-card-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;
+  margin-bottom:18px;line-height:1.2;
+}
+.mv-card-body{
+  font-size:15px;color:rgba(255,255,255,0.6);
+  line-height:1.75;
+}
+
+/* ── VALUES ── */
+.values-section{padding:0 clamp(20px,5vw,60px) 100px;max-width:1100px;margin:0 auto}
+.section-label{
+  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;margin-bottom:16px;
+}
+.section-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3rem);font-weight:300;
+  margin-bottom:48px;
+}
+.section-heading em{color:var(--accent);font-style:italic}
+.values-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;
+}
+.value-item{
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:var(--r-sm);
+  padding:28px;
+  transition:border-color var(--dur),transform var(--dur);
+}
+.value-item:hover{
+  border-color:rgba(46,204,113,0.3);
+  transform:translateY(-4px);
+}
+.value-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem;font-weight:300;
+  color:var(--accent);opacity:.4;
+  margin-bottom:12px;line-height:1;
+}
+.value-title{font-size:16px;font-weight:600;margin-bottom:8px;color:var(--white)}
+.value-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.65}
+
+/* ── FOOTER ── */
+footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid var(--border);background:var(--surface)}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(32px,4vw,60px)}
+.footer-brand .brand-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;letter-spacing:0.15em;margin-bottom:16px}
+.footer-brand .brand-logo span{color:var(--accent)}
+.footer-brand p{font-size:0.85rem;color:var(--muted-2);line-height:1.65;max-width:280px}
+.footer-col h4{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.footer-col ul{display:flex;flex-direction:column;gap:12px;list-style:none}
+.footer-col ul li a{font-size:0.85rem;color:var(--muted-2);transition:color var(--dur)}
+.footer-col ul li a:hover{color:var(--white)}
+.footer-bottom{max-width:1200px;margin:48px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-bottom p{font-size:0.78rem;color:var(--muted)}
+.footer-accent{color:var(--accent)}
+
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.footer-inner{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .mv-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- WA float -->
+<a class="wa-float" href="https://wa.me/525510532492" target="_blank" title="WhatsApp C·SHUTZ">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Nav -->
+<nav id="cs-nav">
+  <a href="index.html" class="nav-logo">C<span>·</span>SHUTZ</a>
+  <div class="nav-links">
+    <a href="problema.html">El Problema</a>
+    <a href="soluciones.html">Soluciones</a>
+    <a href="paquetes.html">Paquetes</a>
+    <a href="metodologia.html">Metodología</a>
+    <a href="mision.html">Misión y Visión</a>
+    <a href="sostenibilidad.html">Sostenibilidad</a>
+    <a href="academico.html">Académico</a>
+    <a href="diagnostico.html" class="nav-cta">Diagnóstico Gratuito</a>
+  </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- Mobile menu -->
+<div id="cs-mobile-menu">
+  <a href="problema.html" class="menu-link">El Problema</a>
+  <a href="soluciones.html" class="menu-link">Soluciones</a>
+  <a href="paquetes.html" class="menu-link">Paquetes</a>
+  <a href="metodologia.html" class="menu-link">Metodología</a>
+  <a href="diagnostico.html" class="menu-link">Diagnóstico</a>
+  <a href="mision.html" class="menu-link">Misión y Visión</a>
+  <a href="sostenibilidad.html" class="menu-link">Sostenibilidad</a>
+  <a href="academico.html" class="menu-link">Dpto. Académico</a>
+</div>
+
+<!-- Hero -->
+<div class="page-hero-wrap">
+  <div class="page-hero">
+    <div class="page-eyebrow">Quiénes somos</div>
+    <h1 class="page-title">Misión<br>y <em>Visión</em></h1>
+    <p class="page-sub">Los principios que nos guían y el futuro que construimos juntos para la ciberseguridad empresarial en México.</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- Mission & Vision cards -->
+<div class="mv-section">
+  <div class="mv-grid">
+
+    <div class="mv-card">
+      <div class="mv-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <div class="mv-card-label">Misión</div>
+      <h2 class="mv-card-title">Proteger a las empresas mexicanas</h2>
+      <p class="mv-card-body">Nuestra misión es democratizar el acceso a la ciberseguridad de clase mundial para las pequeñas y medianas empresas en México. Distribuimos y gestionamos tecnología europea de vanguardia — Hornetsecurity y G DATA — con acompañamiento humano, en español y adaptado a la realidad de cada organización.<br><br>Creemos que ninguna empresa debe quedarse desprotegida por falta de conocimiento o presupuesto. C·SHUTZ es el puente entre la tecnología más avanzada del mundo y las empresas que más la necesitan.</p>
+    </div>
+
+    <div class="mv-card">
+      <div class="mv-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <div class="mv-card-label">Visión</div>
+      <h2 class="mv-card-title">Referentes de ciberseguridad en América Latina</h2>
+      <p class="mv-card-body">Para 2030, ser reconocidos como el distribuidor y operador de ciberseguridad más confiable de América Latina. Una empresa que no solo vende tecnología, sino que construye cultura de seguridad digital en las organizaciones.<br><br>Imaginamos un ecosistema empresarial latinoamericano donde la ciberseguridad sea un estándar, no un lujo — y C·SHUTZ será el motor de ese cambio.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Values -->
+<div class="values-section">
+  <div class="section-label">Nuestros principios</div>
+  <h2 class="section-heading">Los valores que<br><em>nos definen</em></h2>
+  <div class="values-grid">
+    <div class="value-item">
+      <div class="value-num">01</div>
+      <div class="value-title">Confianza ante todo</div>
+      <p class="value-desc">La ciberseguridad se construye sobre la confianza. Somos transparentes con nuestros clientes, nuestros socios y con nosotros mismos.</p>
+    </div>
+    <div class="value-item">
+      <div class="value-num">02</div>
+      <div class="value-title">Excelencia técnica</div>
+      <p class="value-desc">Representamos únicamente tecnología que cumple los estándares más altos del mercado global. Sin compromisos en calidad.</p>
+    </div>
+    <div class="value-item">
+      <div class="value-num">03</div>
+      <div class="value-title">Servicio humano</div>
+      <p class="value-desc">Detrás de cada solución hay personas reales. Acompañamos a nuestros clientes con cercanía y respuesta real, no soporte automatizado.</p>
+    </div>
+    <div class="value-item">
+      <div class="value-num">04</div>
+      <div class="value-title">Educación continua</div>
+      <p class="value-desc">La mejor defensa es el conocimiento. Invertimos en capacitar a nuestros clientes y en generar contenido de valor para el ecosistema.</p>
+    </div>
+    <div class="value-item">
+      <div class="value-num">05</div>
+      <div class="value-title">Responsabilidad</div>
+      <p class="value-desc">Asumimos la responsabilidad de proteger datos críticos de empresas. Operamos con la seriedad que eso exige, en cada decisión.</p>
+    </div>
+    <div class="value-item">
+      <div class="value-num">06</div>
+      <div class="value-title">Innovación rigurosa</div>
+      <p class="value-desc">Adoptamos nuevas tecnologías con criterio — primero las evaluamos, luego las recomendamos. La innovación no reemplaza el rigor.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand-logo">C<span>·</span>SHUTZ</div>
+      <p>Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Soluciones</h4>
+      <ul>
+        <li><a href="soluciones.html">Hornetsecurity</a></li>
+        <li><a href="soluciones.html">G DATA</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Paquetes</h4>
+      <ul>
+        <li><a href="paquetes.html">Escudo Email</a></li>
+        <li><a href="paquetes.html">Paquete Empresarial</a></li>
+        <li><a href="paquetes.html">Paquete Ejecutivo</a></li>
+        <li><a href="paquetes.html">Paquete Gestionado</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="metodologia.html">Metodología</a></li>
+        <li><a href="diagnostico.html">Diagnóstico Gratis</a></li>
+        <li><a href="mision.html">Misión y Visión</a></li>
+        <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+        <li><a href="academico.html">Dpto. Académico</a></li>
+        <li><a href="mailto:hola@cshutz.net">hola@cshutz.net</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 C·SHUTZ. Todos los derechos reservados.</p>
+    <p>Hecho con <span class="footer-accent">seguridad</span> en México</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('cs-nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+})();
+(function(){
+  const burger=document.getElementById('nav-burger');
+  const menu=document.getElementById('cs-mobile-menu');
+  let open=false;
+  function toggle(){
+    open=!open;menu.classList.toggle('open',open);
+    const spans=burger.querySelectorAll('span');
+    if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)';}
+    else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''});}
+  }
+  burger.addEventListener('click',toggle);
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(open)toggle()}));
+})();
+</script>
+</body>
+</html>

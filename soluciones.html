@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="C·SHUTZ — Tecnología de ciberseguridad de clase mundial: Hornetsecurity y G DATA. Protección de email y endpoints para empresas en México.">
+<title>Soluciones — C·SHUTZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#080909;--ink-2:#1a1a1a;--ink-3:#2a2a2a;
+  --muted:#6e6e73;--muted-2:#aeaeb2;
+  --surface:#0d0d0d;--surface-2:#111111;
+  --border:rgba(255,255,255,0.08);
+  --accent:#2ecc71;--accent-dim:rgba(46,204,113,0.12);--accent-glow:rgba(46,204,113,0.25);
+  --white:#ffffff;--nav-h:60px;
+  --ease:cubic-bezier(0.4,0,0.6,1);--ease-out:cubic-bezier(0,0,0.2,1);--ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+  --dur:0.32s;--r-sm:12px;--r-md:20px;--r-lg:32px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--white);font-family:'DM Sans',system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden;}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{border:none;background:none;font-family:inherit}
+
+/* NAV */
+#cs-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,60px);background:rgba(8,9,9,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;letter-spacing:0.2em;}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:18px}
+.nav-links>a{font-size:13px;color:rgba(255,255,255,0.55);transition:color var(--dur)}
+.nav-links>a:hover{color:var(--white)}
+.nav-cta{padding:8px 20px;border:1px solid rgba(46,204,113,0.4);border-radius:980px;color:var(--accent)!important;font-size:13px!important;font-weight:500;transition:border-color var(--dur),background var(--dur)}
+.nav-cta:hover{background:var(--accent);color:var(--ink)!important;border-color:var(--accent)}
+.nav-burger{display:none;flex-direction:column;gap:4.5px;padding:8px;cursor:pointer}
+.nav-burger span{width:22px;height:1.5px;background:var(--white);display:block;border-radius:2px;transition:transform 0.3s,opacity 0.3s}
+@media(max-width:768px){.nav-links{display:none}.nav-burger{display:flex}}
+/* Dropdown */
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-drop-trigger{font-size:14px;color:rgba(255,255,255,0.55);padding:4px 0;transition:color var(--dur);display:flex;align-items:center;gap:5px;user-select:none;cursor:default}
+.nav-drop-trigger::after{content:'▾';font-size:9px;opacity:.7}
+.nav-dropdown:hover .nav-drop-trigger{color:var(--white)}
+.nav-drop-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:#161616;border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:6px;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s,transform .22s;box-shadow:0 16px 40px rgba(0,0,0,0.6);z-index:200}
+.nav-dropdown:hover .nav-drop-panel{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.nav-drop-panel a{display:block;padding:9px 14px;font-size:13px;color:rgba(255,255,255,0.6);border-radius:9px;transition:background .18s,color .18s;white-space:nowrap}
+.nav-drop-panel a:hover{background:var(--accent-dim);color:var(--white)}
+/* Mobile menu */
+#cs-mobile-menu{position:fixed;inset:0;z-index:800;background:rgba(8,9,9,0.97);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;visibility:hidden;transition:opacity 0.4s,visibility 0.4s}
+#cs-mobile-menu.open{opacity:1;visibility:visible}
+#cs-mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,6vw,3rem);font-weight:300;letter-spacing:0.1em;color:var(--muted-2);transition:color var(--dur)}
+#cs-mobile-menu a:hover{color:var(--white)}
+/* WA float */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9999;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:.2s}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+/* Sections shared */
+.section-label{font-size:0.72rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:300;line-height:1.1;letter-spacing:-0.01em}
+.section-title em{font-style:italic;color:var(--accent)}
+.section-sub{font-size:clamp(1rem,2vw,1.15rem);color:var(--muted-2);font-weight:300;max-width:580px;line-height:1.7}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s var(--ease-out),transform 0.8s var(--ease-out)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+/* Buttons */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--accent);color:var(--ink);border-radius:980px;font-size:0.9rem;font-weight:600;transition:transform var(--dur),box-shadow var(--dur)}
+.btn-primary:hover{transform:scale(1.04);box-shadow:0 0 32px var(--accent-glow)}
+/* Footer */
+footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid var(--border);background:var(--surface)}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(32px,4vw,60px)}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.footer-inner{grid-template-columns:1fr}}
+.footer-brand .brand-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;letter-spacing:0.15em;margin-bottom:16px}
+.footer-brand .brand-logo span{color:var(--accent)}
+.footer-brand p{font-size:0.85rem;color:var(--muted-2);line-height:1.65;max-width:280px}
+.footer-col h4{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
+.footer-col ul li a{font-size:0.85rem;color:var(--muted-2);transition:color var(--dur)}
+.footer-col ul li a:hover{color:var(--white)}
+.footer-bottom{max-width:1200px;margin:48px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-bottom p{font-size:0.78rem;color:var(--muted)}
+.footer-accent{color:var(--accent)}
+@keyframes fade-up{to{opacity:1;transform:translateY(0)}}
+
+/* Page intro */
+.page-intro{padding:calc(var(--nav-h) + 80px) clamp(20px,5vw,80px) 0;max-width:1200px;margin:0 auto;text-align:center}
+.page-eyebrow{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:16px}
+.page-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:300;line-height:1.1;margin-bottom:20px}
+.page-heading em{color:var(--accent);font-style:italic}
+.page-sub{font-size:clamp(15px,2vw,18px);color:rgba(255,255,255,0.5);max-width:620px;margin:0 auto 80px;line-height:1.7}
+/* Vendors */
+#vendors{background:var(--surface);padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px)}
+.vendors-inner{max-width:1200px;margin:0 auto}
+.vendors-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:clamp(40px,6vw,80px);gap:24px;flex-wrap:wrap}
+.vendors-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:600px){.vendors-grid{grid-template-columns:1fr}}
+.vendor-card{padding:clamp(28px,4vw,48px);border:1px solid var(--border);border-radius:var(--r-lg);background:var(--ink-2);position:relative;overflow:hidden;transition:border-color var(--dur),box-shadow var(--dur)}
+.vendor-card:hover{border-color:rgba(46,204,113,0.25);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.vendor-tag{display:inline-block;padding:4px 12px;border:1px solid var(--border);border-radius:980px;font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.vendor-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;margin-bottom:16px}
+.vendor-desc{font-size:0.9rem;color:var(--muted-2);line-height:1.65;margin-bottom:24px}
+.vendor-features{display:flex;flex-direction:column;gap:10px}
+.vendor-feat{display:flex;align-items:center;gap:10px;font-size:0.85rem;color:var(--muted-2)}
+.vendor-feat::before{content:'';width:16px;height:1px;background:var(--accent);flex-shrink:0}
+.vendor-badge{display:none}
+.vendor-logo-wrap{margin-bottom:28px;height:44px;display:flex;align-items:center}
+.vendor-logo-wrap img{height:36px;width:auto;max-width:200px;object-fit:contain}
+</style>
+</head>
+<body>
+
+<!-- WA float -->
+<a class="wa-float" href="https://wa.me/525510532492" target="_blank" title="WhatsApp C·SHUTZ">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Nav -->
+<nav id="cs-nav">
+  <a href="index.html" class="nav-logo">C<span>·</span>SHUTZ</a>
+  <div class="nav-links">
+    <a href="problema.html">El Problema</a>
+    <a href="soluciones.html">Soluciones</a>
+    <a href="paquetes.html">Paquetes</a>
+    <a href="metodologia.html">Metodología</a>
+    <a href="mision.html">Misión y Visión</a>
+    <a href="sostenibilidad.html">Sostenibilidad</a>
+    <a href="academico.html">Académico</a>
+    <a href="diagnostico.html" class="nav-cta">Diagnóstico Gratuito</a>
+  </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- Mobile menu -->
+<div id="cs-mobile-menu">
+  <a href="problema.html" class="menu-link">El Problema</a>
+  <a href="soluciones.html" class="menu-link">Soluciones</a>
+  <a href="paquetes.html" class="menu-link">Paquetes</a>
+  <a href="metodologia.html" class="menu-link">Metodología</a>
+  <a href="diagnostico.html" class="menu-link">Diagnóstico</a>
+  <a href="mision.html" class="menu-link">Misión y Visión</a>
+  <a href="sostenibilidad.html" class="menu-link">Sostenibilidad</a>
+  <a href="academico.html" class="menu-link">Dpto. Académico</a>
+</div>
+
+<div class="page-intro">
+  <div class="page-eyebrow">Nuestros Aliados</div>
+  <h1 class="page-heading">Tecnología de<br><em>clase mundial</em></h1>
+  <p class="page-sub">Representamos las mejores marcas de ciberseguridad de Europa, certificadas y probadas en miles de empresas globales.</p>
+</div>
+
+<section id="vendors">
+  <div class="vendors-inner">
+    <div class="vendors-grid">
+      <div class="vendor-card reveal">
+        <div class="vendor-logo-wrap">
+          <img src="imagenes/logo-hornetsecurity.png" alt="Hornetsecurity by Proofpoint">
+        </div>
+        <div class="vendor-tag">Email Security</div>
+        <h3 class="vendor-name">Hornetsecurity</h3>
+        <p class="vendor-desc">Protección avanzada de correo electrónico basada en IA. Filtra spam, phishing, malware y ataques de ransomware antes de que lleguen a tu bandeja de entrada.</p>
+        <div class="vendor-features">
+          <div class="vendor-feat">Filtrado AI de amenazas en tiempo real</div>
+          <div class="vendor-feat">Archivado legal y cumplimiento</div>
+          <div class="vendor-feat">Encriptación de extremo a extremo</div>
+          <div class="vendor-feat">Continuidad de email 99.99% uptime</div>
+        </div>
+      </div>
+      <div class="vendor-card reveal">
+        <div class="vendor-logo-wrap">
+          <img src="imagenes/logo-gdata.png" alt="G DATA CyberDefense" style="background:#fff;border-radius:8px;padding:6px">
+        </div>
+        <div class="vendor-tag">Endpoint Protection</div>
+        <h3 class="vendor-name">G DATA</h3>
+        <p class="vendor-desc">Antivirus y seguridad endpoint de origen alemán. Protección multicapa con análisis de comportamiento y respuesta automática ante amenazas.</p>
+        <div class="vendor-features">
+          <div class="vendor-feat">Protección contra ransomware avanzada</div>
+          <div class="vendor-feat">Análisis de comportamiento en tiempo real</div>
+          <div class="vendor-feat">Gestión centralizada de dispositivos</div>
+          <div class="vendor-feat">Módulo de control de aplicaciones</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--ink);padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);text-align:center">
+  <div style="max-width:600px;margin:0 auto">
+    <div class="section-label">¿Cuál te conviene?</div>
+    <h2 class="section-title" style="margin-bottom:20px">Encuentra el paquete <em>ideal</em></h2>
+    <p class="section-sub" style="margin:0 auto 40px">Combina Hornetsecurity y G DATA en el paquete que mejor se adapte a las necesidades de tu empresa.</p>
+    <a href="paquetes.html" class="btn-primary">
+      Ver Paquetes
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand-logo">C<span>·</span>SHUTZ</div>
+      <p>Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Soluciones</h4>
+      <ul>
+        <li><a href="soluciones.html">Hornetsecurity</a></li>
+        <li><a href="soluciones.html">G DATA</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Paquetes</h4>
+      <ul>
+        <li><a href="paquetes.html">Escudo Email</a></li>
+        <li><a href="paquetes.html">Paquete Empresarial</a></li>
+        <li><a href="paquetes.html">Paquete Ejecutivo</a></li>
+        <li><a href="paquetes.html">Paquete Gestionado</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="metodologia.html">Metodología</a></li>
+        <li><a href="diagnostico.html">Diagnóstico Gratis</a></li>
+        <li><a href="mision.html">Misión y Visión</a></li>
+        <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+        <li><a href="academico.html">Dpto. Académico</a></li>
+        <li><a href="mailto:hola@cshutz.net">hola@cshutz.net</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 C·SHUTZ. Todos los derechos reservados.</p>
+    <p>Hecho con <span class="footer-accent">seguridad</span> en México</p>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+(function(){
+  const nav = document.getElementById('cs-nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+})();
+// MOBILE MENU
+(function(){
+  const burger=document.getElementById('nav-burger');
+  const menu=document.getElementById('cs-mobile-menu');
+  let open=false;
+  function toggle(){
+    open=!open;menu.classList.toggle('open',open);
+    const spans=burger.querySelectorAll('span');
+    if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)';}
+    else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''});}
+  }
+  burger.addEventListener('click',toggle);
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(open)toggle()}));
+})();
+// REVEAL
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -60px 0px'});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>

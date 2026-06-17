@@ -1,0 +1,2288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C-SHUTZ — cshutz.net | Ciberseguridad Alemana para PyMEs en México</title>
+<meta name="description" content="C-SHUTZ distribuye tecnología de ciberseguridad alemana certificada (Hornetsecurity, G DATA, DriveLock, NCP Engineering) para PyMEs en México. BSI · CC EAL4+ · FIPS 140-2.">
+<meta name="keywords" content="ciberseguridad México, seguridad empresarial CDMX, antivirus empresarial, protección email M365, VPN empresarial, cybersecurity PyME">
+<link rel="canonical" href="https://cshutz.net">
+<meta property="og:title" content="C-SHUTZ — Ciberseguridad Alemana para PyMEs en México">
+<meta property="og:description" content="Tecnología alemana certificada BSI. Hornetsecurity, G DATA, DriveLock y NCP Engineering para empresas mexicanas.">
+<meta property="og:url" content="https://cshutz.net">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C-SHUTZ — cshutz.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>window.CSHUTZ_CONFIG={ANTHROPIC_KEY:'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'};</script>
+<style>
+
+:root {
+  --ink:        #0a0b0c;
+  --ink2:       #111214;
+  --ink3:       #18191c;
+  --ink4:       #1e2023;
+  --rule:       #272829;
+  --mid:        #3a3b3d;
+  --dim:        #5a5c60;
+  --muted:      #8a8c90;
+  --light:      #b8babe;
+  --lighter:    #d4d6d9;
+  --white:      #eceef0;
+  --pure:       #f8f9fa;
+  --accent:     #2ecc71;
+  --accent-dim: rgba(46,204,113,0.15);
+  --accent-rule: rgba(46,204,113,0.35);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--ink);
+  color: var(--lighter);
+  line-height: 1.7;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--accent); color: var(--ink); }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--mid); }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:1000;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px;
+  background: rgba(10,11,12,0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-logo-wrap {
+  display: flex; align-items: center; gap: 14px;
+  text-decoration: none;
+}
+.nav-logo-img {
+  height: 40px; width: auto;
+  filter: brightness(0.9);
+  transition: filter 0.3s;
+}
+.nav-logo-wrap:hover .nav-logo-img { filter: brightness(1.05); }
+
+nav ul {
+  list-style: none; display: flex; gap: 40px; align-items: center;
+}
+nav ul li a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 400; letter-spacing: 0.3px;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+nav ul li a:hover { color: var(--lighter); }
+
+.nav-cta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--pure); text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 9px 22px; border-radius: 2px;
+  transition: all 0.25s;
+  letter-spacing: 0.2px;
+}
+.nav-cta:hover {
+  border-color: var(--lighter);
+  color: var(--pure);
+}
+
+/* ── HERO ── */
+#inicio {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 120px 56px 80px;
+  position: relative;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero-left {
+  padding-right: 80px;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 32px;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; animation: fadeIn 0.6s ease 0.2s forwards;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 24px; height: 1px; background: var(--accent);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 4.5vw, 4.4rem);
+  font-weight: 300; line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: var(--pure);
+  margin-bottom: 32px;
+  opacity: 0; animation: fadeIn 0.8s ease 0.35s forwards;
+}
+.hero-title em {
+  font-style: italic; font-weight: 300;
+  color: var(--lighter);
+}
+
+.hero-body {
+  font-size: 15px; font-weight: 300;
+  color: var(--muted); line-height: 1.8;
+  max-width: 440px;
+  margin-bottom: 48px;
+  opacity: 0; animation: fadeIn 0.8s ease 0.5s forwards;
+}
+
+.hero-actions {
+  display: flex; align-items: center; gap: 32px;
+  opacity: 0; animation: fadeIn 0.8s ease 0.65s forwards;
+}
+
+.btn-primary {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
+  color: var(--ink); background: var(--pure);
+  padding: 13px 28px; border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.25s;
+  border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--white); transform: translateY(-1px); }
+
+.btn-ghost {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 400;
+  color: var(--muted); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--lighter); }
+.btn-ghost-arrow { transition: transform 0.2s; }
+.btn-ghost:hover .btn-ghost-arrow { transform: translateX(4px); }
+
+.hero-right {
+  border-left: 1px solid var(--rule);
+  padding-left: 80px;
+  opacity: 0; animation: fadeIn 0.8s ease 0.5s forwards;
+}
+
+.hero-logo-large {
+  width: 180px; height: auto;
+  margin-bottom: 48px;
+  filter: brightness(0.85);
+}
+
+.hero-credentials {
+  display: flex; flex-direction: column; gap: 0;
+}
+.credential-row {
+  display: flex; align-items: flex-start; gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.credential-row:last-child { border-bottom: none; }
+.cred-number {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--accent); letter-spacing: 1px;
+  padding-top: 3px; flex-shrink: 0; width: 28px;
+}
+.cred-label {
+  font-size: 13px; font-weight: 400; color: var(--light);
+  line-height: 1.5;
+}
+.cred-label strong {
+  display: block; font-weight: 500; color: var(--pure);
+  margin-bottom: 2px; font-size: 14px;
+}
+
+/* ── SECTIONS ── */
+section { position: relative; }
+.section-inner {
+  max-width: 1180px; margin: 0 auto; padding: 100px 56px;
+}
+
+.section-header {
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 80px; align-items: start;
+  margin-bottom: 72px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-index {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300; line-height: 1.15;
+  letter-spacing: -0.3px; color: var(--pure);
+}
+.section-title em { font-style: italic; }
+.section-desc {
+  font-size: 14px; font-weight: 300;
+  color: var(--muted); line-height: 1.85;
+  max-width: 520px; padding-top: 8px;
+}
+
+/* ── ALTERNATING BG ── */
+.bg-alt { background: var(--ink2); }
+
+/* ── PROBLEMA GRID ── */
+.problem-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.problem-cell {
+  background: var(--ink);
+  padding: 40px 36px;
+  transition: background 0.3s;
+  position: relative;
+}
+.bg-alt .problem-cell { background: var(--ink2); }
+.problem-cell:hover { background: var(--ink3); }
+.problem-cell-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 16px;
+}
+.problem-cell h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 400; color: var(--pure);
+  margin-bottom: 12px; line-height: 1.2;
+}
+.problem-cell p {
+  font-size: 13.5px; font-weight: 300; color: var(--muted);
+  line-height: 1.75;
+}
+.problem-cell-accent {
+  position: absolute; top: 0; left: 0;
+  width: 2px; height: 0;
+  background: var(--accent);
+  transition: height 0.4s ease;
+}
+.problem-cell:hover .problem-cell-accent { height: 100%; }
+
+/* ── SERVICES ── */
+.services-list {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px; background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 72px;
+}
+.service-item {
+  background: var(--ink); padding: 44px 36px;
+  transition: background 0.3s; position: relative;
+}
+.service-item.featured { background: var(--ink3); }
+.service-item:hover { background: var(--ink3); }
+.service-tier {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.service-tier.core { color: var(--accent); }
+.service-item h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 400; color: var(--pure);
+  margin-bottom: 14px; line-height: 1.25;
+}
+.service-item > p {
+  font-size: 13px; font-weight: 300; color: var(--muted);
+  margin-bottom: 24px; line-height: 1.75;
+}
+.service-features { list-style: none; }
+.service-features li {
+  font-size: 12.5px; color: var(--dim);
+  padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: flex; gap: 10px; align-items: baseline;
+  font-weight: 300;
+}
+.service-features li:last-child { border-bottom: none; }
+.service-features li::before {
+  content: '—'; color: var(--mid); flex-shrink: 0; font-size: 10px;
+}
+.service-vendor {
+  margin-top: 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--dim);
+  padding-top: 20px; border-top: 1px solid var(--rule);
+}
+
+/* ── PRICING ── */
+.pricing-header {
+  margin-bottom: 40px;
+}
+.pricing-header h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 300; color: var(--pure);
+  margin-bottom: 8px;
+}
+.pricing-header p {
+  font-size: 13px; color: var(--muted); font-weight: 300;
+}
+.pricing-table {
+  border: 1px solid var(--rule);
+}
+.pricing-row {
+  display: grid; grid-template-columns: 200px 1fr 1fr 160px;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.2s;
+}
+.pricing-row:last-child { border-bottom: none; }
+.pricing-row:hover { background: var(--ink3); }
+.pricing-row.header-row {
+  background: var(--ink3);
+}
+.pricing-row.header-row:hover { background: var(--ink3); }
+.pricing-cell {
+  padding: 22px 28px;
+  border-right: 1px solid var(--rule);
+  font-size: 13px; color: var(--muted); font-weight: 300;
+  display: flex; align-items: center;
+}
+.pricing-cell:last-child { border-right: none; }
+.pricing-cell.name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 400; color: var(--pure);
+}
+.pricing-cell.label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--dim);
+}
+.pricing-cell.price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; color: var(--pure);
+  font-weight: 400;
+}
+.pricing-row.featured .pricing-cell.name { color: var(--pure); }
+.price-note {
+  font-size: 11px; color: var(--dim); margin-left: 6px;
+  font-family: 'DM Sans', sans-serif; font-weight: 300;
+}
+.featured-tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent-rule);
+  padding: 2px 8px; border-radius: 1px;
+  margin-left: 12px;
+}
+
+/* ── DIFFERENTIATORS ── */
+.diff-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; border: 1px solid var(--rule);
+}
+.diff-item {
+  padding: 44px 40px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.3s; position: relative;
+  overflow: hidden;
+}
+.diff-item:nth-child(2n) { border-right: none; }
+.diff-item:nth-child(5), .diff-item:nth-child(6) { border-bottom: none; }
+.diff-item:hover { background: var(--ink3); }
+.diff-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px; color: var(--accent);
+  margin-bottom: 16px;
+}
+.diff-item h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem; font-weight: 400; color: var(--pure);
+  margin-bottom: 10px; line-height: 1.2;
+}
+.diff-item p {
+  font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.75;
+}
+
+/* ── VENDORS ── */
+.vendor-strip {
+  border: 1px solid var(--rule);
+  margin-top: 56px;
+}
+.vendor-strip-header {
+  padding: 20px 32px;
+  background: var(--ink3);
+  border-bottom: 1px solid var(--rule);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--dim);
+}
+.vendor-list {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.vendor-item {
+  padding: 28px 28px;
+  border-right: 1px solid var(--rule);
+  transition: background 0.3s;
+}
+.vendor-item:last-child { border-right: none; }
+.vendor-item:hover { background: var(--ink3); }
+.vendor-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 400; color: var(--pure);
+  margin-bottom: 4px;
+}
+.vendor-origin {
+  font-size: 12px; font-weight: 300; color: var(--dim);
+  margin-bottom: 14px;
+}
+.vendor-certs { display: flex; gap: 6px; flex-wrap: wrap; }
+.vcert {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+  border: 1px solid var(--mid); color: var(--dim);
+  padding: 3px 8px; border-radius: 1px;
+}
+.vcert.green {
+  border-color: var(--accent-rule); color: var(--accent);
+}
+
+/* ── CLIENTS ── */
+.client-table { border: 1px solid var(--rule); }
+.client-row {
+  display: grid; grid-template-columns: 48px 220px 1fr auto;
+  gap: 0; border-bottom: 1px solid var(--rule);
+  align-items: stretch;
+  transition: background 0.2s;
+}
+.client-row:last-child { border-bottom: none; }
+.client-row:hover { background: var(--ink3); }
+.client-row.header { background: var(--ink3); }
+.client-row.header:hover { background: var(--ink3); }
+.client-cell {
+  padding: 24px 28px;
+  border-right: 1px solid var(--rule);
+  font-size: 13px; color: var(--muted); font-weight: 300;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.client-cell:last-child { border-right: none; }
+.client-rank-cell {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; border-right: 1px solid var(--rule);
+  padding: 0 16px;
+}
+.client-cell.name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 400; color: var(--pure);
+}
+.client-cell .sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; color: var(--dim);
+  margin-top: 4px; text-transform: uppercase;
+}
+.client-cell.label-cell {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dim);
+}
+.ticket-pill {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--light);
+  border: 1px solid var(--mid); padding: 4px 12px;
+  border-radius: 1px; white-space: nowrap;
+}
+
+/* ── CTA ── */
+#contacto { border-top: 1px solid var(--rule); }
+.cta-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.cta-left {
+  padding: 80px 64px 80px 0;
+  border-right: 1px solid var(--rule);
+}
+.cta-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300; color: var(--pure);
+  line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.3px;
+}
+.cta-left h2 em { font-style: italic; }
+.cta-left p {
+  font-size: 14px; font-weight: 300; color: var(--muted);
+  line-height: 1.8; margin-bottom: 36px; max-width: 420px;
+}
+.cta-details {
+  display: flex; flex-direction: column; gap: 12px; margin-top: 40px;
+}
+.cta-detail-row {
+  display: flex; gap: 16px; align-items: flex-start;
+  font-size: 13px; color: var(--dim); font-weight: 300;
+}
+.cta-detail-row strong {
+  color: var(--light); font-weight: 400; min-width: 80px;
+}
+
+.cta-right {
+  padding: 80px 0 80px 64px;
+}
+.cta-right h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 400; color: var(--pure);
+  margin-bottom: 32px;
+}
+
+.form-row { margin-bottom: 20px; }
+.form-row label {
+  display: block; font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 7px;
+}
+.form-row input, .form-row select {
+  width: 100%;
+  background: transparent;
+  border: none; border-bottom: 1px solid var(--mid);
+  color: var(--lighter);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 300;
+  padding: 10px 0; outline: none;
+  transition: border-color 0.2s;
+  border-radius: 0;
+}
+.form-row input:focus, .form-row select:focus {
+  border-bottom-color: var(--lighter);
+}
+.form-row select { cursor: pointer; }
+.form-row select option { background: var(--ink3); }
+.form-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px;
+}
+.form-submit {
+  margin-top: 32px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
+  color: var(--ink); background: var(--pure);
+  padding: 13px 32px; border: none; border-radius: 2px;
+  cursor: pointer; transition: all 0.25s;
+}
+.form-submit:hover { background: var(--white); transform: translateY(-1px); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 48px 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 24px;
+}
+.footer-logo-img {
+  height: 36px; width: auto; opacity: 0.65;
+}
+.footer-center {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--dim);
+  display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+}
+.footer-right {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1px;
+  color: var(--dim); text-align: right;
+}
+.footer-right a {
+  color: var(--dim); text-decoration: none; transition: color 0.2s;
+}
+.footer-right a:hover { color: var(--light); }
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.05s; }
+.d2 { transition-delay: 0.1s; }
+.d3 { transition-delay: 0.15s; }
+.d4 { transition-delay: 0.2s; }
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  nav ul, .nav-cta { display: none; }
+  #inicio { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+  .hero-left { padding-right: 0; margin-bottom: 48px; }
+  .hero-right { border-left: none; border-top: 1px solid var(--rule); padding: 40px 0 0; }
+  .section-inner { padding: 72px 24px; }
+  .section-header { grid-template-columns: 1fr; gap: 24px; }
+  .problem-grid, .services-list, .pricing-row, .diff-grid,
+  .vendor-list, .client-row, .cta-grid { grid-template-columns: 1fr; }
+  .cta-left { border-right: none; border-bottom: 1px solid var(--rule); padding: 48px 0; }
+  .cta-right { padding: 48px 0 0; }
+  .form-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+  .pricing-row { display: flex; flex-direction: column; }
+  .pricing-cell { border-right: none !important; border-bottom: 1px solid var(--rule); }
+  .client-row { display: flex; flex-direction: column; }
+  .client-rank-cell { display: none; }
+}
+
+/* ── LOGO SVG INTEGRATION ── */
+.nav-logo-wrap {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 36px; flex-shrink: 0;
+}
+.logo-mark svg {
+  width: 100%; height: auto;
+  display: block;
+}
+.logo-text {
+  display: flex; flex-direction: column; line-height: 1;
+}
+.logo-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--pure);
+}
+.logo-sub {
+  font-size: 9px; font-weight: 300; color: var(--dim);
+  letter-spacing: 0.5px; margin-top: 3px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* hero logo mark */
+.hero-logo-mark {
+  width: 110px; margin-bottom: 36px;
+}
+.hero-logo-mark svg {
+  width: 100%; height: auto; display: block;
+  filter: drop-shadow(0 0 24px rgba(255,255,255,0.06));
+}
+
+/* footer logo */
+.footer-logo {
+  display: flex; align-items: center; gap: 12px;
+}
+.footer-logo-mark {
+  width: 30px; opacity: 0.6;
+}
+.footer-logo-mark svg { width: 100%; height: auto; display: block; }
+.footer-logo-text {
+  display: flex; flex-direction: column; line-height: 1;
+}
+.footer-logo-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted);
+}
+.footer-logo-tagline {
+  font-size: 9px; color: var(--dim); letter-spacing: 0.5px;
+  margin-top: 3px; font-family: 'DM Sans', sans-serif; font-weight: 300;
+}
+
+
+/* ── BUNDLE CARDS ── */
+.bundles-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.bundle-card {
+  background: var(--ink);
+  padding: 40px 32px;
+  position: relative; transition: background 0.3s;
+}
+.bundle-card:hover { background: var(--ink3); }
+.bundle-card.featured-bundle { background: var(--ink3); }
+.bundle-tier {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 14px;
+}
+.bundle-tier.accent { color: var(--accent); }
+.bundle-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 400; color: var(--pure);
+  margin-bottom: 12px; line-height: 1.2;
+}
+.bundle-desc {
+  font-size: 13px; font-weight: 300; color: var(--muted);
+  line-height: 1.7; margin-bottom: 20px;
+}
+.bundle-features {
+  list-style: none; margin-bottom: 24px;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+}
+.bundle-features li {
+  font-size: 12.5px; font-weight: 300; color: var(--dim);
+  padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: flex; gap: 10px; align-items: baseline;
+}
+.bundle-features li:last-child { border-bottom: none; }
+.bundle-features li::before {
+  content: '—'; color: var(--mid); flex-shrink: 0; font-size: 10px;
+}
+.bundle-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 400; color: var(--pure);
+  margin-bottom: 4px;
+}
+.bundle-users {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; color: var(--dim);
+  text-transform: uppercase;
+}
+.bundle-featured-tag {
+  position: absolute; top: 0; right: 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent-rule);
+  padding: 4px 14px; border-bottom-left-radius: 2px;
+}
+
+/* ── SERVICE NOTE ── */
+.service-note {
+  margin: 32px 0 60px;
+  padding: 20px 28px;
+  border-left: 2px solid var(--rule);
+  font-size: 13px; font-weight: 300; color: var(--dim);
+  line-height: 1.75;
+  font-style: italic;
+}
+
+@media (max-width: 960px) {
+  .bundles-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ── VENDOR SECTIONS ── */
+.vendor-section {
+  margin-bottom: 72px;
+  border: 1px solid var(--rule);
+}
+.vendor-section:last-of-type { margin-bottom: 40px; }
+
+.vendor-header {
+  padding: 32px 36px;
+  background: var(--ink3);
+  border-bottom: 1px solid var(--rule);
+}
+.vendor-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px; margin-bottom: 14px;
+}
+.vendor-flag-name { display: flex; align-items: center; gap: 14px; }
+.vflag { font-size: 1.6rem; }
+.vname {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 400; color: var(--pure);
+}
+.vorigin {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--dim); letter-spacing: 0.5px; margin-top: 2px;
+}
+.vcerts-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.vcert {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+  border: 1px solid var(--mid); color: var(--dim);
+  padding: 3px 8px; border-radius: 1px;
+}
+.vcert.green { border-color: var(--accent-rule); color: var(--accent); }
+.vendor-focus {
+  font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7;
+  max-width: 700px;
+}
+
+/* ── PRODUCT GRID ── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--rule);
+}
+.product-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.product-card {
+  background: var(--ink);
+  padding: 28px 28px;
+  position: relative; transition: background 0.25s;
+}
+.product-card:hover { background: var(--ink3); }
+.product-card.highlight-card { background: var(--ink3); }
+
+.product-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 10px;
+}
+.product-badge.accent { color: var(--accent); }
+
+.product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 400; color: var(--pure);
+  margin-bottom: 4px; line-height: 1.2;
+}
+.product-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--dim); letter-spacing: 0.5px;
+  margin-bottom: 16px; text-transform: uppercase;
+}
+.product-list {
+  list-style: none; border-top: 1px solid var(--rule); padding-top: 14px;
+}
+.product-list li {
+  font-size: 12px; font-weight: 300; color: var(--dim);
+  padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.03);
+  display: flex; gap: 10px; align-items: baseline; line-height: 1.5;
+}
+.product-list li:last-child { border-bottom: none; }
+.product-list li::before {
+  content: '—'; color: var(--mid); flex-shrink: 0; font-size: 10px;
+}
+
+/* Plan list inside highlight card */
+.plan-list { border-top: 1px solid var(--rule); padding-top: 14px; }
+.plan-row {
+  display: flex; gap: 12px; align-items: baseline;
+  padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 12px;
+}
+.plan-row:last-child { border-bottom: none; }
+.plan-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--accent); flex-shrink: 0; padding-top: 1px;
+  min-width: 42px;
+}
+.plan-text { font-weight: 300; color: var(--muted); line-height: 1.5; }
+
+/* Section rule divider */
+.section-rule {
+  height: 1px; background: var(--rule);
+  margin: 56px 0;
+}
+.subsection-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 300; color: var(--pure);
+  margin-bottom: 10px; line-height: 1.15; letter-spacing: -0.3px;
+}
+.subsection-title em { font-style: italic; }
+.subsection-desc {
+  font-size: 13.5px; font-weight: 300; color: var(--muted);
+  line-height: 1.75; max-width: 560px; margin-bottom: 36px;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .product-grid, .product-grid-4 { grid-template-columns: 1fr 1fr; }
+  .vendor-header { padding: 24px; }
+  .vendor-meta { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  .product-grid, .product-grid-4 { grid-template-columns: 1fr; }
+}
+
+
+.vendor-logo-img {
+  display: block;
+  flex-shrink: 0;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.vendor-header:hover .vendor-logo-img { opacity: 1; }
+
+
+/* ── DIAGNOSTIC FORM ── */
+.diag-subtitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 32px; margin-top: 6px;
+}
+
+.diag-step { display: none; }
+.diag-step.active { display: block; }
+
+.step-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 24px;
+  padding-bottom: 14px; border-bottom: 1px solid var(--rule);
+}
+
+.btn-step {
+  margin-top: 24px; width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
+  color: var(--ink); background: var(--pure);
+  padding: 13px 28px; border: none; border-radius: 2px;
+  cursor: pointer; transition: all 0.25s;
+}
+.btn-step:hover { background: var(--white); transform: translateY(-1px); }
+
+.form-row-nav {
+  display: flex; gap: 12px; align-items: center; margin-top: 24px;
+}
+.btn-back-step {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 1px; color: var(--dim);
+  background: none; border: none; cursor: pointer;
+  padding: 8px 0; transition: color 0.2s;
+}
+.btn-back-step:hover { color: var(--light); }
+.form-row-nav .form-submit {
+  flex: 1; margin-top: 0;
+}
+
+/* Promise items */
+.diag-promise {
+  display: flex; flex-direction: column; gap: 16px;
+  margin: 32px 0 36px;
+}
+.diag-promise-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.6;
+}
+.dpi-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--accent); flex-shrink: 0;
+  padding-top: 2px; letter-spacing: 1px; min-width: 22px;
+}
+.diag-promise-item strong {
+  display: block; color: var(--light); font-weight: 500;
+  margin-bottom: 2px; font-size: 13px;
+}
+
+/* Analyzing state */
+.analyzing-wrap {
+  text-align: center; padding: 40px 0;
+}
+.analyzing-spinner {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid var(--rule);
+  border-top-color: var(--accent);
+  margin: 0 auto 24px;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.analyzing-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 300; color: var(--pure); margin-bottom: 8px;
+}
+.analyzing-sub {
+  font-size: 12px; color: var(--dim); margin-bottom: 32px;
+  font-family: 'DM Mono', monospace; letter-spacing: 0.5px;
+}
+.analyzing-steps {
+  display: flex; flex-direction: column; gap: 8px;
+  text-align: left; max-width: 280px; margin: 0 auto;
+}
+.as-item {
+  font-size: 12px; color: var(--dim); font-weight: 300;
+  padding: 8px 12px; border-radius: 2px;
+  transition: all 0.4s; opacity: 0.4;
+  font-family: 'DM Mono', monospace; letter-spacing: 0.3px;
+}
+.as-item.active { opacity: 1; color: var(--light); background: var(--ink3); }
+.as-item.done { opacity: 0.7; color: var(--accent); }
+.as-item.done::before { content: '✓ '; }
+
+/* Done state */
+.done-wrap { text-align: center; padding: 32px 0; }
+.done-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 1px solid var(--accent-rule);
+  color: var(--accent); font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.done-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 300; color: var(--pure); margin-bottom: 20px;
+}
+.done-score-wrap {
+  background: var(--ink3); border: 1px solid var(--rule);
+  border-radius: 4px; padding: 20px; margin-bottom: 20px;
+}
+.done-score-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 8px;
+}
+.done-score {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 400; color: var(--pure); line-height: 1;
+}
+.done-clasificacion {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  margin-top: 6px;
+}
+.done-msg {
+  font-size: 13px; font-weight: 300; color: var(--muted);
+  line-height: 1.7; max-width: 340px; margin: 0 auto;
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#inicio" class="nav-logo-wrap">
+    <div class="logo-mark"><svg viewBox="0 0 56 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="shieldClipNav">
+      <path d="M28 1L2 11V34C2 50 14 62 28 65C42 62 54 50 54 34V11L28 1Z"/>
+    </clipPath>
+  </defs>
+  <!-- Real photo clipped to shield shape -->
+  <image href="data:image/png;base64,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" x="-4" y="-2" width="64" height="70" clip-path="url(#shieldClipNav)"/>
+  <!-- Shield border on top -->
+  <path d="M28 1L2 11V34C2 50 14 62 28 65C42 62 54 50 54 34V11L28 1Z" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+</svg></div>
+    <div class="logo-text">
+      <span class="logo-name">C-SHUTZ</span>
+      <span class="logo-sub">Blindando tu negocio</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#problema">El problema</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#diferenciacion">Propuesta de valor</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Agendar consulta</a>
+</nav>
+
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Ciberseguridad alemana para México</div>
+
+    <h1 class="hero-title">
+      Protección empresarial<br>
+      <em>sin concesiones.</em>
+    </h1>
+
+    <p class="hero-body">
+      Distribuimos tecnología de ciberseguridad de origen alemán, certificada por el BSI, 
+      a empresas mexicanas que no pueden permitirse comprometer la seguridad de su información.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">Solicitar consulta</a>
+      <a href="#servicios" class="btn-ghost">Ver portafolio <span class="btn-ghost-arrow">→</span></a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-logo-mark"><svg viewBox="0 0 56 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="shieldClipHero">
+      <path d="M28 1L2 11V34C2 50 14 62 28 65C42 62 54 50 54 34V11L28 1Z"/>
+    </clipPath>
+  </defs>
+  <!-- Real photo clipped to shield shape -->
+  <image href="data:image/png;base64,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" x="-4" y="-2" width="64" height="70" clip-path="url(#shieldClipHero)"/>
+  <!-- Shield border on top -->
+  <path d="M28 1L2 11V34C2 50 14 62 28 65C42 62 54 50 54 34V11L28 1Z" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+</svg></div>
+    <div class="hero-credentials">
+      <div class="credential-row">
+        <span class="cred-number">01</span>
+        <div class="cred-label">
+          <strong>Tecnología certificada BSI</strong>
+          Estándares del Bundesamt für Sicherheit in der Informationstechnik, el organismo alemán de ciberseguridad.
+        </div>
+      </div>
+      <div class="credential-row">
+        <span class="cred-number">02</span>
+        <div class="cred-label">
+          <strong>Protección end-to-end</strong>
+          Correo, endpoints, acceso remoto y cumplimiento normativo en un solo punto de contacto.
+        </div>
+      </div>
+      <div class="credential-row">
+        <span class="cred-number">03</span>
+        <div class="cred-label">
+          <strong>Presencia local en CDMX</strong>
+          Implementación, soporte y consultoría en español, con entendimiento del mercado mexicano.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROBLEMA -->
+<section id="problema" class="bg-alt">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-index">01 — Contexto</div>
+        <h2 class="section-title">El riesgo<br><em>es real.</em></h2>
+      </div>
+      <p class="section-desc">
+        México es el segundo país más atacado cibernéticamente en América Latina. 
+        La mayor parte de los incidentes afectan a empresas de menos de 200 empleados 
+        que operan con soluciones insuficientes o genéricas.
+      </p>
+    </div>
+
+    <div class="problem-grid reveal">
+      <div class="problem-cell">
+        <div class="problem-cell-accent"></div>
+        <div class="problem-cell-label">Incidencia</div>
+        <h3>6 de cada 10 PyMEs experimentan un ataque anual</h3>
+        <p>La mayoría no cuenta con protección empresarial activa. El antivirus de consumo no es suficiente ante amenazas modernas como ransomware dirigido o Business Email Compromise.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-cell-accent"></div>
+        <div class="problem-cell-label">Vector principal</div>
+        <h3>El 91% de los ataques entran por correo electrónico</h3>
+        <p>Phishing, suplantación de identidad y adjuntos maliciosos siguen siendo la vía de entrada más efectiva. Sin protección de correo empresarial, la exposición es permanente.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-cell-accent"></div>
+        <div class="problem-cell-label">Costo del incidente</div>
+        <h3>Un ataque cuesta en promedio 10 veces más que prevenirlo</h3>
+        <p>Paro operativo, recuperación de datos, daño reputacional, multas regulatorias y pérdida de contratos. Para muchas PyMEs, un incidente mayor puede ser terminal.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-cell-accent"></div>
+        <div class="problem-cell-label">Presión externa</div>
+        <h3>El nearshoring exige estándares de seguridad verificables</h3>
+        <p>Los proveedores de empresas estadounidenses en manufactura, logística y automotriz son auditados en ciberseguridad. Sin certificación, se pierden contratos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-index">02 — Portafolio</div>
+        <h2 class="section-title">Catálogo<br><em>completo.</em></h2>
+      </div>
+      <p class="section-desc">
+        Cuatro fabricantes alemanes. Un solo punto de contacto en México.
+        Distribuimos el portafolio íntegro de cada vendor — desde protección de correo
+        hasta SOC 24/7 y acceso remoto certificado.
+      </p>
+    </div>
+
+    <!-- ── VENDOR 1: HORNETSECURITY ── -->
+    <div class="vendor-section reveal">
+      <div class="vendor-header">
+        <div class="vendor-meta">
+          <div class="vendor-flag-name">
+            <img src="https://www.hornetsecurity.com/app/themes/vdclassic/logo_pp_hse.png" alt="Hornetsecurity" class="vendor-logo-img" style="filter: brightness(0) invert(1); height:28px; width:auto;">
+            <div>
+              <div class="vname">Hornetsecurity</div>
+              <div class="vorigin">Hannover, Alemania · 2007 · +125,000 clientes globales</div>
+            </div>
+          </div>
+          <div class="vcerts-row">
+            <span class="vcert green">BSI</span>
+            <span class="vcert green">ISO 27001</span>
+            <span class="vcert">GDPR</span>
+          </div>
+        </div>
+        <p class="vendor-focus">El proveedor más completo del mundo para seguridad de Microsoft 365. Protege correo, datos, cumplimiento y concienciación desde una sola plataforma en la nube.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card highlight-card">
+          <div class="product-badge accent">Producto estrella</div>
+          <div class="product-name">365 Total Protection</div>
+          <div class="product-sub">4 planes escalables por necesidad</div>
+          <div class="plan-list">
+            <div class="plan-row">
+              <span class="plan-num">Plan 1</span>
+              <span class="plan-text">Email Security — anti-phishing, antispam AI, sandboxing, cifrado, firmas corporativas</span>
+            </div>
+            <div class="plan-row">
+              <span class="plan-num">Plan 2</span>
+              <span class="plan-text">+ Backup & Recovery — respaldo automático de mailboxes, OneDrive, SharePoint, Teams, Planner</span>
+            </div>
+            <div class="plan-row">
+              <span class="plan-num">Plan 3</span>
+              <span class="plan-text">+ Compliance — archivado legal de correos, gestión de cumplimiento normativo</span>
+            </div>
+            <div class="plan-row">
+              <span class="plan-num">Plan 4</span>
+              <span class="plan-text">+ Awareness — Security Awareness Training automatizado, AI Recipient Validation, 365 Permission Manager (DLP)</span>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-name">365 Total Backup</div>
+          <div class="product-sub">Standalone — backup M365</div>
+          <ul class="product-list">
+            <li>Respaldo múltiple al día, inmutable</li>
+            <li>Cubre mailbox, Teams, OneDrive, SharePoint, Planner</li>
+            <li>Consola multi-tenant para MSPs</li>
+            <li>Recuperación granular de cualquier elemento</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">VM Backup</div>
+          <div class="product-sub">Virtualización on-prem</div>
+          <ul class="product-list">
+            <li>Backup y replicación para Hyper-V, VMware, Proxmox</li>
+            <li>Recuperación ante desastres automatizada</li>
+            <li>Ideal para empresas con servidores locales</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Teams Protection</div>
+          <div class="product-sub">Seguridad para Microsoft Teams</div>
+          <ul class="product-list">
+            <li>Detección de links maliciosos en chats</li>
+            <li>Eliminación automática de mensajes peligrosos</li>
+            <li>Bloqueo de login a usuarios comprometidos</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Domain Fraud Protection</div>
+          <div class="product-sub">Anti-suplantación de dominio</div>
+          <ul class="product-list">
+            <li>Gestión centralizada de DMARC, DKIM y SPF</li>
+            <li>Previene spoofing y email impersonation</li>
+            <li>Reportes de visibilidad de dominio</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Security Awareness Service</div>
+          <div class="product-sub">Concienciación del usuario</div>
+          <ul class="product-list">
+            <li>Cursos interactivos automatizados</li>
+            <li>Simulaciones de phishing continuas</li>
+            <li>Employee Security Index (ESI®) por persona</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VENDOR 2: G DATA ── -->
+    <div class="vendor-section reveal">
+      <div class="vendor-header">
+        <div class="vendor-meta">
+          <div class="vendor-flag-name">
+            <img src="https://www.gdata-software.com/typo3conf/ext/gd_sites/Resources/Public/Images/logo-for-dark.svg" alt="G DATA" class="vendor-logo-img" style="height:24px; width:auto;">
+            <div>
+              <div class="vname">G DATA CyberDefense</div>
+              <div class="vorigin">Bochum, Alemania · 1985 · Creadores del primer antivirus del mundo</div>
+            </div>
+          </div>
+          <div class="vcerts-row">
+            <span class="vcert green">CC EAL4+</span>
+            <span class="vcert green">BSI</span>
+            <span class="vcert">TeleTrusT</span>
+            <span class="vcert">Cybersecurity Made in Europe</span>
+          </div>
+        </div>
+        <p class="vendor-focus">Protección de endpoints con inteligencia artificial propia (DeepRay®). El único proveedor alemán con SOC 24/7 gestionado y portfolio completo desde prevención hasta respuesta a incidentes.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card highlight-card">
+          <div class="product-badge accent">Recomendado para PyMEs</div>
+          <div class="product-name">Endpoint Protection Business</div>
+          <div class="product-sub">Antivirus empresarial con IA</div>
+          <ul class="product-list">
+            <li>Motor DeepRay® — detección por comportamiento con machine learning</li>
+            <li>Doble motor: G DATA + Bitdefender</li>
+            <li>Anti-ransomware, anti-exploit, anti-phishing</li>
+            <li>Gestión centralizada para todos los dispositivos</li>
+            <li>Soporte gratuito 24/7 desde Bochum</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Endpoint Detection & Response</div>
+          <div class="product-sub">EDR con mapeo MITRE ATT&CK</div>
+          <ul class="product-list">
+            <li>Detección de amenazas avanzadas que burlan el antivirus</li>
+            <li>Visibilidad completa del endpoint en tiempo real</li>
+            <li>Respuesta automatizada y manual</li>
+            <li>Correlación con MITRE ATT&CK Framework</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">MXDR — SOC Gestionado 24/7</div>
+          <div class="product-sub">Managed Extended Detection & Response</div>
+          <ul class="product-list">
+            <li>Centro de Operaciones de Seguridad en Alemania</li>
+            <li>Monitoreo continuo de endpoints, red e identidades</li>
+            <li>Threat hunting proactivo por analistas humanos</li>
+            <li>SLA de respuesta a incidentes definido</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Security Awareness Training</div>
+          <div class="product-sub">Formación del factor humano</div>
+          <ul class="product-list">
+            <li>+35 cursos online interactivos en plataforma propia</li>
+            <li>Simulaciones de phishing programables</li>
+            <li>Módulos por sector: manufactura, salud, servicios</li>
+            <li>Reportes de avance por empleado</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Penetration Testing</div>
+          <div class="product-sub">Auditoría ofensiva</div>
+          <ul class="product-list">
+            <li>Pentest de red interna y externa</li>
+            <li>Análisis de aplicaciones web</li>
+            <li>Informe ejecutivo + técnico</li>
+            <li>Recomendaciones priorizadas por riesgo</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Incident Response & Forensics</div>
+          <div class="product-sub">Respuesta a emergencias</div>
+          <ul class="product-list">
+            <li>Contención y eliminación de amenazas activas</li>
+            <li>Análisis forense post-incidente</li>
+            <li>Restauración de operaciones</li>
+            <li>Equipo de respuesta remota en horas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VENDOR 3: DRIVELOCK ── -->
+    <div class="vendor-section reveal">
+      <div class="vendor-header">
+        <div class="vendor-meta">
+          <div class="vendor-flag-name">
+            <img src="https://www.drivelock.com/hs-fs/hubfs/2022_Bilder/Logos/DriveLock%20Logo/Logo_DriveLock_Wei%C3%9F_oC.png?width=1772&height=338&name=Logo_DriveLock_Wei%C3%9F_oC.png" alt="DriveLock" class="vendor-logo-img" style="height:22px; width:auto;">
+            <div>
+              <div class="vname">DriveLock SE</div>
+              <div class="vorigin">Munich, Alemania · 2000 · HYPERSECURE Platform — Zero Trust</div>
+            </div>
+          </div>
+          <div class="vcerts-row">
+            <span class="vcert green">BSI</span>
+            <span class="vcert green">FIPS 140-2</span>
+            <span class="vcert">Zero Trust</span>
+            <span class="vcert">Made in Germany</span>
+          </div>
+        </div>
+        <p class="vendor-focus">Plataforma Zero Trust que evita que los ataques entren al sistema desde el principio. Control total sobre dispositivos, aplicaciones, datos e identidades desde una sola consola en la nube.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card highlight-card">
+          <div class="product-badge">Plataforma completa</div>
+          <div class="product-name">HYPERSECURE Platform</div>
+          <div class="product-sub">Zero Trust — nube o on-prem</div>
+          <ul class="product-list">
+            <li>Application Control — lista blanca: solo ejecuta lo que autorizas</li>
+            <li>Device Control — bloqueo total de USB, periféricos y medios extraíbles</li>
+            <li>Disk Encryption — BitLocker gestionado + cifrado DriveLock propio</li>
+            <li>EDR integrado — detección y respuesta basada en MITRE ATT&CK</li>
+            <li>Security Awareness — módulo de concienciación integrado</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Identity & Access Management</div>
+          <div class="product-sub">IAM + Autenticación fuerte</div>
+          <ul class="product-list">
+            <li>Autenticación de dos factores (2FA) para todos los accesos</li>
+            <li>Virtual SmartCard y SmartCard Middleware</li>
+            <li>Principio de mínimo privilegio</li>
+            <li>Pre-Boot Authentication (PBA)</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">Risk & Compliance</div>
+          <div class="product-sub">Gestión de cumplimiento</div>
+          <ul class="product-list">
+            <li>Dashboard centralizado de compliance</li>
+            <li>Reportes auditables de toda actividad de endpoints</li>
+            <li>Alineación con LFPDPPP, GDPR, ISO 27001</li>
+            <li>Alertas de violaciones en tiempo real</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">idgard — Secure Data Rooms</div>
+          <div class="product-sub">Sala de datos cifrada (nueva adquisición 2025)</div>
+          <ul class="product-list">
+            <li>Compartición segura de documentos confidenciales</li>
+            <li>Tecnología Sealed Cloud — datos inaccesibles incluso para el proveedor</li>
+            <li>Ideal para legal, finanzas y gobierno</li>
+            <li>Cumplimiento GDPR por diseño</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VENDOR 4: NCP ENGINEERING ── -->
+    <div class="vendor-section reveal">
+      <div class="vendor-header">
+        <div class="vendor-meta">
+          <div class="vendor-flag-name">
+            <img src="https://www.ncp-e.com/typo3conf/ext/triebwerksitepackage/Resources/Public/Images/Template/ncp_logo.svg" alt="NCP Engineering" class="vendor-logo-img" style="filter: brightness(0) invert(1); height:22px; width:auto;">
+            <div>
+              <div class="vname">NCP Engineering</div>
+              <div class="vorigin">Nuremberg, Alemania · 1986 · 30+ años en VPN empresarial</div>
+            </div>
+          </div>
+          <div class="vcerts-row">
+            <span class="vcert green">FIPS 140-2</span>
+            <span class="vcert green">CC EAL</span>
+            <span class="vcert">VS-NfD</span>
+            <span class="vcert">SASE Ready</span>
+          </div>
+        </div>
+        <p class="vendor-focus">El estándar de facto en VPN empresarial alemán. Compatible con todos los gateways del mercado. Desde soluciones de entrada para PyMEs hasta plataformas SASE para infraestructura compleja.</p>
+      </div>
+      <div class="product-grid product-grid-4">
+        <div class="product-card">
+          <div class="product-name">Secure Entry Client</div>
+          <div class="product-sub">VPN PyME — hasta 100 usuarios</div>
+          <ul class="product-list">
+            <li>Windows y macOS — instalación en un clic</li>
+            <li>Compatible con cualquier gateway IPsec del mercado</li>
+            <li>Sin gestión centralizada requerida</li>
+            <li>Solución de entrada, bajo costo inicial</li>
+          </ul>
+        </div>
+        <div class="product-card highlight-card">
+          <div class="product-badge">Para empresa mediana</div>
+          <div class="product-name">Secure Enterprise Suite</div>
+          <div class="product-sub">VPN centralizado con gestión</div>
+          <ul class="product-list">
+            <li>Cliente multiplataforma: Windows, macOS, Linux, iOS, Android</li>
+            <li>Management Server centralizado — configuración masiva en 1 clic</li>
+            <li>VPN Gateway on-prem o virtual (cloud)</li>
+            <li>2FA integrado — TOTP y SMS</li>
+            <li>Load balancing y alta disponibilidad</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">VPN as a Service</div>
+          <div class="product-sub">Acceso remoto gestionado</div>
+          <ul class="product-list">
+            <li>Servicio VPN completamente administrado</li>
+            <li>Sin infraestructura propia requerida</li>
+            <li>Pay-per-use — escala con la empresa</li>
+            <li>Monitoreo y soporte incluidos</li>
+          </ul>
+        </div>
+        <div class="product-card">
+          <div class="product-name">SASE / SSE Integration</div>
+          <div class="product-sub">Estrategia de red moderna</div>
+          <ul class="product-list">
+            <li>Integración como componente SSE dentro de arquitectura SASE</li>
+            <li>Zero Trust Network Access (ZTNA)</li>
+            <li>Para empresas con estrategia cloud-first</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVIDER LINE -->
+    <div class="section-rule reveal"></div>
+
+    <!-- BUNDLES COMERCIALES -->
+    <div class="reveal" style="margin-bottom: 32px;">
+      <div class="section-index">Paquetes comerciales</div>
+      <h3 class="subsection-title">Soluciones <em>listas para implementar.</em></h3>
+      <p class="subsection-desc">Combinaciones preconfiguradas por caso de uso real. Sin contratos corporativos. Sin inversión inicial. Activo en 24–72 horas.</p>
+    </div>
+
+    <div class="bundles-grid reveal">
+      <div class="bundle-card">
+        <div class="bundle-tier">Pack Básico</div>
+        <h4 class="bundle-name">Blindado Email</h4>
+        <p class="bundle-desc">Para empresa que usa M365 y necesita dejar de recibir phishing. El punto de entrada más rápido. Implementación en 1 día.</p>
+        <ul class="bundle-features">
+          <li>Hornetsecurity 365 Total Protection Plan 1–2</li>
+          <li>Simulación de phishing mensual</li>
+          <li>Reporte de amenazas bloqueadas mensual</li>
+          <li>Backup automático de correo y OneDrive</li>
+        </ul>
+        <div class="bundle-price">$80 – $150 USD / mes</div>
+        <div class="bundle-users">10 – 50 usuarios</div>
+      </div>
+
+      <div class="bundle-card featured-bundle">
+        <div class="bundle-featured-tag">Recomendado</div>
+        <div class="bundle-tier accent">Pack Core</div>
+        <h4 class="bundle-name">Blindado Total</h4>
+        <p class="bundle-desc">Email + Endpoints. Cubre los dos vectores de ataque más frecuentes en PyMEs. La relación precio-protección más alta del portafolio.</p>
+        <ul class="bundle-features">
+          <li>Hornetsecurity 365 Total Protection Plan 2</li>
+          <li>G DATA Endpoint Protection + DeepRay AI</li>
+          <li>DriveLock Device Control (USB/periféricos)</li>
+          <li>Reportes de cumplimiento mensuales</li>
+          <li>Soporte comercial local — C-SHUTZ</li>
+        </ul>
+        <div class="bundle-price">$200 – $600 USD / mes</div>
+        <div class="bundle-users">10 – 50 usuarios</div>
+      </div>
+
+      <div class="bundle-card">
+        <div class="bundle-tier">Pack Avanzado</div>
+        <h4 class="bundle-name">Blindado Pro</h4>
+        <p class="bundle-desc">Empresa mediana con equipos remotos, requerimientos de cumplimiento o auditorías corporativas internacionales.</p>
+        <ul class="bundle-features">
+          <li>Todo de Blindado Total</li>
+          <li>NCP VPN Enterprise — acceso remoto centralizado</li>
+          <li>G DATA EDR — detección y respuesta avanzada</li>
+          <li>DriveLock IAM + cifrado completo de disco</li>
+          <li>G DATA MXDR — SOC 24/7 (opcional)</li>
+        </ul>
+        <div class="bundle-price">$800 – $2,500 USD / mes</div>
+        <div class="bundle-users">50 – 200 usuarios</div>
+      </div>
+
+      <div class="bundle-card">
+        <div class="bundle-tier">Pack Compliance</div>
+        <h4 class="bundle-name">Blindado Legal</h4>
+        <p class="bundle-desc">Para despachos jurídicos, clínicas, contadoras y cualquier empresa que maneja datos sensibles bajo LFPDPPP o requerimientos de auditoría.</p>
+        <ul class="bundle-features">
+          <li>Hornetsecurity Plan 3–4 (archivado + compliance)</li>
+          <li>DriveLock Risk & Compliance + cifrado de disco</li>
+          <li>idgard Secure Data Rooms — sala de datos cifrada</li>
+          <li>Reporte de cumplimiento LFPDPPP / GDPR</li>
+          <li>Soporte en auditorías internas</li>
+        </ul>
+        <div class="bundle-price">A cotizar</div>
+        <div class="bundle-users">Por proyecto</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DIFERENCIACION -->
+<section id="diferenciacion" class="bg-alt">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-index">03 — Propuesta de valor</div>
+        <h2 class="section-title">Por qué<br><em>C-SHUTZ.</em></h2>
+      </div>
+      <p class="section-desc">
+        La diferencia no está solo en la tecnología. Está en cómo la seleccionamos, 
+        cómo la entregamos y cómo la hacemos comprensible para empresas que no tienen 
+        un equipo de TI especializado.
+      </p>
+    </div>
+
+    <div class="diff-grid reveal">
+      <div class="diff-item">
+        <div class="diff-num">01</div>
+        <h4>Origen europeo certificado</h4>
+        <p>Tecnología alemana con certificaciones BSI, CC EAL4+, FIPS 140-2. No es un argumento de marketing: es evidencia verificable presentable en auditorías nacionales e internacionales.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-num">02</div>
+        <h4>Lenguaje de negocio, no técnico</h4>
+        <p>No hablamos de exploits ni vectores de ataque. Traducimos la ciberseguridad a decisiones financieras: si tu empresa es atacada, pierdes X. Con nosotros, reduces ese riesgo a Y por Z al mes.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-num">03</div>
+        <h4>Soluciones empaquetadas, sin fricción</h4>
+        <p>No se venden licencias sueltas. Cada paquete tiene alcance definido, precio claro y un resultado medible. El cliente sabe exactamente qué recibe desde el primer día.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-num">04</div>
+        <h4>Resultados visibles cada mes</h4>
+        <p>Entregamos dashboards y reportes con evidencia concreta: correos bloqueados, dispositivos protegidos, intentos de intrusión detectados. Cada renovación se justifica con datos.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-num">05</div>
+        <h4>Contacto local en horario mexicano</h4>
+        <p>Soporte comercial y técnico en español, con entendimiento del contexto regulatorio y operativo mexicano. Los grandes MSSPs internacionales no atienden a este segmento.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-num">06</div>
+        <h4>Alternativa no norteamericana</h4>
+        <p>Gobierno, salud, educación y proveedores de empresas con requerimientos de soberanía tecnológica encuentran en C-SHUTZ la única alternativa europea certificada disponible en México.</p>
+      </div>
+    </div>
+
+    <div class="vendor-strip reveal">
+      <div class="vendor-strip-header">Fabricantes certificados · Alemania</div>
+      <div class="vendor-list">
+        <div class="vendor-item">
+          <div class="vendor-name">Hornetsecurity</div>
+          <div class="vendor-origin">Hannover · Email & Cloud Security</div>
+          <div class="vendor-certs">
+            <span class="vcert green">BSI</span>
+            <span class="vcert">ISO 27001</span>
+          </div>
+        </div>
+        <div class="vendor-item">
+          <div class="vendor-name">G DATA CyberDefense</div>
+          <div class="vendor-origin">Bochum · Endpoint AI + EDR</div>
+          <div class="vendor-certs">
+            <span class="vcert green">CC EAL4+</span>
+            <span class="vcert">BSI</span>
+          </div>
+        </div>
+        <div class="vendor-item">
+          <div class="vendor-name">DriveLock SE</div>
+          <div class="vendor-origin">Munich · Device Control & Encryption</div>
+          <div class="vendor-certs">
+            <span class="vcert green">BSI</span>
+            <span class="vcert">FIPS 140-2</span>
+          </div>
+        </div>
+        <div class="vendor-item">
+          <div class="vendor-name">NCP Engineering</div>
+          <div class="vendor-origin">Nuremberg · Enterprise VPN</div>
+          <div class="vendor-certs">
+            <span class="vcert green">FIPS 140-2</span>
+            <span class="vcert">CC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CLIENTES -->
+<section id="clientes">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-index">04 — Mercado objetivo</div>
+        <h2 class="section-title">¿A quién<br><em>servimos?</em></h2>
+      </div>
+      <p class="section-desc">
+        Tres perfiles de cliente priorizados por velocidad de cierre, 
+        tamaño de ticket y facilidad de conversión en el mercado mexicano.
+      </p>
+    </div>
+
+    <div class="client-table reveal">
+      <div class="client-row header">
+        <div class="client-rank-cell"></div>
+        <div class="client-cell label-cell">Segmento</div>
+        <div class="client-cell label-cell">Perfil y motivación de compra</div>
+        <div class="client-cell label-cell">Ticket mensual</div>
+      </div>
+      <div class="client-row">
+        <div class="client-rank-cell">🥇</div>
+        <div class="client-cell name">
+          PyME Digitalizada
+          <span class="sub">15–200 empleados</span>
+        </div>
+        <div class="client-cell">
+          Servicios profesionales, e-commerce, agencias, clínicas. Usan M365 y nube pero sin protección empresarial real. Un ransomware les costaría 10× el valor del servicio anual.
+        </div>
+        <div class="client-cell">
+          <span class="ticket-pill">$3,000–$15,000 MXN</span>
+        </div>
+      </div>
+      <div class="client-row">
+        <div class="client-rank-cell">🥈</div>
+        <div class="client-cell name">
+          Empresa Mediana
+          <span class="sub">200–800 empleados</span>
+        </div>
+        <div class="client-cell">
+          Manufactura, logística, cadena de suministro, educación privada. Tienen IT básico pero sin madurez en ciberseguridad. Presión de clientes corporativos internacionales y cumplimiento normativo.
+        </div>
+        <div class="client-cell">
+          <span class="ticket-pill">$15,000–$60,000 MXN</span>
+        </div>
+      </div>
+      <div class="client-row">
+        <div class="client-rank-cell">🥉</div>
+        <div class="client-cell name">
+          MSSPs y Revendedores
+          <span class="sub">Canal</span>
+        </div>
+        <div class="client-cell">
+          Integradores de TI que ya venden servicios administrados con tecnología norteamericana. Sus clientes de gobierno o salud requieren alternativas europeas que ellos no ofrecen hoy.
+        </div>
+        <div class="client-cell">
+          <span class="ticket-pill">Margen de canal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-inner">
+    <div class="section-index reveal" style="margin-bottom: 48px;">05 — Diagnóstico gratuito</div>
+    <div class="cta-grid">
+
+      <!-- LEFT: propuesta -->
+      <div class="cta-left reveal">
+        <h2>Analicemos<br><em>su exposición.</em></h2>
+        <p>
+          Completa el diagnóstico en 2 minutos. Nuestra IA analiza el perfil de su empresa,
+          identifica sus puntos de exposición más críticos y le asigna un paquete de
+          protección con precio estimado — antes de hablar con nosotros.
+        </p>
+
+        <div class="diag-promise">
+          <div class="diag-promise-item">
+            <span class="dpi-num">01</span>
+            <div>
+              <strong>Análisis instantáneo</strong>
+              Claude AI evalúa su perfil en segundos y genera un score de riesgo personalizado.
+            </div>
+          </div>
+          <div class="diag-promise-item">
+            <span class="dpi-num">02</span>
+            <div>
+              <strong>Sin compromiso</strong>
+              El diagnóstico es completamente gratuito. Nadie le llamará sin su confirmación.
+            </div>
+          </div>
+          <div class="diag-promise-item">
+            <span class="dpi-num">03</span>
+            <div>
+              <strong>Respuesta en 24 horas</strong>
+              Si el perfil encaja, un especialista de C-SHUTZ le contacta con una propuesta a medida.
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-details">
+          <div class="cta-detail-row"><strong>Email</strong> operacion@cshutz.net</div>
+          <div class="cta-detail-row"><strong>Ciudad</strong> Ciudad de México, México</div>
+          <div class="cta-detail-row"><strong>Horario</strong> Lun–Vie · 9:00–18:00 CDMX</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: formulario de diagnóstico -->
+      <div class="cta-right reveal d2">
+        <div id="diagForm">
+          <h3>Diagnóstico de seguridad</h3>
+          <p class="diag-subtitle">6 preguntas · 2 minutos · Análisis con IA</p>
+
+          <!-- Paso 1: Datos básicos -->
+          <div class="diag-step active" id="step1">
+            <div class="step-label">Paso 1 de 3 — Datos de contacto</div>
+            <div class="form-grid">
+              <div class="form-row">
+                <label>Nombre</label>
+                <input type="text" id="f-nombre" placeholder="Nombre completo">
+              </div>
+              <div class="form-row">
+                <label>Email empresarial</label>
+                <input type="email" id="f-email" placeholder="nombre@empresa.com">
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="form-row">
+                <label>Empresa</label>
+                <input type="text" id="f-empresa" placeholder="Nombre de la empresa">
+              </div>
+              <div class="form-row">
+                <label>Teléfono (opcional)</label>
+                <input type="tel" id="f-telefono" placeholder="+52 55 0000 0000">
+              </div>
+            </div>
+            <button class="btn-step" onclick="goStep(2)">Continuar →</button>
+          </div>
+
+          <!-- Paso 2: Perfil de empresa -->
+          <div class="diag-step" id="step2">
+            <div class="step-label">Paso 2 de 3 — Perfil de su empresa</div>
+
+            <div class="form-row">
+              <label>Número de empleados</label>
+              <select id="f-empleados">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="1-10">Menos de 10</option>
+                <option value="11-50">11 – 50</option>
+                <option value="51-200">51 – 200</option>
+                <option value="201-800">201 – 800</option>
+                <option value="800+">Más de 800</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Sector de la empresa</label>
+              <select id="f-sector">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Servicios profesionales (legal, contable, consultoría)">Servicios profesionales (legal, contable, consultoría)</option>
+                <option value="Manufactura o industria">Manufactura o industria</option>
+                <option value="Logística o cadena de suministro">Logística o cadena de suministro</option>
+                <option value="Salud o clínicas">Salud o clínicas</option>
+                <option value="E-commerce o retail">E-commerce o retail</option>
+                <option value="Agencia digital o tecnología">Agencia digital o tecnología</option>
+                <option value="Educación privada">Educación privada</option>
+                <option value="Gobierno o sector público">Gobierno o sector público</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Sistemas que usa actualmente</label>
+              <select id="f-sistemas">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Microsoft 365 (correo, Teams, OneDrive)">Microsoft 365 (correo, Teams, OneDrive)</option>
+                <option value="Google Workspace">Google Workspace</option>
+                <option value="Servidores propios on-premise">Servidores propios on-premise</option>
+                <option value="Mezcla de nube y servidores locales">Mezcla de nube y servidores locales</option>
+                <option value="Sin infraestructura formal de TI">Sin infraestructura formal de TI</option>
+              </select>
+            </div>
+
+            <div class="form-row-nav">
+              <button class="btn-back-step" onclick="goStep(1)">← Atrás</button>
+              <button class="btn-step" onclick="goStep(3)">Continuar →</button>
+            </div>
+          </div>
+
+          <!-- Paso 3: Situación de seguridad -->
+          <div class="diag-step" id="step3">
+            <div class="step-label">Paso 3 de 3 — Situación actual de seguridad</div>
+
+            <div class="form-row">
+              <label>¿Han tenido algún incidente de seguridad?</label>
+              <select id="f-incidentes">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Sí, tuvimos un ataque de ransomware o cifrado de datos">Sí, ransomware o cifrado de datos</option>
+                <option value="Sí, hemos recibido intentos de phishing o fraudes por correo">Sí, phishing o fraudes por correo</option>
+                <option value="Sí, hubo acceso no autorizado a sistemas o cuentas">Sí, acceso no autorizado</option>
+                <option value="No hemos tenido incidentes conocidos">No hemos tenido incidentes conocidos</option>
+                <option value="No sabemos si hemos tenido incidentes">No sabemos si hemos tenido incidentes</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Protección de ciberseguridad actual</label>
+              <select id="f-proteccion">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Solo antivirus básico o Windows Defender">Solo antivirus básico o Windows Defender</option>
+                <option value="Antivirus empresarial de pago (Symantec, ESET, etc.)">Antivirus empresarial (Symantec, ESET, etc.)</option>
+                <option value="Tenemos firewall y alguna solución de seguridad básica">Firewall y solución básica</option>
+                <option value="Solución completa gestionada por proveedor externo">Solución completa con proveedor externo</option>
+                <option value="Sin ninguna protección formal">Sin ninguna protección formal</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>¿Qué le interesa proteger primero?</label>
+              <select id="f-paquete">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Blindado Email — protección de correo y Microsoft 365">Blindado Email — correo y M365</option>
+                <option value="Blindado Total — correo y dispositivos (endpoint)">Blindado Total — correo + dispositivos</option>
+                <option value="Blindado Pro — protección completa con VPN y SOC">Blindado Pro — protección completa con VPN</option>
+                <option value="Blindado Legal — cumplimiento normativo y datos sensibles">Blindado Legal — cumplimiento y datos sensibles</option>
+                <option value="No sé, necesito asesoría para decidir">No sé, necesito asesoría</option>
+              </select>
+            </div>
+
+            <div class="form-row-nav">
+              <button class="btn-back-step" onclick="goStep(2)">← Atrás</button>
+              <button class="form-submit" id="diagSubmitBtn" onclick="submitDiagnosis()">Obtener diagnóstico →</button>
+            </div>
+          </div>
+
+          <!-- Estado: Analizando -->
+          <div class="diag-step" id="stepAnalyzing">
+            <div class="analyzing-wrap">
+              <div class="analyzing-spinner"></div>
+              <div class="analyzing-title">Analizando su empresa…</div>
+              <div class="analyzing-sub">Claude AI está evaluando su perfil de riesgo</div>
+              <div class="analyzing-steps">
+                <div class="as-item" id="as1">Procesando datos de su empresa</div>
+                <div class="as-item" id="as2">Identificando vectores de exposición</div>
+                <div class="as-item" id="as3">Seleccionando paquete recomendado</div>
+                <div class="as-item" id="as4">Generando análisis personalizado</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Estado: Completado -->
+          <div class="diag-step" id="stepDone">
+            <div class="done-wrap">
+              <div class="done-icon">✓</div>
+              <div class="done-title">Diagnóstico enviado</div>
+              <div class="done-score-wrap">
+                <div class="done-score-label">Score de riesgo detectado</div>
+                <div class="done-score" id="doneScore">—</div>
+                <div class="done-clasificacion" id="doneClasificacion">—</div>
+              </div>
+              <p class="done-msg">
+                Recibirá un análisis detallado en su email en los próximos minutos.
+                Si su perfil califica, un especialista de C-SHUTZ le contactará en menos de 24 horas.
+              </p>
+              <a href="mailto:operacion@cshutz.net" class="btn-primary" style="display:inline-block; margin-top: 24px; font-size:13px;">
+                Contactar directamente →
+              </a>
+            </div>
+          </div>
+
+          <!-- Estado: Error -->
+          <div class="diag-step" id="stepError">
+            <div class="done-wrap">
+              <div class="done-icon" style="color: var(--muted);">!</div>
+              <div class="done-title" style="color: var(--lighter);">Error al enviar</div>
+              <p class="done-msg">
+                Hubo un problema al procesar su diagnóstico.
+                Por favor contáctenos directamente.
+              </p>
+              <a href="mailto:operacion@cshutz.net" class="btn-primary" style="display:inline-block; margin-top: 24px; font-size:13px;">
+                Escribir a operacion@cshutz.net
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-mark"><svg viewBox="0 0 56 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="shieldClipFoot">
+      <path d="M28 1L2 11V34C2 50 14 62 28 65C42 62 54 50 54 34V11L28 1Z"/>
+    </clipPath>
+  </defs>
+  <!-- Real photo clipped to shield shape -->
+  <image href="data:image/png;base64,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" x="-4" y="-2" width="64" height="70" clip-path="url(#shieldClipFoot)"/>
+  <!-- Shield border on top -->
+  <path d="M28 1L2 11V34C2 50 14 62 28 65C42 62 54 50 54 34V11L28 1Z" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+</svg></div>
+    <div class="footer-logo-text">
+      <span class="footer-logo-name">C-SHUTZ</span>
+      <span class="footer-logo-tagline">Blindando tu negocio</span>
+    </div>
+  </div>
+  <div class="footer-center">
+    <span>Blindando tu negocio</span>
+    <span>·</span>
+    <span>Ciudad de México</span>
+    <span>·</span>
+    <span>operacion@cshutz.net</span>
+  </div>
+  <div class="footer-right">
+    © 2026 C-SHUTZ<br>
+    Tecnología alemana certificada
+  </div>
+</footer>
+
+
+<script>
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+
+// ══════════════════════════════════════════════
+//  C-SHUTZ — DIAGNÓSTICO IA
+//  Sin N8N · Sin suscripciones · Sin caducidad
+//  Claude API + EmailJS directo desde el browser
+// ══════════════════════════════════════════════
+
+// ⚠️ CONFIGURA ESTAS 3 VARIABLES:
+const ANTHROPIC_KEY   = window.CSHUTZ_CONFIG?.ANTHROPIC_KEY || '';   // sk-ant-...
+const EMAILJS_KEY     = '8yo3lfnoEyXJTof35';      // desde emailjs.com → Account → Public Key
+const EMAILJS_SERVICE = 'service_usxovaf';      // desde emailjs.com → Email Services → Service ID
+const EMAILJS_TPLT_OP = '9ddmkdp';       // template para operacion@cschutz.mx
+const EMAILJS_TPLT_CL = '6a1lffi';  // template para el prospecto
+
+// ─────────────────────────────────────────────
+function goStep(n) {
+  if (n === 2) {
+    const nombre  = document.getElementById('f-nombre').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const empresa = document.getElementById('f-empresa').value.trim();
+    if (!nombre || !email || !empresa) {
+      alert('Por favor completa nombre, email y empresa.');
+      return;
+    }
+  }
+  if (n === 3) {
+    const emp = document.getElementById('f-empleados').value;
+    const sec = document.getElementById('f-sector').value;
+    const sis = document.getElementById('f-sistemas').value;
+    if (!emp || !sec || !sis) {
+      alert('Por favor responde todas las preguntas.');
+      return;
+    }
+  }
+  document.querySelectorAll('.diag-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + n).classList.add('active');
+}
+
+// ─────────────────────────────────────────────
+async function submitDiagnosis() {
+  const inc = document.getElementById('f-incidentes').value;
+  const pro = document.getElementById('f-proteccion').value;
+  const paq = document.getElementById('f-paquete').value;
+  if (!inc || !pro || !paq) {
+    alert('Por favor responde todas las preguntas.');
+    return;
+  }
+
+  // Datos del lead
+  const lead = {
+    nombre:     document.getElementById('f-nombre').value.trim(),
+    email:      document.getElementById('f-email').value.trim(),
+    empresa:    document.getElementById('f-empresa').value.trim(),
+    telefono:   document.getElementById('f-telefono').value.trim() || 'No proporcionado',
+    empleados:  document.getElementById('f-empleados').value,
+    sector:     document.getElementById('f-sector').value,
+    sistemas:   document.getElementById('f-sistemas').value,
+    incidentes: inc,
+    proteccion: pro,
+    paquete:    paq
+  };
+
+  // Mostrar pantalla de análisis
+  document.querySelectorAll('.diag-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('stepAnalyzing').classList.add('active');
+
+  // Animar pasos progresivos
+  const pasos = ['as1','as2','as3','as4'];
+  pasos.forEach((id, i) => {
+    setTimeout(() => {
+      if (i > 0) {
+        const prev = document.getElementById(pasos[i-1]);
+        if (prev) prev.className = prev.className.replace('active','done');
+      }
+      const el = document.getElementById(id);
+      if (el) el.classList.add('active');
+    }, i * 1400);
+  });
+
+  try {
+    // ── PASO 1: Llamar a Claude API directamente ──
+    const fecha = new Date().toLocaleDateString('es-MX', {
+      day:'2-digit', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'
+    });
+
+    const prompt = `Eres un experto en ciberseguridad B2B y calificación de leads para C-SHUTZ, distribuidora de tecnología de ciberseguridad alemana certificada (Hornetsecurity, G DATA, DriveLock, NCP Engineering) para PyMEs en México.
+
+Analiza este prospecto y responde SOLO con un objeto JSON válido, sin markdown, sin explicaciones extra:
+
+DATOS DEL PROSPECTO:
+- Nombre: ${lead.nombre}
+- Empresa: ${lead.empresa}
+- Email: ${lead.email}
+- Teléfono: ${lead.telefono}
+- Empleados: ${lead.empleados}
+- Sector: ${lead.sector}
+- Sistemas: ${lead.sistemas}
+- Incidentes previos: ${lead.incidentes}
+- Protección actual: ${lead.proteccion}
+- Paquete de interés: ${lead.paquete}
+
+Responde ÚNICAMENTE con este JSON (sin texto antes ni después):
+{
+  "score": [número 1-10],
+  "clasificacion": "[CALIENTE|TIBIO|FRÍO]",
+  "resumen": "[1 oración sobre el perfil del prospecto]",
+  "riesgos": ["riesgo específico 1", "riesgo específico 2", "riesgo específico 3"],
+  "paquete_recomendado": "[nombre del paquete]",
+  "justificacion": "[por qué ese paquete en 2 oraciones]",
+  "argumentos_venta": ["argumento personalizado 1", "argumento personalizado 2", "argumento personalizado 3"],
+  "urgencia": "[Alta|Media|Baja]",
+  "accion_recomendada": "[qué debe hacer el equipo de ventas ahora mismo]"
+}
+
+Criterio de score:
+- 8-10 CALIENTE: empresa mediana, usa M365/nube, incidentes previos, sector regulado o con clientes internacionales
+- 5-7 TIBIO: PyME digitalizada, sin protección clara, interesada pero sin urgencia
+- 1-4 FRÍO: microempresa, sin tecnología digital relevante, sin presupuesto aparente`;
+
+    const claudeRes = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': ANTHROPIC_KEY,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json',
+        'anthropic-dangerous-allow-browser': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1024,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const claudeData = await claudeRes.json();
+    const rawText = claudeData.content[0].text.trim();
+
+    // Parsear JSON de Claude
+    let analisis;
+    try {
+      analisis = JSON.parse(rawText);
+    } catch {
+      // Si Claude envolvió el JSON en backticks, limpiar
+      const match = rawText.match(/\{[\s\S]*\}/);
+      analisis = match ? JSON.parse(match[0]) : { score: 5, clasificacion: 'TIBIO', resumen: 'Análisis completado.', riesgos: [], paquete_recomendado: lead.paquete, justificacion: '', argumentos_venta: [], urgencia: 'Media', accion_recomendada: 'Contactar para agendar demo.' };
+    }
+
+    const score = analisis.score || 5;
+    const clas  = analisis.clasificacion || 'TIBIO';
+    const colorScore = clas === 'CALIENTE' ? '#2ecc71' : clas === 'TIBIO' ? '#f39c12' : '#e74c3c';
+
+    // ── PASO 2: Construir HTML del email ──
+    const emailHtml = `
+<div style="font-family:'Helvetica Neue',Arial,sans-serif;max-width:620px;margin:0 auto;background:#0a0b0c;color:#d4d6d9;border:1px solid #272829;">
+
+  <!-- HEADER -->
+  <div style="padding:32px 36px 24px;border-bottom:1px solid #272829;">
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#2ecc71;margin-bottom:10px;">C-SHUTZ · Inteligencia Comercial</div>
+    <h1 style="font-size:20px;font-weight:400;color:#f8f9fa;margin:0 0 6px;">Nuevo Lead — Diagnóstico IA</h1>
+    <p style="font-size:12px;color:#5a5c60;margin:0;">${fecha}</p>
+  </div>
+
+  <!-- SCORE -->
+  <div style="padding:28px 36px;border-bottom:1px solid #272829;display:flex;align-items:center;gap:24px;">
+    <div style="text-align:center;min-width:80px;">
+      <div style="font-size:48px;font-weight:300;color:${colorScore};line-height:1;">${score}</div>
+      <div style="font-size:9px;color:#5a5c60;letter-spacing:1px;text-transform:uppercase;">/ 10</div>
+    </div>
+    <div>
+      <div style="display:inline-block;background:${colorScore}20;border:1px solid ${colorScore}50;color:${colorScore};font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:10px;">LEAD ${clas}</div>
+      <p style="font-size:13px;color:#b8babe;margin:0;line-height:1.6;">${analisis.resumen}</p>
+    </div>
+  </div>
+
+  <!-- DATOS -->
+  <div style="padding:24px 36px;border-bottom:1px solid #272829;background:#111214;">
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a5c60;margin-bottom:16px;">Datos del prospecto</div>
+    <table style="width:100%;border-collapse:collapse;">
+      <tr><td style="padding:6px 0;font-size:12px;color:#5a5c60;width:130px;">Nombre</td><td style="padding:6px 0;font-size:13px;color:#d4d6d9;">${lead.nombre}</td></tr>
+      <tr><td style="padding:6px 0;font-size:12px;color:#5a5c60;">Empresa</td><td style="padding:6px 0;font-size:13px;color:#d4d6d9;">${lead.empresa}</td></tr>
+      <tr><td style="padding:6px 0;font-size:12px;color:#5a5c60;">Email</td><td style="padding:6px 0;font-size:13px;color:#2ecc71;">${lead.email}</td></tr>
+      <tr><td style="padding:6px 0;font-size:12px;color:#5a5c60;">Teléfono</td><td style="padding:6px 0;font-size:13px;color:#d4d6d9;">${lead.telefono}</td></tr>
+      <tr><td style="padding:6px 0;font-size:12px;color:#5a5c60;">Empleados</td><td style="padding:6px 0;font-size:13px;color:#d4d6d9;">${lead.empleados}</td></tr>
+      <tr><td style="padding:6px 0;font-size:12px;color:#5a5c60;">Sector</td><td style="padding:6px 0;font-size:13px;color:#d4d6d9;">${lead.sector}</td></tr>
+      <tr><td style="padding:6px 0;font-size:12px;color:#5a5c60;">Sistemas</td><td style="padding:6px 0;font-size:13px;color:#d4d6d9;">${lead.sistemas}</td></tr>
+      <tr><td style="padding:6px 0;font-size:12px;color:#5a5c60;">Incidentes</td><td style="padding:6px 0;font-size:13px;color:#d4d6d9;">${lead.incidentes}</td></tr>
+      <tr><td style="padding:6px 0;font-size:12px;color:#5a5c60;">Protección actual</td><td style="padding:6px 0;font-size:13px;color:#d4d6d9;">${lead.proteccion}</td></tr>
+    </table>
+  </div>
+
+  <!-- RIESGOS -->
+  <div style="padding:24px 36px;border-bottom:1px solid #272829;">
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a5c60;margin-bottom:14px;">Riesgos identificados por IA</div>
+    ${(analisis.riesgos||[]).map(r => `<div style="padding:8px 12px;border-left:2px solid #e74c3c;margin-bottom:8px;font-size:13px;color:#b8babe;">${r}</div>`).join('')}
+  </div>
+
+  <!-- RECOMENDACIÓN -->
+  <div style="padding:24px 36px;border-bottom:1px solid #272829;background:#111214;">
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a5c60;margin-bottom:14px;">Paquete recomendado</div>
+    <div style="font-size:16px;color:#2ecc71;margin-bottom:8px;">${analisis.paquete_recomendado}</div>
+    <p style="font-size:13px;color:#8a8c90;margin:0;line-height:1.6;">${analisis.justificacion}</p>
+  </div>
+
+  <!-- ARGUMENTOS DE VENTA -->
+  <div style="padding:24px 36px;border-bottom:1px solid #272829;">
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a5c60;margin-bottom:14px;">Argumentos de venta personalizados</div>
+    ${(analisis.argumentos_venta||[]).map((a,i) => `<div style="display:flex;gap:12px;margin-bottom:10px;"><span style="font-size:10px;color:#2ecc71;min-width:20px;padding-top:2px;">0${i+1}</span><span style="font-size:13px;color:#b8babe;line-height:1.6;">${a}</span></div>`).join('')}
+  </div>
+
+  <!-- ACCIÓN -->
+  <div style="padding:24px 36px;background:#0e1a10;">
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#2ecc71;margin-bottom:10px;">Acción recomendada · Urgencia ${analisis.urgencia}</div>
+    <p style="font-size:14px;color:#f8f9fa;margin:0;font-weight:400;">${analisis.accion_recomendada}</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="padding:16px 36px;border-top:1px solid #272829;text-align:center;">
+    <p style="font-size:10px;color:#3a3b3d;letter-spacing:1px;text-transform:uppercase;margin:0;">C-SHUTZ · Blindando tu negocio · operacion@cshutz.net</p>
+  </div>
+</div>`;
+
+    // ── PASO 3: Enviar email con EmailJS ──
+    const asunto = `${clas === 'CALIENTE' ? '🔥' : clas === 'TIBIO' ? '📊' : '📋'} Lead [${score}/10] ${clas} — ${lead.empresa} · ${lead.nombre}`;
+
+    // Email a operaciones (con análisis completo)
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TPLT_OP, {
+      to_email:   'operacion@cschutz.mx',
+      subject:    asunto,
+      html_body:  emailHtml,
+      lead_nombre: lead.nombre,
+      lead_empresa: lead.empresa,
+      lead_email:  lead.email,
+      score:       score + '/10',
+      clasificacion: clas
+    }, EMAILJS_KEY);
+
+    // Email de confirmación al prospecto
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TPLT_CL, {
+      to_email:   lead.email,
+      to_name:    lead.nombre,
+      empresa:    lead.empresa,
+      paquete:    analisis.paquete_recomendado
+    }, EMAILJS_KEY);
+
+    // ── PASO 4: Mostrar resultado en pantalla ──
+    setTimeout(() => {
+      document.querySelectorAll('.diag-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('stepDone').classList.add('active');
+
+      document.getElementById('doneScore').textContent = score + '/10';
+      document.getElementById('doneScore').style.color = colorScore;
+
+      const elClas = document.getElementById('doneClasificacion');
+      elClas.textContent = clas;
+      elClas.style.color = colorScore;
+    }, 5600);
+
+  } catch (err) {
+    console.error('Error en diagnóstico:', err);
+    setTimeout(() => {
+      document.querySelectorAll('.diag-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('stepError').classList.add('active');
+    }, 2000);
+  }
+}
+
+</script>
+</body>
+</html>
