@@ -53,7 +53,7 @@ exports.handler = async function(event) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: 'C·SHUTZ <operacion@cshutz.net>',
+          from: 'C·SHUTZ <onboarding@resend.dev>',
           to: [email],
           subject: `Tu Evaluación de Ciberseguridad · C·SHUTZ`,
           html: `
@@ -78,7 +78,7 @@ exports.handler = async function(event) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: 'C·SHUTZ Sistema <operacion@cshutz.net>',
+          from: 'C·SHUTZ Sistema <onboarding@resend.dev>',
           to: ['operacion@cshutz.net'],
           subject: `Nuevo Lead: ${empresa} — Diagnóstico Completado`,
           html: `
