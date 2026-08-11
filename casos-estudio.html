@@ -3,13 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="C·SHUTZ — Departamento Académico. Investigación econométrica y análisis riguroso aplicado a la ciberseguridad empresarial.">
-<title>Departamento Académico — C·SHUTZ</title>
-
+<meta name="description" content="C·SHUTZ — Casos de Estudio. Investigación econométrica y análisis riguroso aplicado a la ciberseguridad empresarial.">
+<title>Casos de Estudio — C·SHUTZ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --ink:#080909;
@@ -31,18 +29,24 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  background:var(--ink);
-  color:var(--white);
-  font-family:'DM Sans',system-ui,sans-serif;
-  font-size:17px;
-  line-height:1.65;
-  overflow-x:hidden;
-}
+body{background:var(--ink);color:var(--white);font-family:'DM Sans',system-ui,sans-serif;font-size:17px;line-height:1.65;overflow-x:hidden;cursor:none}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
+button{border:none;background:none;font-family:inherit;cursor:none}
+ul{list-style:none}
 
-/* ── NAV ── */
+/* ── CURSOR ── */
+#cs-cursor{position:fixed;z-index:9998;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:width .32s,height .32s,background .32s;will-change:transform}
+#cs-ring{position:fixed;z-index:9997;width:36px;height:36px;border:1.5px solid rgba(46,204,113,.5);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:width .32s,height .32s,border-color .32s,opacity .32s;will-change:transform}
+body:not(:hover) #cs-cursor,body:not(:hover) #cs-ring{opacity:0}
+.cursor-grow #cs-cursor{width:16px;height:16px}
+.cursor-grow #cs-ring{width:56px;height:56px;border-color:var(--accent)}
+/* ── SCROLL PROGRESS ── */
+#cs-spb{position:fixed;top:0;left:0;z-index:9996;height:2px;background:var(--accent);width:0;transform-origin:left;transition:width .1s linear}
+/* ── PAGE CANVAS ── */
+#page-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.28}
+
+/* NAV */
 #cs-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,60px);background:rgba(8,9,9,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;letter-spacing:0.2em;}
 .nav-logo span{color:var(--accent)}
@@ -51,17 +55,9 @@ img{display:block;max-width:100%}
 .nav-links>a:hover{color:var(--white)}
 .nav-cta{padding:8px 20px;border:1px solid rgba(46,204,113,0.4);border-radius:980px;color:var(--accent)!important;font-size:13px!important;font-weight:500;transition:border-color var(--dur),background var(--dur)}
 .nav-cta:hover{background:var(--accent);color:var(--ink)!important;border-color:var(--accent)}
-.nav-burger{display:none;flex-direction:column;gap:4.5px;padding:8px;cursor:pointer}
+.nav-burger{display:none;flex-direction:column;gap:4.5px;padding:8px}
 .nav-burger span{width:22px;height:1.5px;background:var(--white);display:block;border-radius:2px;transition:transform 0.3s,opacity 0.3s}
 @media(max-width:768px){.nav-links{display:none}.nav-burger{display:flex}}
-.nav-dropdown{position:relative;display:flex;align-items:center}
-.nav-drop-trigger{font-size:14px;color:rgba(255,255,255,0.55);padding:4px 0;transition:color var(--dur);display:flex;align-items:center;gap:5px;user-select:none;cursor:default}
-.nav-drop-trigger::after{content:'▾';font-size:9px;opacity:.7}
-.nav-dropdown:hover .nav-drop-trigger{color:var(--white)}
-.nav-drop-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:#161616;border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:6px;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s,transform .22s;box-shadow:0 16px 40px rgba(0,0,0,0.6);z-index:200}
-.nav-dropdown:hover .nav-drop-panel{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
-.nav-drop-panel a{display:block;padding:9px 14px;font-size:13px;color:rgba(255,255,255,0.6);border-radius:9px;transition:background .18s,color .18s;white-space:nowrap}
-.nav-drop-panel a:hover{background:rgba(46,204,113,0.12);color:var(--white)}
 #cs-mobile-menu{position:fixed;inset:0;z-index:800;background:rgba(8,9,9,0.97);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;visibility:hidden;transition:opacity 0.4s,visibility 0.4s}
 #cs-mobile-menu.open{opacity:1;visibility:visible}
 #cs-mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,6vw,3rem);font-weight:300;letter-spacing:0.1em;color:var(--muted-2);transition:color var(--dur)}
@@ -70,160 +66,64 @@ img{display:block;max-width:100%}
 .wa-float:hover{transform:scale(1.1)}
 .wa-float svg{width:28px;height:28px;fill:#fff}
 
-/* ── HERO ── */
-.page-hero{
-  padding:calc(var(--nav-h) + 80px) clamp(20px,5vw,60px) 80px;
-  max-width:900px;margin:0 auto;text-align:center;
-}
-.page-eyebrow{
-  display:inline-block;
-  font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--accent);font-weight:500;margin-bottom:20px;
-}
-.page-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2.8rem,6vw,5rem);
-  font-weight:300;line-height:1.1;margin-bottom:24px;
-}
+/* ── PAGE HERO ── */
+.page-hero{padding:calc(var(--nav-h) + 80px) clamp(20px,5vw,60px) 80px;max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.page-eyebrow{display:inline-block;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:300;line-height:1.1;margin-bottom:24px}
 .page-title em{color:var(--accent);font-style:italic}
-.page-sub{
-  font-size:clamp(15px,2vw,18px);
-  color:rgba(255,255,255,0.55);
-  max-width:640px;margin:0 auto;line-height:1.7;
-}
-
-/* ── DIVIDER ── */
+.page-sub{font-size:clamp(15px,2vw,18px);color:rgba(255,255,255,0.55);max-width:640px;margin:0 auto;line-height:1.7}
 .section-divider{width:60px;height:1px;background:var(--accent);margin:60px auto;opacity:.5}
 
-/* ── ABOUT STRIP ── */
-.about-section{
-  padding:0 clamp(20px,5vw,60px) 80px;
-  max-width:1100px;margin:0 auto;
-}
-.about-box{
-  background:var(--surface-2);
-  border:1px solid var(--border);
-  border-radius:var(--r-md);
-  padding:clamp(36px,5vw,56px);
-  display:flex;gap:clamp(32px,5vw,64px);align-items:flex-start;flex-wrap:wrap;
-}
+/* ── ABOUT ── */
+.about-section{padding:0 clamp(20px,5vw,60px) 80px;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.about-box{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);padding:clamp(36px,5vw,56px);display:flex;gap:clamp(32px,5vw,64px);align-items:flex-start;flex-wrap:wrap}
 .about-main{flex:1;min-width:260px}
 .about-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:14px}
-.about-heading{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:300;line-height:1.2;margin-bottom:18px;
-}
+.about-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:300;line-height:1.2;margin-bottom:18px}
 .about-body{font-size:15px;color:rgba(255,255,255,.6);line-height:1.75}
-.about-author{
-  background:var(--surface-3);
-  border:1px solid var(--border);
-  border-radius:var(--r-sm);
-  padding:28px;
-  min-width:220px;flex-shrink:0;
-  display:flex;flex-direction:column;gap:12px;
-}
-.author-avatar{
-  width:56px;height:56px;border-radius:50%;
-  background:linear-gradient(135deg,#2ecc71,#27ae60);
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;font-weight:700;color:#080909;
-}
+.about-author{background:var(--surface-3);border:1px solid var(--border);border-radius:var(--r-sm);padding:28px;min-width:220px;flex-shrink:0;display:flex;flex-direction:column;gap:12px}
+.author-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#2ecc71,#27ae60);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#080909}
 .author-name{font-size:15px;font-weight:600;color:var(--white)}
 .author-role{font-size:12px;color:var(--accent)}
 .author-desc{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
+@media(max-width:640px){.about-box{flex-direction:column}.about-author{width:100%}}
 
-/* ── BLOG SECTION ── */
-.blog-section{
-  padding:0 clamp(20px,5vw,60px) 100px;
-  max-width:1100px;margin:0 auto;
-}
+/* ── BLOG ── */
+.blog-section{padding:0 clamp(20px,5vw,60px) 100px;max-width:1100px;margin:0 auto;position:relative;z-index:1}
 .section-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:14px}
-.section-heading{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:12px;
-}
+.section-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:12px}
 .section-heading em{color:var(--accent);font-style:italic}
 .section-sub{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:48px;line-height:1.6}
-
-/* Empty state */
-.blog-empty{
-  text-align:center;
-  padding:80px 40px;
-  background:var(--surface-2);
-  border:1px dashed rgba(255,255,255,0.12);
-  border-radius:var(--r-md);
-}
-.blog-empty-icon{
-  width:64px;height:64px;
-  background:var(--accent-dim);
-  border-radius:20px;
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 24px;
-}
+.blog-empty{text-align:center;padding:80px 40px;background:var(--surface-2);border:1px dashed rgba(255,255,255,0.12);border-radius:var(--r-md)}
+.blog-empty-icon{width:64px;height:64px;background:var(--accent-dim);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
 .blog-empty-icon svg{width:30px;height:30px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.blog-empty h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.6rem;font-weight:300;color:var(--white);
-  margin-bottom:12px;
-}
+.blog-empty h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--white);margin-bottom:12px}
 .blog-empty p{font-size:14px;color:rgba(255,255,255,.4);max-width:380px;margin:0 auto;line-height:1.7}
 
-/* Blog cards (for future use) */
-.blog-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-  gap:20px;
-}
-.blog-card{
-  background:var(--surface-2);
-  border:1px solid var(--border);
-  border-radius:var(--r-md);
-  padding:32px;
-  display:flex;flex-direction:column;gap:14px;
-  transition:border-color var(--dur),transform var(--dur);
-  cursor:pointer;
-}
-.blog-card:hover{border-color:rgba(46,204,113,.3);transform:translateY(-4px)}
-.blog-card-tag{
-  display:inline-flex;align-items:center;
-  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--accent);font-weight:500;
-  background:var(--accent-dim);
-  border-radius:6px;padding:4px 10px;width:fit-content;
-}
-.blog-card-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.3rem;font-weight:400;line-height:1.3;color:var(--white);
-}
-.blog-card-excerpt{font-size:14px;color:rgba(255,255,255,.5);line-height:1.65}
-.blog-card-meta{
-  font-size:12px;color:rgba(255,255,255,.3);
-  display:flex;gap:16px;margin-top:auto;padding-top:16px;
-  border-top:1px solid var(--border);
-}
-
-footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid var(--border);background:var(--surface)}
+/* Footer */
+footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid var(--border);background:var(--surface);position:relative;z-index:1}
 .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(32px,4vw,60px)}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.footer-inner{grid-template-columns:1fr}}
 .footer-brand .brand-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;letter-spacing:0.15em;margin-bottom:16px}
 .footer-brand .brand-logo span{color:var(--accent)}
 .footer-brand p{font-size:0.85rem;color:var(--muted-2);line-height:1.65;max-width:280px}
 .footer-col h4{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
-.footer-col ul{display:flex;flex-direction:column;gap:12px;list-style:none}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
 .footer-col ul li a{font-size:0.85rem;color:var(--muted-2);transition:color var(--dur)}
 .footer-col ul li a:hover{color:var(--white)}
 .footer-bottom{max-width:1200px;margin:48px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 .footer-bottom p{font-size:0.78rem;color:var(--muted)}
 .footer-accent{color:var(--accent)}
-
-@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
-@media(max-width:540px){.footer-inner{grid-template-columns:1fr}}
-@media(max-width:640px){
-  .about-box{flex-direction:column}
-  .about-author{width:100%}
-}
 </style>
 </head>
 <body>
+
+<!-- Decorative -->
+<div id="cs-cursor"></div>
+<div id="cs-ring"></div>
+<div id="cs-spb"></div>
+<canvas id="page-canvas"></canvas>
 
 <!-- WA float -->
 <a class="wa-float" href="https://wa.me/525510532492" target="_blank" title="WhatsApp C·SHUTZ">
@@ -245,20 +145,17 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 
 <!-- Mobile menu -->
 <div id="cs-mobile-menu">
-  <a href="problema.html" class="menu-link">El Problema</a>
-  <a href="soluciones.html" class="menu-link">Soluciones</a>
-  <a href="paquetes.html" class="menu-link">Paquetes</a>
-  <a href="metodologia.html" class="menu-link">Metodología</a>
-  <a href="diagnostico.html" class="menu-link">Diagnóstico</a>
-  <a href="mision.html" class="menu-link">Misión y Visión</a>
+  <a href="quienes-somos.html" class="menu-link">Quiénes Somos</a>
+  <a href="que-hacemos.html" class="menu-link">Qué Hacemos</a>
+  <a href="casos-estudio.html" class="menu-link">Casos de Estudio</a>
   <a href="sostenibilidad.html" class="menu-link">Sostenibilidad</a>
-  <a href="academico.html" class="menu-link">Dpto. Académico</a>
+  <a href="diagnostico.html" class="menu-link">Diagnóstico</a>
 </div>
 
 <!-- Hero -->
 <div class="page-hero">
   <div class="page-eyebrow">Investigación y conocimiento</div>
-  <h1 class="page-title">Departamento<br><em>Académico</em></h1>
+  <h1 class="page-title">Casos de<br><em>Estudio</em></h1>
   <p class="page-sub">Análisis econométrico riguroso aplicado a la ciberseguridad empresarial. Investigación original para entender el riesgo digital con herramientas cuantitativas.</p>
 </div>
 
@@ -287,7 +184,6 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   <h2 class="section-heading">Investigación<br><em>reciente</em></h2>
   <p class="section-sub">Artículos, papers y análisis cuantitativos sobre ciberseguridad, economía del riesgo y seguridad empresarial.</p>
 
-  <!-- Empty state — remove this block and add .blog-card items below when papers are published -->
   <div class="blog-empty">
     <div class="blog-empty-icon">
       <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
@@ -295,22 +191,6 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
     <h3>Próximamente</h3>
     <p>El primer artículo académico está en preparación. Regresa pronto para leer investigación original sobre econometría aplicada a la ciberseguridad.</p>
   </div>
-
-  <!-- Blog grid — uncomment and populate when ready
-  <div class="blog-grid">
-    <div class="blog-card">
-      <div class="blog-card-tag">Econometría</div>
-      <div class="blog-card-title">Título del paper aquí</div>
-      <p class="blog-card-excerpt">Resumen breve del artículo, dos o tres líneas que describen el tema y los hallazgos principales.</p>
-      <div class="blog-card-meta">
-        <span>Patricio Perez</span>
-        <span>Enero 2026</span>
-        <span>12 min lectura</span>
-      </div>
-    </div>
-  </div>
-  -->
-
 </div>
 
 <footer>
@@ -320,29 +200,27 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       <p>Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
     </div>
     <div class="footer-col">
-      <h4>Soluciones</h4>
-      <ul>
-        <li><a href="soluciones.html">Hornetsecurity</a></li>
-        <li><a href="soluciones.html">G DATA</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Paquetes</h4>
-      <ul>
-        <li><a href="paquetes.html">Escudo Email</a></li>
-        <li><a href="paquetes.html">Paquete Empresarial</a></li>
-        <li><a href="paquetes.html">Paquete Ejecutivo</a></li>
-        <li><a href="paquetes.html">Paquete Gestionado</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
       <h4>Empresa</h4>
       <ul>
-        <li><a href="metodologia.html">Metodología</a></li>
-        <li><a href="diagnostico.html">Diagnóstico Gratis</a></li>
-        <li><a href="mision.html">Misión y Visión</a></li>
+        <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+        <li><a href="que-hacemos.html">Qué Hacemos</a></li>
+        <li><a href="casos-estudio.html">Casos de Estudio</a></li>
         <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
-        <li><a href="academico.html">Dpto. Académico</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Soluciones</h4>
+      <ul>
+        <li><a href="que-hacemos.html">Hornetsecurity</a></li>
+        <li><a href="que-hacemos.html">G DATA</a></li>
+        <li><a href="que-hacemos.html">Paquete Empresarial</a></li>
+        <li><a href="que-hacemos.html">Paquete Ejecutivo</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="diagnostico.html">Diagnóstico Gratis</a></li>
         <li><a href="mailto:hola@cshutz.net">hola@cshutz.net</a></li>
       </ul>
     </div>
@@ -354,22 +232,30 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 </footer>
 
 <script>
+(function(){const nav=document.getElementById('cs-nav');window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)},{passive:true})})();
 (function(){
-  const nav = document.getElementById('cs-nav');
-  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+  const burger=document.getElementById('nav-burger'),menu=document.getElementById('cs-mobile-menu');let open=false;
+  function toggle(){open=!open;menu.classList.toggle('open',open);const spans=burger.querySelectorAll('span');if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)'}else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''})}}
+  burger.addEventListener('click',toggle);menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(open)toggle()}));
 })();
+(function(){const cur=document.getElementById('cs-cursor'),ring=document.getElementById('cs-ring');if(!cur||!ring)return;let mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});function lerp(a,b,t){return a+(b-a)*t}function tick(){rx=lerp(rx,mx,.12);ry=lerp(ry,my,.12);cur.style.left=mx+'px';cur.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick)}requestAnimationFrame(tick);document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-grow'));el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-grow'))})})();
+(function(){const bar=document.getElementById('cs-spb');window.addEventListener('scroll',()=>{const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=(s/h*100)+'%'},{passive:true})})();
 (function(){
-  const burger=document.getElementById('nav-burger');
-  const menu=document.getElementById('cs-mobile-menu');
-  let open=false;
-  function toggle(){
-    open=!open;menu.classList.toggle('open',open);
-    const spans=burger.querySelectorAll('span');
-    if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)';}
-    else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''});}
+  const canvas=document.getElementById('page-canvas');if(!canvas)return;
+  const ctx=canvas.getContext('2d');let W,H,particles=[];
+  const ACCENT='46,204,113',COUNT=Math.min(55,window.innerWidth<768?28:55);
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+  resize();window.addEventListener('resize',resize);
+  function rnd(a,b){return Math.random()*(b-a)+a}
+  for(let i=0;i<COUNT;i++){particles.push({x:rnd(0,W||window.innerWidth),y:rnd(0,H||window.innerHeight),vx:rnd(-.22,.22),vy:rnd(-.22,.22),r:rnd(1,2)})}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0});
+    for(let i=0;i<particles.length;i++){for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<120){ctx.beginPath();ctx.strokeStyle=`rgba(${ACCENT},${(1-d/120)*.18})`;ctx.lineWidth=1;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke()}}}
+    particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(${ACCENT},.38)`;ctx.fill()});
+    requestAnimationFrame(draw);
   }
-  burger.addEventListener('click',toggle);
-  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(open)toggle()}));
+  draw();
 })();
 </script>
 </body>
