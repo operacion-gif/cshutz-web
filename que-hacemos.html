@@ -71,8 +71,8 @@ body:not(:hover) #cs-cursor,body:not(:hover) #cs-ring{opacity:0}
 .btn-primary:hover{transform:scale(1.04);box-shadow:0 0 32px var(--accent-glow)}
 
 /* Page hero */
-.page-hero-wrap{position:relative;overflow:hidden;background:url('imagenes/img-servidores.png') center/cover no-repeat}
-.page-hero-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,9,0.88) 0%,rgba(8,9,9,0.96) 100%);z-index:0}
+.page-hero-wrap{position:relative;overflow:hidden}
+.page-glow{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;height:80vh;background:radial-gradient(ellipse 80% 65% at 50% -10%,rgba(46,204,113,0.14) 0%,rgba(46,204,113,0.05) 40%,transparent 70%);pointer-events:none;z-index:0}
 .page-hero{position:relative;z-index:1;padding:calc(var(--nav-h) + 100px) clamp(20px,5vw,60px) 100px;max-width:900px;margin:0 auto;text-align:center}
 .page-eyebrow{display:inline-block;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px}
 .page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:300;line-height:1.1;margin-bottom:24px}
@@ -132,6 +132,9 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 .footer-bottom{max-width:1200px;margin:48px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 .footer-bottom p{font-size:0.78rem;color:var(--muted)}
 .footer-accent{color:var(--accent)}
+.lang-switcher{display:flex;gap:4px;align-items:center;margin-left:12px}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:4px 9px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
+.lang-btn:hover,.lang-btn.active{color:#2ecc71;border-color:#2ecc71;background:rgba(46,204,113,0.1)}
 </style>
 </head>
 <body>
@@ -141,6 +144,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <div id="cs-ring"></div>
 <div id="cs-spb"></div>
 <canvas id="page-canvas"></canvas>
+<div class="page-glow"></div>
 
 <!-- WA float -->
 <a class="wa-float" href="https://wa.me/525510532492" target="_blank" title="WhatsApp C·SHUTZ">
@@ -151,30 +155,36 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <nav id="cs-nav">
   <a href="index.html" class="nav-logo">C<span>·</span>SHUTZ</a>
   <div class="nav-links">
-    <a href="quienes-somos.html">Quiénes Somos</a>
-    <a href="que-hacemos.html">Qué Hacemos</a>
-    <a href="casos-estudio.html">Casos de Estudio</a>
-    <a href="sostenibilidad.html">Sostenibilidad</a>
-    <a href="diagnostico.html" class="nav-cta">Diagnóstico Gratuito</a>
+    <a href="quienes-somos.html" data-i18n="nav_qs">Quiénes Somos</a>
+    <a href="que-hacemos.html" data-i18n="nav_qh">Qué Hacemos</a>
+    <a href="casos-estudio.html" data-i18n="nav_ce">Casos de Estudio</a>
+    <a href="sostenibilidad.html" data-i18n="nav_sos">Sostenibilidad</a>
+    <a href="diagnostico.html" class="nav-cta" data-i18n="nav_diag">Diagnóstico Gratuito</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('he')">HE</button>
   </div>
   <button class="nav-burger" id="nav-burger" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- Mobile menu -->
 <div id="cs-mobile-menu">
-  <a href="quienes-somos.html" class="menu-link">Quiénes Somos</a>
-  <a href="que-hacemos.html" class="menu-link">Qué Hacemos</a>
-  <a href="casos-estudio.html" class="menu-link">Casos de Estudio</a>
-  <a href="sostenibilidad.html" class="menu-link">Sostenibilidad</a>
-  <a href="diagnostico.html" class="menu-link">Diagnóstico</a>
+  <a href="quienes-somos.html" class="menu-link" data-i18n="nav_qs">Quiénes Somos</a>
+  <a href="que-hacemos.html" class="menu-link" data-i18n="nav_qh">Qué Hacemos</a>
+  <a href="casos-estudio.html" class="menu-link" data-i18n="nav_ce">Casos de Estudio</a>
+  <a href="sostenibilidad.html" class="menu-link" data-i18n="nav_sos">Sostenibilidad</a>
+  <a href="diagnostico.html" class="menu-link" data-i18n="mob_diag">Diagnóstico</a>
 </div>
 
 <!-- Hero -->
 <div class="page-hero-wrap">
   <div class="page-hero">
-    <div class="page-eyebrow">Nuestros Aliados y Paquetes</div>
-    <h1 class="page-title">Qué<br><em>Hacemos</em></h1>
-    <p class="page-sub">Distribuimos la tecnología de ciberseguridad más avanzada de Europa y la empaquetamos en soluciones adaptadas a la realidad de cada empresa mexicana.</p>
+    <div class="page-eyebrow" data-i18n="qh_eyebrow">Nuestros Aliados y Paquetes</div>
+    <h1 class="page-title" data-i18n-html="qh_title">Qué<br><em>Hacemos</em></h1>
+    <p class="page-sub" data-i18n="qh_sub">Distribuimos la tecnología de ciberseguridad más avanzada de Europa y la empaquetamos en soluciones adaptadas a la realidad de cada empresa mexicana.</p>
   </div>
 </div>
 
@@ -183,10 +193,10 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   <div class="vendors-inner">
     <div class="vendors-header reveal">
       <div>
-        <div class="section-label">Nuestros Aliados</div>
-        <h2 class="section-title">Tecnología de <em>clase mundial</em></h2>
+        <div class="section-label" data-i18n="qh_vendors_label">Nuestros Aliados</div>
+        <h2 class="section-title" data-i18n-html="qh_vendors_title">Tecnología de <em>clase mundial</em></h2>
       </div>
-      <p class="section-sub">Representamos las mejores marcas de ciberseguridad de Europa, certificadas y probadas en miles de empresas globales.</p>
+      <p class="section-sub" data-i18n="qh_vendors_sub">Representamos las mejores marcas de ciberseguridad de Europa, certificadas y probadas en miles de empresas globales.</p>
     </div>
     <div class="vendors-grid">
       <div class="vendor-card reveal">
@@ -195,7 +205,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
         </div>
         <div class="vendor-tag">Email Security</div>
         <h3 class="vendor-name">Hornetsecurity</h3>
-        <p class="vendor-desc">Protección avanzada de correo electrónico basada en IA. Filtra spam, phishing, malware y ataques de ransomware antes de que lleguen a tu bandeja de entrada.</p>
+        <p class="vendor-desc" data-i18n="qh_hornet_desc">Protección avanzada de correo electrónico basada en IA. Filtra spam, phishing, malware y ataques de ransomware antes de que lleguen a tu bandeja de entrada.</p>
         <div class="vendor-features">
           <div class="vendor-feat">Filtrado AI de amenazas en tiempo real</div>
           <div class="vendor-feat">Archivado legal y cumplimiento</div>
@@ -209,7 +219,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
         </div>
         <div class="vendor-tag">Endpoint Protection</div>
         <h3 class="vendor-name">G DATA</h3>
-        <p class="vendor-desc">Antivirus y seguridad endpoint de origen alemán. Protección multicapa con análisis de comportamiento y respuesta automática ante amenazas.</p>
+        <p class="vendor-desc" data-i18n="qh_gdata_desc">Antivirus y seguridad endpoint de origen alemán. Protección multicapa con análisis de comportamiento y respuesta automática ante amenazas.</p>
         <div class="vendor-features">
           <div class="vendor-feat">Protección contra ransomware avanzada</div>
           <div class="vendor-feat">Análisis de comportamiento en tiempo real</div>
@@ -225,26 +235,26 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <section id="packages">
   <div class="packages-inner">
     <div class="packages-header reveal">
-      <div class="section-label">Paquetes</div>
-      <h2 class="section-title">Protección diseñada para <em>cada empresa</em></h2>
-      <p class="section-sub" style="margin-top:16px">Desde protección básica hasta seguridad total. Todos los paquetes incluyen soporte en español y configuración inicial.</p>
+      <div class="section-label" data-i18n="qh_pkgs_label">Paquetes</div>
+      <h2 class="section-title" data-i18n-html="qh_pkgs_title">Protección diseñada para <em>cada empresa</em></h2>
+      <p class="section-sub" style="margin-top:16px" data-i18n="qh_pkgs_sub">Desde protección básica hasta seguridad total. Todos los paquetes incluyen soporte en español y configuración inicial.</p>
     </div>
     <div class="packages-grid">
       <div class="pkg-card reveal">
         <div class="pkg-name">Escudo<br>Email</div>
-        <p class="pkg-desc">Protección de correo corporativo contra phishing, spam y ransomware. El primer paso esencial para cualquier empresa.</p>
+        <p class="pkg-desc" data-i18n="qh_pkg1_desc">Protección de correo corporativo contra phishing, spam y ransomware. El primer paso esencial para cualquier empresa.</p>
         <div class="pkg-features">
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Security</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Filtrado anti-spam y anti-phishing con IA</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Protección contra ransomware en email</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Continuidad de correo 99.99% uptime</div>
         </div>
-        <a href="diagnostico.html" class="pkg-cta">Solicitar Información</a>
+        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg_cta">Solicitar Información</a>
       </div>
       <div class="pkg-card featured reveal">
         <div class="pkg-badge">Popular</div>
         <div class="pkg-name">Paquete<br>Empresarial</div>
-        <p class="pkg-desc">Email + protección de dispositivos. La solución más completa para PYMEs mexicanas que manejan información sensible.</p>
+        <p class="pkg-desc" data-i18n="qh_pkg2_desc">Email + protección de dispositivos. La solución más completa para PYMEs mexicanas que manejan información sensible.</p>
         <div class="pkg-features">
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Security</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Endpoint Protection (antivirus)</div>
@@ -252,11 +262,11 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Security Awareness Training</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Consola de gestión centralizada</div>
         </div>
-        <a href="diagnostico.html" class="pkg-cta">Solicitar Información</a>
+        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg_cta">Solicitar Información</a>
       </div>
       <div class="pkg-card reveal">
         <div class="pkg-name">Paquete<br>Ejecutivo</div>
-        <p class="pkg-desc">Suite avanzada para empresas que requieren máxima protección, cumplimiento normativo y visibilidad total de amenazas.</p>
+        <p class="pkg-desc" data-i18n="qh_pkg3_desc">Suite avanzada para empresas que requieren máxima protección, cumplimiento normativo y visibilidad total de amenazas.</p>
         <div class="pkg-features">
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Advanced Threat Protection</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Endpoint Detection &amp; Response</div>
@@ -264,11 +274,11 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Patch Management</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reportes ejecutivos mensuales</div>
         </div>
-        <a href="diagnostico.html" class="pkg-cta">Solicitar Información</a>
+        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg_cta">Solicitar Información</a>
       </div>
       <div class="pkg-card reveal">
         <div class="pkg-name">Paquete<br>Gestionado</div>
-        <p class="pkg-desc">Un servicio completamente a la medida de tu empresa. El paso 1 es un análisis y diagnóstico de vulnerabilidades de tu infraestructura — sin compromisos.</p>
+        <p class="pkg-desc" data-i18n="qh_pkg4_desc">Un servicio completamente a la medida de tu empresa. El paso 1 es un análisis y diagnóstico de vulnerabilidades de tu infraestructura — sin compromisos.</p>
         <div class="pkg-features">
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Análisis de vulnerabilidades inicial</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity + G DATA según necesidad</div>
@@ -276,7 +286,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reuniones de seguimiento periódicas</div>
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Soporte dedicado</div>
         </div>
-        <a href="diagnostico.html" class="pkg-cta">Agendar Diagnóstico</a>
+        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg4_cta">Agendar Diagnóstico</a>
       </div>
     </div>
   </div>
@@ -286,10 +296,10 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="brand-logo">C<span>·</span>SHUTZ</div>
-      <p>Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
+      <p data-i18n="footer_desc">Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
     </div>
     <div class="footer-col">
-      <h4>Empresa</h4>
+      <h4 data-i18n="footer_empresa">Empresa</h4>
       <ul>
         <li><a href="quienes-somos.html">Quiénes Somos</a></li>
         <li><a href="que-hacemos.html">Qué Hacemos</a></li>
@@ -298,7 +308,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Soluciones</h4>
+      <h4 data-i18n="footer_soluciones">Soluciones</h4>
       <ul>
         <li><a href="que-hacemos.html">Hornetsecurity</a></li>
         <li><a href="que-hacemos.html">G DATA</a></li>
@@ -307,7 +317,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer_contacto">Contacto</h4>
       <ul>
         <li><a href="mailto:operacion@cshutz.net">operacion@cshutz.net</a></li>
         <li><a href="mailto:patricio@cshutz.net">patricio@cshutz.net</a></li>
@@ -316,8 +326,8 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 C·SHUTZ. Todos los derechos reservados.</p>
-    <p>Hecho con <span class="footer-accent">seguridad</span> en México</p>
+    <p data-i18n="footer_copy">© 2025 C·SHUTZ. Todos los derechos reservados.</p>
+    <p data-i18n-html="footer_made">Hecho con <span class="footer-accent">seguridad</span> en México</p>
   </div>
 </footer>
 
@@ -348,6 +358,95 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   }
   draw();
 })();
+// LANG SWITCHER
+const TRANSLATIONS={
+  es:{
+    nav_qs:'Quiénes Somos',nav_qh:'Qué Hacemos',nav_ce:'Casos de Estudio',nav_sos:'Sostenibilidad',nav_diag:'Diagnóstico Gratuito',mob_diag:'Diagnóstico',
+    qh_eyebrow:'Nuestros Aliados y Paquetes',qh_title:'Qué<br><em>Hacemos</em>',
+    qh_sub:'Distribuimos la tecnología de ciberseguridad más avanzada de Europa y la empaquetamos en soluciones adaptadas a la realidad de cada empresa mexicana.',
+    qh_vendors_label:'Nuestros Aliados',qh_vendors_title:'Tecnología de <em>clase mundial</em>',
+    qh_vendors_sub:'Representamos las mejores marcas de ciberseguridad de Europa, certificadas y probadas en miles de empresas globales.',
+    qh_hornet_desc:'Protección avanzada de correo electrónico basada en IA. Filtra spam, phishing, malware y ataques de ransomware antes de que lleguen a tu bandeja de entrada.',
+    qh_gdata_desc:'Antivirus y seguridad endpoint de origen alemán. Protección multicapa con análisis de comportamiento y respuesta automática ante amenazas.',
+    qh_pkgs_label:'Paquetes',qh_pkgs_title:'Protección diseñada para <em>cada empresa</em>',
+    qh_pkgs_sub:'Desde protección básica hasta seguridad total. Todos los paquetes incluyen soporte en español y configuración inicial.',
+    qh_pkg1_desc:'Protección de correo corporativo contra phishing, spam y ransomware. El primer paso esencial para cualquier empresa.',
+    qh_pkg2_desc:'Email + protección de dispositivos. La solución más completa para PYMEs mexicanas que manejan información sensible.',
+    qh_pkg3_desc:'Suite avanzada para empresas que requieren máxima protección, cumplimiento normativo y visibilidad total de amenazas.',
+    qh_pkg4_desc:'Un servicio completamente a la medida de tu empresa. El paso 1 es un análisis y diagnóstico de vulnerabilidades — sin compromisos.',
+    qh_pkg_cta:'Solicitar Información',qh_pkg4_cta:'Agendar Diagnóstico',
+    footer_desc:'Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.',
+    footer_empresa:'Empresa',footer_soluciones:'Soluciones',footer_contacto:'Contacto',
+    footer_copy:'© 2025 C·SHUTZ. Todos los derechos reservados.',footer_made:'Hecho con <span class="footer-accent">seguridad</span> en México'
+  },
+  en:{
+    nav_qs:'Who We Are',nav_qh:'What We Do',nav_ce:'Case Studies',nav_sos:'Sustainability',nav_diag:'Free Diagnosis',mob_diag:'Diagnosis',
+    qh_eyebrow:'Our Partners & Packages',qh_title:'What<br><em>We Do</em>',
+    qh_sub:'We distribute Europe\'s most advanced cybersecurity technology and package it into solutions adapted to the reality of each Mexican company.',
+    qh_vendors_label:'Our Partners',qh_vendors_title:'World-class <em>technology</em>',
+    qh_vendors_sub:'We represent Europe\'s best cybersecurity brands, certified and proven across thousands of global companies.',
+    qh_hornet_desc:'Advanced AI-powered email protection. Filters spam, phishing, malware and ransomware attacks before they reach your inbox.',
+    qh_gdata_desc:'German-made antivirus and endpoint security. Multilayer protection with behavioral analysis and automatic threat response.',
+    qh_pkgs_label:'Packages',qh_pkgs_title:'Protection designed for <em>every company</em>',
+    qh_pkgs_sub:'From basic protection to total security. All packages include Spanish support and initial setup.',
+    qh_pkg1_desc:'Essential email protection against phishing, spam and ransomware. The first step for any company.',
+    qh_pkg2_desc:'Email + device protection. The most complete solution for Mexican SMEs handling sensitive information.',
+    qh_pkg3_desc:'Advanced suite for companies requiring maximum protection, regulatory compliance and full threat visibility.',
+    qh_pkg4_desc:'A service completely tailored to your company. Step 1 is a vulnerability analysis of your infrastructure — no strings attached.',
+    qh_pkg_cta:'Request Information',qh_pkg4_cta:'Schedule Diagnosis',
+    footer_desc:'World-class enterprise cybersecurity with personalized service in Mexico. European technology, guaranteed results.',
+    footer_empresa:'Company',footer_soluciones:'Solutions',footer_contacto:'Contact',
+    footer_copy:'© 2025 C·SHUTZ. All rights reserved.',footer_made:'Made with <span class="footer-accent">security</span> in Mexico'
+  },
+  de:{
+    nav_qs:'Wer Wir Sind',nav_qh:'Was Wir Tun',nav_ce:'Fallstudien',nav_sos:'Nachhaltigkeit',nav_diag:'Kostenlose Diagnose',mob_diag:'Diagnose',
+    qh_eyebrow:'Unsere Partner & Pakete',qh_title:'Was<br><em>Wir Tun</em>',
+    qh_sub:'Wir vertreiben Europas fortschrittlichste Cybersicherheitstechnologie und verpacken sie in Lösungen, die an die Realität jedes mexikanischen Unternehmens angepasst sind.',
+    qh_vendors_label:'Unsere Partner',qh_vendors_title:'Technologie der <em>Weltklasse</em>',
+    qh_vendors_sub:'Wir vertreten Europas beste Cybersicherheitsmarken, zertifiziert und bewährt in tausenden von Unternehmen weltweit.',
+    qh_hornet_desc:'Fortschrittlicher KI-gestützter E-Mail-Schutz. Filtert Spam, Phishing, Malware und Ransomware-Angriffe, bevor sie Ihren Posteingang erreichen.',
+    qh_gdata_desc:'Deutsches Antivirus und Endpoint-Sicherheit. Mehrschichtiger Schutz mit Verhaltensanalyse und automatischer Bedrohungsreaktion.',
+    qh_pkgs_label:'Pakete',qh_pkgs_title:'Schutz für <em>jedes Unternehmen</em>',
+    qh_pkgs_sub:'Von Basisschutz bis zu totaler Sicherheit. Alle Pakete beinhalten Support auf Spanisch und Ersteinrichtung.',
+    qh_pkg1_desc:'Wesentlicher E-Mail-Schutz gegen Phishing, Spam und Ransomware. Der erste Schritt für jedes Unternehmen.',
+    qh_pkg2_desc:'E-Mail + Geräteschutz. Die vollständigste Lösung für mexikanische KMU, die sensible Informationen verwalten.',
+    qh_pkg3_desc:'Erweiterte Suite für Unternehmen, die maximalen Schutz, Compliance und vollständige Bedrohungstransparenz benötigen.',
+    qh_pkg4_desc:'Ein vollständig auf Ihr Unternehmen zugeschnittener Service. Schritt 1 ist eine Schwachstellenanalyse Ihrer Infrastruktur — ohne Verpflichtungen.',
+    qh_pkg_cta:'Informationen anfordern',qh_pkg4_cta:'Diagnose vereinbaren',
+    footer_desc:'Erstklassige Unternehmens-Cybersicherheit mit personalisiertem Service in Mexiko. Europäische Technologie, garantierte Ergebnisse.',
+    footer_empresa:'Unternehmen',footer_soluciones:'Lösungen',footer_contacto:'Kontakt',
+    footer_copy:'© 2025 C·SHUTZ. Alle Rechte vorbehalten.',footer_made:'Gemacht mit <span class="footer-accent">Sicherheit</span> in Mexiko'
+  },
+  he:{
+    nav_qs:'מי אנחנו',nav_qh:'מה אנחנו עושים',nav_ce:'מקרי מחקר',nav_sos:'קיימות',nav_diag:'אבחון חינמי',mob_diag:'אבחון',
+    qh_eyebrow:'השותפים והחבילות שלנו',qh_title:'מה<br><em>אנחנו עושים</em>',
+    qh_sub:'אנו מפיצים את הטכנולוגיה המתקדמת ביותר של אירופה לאבטחת סייבר ומארזים אותה בפתרונות המותאמים לכל חברה מקסיקנית.',
+    qh_vendors_label:'השותפים שלנו',qh_vendors_title:'טכנולוגיה <em>ברמה עולמית</em>',
+    qh_vendors_sub:'אנו מייצגים את מותגי אבטחת הסייבר הטובים ביותר של אירופה, מוסמכים ומוכחים באלפי חברות ברחבי העולם.',
+    qh_hornet_desc:'הגנת אימייל מתקדמת מבוססת בינה מלאכותית. מסנן ספאם, פישינג, תוכנות זדוניות ומתקפות כופרה לפני שהן מגיעות לתיבת הדואר שלך.',
+    qh_gdata_desc:'אנטי-וירוס ואבטחת קצה ממקור גרמני. הגנה רב-שכבתית עם ניתוח התנהגות ותגובה אוטומטית לאיומים.',
+    qh_pkgs_label:'חבילות',qh_pkgs_title:'הגנה מתוכננת ל<em>כל חברה</em>',
+    qh_pkgs_sub:'מהגנה בסיסית ועד אבטחה מלאה. כל החבילות כוללות תמיכה בספרדית והתקנה ראשונית.',
+    qh_pkg1_desc:'הגנת אימייל חיונית מפני פישינג, ספאם וכופרה. הצעד הראשון לכל חברה.',
+    qh_pkg2_desc:'אימייל + הגנת מכשירים. הפתרון המקיף ביותר לעסקים קטנים ובינוניים המטפלים במידע רגיש.',
+    qh_pkg3_desc:'חבילה מתקדמת לחברות הדורשות הגנה מרבית, ציות לתקינה ונראות מלאה של איומים.',
+    qh_pkg4_desc:'שירות המותאם לחלוטין לחברה שלך. שלב 1 הוא ניתוח פגיעויות ואבחון התשתית שלך — ללא התחייבות.',
+    qh_pkg_cta:'בקש מידע',qh_pkg4_cta:'תאם אבחון',
+    footer_desc:'אבטחת סייבר עסקית ברמה עולמית עם שירות אישי במקסיקו. טכנולוגיה אירופאית, תוצאות מובטחות.',
+    footer_empresa:'חברה',footer_soluciones:'פתרונות',footer_contacto:'יצירת קשר',
+    footer_copy:'© 2025 C·SHUTZ. כל הזכויות שמורות.',footer_made:'נוצר עם <span class="footer-accent">אבטחה</span> במקסיקו'
+  }
+};
+function setLang(lang){
+  const t=TRANSLATIONS[lang];if(!t)return;
+  document.documentElement.lang=lang==='he'?'he':lang==='de'?'de':lang==='en'?'en':'es';
+  document.documentElement.dir=lang==='he'?'rtl':'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{if(t[el.dataset.i18n]!==undefined)el.textContent=t[el.dataset.i18n]});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{if(t[el.dataset.i18nHtml]!==undefined)el.innerHTML=t[el.dataset.i18nHtml]});
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.onclick?.toString().includes(`'${lang}'`)));
+  localStorage.setItem('cshutz_lang',lang);
+}
+document.addEventListener('DOMContentLoaded',()=>{setLang(localStorage.getItem('cshutz_lang')||'es')});
 </script>
 </body>
 </html>

@@ -245,6 +245,9 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   .commit-year{width:100%;padding:24px}
   .trees-box{flex-direction:column;align-items:flex-start}
 }
+.lang-switcher{display:flex;gap:4px;align-items:center;margin-left:12px}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:4px 9px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
+.lang-btn:hover,.lang-btn.active{color:#2ecc71;border-color:#2ecc71;background:rgba(46,204,113,0.1)}
 </style>
 </head>
 <body>
@@ -263,30 +266,36 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <nav id="cs-nav">
   <a href="index.html" class="nav-logo">C<span>·</span>SHUTZ</a>
   <div class="nav-links">
-    <a href="quienes-somos.html">Quiénes Somos</a>
-    <a href="que-hacemos.html">Qué Hacemos</a>
-    <a href="casos-estudio.html">Casos de Estudio</a>
-    <a href="sostenibilidad.html">Sostenibilidad</a>
-    <a href="diagnostico.html" class="nav-cta">Diagnóstico Gratuito</a>
+    <a href="quienes-somos.html" data-i18n="nav_qs">Quiénes Somos</a>
+    <a href="que-hacemos.html" data-i18n="nav_qh">Qué Hacemos</a>
+    <a href="casos-estudio.html" data-i18n="nav_ce">Casos de Estudio</a>
+    <a href="sostenibilidad.html" data-i18n="nav_sos">Sostenibilidad</a>
+    <a href="diagnostico.html" class="nav-cta" data-i18n="nav_diag">Diagnóstico Gratuito</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('he')">HE</button>
   </div>
   <button class="nav-burger" id="nav-burger" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- Mobile menu -->
 <div id="cs-mobile-menu">
-  <a href="quienes-somos.html" class="menu-link">Quiénes Somos</a>
-  <a href="que-hacemos.html" class="menu-link">Qué Hacemos</a>
-  <a href="casos-estudio.html" class="menu-link">Casos de Estudio</a>
-  <a href="sostenibilidad.html" class="menu-link">Sostenibilidad</a>
-  <a href="diagnostico.html" class="menu-link">Diagnóstico</a>
+  <a href="quienes-somos.html" class="menu-link" data-i18n="nav_qs">Quiénes Somos</a>
+  <a href="que-hacemos.html" class="menu-link" data-i18n="nav_qh">Qué Hacemos</a>
+  <a href="casos-estudio.html" class="menu-link" data-i18n="nav_ce">Casos de Estudio</a>
+  <a href="sostenibilidad.html" class="menu-link" data-i18n="nav_sos">Sostenibilidad</a>
+  <a href="diagnostico.html" class="menu-link" data-i18n="mob_diag">Diagnóstico</a>
 </div>
 
 <!-- Hero -->
 <div class="page-hero-wrap">
   <div class="page-hero">
-    <div class="page-eyebrow">Responsabilidad empresarial</div>
-    <h1 class="page-title">Sosteni<em>bilidad</em></h1>
-    <p class="page-sub">La seguridad digital y la responsabilidad ambiental no son opuestos — son dos caras del mismo compromiso con el futuro.</p>
+    <div class="page-eyebrow" data-i18n="sos_eyebrow">Responsabilidad empresarial</div>
+    <h1 class="page-title" data-i18n-html="sos_title">Sosteni<em>bilidad</em></h1>
+    <p class="page-sub" data-i18n="sos_sub">La seguridad digital y la responsabilidad ambiental no son opuestos — son dos caras del mismo compromiso con el futuro.</p>
   </div>
 </div>
 
@@ -296,42 +305,42 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <div class="commit-section">
   <div class="commit-strip">
     <div class="commit-main">
-      <div class="commit-label">Energía renovable</div>
-      <h2 class="commit-heading">100% energía renovable<br>para nuestras operaciones</h2>
-      <p class="commit-body">C·SHUTZ se compromete a operar exclusivamente con fuentes de energía renovable para el año 2030. Esto incluye nuestras operaciones de oficina, infraestructura tecnológica, servidores y todos los proveedores con los que colaboramos directamente.<br><br>Estamos en el proceso de evaluar y migrar progresivamente hacia proveedores de energía verde certificada, reduciendo nuestra huella de carbono año con año hasta alcanzar la neutralidad climática.</p>
+      <div class="commit-label" data-i18n="sos_commit_label">Energía renovable</div>
+      <h2 class="commit-heading" data-i18n-html="sos_commit_heading">100% energía renovable<br>para nuestras operaciones</h2>
+      <p class="commit-body" data-i18n-html="sos_commit_body">C·SHUTZ se compromete a operar exclusivamente con fuentes de energía renovable para el año 2030. Esto incluye nuestras operaciones de oficina, infraestructura tecnológica, servidores y todos los proveedores con los que colaboramos directamente.<br><br>Estamos en el proceso de evaluar y migrar progresivamente hacia proveedores de energía verde certificada, reduciendo nuestra huella de carbono año con año hasta alcanzar la neutralidad climática.</p>
     </div>
     <div class="commit-year">
       <div class="commit-year-num">2030</div>
-      <div class="commit-year-label">Meta de energía<br>100% renovable</div>
+      <div class="commit-year-label" data-i18n-html="sos_commit_year">Meta de energía<br>100% renovable</div>
     </div>
   </div>
 </div>
 
 <!-- Pillars -->
 <div class="pillars-section">
-  <div class="section-label">Nuestro enfoque</div>
-  <h2 class="section-heading">Tres pilares de<br><em>responsabilidad</em></h2>
+  <div class="section-label" data-i18n="sos_pillars_label">Nuestro enfoque</div>
+  <h2 class="section-heading" data-i18n-html="sos_pillars_heading">Tres pilares de<br><em>responsabilidad</em></h2>
   <div class="pillars-grid">
     <div class="pillar-card">
       <div class="pillar-icon">
         <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       </div>
-      <div class="pillar-title">Conciencia ambiental</div>
-      <p class="pillar-body">Integramos criterios ambientales en cada decisión de negocio: desde la selección de proveedores hasta el diseño de nuestros servicios. Preferimos aliados que compartan nuestros valores de sostenibilidad.</p>
+      <div class="pillar-title" data-i18n="sos_p1_title">Conciencia ambiental</div>
+      <p class="pillar-body" data-i18n="sos_p1_body">Integramos criterios ambientales en cada decisión de negocio: desde la selección de proveedores hasta el diseño de nuestros servicios. Preferimos aliados que compartan nuestros valores de sostenibilidad.</p>
     </div>
     <div class="pillar-card">
       <div class="pillar-icon">
         <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
-      <div class="pillar-title">Eficiencia energética</div>
-      <p class="pillar-body">La ciberseguridad basada en la nube reduce naturalmente el consumo energético de nuestros clientes al eliminar infraestructura física local. Digitalizamos para proteger y para reducir el impacto ambiental.</p>
+      <div class="pillar-title" data-i18n="sos_p2_title">Eficiencia energética</div>
+      <p class="pillar-body" data-i18n="sos_p2_body">La ciberseguridad basada en la nube reduce naturalmente el consumo energético de nuestros clientes al eliminar infraestructura física local. Digitalizamos para proteger y para reducir el impacto ambiental.</p>
     </div>
     <div class="pillar-card">
       <div class="pillar-icon">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
       </div>
-      <div class="pillar-title">Transparencia y reporte</div>
-      <p class="pillar-body">Publicaremos anualmente un reporte de sostenibilidad con métricas reales: emisiones, consumo energético, progreso hacia renovables y el número acumulado de árboles plantados.</p>
+      <div class="pillar-title" data-i18n="sos_p3_title">Transparencia y reporte</div>
+      <p class="pillar-body" data-i18n="sos_p3_body">Publicaremos anualmente un reporte de sostenibilidad con métricas reales: emisiones, consumo energético, progreso hacia renovables y el número acumulado de árboles plantados.</p>
     </div>
   </div>
 </div>
@@ -340,10 +349,10 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <div class="trees-section">
   <div class="trees-box">
     <div class="trees-left">
-      <div class="trees-label">Programa Raíces</div>
-      <h2 class="trees-heading">3 árboles plantados por cada factura mensual emitida</h2>
-      <p class="trees-body">Por cada factura mensual que emitimos a nuestros clientes, C·SHUTZ planta tres árboles en México a través de organizaciones de reforestación certificadas.<br><br>Este compromiso es permanente y automático — no requiere ninguna acción por parte de nuestros clientes. Al contratar cualquier paquete de C·SHUTZ, contribuyes directamente a la reforestación del país.<br><br>A medida que crece nuestra base de clientes, crece también nuestro impacto ambiental.</p>
-      <div class="trees-tagline">Cada cliente de C·SHUTZ es también un cliente del planeta</div>
+      <div class="trees-label" data-i18n="sos_trees_label">Programa Raíces</div>
+      <h2 class="trees-heading" data-i18n="sos_trees_heading">3 árboles plantados por cada factura mensual emitida</h2>
+      <p class="trees-body" data-i18n-html="sos_trees_body">Por cada factura mensual que emitimos a nuestros clientes, C·SHUTZ planta tres árboles en México a través de organizaciones de reforestación certificadas.<br><br>Este compromiso es permanente y automático — no requiere ninguna acción por parte de nuestros clientes. Al contratar cualquier paquete de C·SHUTZ, contribuyes directamente a la reforestación del país.<br><br>A medida que crece nuestra base de clientes, crece también nuestro impacto ambiental.</p>
+      <div class="trees-tagline" data-i18n="sos_trees_tagline">Cada cliente de C·SHUTZ es también un cliente del planeta</div>
     </div>
     <div class="trees-right">
       <div class="tree-icon-row">
@@ -360,10 +369,10 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="brand-logo">C<span>·</span>SHUTZ</div>
-      <p>Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
+      <p data-i18n="footer_desc">Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
     </div>
     <div class="footer-col">
-      <h4>Empresa</h4>
+      <h4 data-i18n="footer_empresa">Empresa</h4>
       <ul>
         <li><a href="quienes-somos.html">Quiénes Somos</a></li>
         <li><a href="que-hacemos.html">Qué Hacemos</a></li>
@@ -372,7 +381,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Soluciones</h4>
+      <h4 data-i18n="footer_soluciones">Soluciones</h4>
       <ul>
         <li><a href="que-hacemos.html">Hornetsecurity</a></li>
         <li><a href="que-hacemos.html">G DATA</a></li>
@@ -381,7 +390,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer_contacto">Contacto</h4>
       <ul>
         <li><a href="mailto:operacion@cshutz.net">operacion@cshutz.net</a></li>
         <li><a href="mailto:patricio@cshutz.net">patricio@cshutz.net</a></li>
@@ -390,8 +399,8 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 C·SHUTZ. Todos los derechos reservados.</p>
-    <p>Hecho con <span class="footer-accent">seguridad</span> en México</p>
+    <p data-i18n="footer_copy">© 2025 C·SHUTZ. Todos los derechos reservados.</p>
+    <p data-i18n-html="footer_made">Hecho con <span class="footer-accent">seguridad</span> en México</p>
   </div>
 </footer>
 
@@ -432,6 +441,91 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   }
   draw();
 })();
+// LANG SWITCHER
+const TRANSLATIONS={
+  es:{
+    nav_qs:'Quiénes Somos',nav_qh:'Qué Hacemos',nav_ce:'Casos de Estudio',nav_sos:'Sostenibilidad',nav_diag:'Diagnóstico Gratuito',mob_diag:'Diagnóstico',
+    sos_eyebrow:'Responsabilidad empresarial',sos_title:'Sosteni<em>bilidad</em>',
+    sos_sub:'La seguridad digital y la responsabilidad ambiental no son opuestos — son dos caras del mismo compromiso con el futuro.',
+    sos_commit_label:'Energía renovable',sos_commit_heading:'100% energía renovable<br>para nuestras operaciones',
+    sos_commit_body:'C·SHUTZ se compromete a operar exclusivamente con fuentes de energía renovable para el año 2030. Esto incluye nuestras operaciones de oficina, infraestructura tecnológica, servidores y todos los proveedores con los que colaboramos directamente.<br><br>Estamos en el proceso de evaluar y migrar progresivamente hacia proveedores de energía verde certificada, reduciendo nuestra huella de carbono año con año hasta alcanzar la neutralidad climática.',
+    sos_commit_year:'Meta de energía<br>100% renovable',
+    sos_pillars_label:'Nuestro enfoque',sos_pillars_heading:'Tres pilares de<br><em>responsabilidad</em>',
+    sos_p1_title:'Conciencia ambiental',sos_p1_body:'Integramos criterios ambientales en cada decisión de negocio: desde la selección de proveedores hasta el diseño de nuestros servicios. Preferimos aliados que compartan nuestros valores de sostenibilidad.',
+    sos_p2_title:'Eficiencia energética',sos_p2_body:'La ciberseguridad basada en la nube reduce naturalmente el consumo energético de nuestros clientes al eliminar infraestructura física local. Digitalizamos para proteger y para reducir el impacto ambiental.',
+    sos_p3_title:'Transparencia y reporte',sos_p3_body:'Publicaremos anualmente un reporte de sostenibilidad con métricas reales: emisiones, consumo energético, progreso hacia renovables y el número acumulado de árboles plantados.',
+    sos_trees_label:'Programa Raíces',sos_trees_heading:'3 árboles plantados por cada factura mensual emitida',
+    sos_trees_body:'Por cada factura mensual que emitimos a nuestros clientes, C·SHUTZ planta tres árboles en México a través de organizaciones de reforestación certificadas.<br><br>Este compromiso es permanente y automático — no requiere ninguna acción por parte de nuestros clientes. Al contratar cualquier paquete de C·SHUTZ, contribuyes directamente a la reforestación del país.<br><br>A medida que crece nuestra base de clientes, crece también nuestro impacto ambiental.',
+    sos_trees_tagline:'Cada cliente de C·SHUTZ es también un cliente del planeta',
+    footer_desc:'Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.',
+    footer_empresa:'Empresa',footer_soluciones:'Soluciones',footer_contacto:'Contacto',
+    footer_copy:'© 2025 C·SHUTZ. Todos los derechos reservados.',footer_made:'Hecho con <span class="footer-accent">seguridad</span> en México'
+  },
+  en:{
+    nav_qs:'Who We Are',nav_qh:'What We Do',nav_ce:'Case Studies',nav_sos:'Sustainability',nav_diag:'Free Diagnosis',mob_diag:'Diagnosis',
+    sos_eyebrow:'Corporate responsibility',sos_title:'Sustaina<em>bility</em>',
+    sos_sub:'Digital security and environmental responsibility are not opposites — they are two sides of the same commitment to the future.',
+    sos_commit_label:'Renewable energy',sos_commit_heading:'100% renewable energy<br>for our operations',
+    sos_commit_body:'C·SHUTZ commits to operating exclusively with renewable energy sources by 2030. This includes our office operations, technological infrastructure, servers and all providers we directly collaborate with.<br><br>We are in the process of progressively evaluating and migrating to certified green energy providers, reducing our carbon footprint year by year until we achieve climate neutrality.',
+    sos_commit_year:'Energy goal<br>100% renewable',
+    sos_pillars_label:'Our approach',sos_pillars_heading:'Three pillars of<br><em>responsibility</em>',
+    sos_p1_title:'Environmental awareness',sos_p1_body:'We integrate environmental criteria into every business decision: from supplier selection to service design. We prefer partners who share our sustainability values.',
+    sos_p2_title:'Energy efficiency',sos_p2_body:'Cloud-based cybersecurity naturally reduces our clients\' energy consumption by eliminating local physical infrastructure. We digitize to protect and to reduce environmental impact.',
+    sos_p3_title:'Transparency & reporting',sos_p3_body:'We will annually publish a sustainability report with real metrics: emissions, energy consumption, progress toward renewables and the cumulative number of trees planted.',
+    sos_trees_label:'Raíces Program',sos_trees_heading:'3 trees planted for every monthly invoice issued',
+    sos_trees_body:'For every monthly invoice we issue to our clients, C·SHUTZ plants three trees in Mexico through certified reforestation organizations.<br><br>This commitment is permanent and automatic — it requires no action from our clients. By contracting any C·SHUTZ package, you directly contribute to the reforestation of the country.<br><br>As our client base grows, so does our environmental impact.',
+    sos_trees_tagline:'Every C·SHUTZ client is also a client of the planet',
+    footer_desc:'World-class enterprise cybersecurity with personalized service in Mexico. European technology, guaranteed results.',
+    footer_empresa:'Company',footer_soluciones:'Solutions',footer_contacto:'Contact',
+    footer_copy:'© 2025 C·SHUTZ. All rights reserved.',footer_made:'Made with <span class="footer-accent">security</span> in Mexico'
+  },
+  de:{
+    nav_qs:'Wer Wir Sind',nav_qh:'Was Wir Tun',nav_ce:'Fallstudien',nav_sos:'Nachhaltigkeit',nav_diag:'Kostenlose Diagnose',mob_diag:'Diagnose',
+    sos_eyebrow:'Unternehmensverantwortung',sos_title:'Nachhaltig<em>keit</em>',
+    sos_sub:'Digitale Sicherheit und ökologische Verantwortung sind keine Gegensätze — sie sind zwei Seiten desselben Engagements für die Zukunft.',
+    sos_commit_label:'Erneuerbare Energie',sos_commit_heading:'100% erneuerbare Energie<br>für unsere Betriebe',
+    sos_commit_body:'C·SHUTZ verpflichtet sich, bis 2030 ausschließlich mit erneuerbaren Energiequellen zu betreiben. Dies umfasst unsere Bürobetriebe, technologische Infrastruktur, Server und alle Anbieter, mit denen wir direkt zusammenarbeiten.<br><br>Wir sind dabei, schrittweise zu zertifizierten grünen Energieanbietern zu wechseln und unseren CO₂-Fußabdruck Jahr für Jahr zu reduzieren, bis wir Klimaneutralität erreichen.',
+    sos_commit_year:'Energieziel<br>100% erneuerbar',
+    sos_pillars_label:'Unser Ansatz',sos_pillars_heading:'Drei Säulen der<br><em>Verantwortung</em>',
+    sos_p1_title:'Umweltbewusstsein',sos_p1_body:'Wir integrieren Umweltkriterien in jede Geschäftsentscheidung: von der Lieferantenauswahl bis zum Servicedesign. Wir bevorzugen Partner, die unsere Nachhaltigkeitswerte teilen.',
+    sos_p2_title:'Energieeffizienz',sos_p2_body:'Cloud-basierte Cybersicherheit reduziert natürlich den Energieverbrauch unserer Kunden durch den Wegfall lokaler physischer Infrastruktur. Wir digitalisieren, um zu schützen und den Umwelteinfluss zu reduzieren.',
+    sos_p3_title:'Transparenz & Berichterstattung',sos_p3_body:'Wir werden jährlich einen Nachhaltigkeitsbericht mit echten Kennzahlen veröffentlichen: Emissionen, Energieverbrauch, Fortschritt bei erneuerbaren Energien und die kumulative Anzahl gepflanzter Bäume.',
+    sos_trees_label:'Raíces-Programm',sos_trees_heading:'3 Bäume gepflanzt für jede monatliche Rechnung',
+    sos_trees_body:'Für jede monatliche Rechnung, die wir unseren Kunden ausstellen, pflanzt C·SHUTZ drei Bäume in Mexiko durch zertifizierte Aufforstungsorganisationen.<br><br>Dieses Engagement ist dauerhaft und automatisch — es erfordert keine Aktion unserer Kunden. Durch den Abschluss eines C·SHUTZ-Pakets tragen Sie direkt zur Wiederaufforstung des Landes bei.<br><br>Mit wachsender Kundenbasis wächst auch unser Umwelteinfluss.',
+    sos_trees_tagline:'Jeder C·SHUTZ-Kunde ist auch ein Kunde des Planeten',
+    footer_desc:'Erstklassige Unternehmens-Cybersicherheit mit personalisiertem Service in Mexiko. Europäische Technologie, garantierte Ergebnisse.',
+    footer_empresa:'Unternehmen',footer_soluciones:'Lösungen',footer_contacto:'Kontakt',
+    footer_copy:'© 2025 C·SHUTZ. Alle Rechte vorbehalten.',footer_made:'Gemacht mit <span class="footer-accent">Sicherheit</span> in Mexiko'
+  },
+  he:{
+    nav_qs:'מי אנחנו',nav_qh:'מה אנחנו עושים',nav_ce:'מקרי מחקר',nav_sos:'קיימות',nav_diag:'אבחון חינמי',mob_diag:'אבחון',
+    sos_eyebrow:'אחריות תאגידית',sos_title:'קיימ<em>ות</em>',
+    sos_sub:'אבטחה דיגיטלית ואחריות סביבתית אינן מנוגדות — הן שני פנים של אותה התחייבות לעתיד.',
+    sos_commit_label:'אנרגיה מתחדשת',sos_commit_heading:'100% אנרגיה מתחדשת<br>לפעילות שלנו',
+    sos_commit_body:'C·SHUTZ מתחייבת לפעול אך ורק עם מקורות אנרגיה מתחדשת עד שנת 2030. זה כולל את פעילות המשרד, תשתית טכנולוגית, שרתים וכל הספקים שאנו משתפים איתם פעולה ישירות.<br><br>אנו בתהליך של הערכה ומעבר הדרגתי לספקי אנרגיה ירוקה מוסמכת, תוך הפחתת טביעת הפחמן שלנו משנה לשנה עד להשגת ניטרליות אקלימית.',
+    sos_commit_year:'יעד אנרגיה<br>100% מתחדשת',
+    sos_pillars_label:'הגישה שלנו',sos_pillars_heading:'שלושה עמודים של<br><em>אחריות</em>',
+    sos_p1_title:'מודעות סביבתית',sos_p1_body:'אנו משלבים קריטריונים סביבתיים בכל החלטה עסקית: מבחירת ספקים ועד לעיצוב השירותים שלנו. אנו מעדיפים שותפים המשתפים את ערכי הקיימות שלנו.',
+    sos_p2_title:'יעילות אנרגטית',sos_p2_body:'אבטחת סייבר מבוססת ענן מפחיתה באופן טבעי את צריכת האנרגיה של לקוחותינו על ידי ביטול תשתית פיזית מקומית. אנו מדיגיטלים כדי להגן ולהפחית את ההשפעה הסביבתית.',
+    sos_p3_title:'שקיפות ודיווח',sos_p3_body:'אנו נפרסם מדי שנה דוח קיימות עם מדדים אמיתיים: פליטות, צריכת אנרגיה, התקדמות לעבר אנרגיות מתחדשות והמספר המצטבר של עצים שנשתלו.',
+    sos_trees_label:'תוכנית Raíces',sos_trees_heading:'3 עצים נשתלים עבור כל חשבונית חודשית',
+    sos_trees_body:'עבור כל חשבונית חודשית שאנו מנפיקים ללקוחותינו, C·SHUTZ נוטעת שלושה עצים במקסיקו דרך ארגוני ייעור מוסמכים.<br><br>התחייבות זו קבועה ואוטומטית — היא אינה דורשת שום פעולה מצד לקוחותינו. על ידי הזמנת כל חבילת C·SHUTZ, אתה תורם ישירות לייעור הארץ.<br><br>ככל שבסיס הלקוחות שלנו גדל, כך גדלה גם ההשפעה הסביבתית שלנו.',
+    sos_trees_tagline:'כל לקוח C·SHUTZ הוא גם לקוח של כדור הארץ',
+    footer_desc:'אבטחת סייבר עסקית ברמה עולמית עם שירות אישי במקסיקו. טכנולוגיה אירופאית, תוצאות מובטחות.',
+    footer_empresa:'חברה',footer_soluciones:'פתרונות',footer_contacto:'יצירת קשר',
+    footer_copy:'© 2025 C·SHUTZ. כל הזכויות שמורות.',footer_made:'נוצר עם <span class="footer-accent">אבטחה</span> במקסיקו'
+  }
+};
+function setLang(lang){
+  const t=TRANSLATIONS[lang];if(!t)return;
+  document.documentElement.lang=lang==='he'?'he':lang==='de'?'de':lang==='en'?'en':'es';
+  document.documentElement.dir=lang==='he'?'rtl':'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{if(t[el.dataset.i18n]!==undefined)el.textContent=t[el.dataset.i18n]});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{if(t[el.dataset.i18nHtml]!==undefined)el.innerHTML=t[el.dataset.i18nHtml]});
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.onclick?.toString().includes(`'${lang}'`)));
+  localStorage.setItem('cshutz_lang',lang);
+}
+document.addEventListener('DOMContentLoaded',()=>{setLang(localStorage.getItem('cshutz_lang')||'es')});
 </script>
 </body>
 </html>

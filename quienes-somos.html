@@ -72,8 +72,8 @@ body:not(:hover) #cs-cursor,body:not(:hover) #cs-ring{opacity:0}
 .section-divider{width:60px;height:1px;background:var(--accent);margin:0 auto;opacity:.5}
 
 /* Page hero */
-.page-hero-wrap{position:relative;overflow:hidden;background:url('imagenes/img-equipo.png') center/cover no-repeat}
-.page-hero-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,9,0.88) 0%,rgba(8,9,9,0.96) 100%);z-index:0}
+.page-hero-wrap{position:relative;overflow:hidden}
+.page-glow{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;height:80vh;background:radial-gradient(ellipse 80% 65% at 50% -10%,rgba(46,204,113,0.14) 0%,rgba(46,204,113,0.05) 40%,transparent 70%);pointer-events:none;z-index:0}
 .page-hero{position:relative;z-index:1;padding:calc(var(--nav-h) + 100px) clamp(20px,5vw,60px) 100px;max-width:900px;margin:0 auto;text-align:center}
 .page-eyebrow{display:inline-block;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px}
 .page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:300;line-height:1.1;margin-bottom:24px}
@@ -157,6 +157,9 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 .footer-bottom p{font-size:0.78rem;color:var(--muted)}
 .footer-accent{color:var(--accent)}
 @keyframes fade-up{to{opacity:1;transform:translateY(0)}}
+.lang-switcher{display:flex;gap:4px;align-items:center;margin-left:12px}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:4px 9px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
+.lang-btn:hover,.lang-btn.active{color:#2ecc71;border-color:#2ecc71;background:rgba(46,204,113,0.1)}
 </style>
 </head>
 <body>
@@ -166,6 +169,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <div id="cs-ring"></div>
 <div id="cs-spb"></div>
 <canvas id="page-canvas"></canvas>
+<div class="page-glow"></div>
 
 <!-- WA float -->
 <a class="wa-float" href="https://wa.me/525510532492" target="_blank" title="WhatsApp C·SHUTZ">
@@ -176,30 +180,36 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <nav id="cs-nav">
   <a href="index.html" class="nav-logo">C<span>·</span>SHUTZ</a>
   <div class="nav-links">
-    <a href="quienes-somos.html">Quiénes Somos</a>
-    <a href="que-hacemos.html">Qué Hacemos</a>
-    <a href="casos-estudio.html">Casos de Estudio</a>
-    <a href="sostenibilidad.html">Sostenibilidad</a>
-    <a href="diagnostico.html" class="nav-cta">Diagnóstico Gratuito</a>
+    <a href="quienes-somos.html" data-i18n="nav_qs">Quiénes Somos</a>
+    <a href="que-hacemos.html" data-i18n="nav_qh">Qué Hacemos</a>
+    <a href="casos-estudio.html" data-i18n="nav_ce">Casos de Estudio</a>
+    <a href="sostenibilidad.html" data-i18n="nav_sos">Sostenibilidad</a>
+    <a href="diagnostico.html" class="nav-cta" data-i18n="nav_diag">Diagnóstico Gratuito</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('he')">HE</button>
   </div>
   <button class="nav-burger" id="nav-burger" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- Mobile menu -->
 <div id="cs-mobile-menu">
-  <a href="quienes-somos.html" class="menu-link">Quiénes Somos</a>
-  <a href="que-hacemos.html" class="menu-link">Qué Hacemos</a>
-  <a href="casos-estudio.html" class="menu-link">Casos de Estudio</a>
-  <a href="sostenibilidad.html" class="menu-link">Sostenibilidad</a>
-  <a href="diagnostico.html" class="menu-link">Diagnóstico</a>
+  <a href="quienes-somos.html" class="menu-link" data-i18n="nav_qs">Quiénes Somos</a>
+  <a href="que-hacemos.html" class="menu-link" data-i18n="nav_qh">Qué Hacemos</a>
+  <a href="casos-estudio.html" class="menu-link" data-i18n="nav_ce">Casos de Estudio</a>
+  <a href="sostenibilidad.html" class="menu-link" data-i18n="nav_sos">Sostenibilidad</a>
+  <a href="diagnostico.html" class="menu-link" data-i18n="mob_diag">Diagnóstico</a>
 </div>
 
 <!-- Hero -->
 <div class="page-hero-wrap">
   <div class="page-hero">
     <div class="page-eyebrow">C·SHUTZ</div>
-    <h1 class="page-title">Quiénes<br><em>Somos</em></h1>
-    <p class="page-sub">Especialistas en ciberseguridad empresarial con tecnología europea y presencia local en México. Nuestra misión es proteger lo que más importa.</p>
+    <h1 class="page-title" data-i18n-html="qs_title">Quiénes<br><em>Somos</em></h1>
+    <p class="page-sub" data-i18n="qs_sub">Especialistas en ciberseguridad empresarial con tecnología europea y presencia local en México. Nuestra misión es proteger lo que más importa.</p>
   </div>
 </div>
 
@@ -207,30 +217,30 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <section id="problem">
   <div class="problem-inner">
     <div class="problem-text reveal">
-      <div class="section-label">La Realidad</div>
-      <h2 class="section-title">Las empresas mexicanas están <em>desprotegidas</em></h2>
-      <p class="section-sub" style="margin:20px 0 0">El 91% de las empresas han sufrido al menos un incidente de ciberseguridad. La pregunta no es si tu empresa será atacada, sino cuándo.</p>
+      <div class="section-label" data-i18n="qs_prob_label">La Realidad</div>
+      <h2 class="section-title" data-i18n-html="qs_prob_title">Las empresas mexicanas están <em>desprotegidas</em></h2>
+      <p class="section-sub" style="margin:20px 0 0" data-i18n="qs_prob_sub">El 91% de las empresas han sufrido al menos un incidente de ciberseguridad. La pregunta no es si tu empresa será atacada, sino cuándo.</p>
       <div class="problem-note">
         <div class="note-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-        <p>El costo promedio de un ciberataque para una PYME en México supera los $2 millones de pesos. La prevención cuesta 10 veces menos.</p>
+        <p data-i18n="qs_prob_note">El costo promedio de un ciberataque para una PYME en México supera los $2 millones de pesos. La prevención cuesta 10 veces menos.</p>
       </div>
     </div>
     <div class="stats-grid reveal">
       <div class="stat-card">
         <div class="stat-num"><span class="counter" data-target="6" data-suffix="/10">0</span></div>
-        <div class="stat-label">empresas no tienen ningún protocolo de seguridad activo</div>
+        <div class="stat-label" data-i18n="qs_stat1">empresas no tienen ningún protocolo de seguridad activo</div>
       </div>
       <div class="stat-card">
         <div class="stat-num"><span class="counter" data-target="91" data-suffix="%">0</span></div>
-        <div class="stat-label">han experimentado un incidente de seguridad en el último año</div>
+        <div class="stat-label" data-i18n="qs_stat2">han experimentado un incidente de seguridad en el último año</div>
       </div>
       <div class="stat-card">
         <div class="stat-num"><span class="counter" data-target="10" data-suffix="×">0</span></div>
-        <div class="stat-label">más barata es la prevención vs. la recuperación de un ataque</div>
+        <div class="stat-label" data-i18n="qs_stat3">más barata es la prevención vs. la recuperación de un ataque</div>
       </div>
       <div class="stat-card">
         <div class="stat-num"><span class="counter" data-target="72" data-suffix="h">0</span></div>
-        <div class="stat-label">promedio para detectar una brecha de seguridad sin monitoreo</div>
+        <div class="stat-label" data-i18n="qs_stat4">promedio para detectar una brecha de seguridad sin monitoreo</div>
       </div>
     </div>
   </div>
@@ -239,23 +249,23 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <!-- Misión y Visión -->
 <section id="mision">
   <div class="mv-inner">
-    <div class="section-label" style="margin-bottom:40px">Nuestra razón de ser</div>
+    <div class="section-label" style="margin-bottom:40px" data-i18n="qs_mv_label">Nuestra razón de ser</div>
     <div class="mv-grid reveal">
       <div class="mv-card">
         <div class="mv-card-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
         </div>
-        <div class="mv-card-label">Misión</div>
-        <h2 class="mv-card-title">Proteger a las empresas mexicanas</h2>
-        <p class="mv-card-body">Nuestra misión es democratizar el acceso a la ciberseguridad de clase mundial para las pequeñas y medianas empresas en México. Distribuimos y gestionamos tecnología europea de vanguardia — Hornetsecurity y G DATA — con acompañamiento humano, en español y adaptado a la realidad de cada organización.<br><br>Creemos que ninguna empresa debe quedarse desprotegida por falta de conocimiento o presupuesto. C·SHUTZ es el puente entre la tecnología más avanzada del mundo y las empresas que más la necesitan.</p>
+        <div class="mv-card-label" data-i18n="qs_mission_lbl">Misión</div>
+        <h2 class="mv-card-title" data-i18n="qs_mission_title">Proteger a las empresas mexicanas</h2>
+        <p class="mv-card-body" data-i18n-html="qs_mission_body">Nuestra misión es democratizar el acceso a la ciberseguridad de clase mundial para las pequeñas y medianas empresas en México. Distribuimos y gestionamos tecnología europea de vanguardia — Hornetsecurity y G DATA — con acompañamiento humano, en español y adaptado a la realidad de cada organización.<br><br>Creemos que ninguna empresa debe quedarse desprotegida por falta de conocimiento o presupuesto. C·SHUTZ es el puente entre la tecnología más avanzada del mundo y las empresas que más la necesitan.</p>
       </div>
       <div class="mv-card">
         <div class="mv-card-icon">
           <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <div class="mv-card-label">Visión</div>
-        <h2 class="mv-card-title">Referentes de ciberseguridad en América Latina</h2>
-        <p class="mv-card-body">Para 2030, ser reconocidos como el distribuidor y operador de ciberseguridad más confiable de América Latina. Una empresa que no solo vende tecnología, sino que construye cultura de seguridad digital en las organizaciones.<br><br>Imaginamos un ecosistema empresarial latinoamericano donde la ciberseguridad sea un estándar, no un lujo — y C·SHUTZ será el motor de ese cambio.</p>
+        <div class="mv-card-label" data-i18n="qs_vision_lbl">Visión</div>
+        <h2 class="mv-card-title" data-i18n="qs_vision_title">Referentes de ciberseguridad en América Latina</h2>
+        <p class="mv-card-body" data-i18n-html="qs_vision_body">Para 2030, ser reconocidos como el distribuidor y operador de ciberseguridad más confiable de América Latina. Una empresa que no solo vende tecnología, sino que construye cultura de seguridad digital en las organizaciones.<br><br>Imaginamos un ecosistema empresarial latinoamericano donde la ciberseguridad sea un estándar, no un lujo — y C·SHUTZ será el motor de ese cambio.</p>
       </div>
     </div>
   </div>
@@ -264,38 +274,38 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <!-- Valores -->
 <section id="valores">
   <div class="valores-inner">
-    <div class="section-label">Nuestros principios</div>
-    <h2 class="section-heading">Los valores que<br><em>nos definen</em></h2>
+    <div class="section-label" data-i18n="qs_values_label">Nuestros principios</div>
+    <h2 class="section-heading" data-i18n-html="qs_values_heading">Los valores que<br><em>nos definen</em></h2>
     <div class="values-grid">
       <div class="value-item reveal">
         <div class="value-num">01</div>
-        <div class="value-title">Confianza ante todo</div>
-        <p class="value-desc">La ciberseguridad se construye sobre la confianza. Somos transparentes con nuestros clientes, nuestros socios y con nosotros mismos.</p>
+        <div class="value-title" data-i18n="qs_v1_title">Confianza ante todo</div>
+        <p class="value-desc" data-i18n="qs_v1_desc">La ciberseguridad se construye sobre la confianza. Somos transparentes con nuestros clientes, nuestros socios y con nosotros mismos.</p>
       </div>
       <div class="value-item reveal">
         <div class="value-num">02</div>
-        <div class="value-title">Excelencia técnica</div>
-        <p class="value-desc">Representamos únicamente tecnología que cumple los estándares más altos del mercado global. Sin compromisos en calidad.</p>
+        <div class="value-title" data-i18n="qs_v2_title">Excelencia técnica</div>
+        <p class="value-desc" data-i18n="qs_v2_desc">Representamos únicamente tecnología que cumple los estándares más altos del mercado global. Sin compromisos en calidad.</p>
       </div>
       <div class="value-item reveal">
         <div class="value-num">03</div>
-        <div class="value-title">Servicio humano</div>
-        <p class="value-desc">Detrás de cada solución hay personas reales. Acompañamos a nuestros clientes con cercanía y respuesta real, no soporte automatizado.</p>
+        <div class="value-title" data-i18n="qs_v3_title">Servicio humano</div>
+        <p class="value-desc" data-i18n="qs_v3_desc">Detrás de cada solución hay personas reales. Acompañamos a nuestros clientes con cercanía y respuesta real, no soporte automatizado.</p>
       </div>
       <div class="value-item reveal">
         <div class="value-num">04</div>
-        <div class="value-title">Educación continua</div>
-        <p class="value-desc">La mejor defensa es el conocimiento. Invertimos en capacitar a nuestros clientes y en generar contenido de valor para el ecosistema.</p>
+        <div class="value-title" data-i18n="qs_v4_title">Educación continua</div>
+        <p class="value-desc" data-i18n="qs_v4_desc">La mejor defensa es el conocimiento. Invertimos en capacitar a nuestros clientes y en generar contenido de valor para el ecosistema.</p>
       </div>
       <div class="value-item reveal">
         <div class="value-num">05</div>
-        <div class="value-title">Responsabilidad</div>
-        <p class="value-desc">Asumimos la responsabilidad de proteger datos críticos de empresas. Operamos con la seriedad que eso exige, en cada decisión.</p>
+        <div class="value-title" data-i18n="qs_v5_title">Responsabilidad</div>
+        <p class="value-desc" data-i18n="qs_v5_desc">Asumimos la responsabilidad de proteger datos críticos de empresas. Operamos con la seriedad que eso exige, en cada decisión.</p>
       </div>
       <div class="value-item reveal">
         <div class="value-num">06</div>
-        <div class="value-title">Innovación rigurosa</div>
-        <p class="value-desc">Adoptamos nuevas tecnologías con criterio — primero las evaluamos, luego las recomendamos. La innovación no reemplaza el rigor.</p>
+        <div class="value-title" data-i18n="qs_v6_title">Innovación rigurosa</div>
+        <p class="value-desc" data-i18n="qs_v6_desc">Adoptamos nuevas tecnologías con criterio — primero las evaluamos, luego las recomendamos. La innovación no reemplaza el rigor.</p>
       </div>
     </div>
   </div>
@@ -306,31 +316,31 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   <div class="method-inner">
     <div class="method-header">
       <div class="reveal">
-        <div class="section-label">Cómo trabajamos</div>
-        <h2 class="section-title">Un proceso <em>probado</em> en cientos de empresas</h2>
+        <div class="section-label" data-i18n="qs_method_label">Cómo trabajamos</div>
+        <h2 class="section-title" data-i18n-html="qs_method_title">Metodología <em>clara</em> en cuatro pasos</h2>
       </div>
-      <p class="section-sub reveal">Nuestro método garantiza una implementación sin fricciones y resultados medibles desde el primer mes.</p>
+      <p class="section-sub reveal" data-i18n="qs_method_sub">Un proceso diseñado para una implementación ágil, con acompañamiento personalizado en cada etapa.</p>
     </div>
     <div class="method-steps">
       <div class="method-step reveal">
         <div class="step-num">01</div>
-        <h3 class="step-title">Diagnóstico</h3>
-        <p class="step-desc">Evaluamos el estado actual de tu ciberseguridad: vulnerabilidades, infraestructura, procesos y cultura de seguridad.</p>
+        <h3 class="step-title" data-i18n="qs_s1_title">Diagnóstico</h3>
+        <p class="step-desc" data-i18n="qs_s1_desc">Evaluamos el estado actual de tu ciberseguridad: vulnerabilidades, infraestructura, procesos y cultura de seguridad.</p>
       </div>
       <div class="method-step reveal">
         <div class="step-num">02</div>
-        <h3 class="step-title">Propuesta</h3>
-        <p class="step-desc">Diseñamos un plan personalizado con las soluciones exactas que tu empresa necesita, sin pagar por lo que no uses.</p>
+        <h3 class="step-title" data-i18n="qs_s2_title">Propuesta</h3>
+        <p class="step-desc" data-i18n="qs_s2_desc">Diseñamos un plan personalizado con las soluciones exactas que tu empresa necesita, sin pagar por lo que no uses.</p>
       </div>
       <div class="method-step reveal">
         <div class="step-num">03</div>
-        <h3 class="step-title">Implementación</h3>
-        <p class="step-desc">Desplegamos las soluciones en menos de 72 horas, con capacitación a tu equipo y configuración optimizada.</p>
+        <h3 class="step-title" data-i18n="qs_s3_title">Implementación</h3>
+        <p class="step-desc" data-i18n="qs_s3_desc">Desplegamos las soluciones en menos de 72 horas, con capacitación a tu equipo y configuración optimizada.</p>
       </div>
       <div class="method-step reveal">
         <div class="step-num">04</div>
-        <h3 class="step-title">Monitoreo</h3>
-        <p class="step-desc">Supervisión continua, actualizaciones automáticas y reportes mensuales para que siempre estés informado.</p>
+        <h3 class="step-title" data-i18n="qs_s4_title">Monitoreo</h3>
+        <p class="step-desc" data-i18n="qs_s4_desc">Supervisión continua, actualizaciones automáticas y reportes mensuales para que siempre estés informado.</p>
       </div>
     </div>
   </div>
@@ -339,19 +349,19 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <!-- Equipo -->
 <section id="equipo">
   <div style="max-width:900px;margin:0 auto;position:relative;z-index:1">
-    <div class="section-label" style="margin-bottom:12px">Nuestro equipo</div>
-    <h2 class="section-title" style="margin-bottom:8px">Los socios detrás de <em>C·SHUTZ</em></h2>
-    <p class="section-sub" style="margin-bottom:0">Especialistas en ciberseguridad con presencia en México.</p>
+    <div class="section-label" style="margin-bottom:12px" data-i18n="qs_team_label">Nuestro equipo</div>
+    <h2 class="section-title" style="margin-bottom:8px" data-i18n-html="qs_team_title">Los socios detrás de <em>C·SHUTZ</em></h2>
+    <p class="section-sub" style="margin-bottom:0" data-i18n="qs_team_sub">Especialistas en ciberseguridad con presencia en México.</p>
     <div class="founders-grid">
       <div class="founder-card reveal">
         <div class="founder-avatar">PP</div>
         <div class="founder-name">Patricio Perez</div>
-        <div class="founder-role">Socio Co-fundador</div>
+        <div class="founder-role" data-i18n="qs_founder_role">Socio Co-fundador</div>
       </div>
       <div class="founder-card reveal">
         <div class="founder-avatar" style="background:linear-gradient(135deg,#3498db,#2980b9)">MG</div>
         <div class="founder-name">Mariano Gamboa</div>
-        <div class="founder-role">Socio Co-fundador</div>
+        <div class="founder-role" data-i18n="qs_founder_role">Socio Co-fundador</div>
       </div>
     </div>
   </div>
@@ -360,11 +370,11 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <!-- CTA -->
 <section style="background:var(--surface);padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);text-align:center;position:relative;z-index:1">
   <div style="max-width:600px;margin:0 auto">
-    <div class="section-label">Siguiente paso</div>
-    <h2 class="section-title" style="margin-bottom:20px">¿Tu empresa está en <em>riesgo</em>?</h2>
-    <p class="section-sub" style="margin:0 auto 40px">Realiza nuestro diagnóstico gratuito con IA y recibe en minutos un reporte personalizado del nivel de riesgo de tu empresa.</p>
+    <div class="section-label" data-i18n="qs_cta_label">Siguiente paso</div>
+    <h2 class="section-title" style="margin-bottom:20px" data-i18n-html="qs_cta_title">¿Tu empresa está en <em>riesgo</em>?</h2>
+    <p class="section-sub" style="margin:0 auto 40px" data-i18n="qs_cta_sub">Realiza nuestro diagnóstico gratuito con IA y recibe en minutos un reporte personalizado del nivel de riesgo de tu empresa.</p>
     <a href="diagnostico.html" class="btn-primary">
-      Diagnóstico Gratuito
+      <span data-i18n="qs_cta_btn">Diagnóstico Gratuito</span>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>
@@ -374,10 +384,10 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="brand-logo">C<span>·</span>SHUTZ</div>
-      <p>Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
+      <p data-i18n="footer_desc">Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
     </div>
     <div class="footer-col">
-      <h4>Empresa</h4>
+      <h4 data-i18n="footer_empresa">Empresa</h4>
       <ul>
         <li><a href="quienes-somos.html">Quiénes Somos</a></li>
         <li><a href="que-hacemos.html">Qué Hacemos</a></li>
@@ -386,7 +396,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Soluciones</h4>
+      <h4 data-i18n="footer_soluciones">Soluciones</h4>
       <ul>
         <li><a href="que-hacemos.html">Hornetsecurity</a></li>
         <li><a href="que-hacemos.html">G DATA</a></li>
@@ -395,7 +405,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer_contacto">Contacto</h4>
       <ul>
         <li><a href="mailto:operacion@cshutz.net">operacion@cshutz.net</a></li>
         <li><a href="mailto:patricio@cshutz.net">patricio@cshutz.net</a></li>
@@ -404,8 +414,8 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 C·SHUTZ. Todos los derechos reservados.</p>
-    <p>Hecho con <span class="footer-accent">seguridad</span> en México</p>
+    <p data-i18n="footer_copy">© 2025 C·SHUTZ. Todos los derechos reservados.</p>
+    <p data-i18n-html="footer_made">Hecho con <span class="footer-accent">seguridad</span> en México</p>
   </div>
 </footer>
 
@@ -448,6 +458,151 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   }
   draw();
 })();
+// LANG SWITCHER
+const TRANSLATIONS={
+  es:{
+    nav_qs:'Quiénes Somos',nav_qh:'Qué Hacemos',nav_ce:'Casos de Estudio',nav_sos:'Sostenibilidad',nav_diag:'Diagnóstico Gratuito',mob_diag:'Diagnóstico',
+    qs_title:'Quiénes<br><em>Somos</em>',
+    qs_sub:'Especialistas en ciberseguridad empresarial con tecnología europea y presencia local en México. Nuestra misión es proteger lo que más importa.',
+    qs_prob_label:'La Realidad',qs_prob_title:'Las empresas mexicanas están <em>desprotegidas</em>',
+    qs_prob_sub:'El 91% de las empresas han sufrido al menos un incidente de ciberseguridad. La pregunta no es si tu empresa será atacada, sino cuándo.',
+    qs_prob_note:'El costo promedio de un ciberataque para una PYME en México supera los $2 millones de pesos. La prevención cuesta 10 veces menos.',
+    qs_stat1:'empresas no tienen ningún protocolo de seguridad activo',qs_stat2:'han experimentado un incidente de seguridad en el último año',
+    qs_stat3:'más barata es la prevención vs. la recuperación de un ataque',qs_stat4:'promedio para detectar una brecha de seguridad sin monitoreo',
+    qs_mv_label:'Nuestra razón de ser',qs_mission_lbl:'Misión',qs_mission_title:'Proteger a las empresas mexicanas',
+    qs_mission_body:'Nuestra misión es democratizar el acceso a la ciberseguridad de clase mundial para las pequeñas y medianas empresas en México. Distribuimos y gestionamos tecnología europea de vanguardia — Hornetsecurity y G DATA — con acompañamiento humano, en español y adaptado a la realidad de cada organización.<br><br>Creemos que ninguna empresa debe quedarse desprotegida por falta de conocimiento o presupuesto. C·SHUTZ es el puente entre la tecnología más avanzada del mundo y las empresas que más la necesitan.',
+    qs_vision_lbl:'Visión',qs_vision_title:'Referentes de ciberseguridad en América Latina',
+    qs_vision_body:'Para 2030, ser reconocidos como el distribuidor y operador de ciberseguridad más confiable de América Latina. Una empresa que no solo vende tecnología, sino que construye cultura de seguridad digital en las organizaciones.<br><br>Imaginamos un ecosistema empresarial latinoamericano donde la ciberseguridad sea un estándar, no un lujo — y C·SHUTZ será el motor de ese cambio.',
+    qs_values_label:'Nuestros principios',qs_values_heading:'Los valores que<br><em>nos definen</em>',
+    qs_v1_title:'Confianza ante todo',qs_v1_desc:'La ciberseguridad se construye sobre la confianza. Somos transparentes con nuestros clientes, nuestros socios y con nosotros mismos.',
+    qs_v2_title:'Excelencia técnica',qs_v2_desc:'Representamos únicamente tecnología que cumple los estándares más altos del mercado global. Sin compromisos en calidad.',
+    qs_v3_title:'Servicio humano',qs_v3_desc:'Detrás de cada solución hay personas reales. Acompañamos a nuestros clientes con cercanía y respuesta real, no soporte automatizado.',
+    qs_v4_title:'Educación continua',qs_v4_desc:'La mejor defensa es el conocimiento. Invertimos en capacitar a nuestros clientes y en generar contenido de valor para el ecosistema.',
+    qs_v5_title:'Responsabilidad',qs_v5_desc:'Asumimos la responsabilidad de proteger datos críticos de empresas. Operamos con la seriedad que eso exige, en cada decisión.',
+    qs_v6_title:'Innovación rigurosa',qs_v6_desc:'Adoptamos nuevas tecnologías con criterio — primero las evaluamos, luego las recomendamos. La innovación no reemplaza el rigor.',
+    qs_method_label:'Cómo trabajamos',qs_method_title:'Metodología <em>clara</em> en cuatro pasos',
+    qs_method_sub:'Un proceso diseñado para una implementación ágil, con acompañamiento personalizado en cada etapa.',
+    qs_s1_title:'Diagnóstico',qs_s1_desc:'Evaluamos el estado actual de tu ciberseguridad: vulnerabilidades, infraestructura, procesos y cultura de seguridad.',
+    qs_s2_title:'Propuesta',qs_s2_desc:'Diseñamos un plan personalizado con las soluciones exactas que tu empresa necesita, sin pagar por lo que no uses.',
+    qs_s3_title:'Implementación',qs_s3_desc:'Desplegamos las soluciones en menos de 72 horas, con capacitación a tu equipo y configuración optimizada.',
+    qs_s4_title:'Monitoreo',qs_s4_desc:'Supervisión continua, actualizaciones automáticas y reportes mensuales para que siempre estés informado.',
+    qs_team_label:'Nuestro equipo',qs_team_title:'Los socios detrás de <em>C·SHUTZ</em>',qs_team_sub:'Especialistas en ciberseguridad con presencia en México.',qs_founder_role:'Socio Co-fundador',
+    qs_cta_label:'Siguiente paso',qs_cta_title:'¿Tu empresa está en <em>riesgo</em>?',
+    qs_cta_sub:'Realiza nuestro diagnóstico gratuito con IA y recibe en minutos un reporte personalizado del nivel de riesgo de tu empresa.',qs_cta_btn:'Diagnóstico Gratuito',
+    footer_desc:'Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.',
+    footer_empresa:'Empresa',footer_soluciones:'Soluciones',footer_contacto:'Contacto',
+    footer_copy:'© 2025 C·SHUTZ. Todos los derechos reservados.',footer_made:'Hecho con <span class="footer-accent">seguridad</span> en México'
+  },
+  en:{
+    nav_qs:'Who We Are',nav_qh:'What We Do',nav_ce:'Case Studies',nav_sos:'Sustainability',nav_diag:'Free Diagnosis',mob_diag:'Diagnosis',
+    qs_title:'Who<br><em>We Are</em>',
+    qs_sub:'Enterprise cybersecurity specialists with European technology and local presence in Mexico. Our mission is to protect what matters most.',
+    qs_prob_label:'The Reality',qs_prob_title:'Mexican companies are <em>unprotected</em>',
+    qs_prob_sub:'91% of companies have suffered at least one cybersecurity incident. The question is not if your company will be attacked, but when.',
+    qs_prob_note:'The average cost of a cyberattack on an SME in Mexico exceeds $2 million pesos. Prevention costs 10 times less.',
+    qs_stat1:'companies have no active security protocol',qs_stat2:'have experienced a security incident in the last year',
+    qs_stat3:'cheaper is prevention vs. recovering from an attack',qs_stat4:'average time to detect a breach without monitoring',
+    qs_mv_label:'Our reason for being',qs_mission_lbl:'Mission',qs_mission_title:'Protecting Mexican businesses',
+    qs_mission_body:'Our mission is to democratize access to world-class cybersecurity for small and medium enterprises in Mexico. We distribute and manage cutting-edge European technology — Hornetsecurity and G DATA — with human support, in Spanish, adapted to the reality of each organization.<br><br>We believe no company should be left unprotected due to lack of knowledge or budget. C·SHUTZ is the bridge between the world\'s most advanced technology and the companies that need it most.',
+    qs_vision_lbl:'Vision',qs_vision_title:'Cybersecurity leaders in Latin America',
+    qs_vision_body:'By 2030, to be recognized as the most trusted cybersecurity distributor and operator in Latin America. A company that doesn\'t just sell technology, but builds a culture of digital security within organizations.<br><br>We envision a Latin American business ecosystem where cybersecurity is a standard, not a luxury — and C·SHUTZ will be the engine of that change.',
+    qs_values_label:'Our principles',qs_values_heading:'The values that<br><em>define us</em>',
+    qs_v1_title:'Trust above all',qs_v1_desc:'Cybersecurity is built on trust. We are transparent with our clients, our partners and ourselves.',
+    qs_v2_title:'Technical excellence',qs_v2_desc:'We represent only technology that meets the highest standards of the global market. No compromises on quality.',
+    qs_v3_title:'Human service',qs_v3_desc:'Behind every solution are real people. We support our clients with closeness and real responses, not automated support.',
+    qs_v4_title:'Continuous education',qs_v4_desc:'The best defense is knowledge. We invest in training our clients and generating valuable content for the ecosystem.',
+    qs_v5_title:'Responsibility',qs_v5_desc:'We take responsibility for protecting companies\' critical data. We operate with the seriousness that demands, in every decision.',
+    qs_v6_title:'Rigorous innovation',qs_v6_desc:'We adopt new technologies with judgment — we evaluate first, then recommend. Innovation does not replace rigor.',
+    qs_method_label:'How we work',qs_method_title:'A <em>clear</em> methodology in four steps',
+    qs_method_sub:'A process designed for agile implementation, with personalized support at every stage.',
+    qs_s1_title:'Diagnosis',qs_s1_desc:'We assess your current cybersecurity status: vulnerabilities, infrastructure, processes and security culture.',
+    qs_s2_title:'Proposal',qs_s2_desc:'We design a personalized plan with the exact solutions your company needs, without paying for what you don\'t use.',
+    qs_s3_title:'Implementation',qs_s3_desc:'We deploy solutions in less than 72 hours, with team training and optimized configuration.',
+    qs_s4_title:'Monitoring',qs_s4_desc:'Continuous supervision, automatic updates and monthly reports so you\'re always informed.',
+    qs_team_label:'Our team',qs_team_title:'The partners behind <em>C·SHUTZ</em>',qs_team_sub:'Cybersecurity specialists with presence in Mexico.',qs_founder_role:'Co-founding Partner',
+    qs_cta_label:'Next step',qs_cta_title:'Is your company at <em>risk</em>?',
+    qs_cta_sub:'Take our free AI diagnosis and receive a personalized risk report for your company in minutes.',qs_cta_btn:'Free Diagnosis',
+    footer_desc:'World-class enterprise cybersecurity with personalized service in Mexico. European technology, guaranteed results.',
+    footer_empresa:'Company',footer_soluciones:'Solutions',footer_contacto:'Contact',
+    footer_copy:'© 2025 C·SHUTZ. All rights reserved.',footer_made:'Made with <span class="footer-accent">security</span> in Mexico'
+  },
+  de:{
+    nav_qs:'Wer Wir Sind',nav_qh:'Was Wir Tun',nav_ce:'Fallstudien',nav_sos:'Nachhaltigkeit',nav_diag:'Kostenlose Diagnose',mob_diag:'Diagnose',
+    qs_title:'Wer<br><em>Wir Sind</em>',
+    qs_sub:'Unternehmens-Cybersicherheitsspezialisten mit europäischer Technologie und lokaler Präsenz in Mexiko. Unsere Mission ist es, das Wichtigste zu schützen.',
+    qs_prob_label:'Die Realität',qs_prob_title:'Mexikanische Unternehmen sind <em>ungeschützt</em>',
+    qs_prob_sub:'91% der Unternehmen haben mindestens einen Cybersicherheitsvorfall erlitten. Die Frage ist nicht ob Ihr Unternehmen angegriffen wird, sondern wann.',
+    qs_prob_note:'Die durchschnittlichen Kosten eines Cyberangriffs auf ein KMU in Mexiko übersteigen 2 Millionen Pesos. Prävention kostet 10-mal weniger.',
+    qs_stat1:'Unternehmen haben kein aktives Sicherheitsprotokoll',qs_stat2:'haben im letzten Jahr einen Sicherheitsvorfall erlebt',
+    qs_stat3:'günstiger ist Prävention vs. Erholung von einem Angriff',qs_stat4:'durchschnittliche Zeit zur Erkennung einer Sicherheitsverletzung ohne Monitoring',
+    qs_mv_label:'Unser Daseinszweck',qs_mission_lbl:'Mission',qs_mission_title:'Mexikanische Unternehmen schützen',
+    qs_mission_body:'Unsere Mission ist es, den Zugang zu erstklassiger Cybersicherheit für KMU in Mexiko zu demokratisieren. Wir vertreiben und verwalten modernste europäische Technologie — Hornetsecurity und G DATA — mit menschlicher Begleitung, auf Spanisch und angepasst an die Realität jeder Organisation.<br><br>Wir glauben, dass kein Unternehmen wegen mangelndem Wissen oder Budget ungeschützt bleiben sollte. C·SHUTZ ist die Brücke zwischen der fortschrittlichsten Technologie der Welt und den Unternehmen, die sie am meisten brauchen.',
+    qs_vision_lbl:'Vision',qs_vision_title:'Cybersicherheits-Referenz in Lateinamerika',
+    qs_vision_body:'Bis 2030 als der vertrauenswürdigste Cybersicherheits-Distributor und -Betreiber in Lateinamerika anerkannt zu werden. Ein Unternehmen, das nicht nur Technologie verkauft, sondern eine Kultur der digitalen Sicherheit aufbaut.<br><br>Wir stellen uns ein lateinamerikanisches Unternehmensökosystem vor, in dem Cybersicherheit ein Standard und kein Luxus ist — und C·SHUTZ wird der Motor dieses Wandels sein.',
+    qs_values_label:'Unsere Grundsätze',qs_values_heading:'Die Werte, die<br><em>uns definieren</em>',
+    qs_v1_title:'Vertrauen zuerst',qs_v1_desc:'Cybersicherheit wird auf Vertrauen aufgebaut. Wir sind transparent mit unseren Kunden, Partnern und uns selbst.',
+    qs_v2_title:'Technische Exzellenz',qs_v2_desc:'Wir vertreten ausschließlich Technologie, die die höchsten Standards erfüllt. Keine Kompromisse bei der Qualität.',
+    qs_v3_title:'Menschlicher Service',qs_v3_desc:'Hinter jeder Lösung stehen echte Menschen. Wir begleiten unsere Kunden mit Nähe und echten Antworten, nicht automatisiertem Support.',
+    qs_v4_title:'Kontinuierliche Bildung',qs_v4_desc:'Die beste Verteidigung ist Wissen. Wir investieren in die Schulung unserer Kunden und in wertvolle Inhalte für das Ökosystem.',
+    qs_v5_title:'Verantwortung',qs_v5_desc:'Wir übernehmen die Verantwortung für den Schutz kritischer Unternehmensdaten. Wir agieren mit dem Ernst, den das bei jeder Entscheidung verlangt.',
+    qs_v6_title:'Rigorose Innovation',qs_v6_desc:'Wir übernehmen neue Technologien mit Urteilsvermögen — wir evaluieren zuerst, dann empfehlen wir. Innovation ersetzt keine Strenge.',
+    qs_method_label:'Wie wir arbeiten',qs_method_title:'<em>Klare</em> Methodik in vier Schritten',
+    qs_method_sub:'Ein Prozess für agile Implementierung mit persönlicher Begleitung in jeder Phase.',
+    qs_s1_title:'Diagnose',qs_s1_desc:'Wir bewerten Ihren aktuellen Cybersicherheitsstatus: Schwachstellen, Infrastruktur, Prozesse und Sicherheitskultur.',
+    qs_s2_title:'Vorschlag',qs_s2_desc:'Wir entwerfen einen personalisierten Plan mit den genauen Lösungen, die Ihr Unternehmen braucht, ohne für ungenutzte Dienste zu zahlen.',
+    qs_s3_title:'Implementierung',qs_s3_desc:'Wir implementieren Lösungen in weniger als 72 Stunden, mit Teamschulung und optimierter Konfiguration.',
+    qs_s4_title:'Monitoring',qs_s4_desc:'Kontinuierliche Überwachung, automatische Updates und monatliche Berichte, damit Sie immer informiert sind.',
+    qs_team_label:'Unser Team',qs_team_title:'Die Partner hinter <em>C·SHUTZ</em>',qs_team_sub:'Cybersicherheitsspezialisten mit Präsenz in Mexiko.',qs_founder_role:'Mitgründer',
+    qs_cta_label:'Nächster Schritt',qs_cta_title:'Ist Ihr Unternehmen <em>gefährdet</em>?',
+    qs_cta_sub:'Führen Sie unsere kostenlose KI-Diagnose durch und erhalten Sie in Minuten einen personalisierten Risikobericht.',qs_cta_btn:'Kostenlose Diagnose',
+    footer_desc:'Erstklassige Unternehmens-Cybersicherheit mit personalisiertem Service in Mexiko. Europäische Technologie, garantierte Ergebnisse.',
+    footer_empresa:'Unternehmen',footer_soluciones:'Lösungen',footer_contacto:'Kontakt',
+    footer_copy:'© 2025 C·SHUTZ. Alle Rechte vorbehalten.',footer_made:'Gemacht mit <span class="footer-accent">Sicherheit</span> in Mexiko'
+  },
+  he:{
+    nav_qs:'מי אנחנו',nav_qh:'מה אנחנו עושים',nav_ce:'מקרי מחקר',nav_sos:'קיימות',nav_diag:'אבחון חינמי',mob_diag:'אבחון',
+    qs_title:'מי<br><em>אנחנו</em>',
+    qs_sub:'מומחי אבטחת סייבר לעסקים עם טכנולוגיה אירופאית ונוכחות מקומית במקסיקו. המשימה שלנו היא להגן על מה שחשוב ביותר.',
+    qs_prob_label:'המציאות',qs_prob_title:'חברות מקסיקניות <em>חשופות</em>',
+    qs_prob_sub:'91% מהחברות חוו לפחות אירוע אבטחת סייבר אחד. השאלה אינה אם העסק שלך יותקף, אלא מתי.',
+    qs_prob_note:'העלות הממוצעת של מתקפת סייבר על עסק קטן במקסיקו עולה על 2 מיליון פסו. המניעה עולה פי 10 פחות.',
+    qs_stat1:'חברות ללא פרוטוקול אבטחה פעיל',qs_stat2:'חוו אירוע אבטחה בשנה האחרונה',
+    qs_stat3:'זולה יותר המניעה לעומת ההתאוששות ממתקפה',qs_stat4:'זמן ממוצע לגילוי פרצה ללא ניטור',
+    qs_mv_label:'הסיבה לקיומנו',qs_mission_lbl:'משימה',qs_mission_title:'להגן על עסקים מקסיקניים',
+    qs_mission_body:'המשימה שלנו היא להנגיש אבטחת סייבר ברמה עולמית לעסקים קטנים ובינוניים במקסיקו. אנו מפיצים ומנהלים טכנולוגיה אירופאית מתקדמת — Hornetsecurity ו-G DATA — עם ליווי אנושי, בספרדית, מותאם למציאות של כל ארגון.<br><br>אנו מאמינים שאף חברה לא צריכה להישאר ללא הגנה בגלל חוסר ידע או תקציב. C·SHUTZ הוא הגשר בין הטכנולוגיה המתקדמת בעולם לחברות שזקוקות לה ביותר.',
+    qs_vision_lbl:'חזון',qs_vision_title:'מובילי אבטחת סייבר בלטינית אמריקה',
+    qs_vision_body:'עד 2030, להיות מוכרים כמפיץ ומפעיל אבטחת הסייבר המהימן ביותר בלטינית אמריקה. חברה שלא רק מוכרת טכנולוגיה, אלא בונה תרבות אבטחה דיגיטלית בארגונים.<br><br>אנו מדמיינים מערכת עסקית שבה אבטחת הסייבר היא סטנדרט ולא מותרות — ו-C·SHUTZ יהיה המנוע של השינוי הזה.',
+    qs_values_label:'העקרונות שלנו',qs_values_heading:'הערכים שמגדירים<br><em>אותנו</em>',
+    qs_v1_title:'אמון מעל הכל',qs_v1_desc:'אבטחת סייבר נבנית על אמון. אנו שקופים עם לקוחותינו, שותפינו ועם עצמנו.',
+    qs_v2_title:'מצוינות טכנית',qs_v2_desc:'אנו מייצגים רק טכנולוגיה העומדת בסטנדרטים הגבוהים ביותר. ללא פשרות באיכות.',
+    qs_v3_title:'שירות אנושי',qs_v3_desc:'מאחורי כל פתרון עומדים אנשים אמיתיים. אנו מלווים את לקוחותינו בקרבה ובמענה אמיתי, לא בתמיכה אוטומטית.',
+    qs_v4_title:'למידה מתמשכת',qs_v4_desc:'ההגנה הטובה ביותר היא ידע. אנו משקיעים בהכשרת לקוחותינו וביצירת תוכן בעל ערך.',
+    qs_v5_title:'אחריות',qs_v5_desc:'אנו לוקחים אחריות על הגנת נתונים קריטיים של חברות. אנו פועלים ברצינות שזה דורש, בכל החלטה.',
+    qs_v6_title:'חדשנות מושכלת',qs_v6_desc:'אנו מאמצים טכנולוגיות חדשות בשיפוט — קודם מעריכים, אחר כך ממליצים. חדשנות לא מחליפה דיוק.',
+    qs_method_label:'איך אנחנו עובדים',qs_method_title:'מתודולוגיה <em>ברורה</em> בארבעה שלבים',
+    qs_method_sub:'תהליך מתוכנן ליישום זריז, עם ליווי אישי בכל שלב.',
+    qs_s1_title:'אבחון',qs_s1_desc:'אנו מעריכים את מצב אבטחת הסייבר הנוכחי שלך: פגיעויות, תשתית, תהליכים ותרבות אבטחה.',
+    qs_s2_title:'הצעה',qs_s2_desc:'אנו מעצבים תוכנית מותאמת אישית עם הפתרונות המדויקים שהחברה שלך צריכה, ללא תשלום על מה שלא תשתמש בו.',
+    qs_s3_title:'יישום',qs_s3_desc:'אנו פורסים פתרונות תוך פחות מ-72 שעות, עם הכשרת הצוות וקונפיגורציה אופטימלית.',
+    qs_s4_title:'ניטור',qs_s4_desc:'פיקוח מתמיד, עדכונים אוטומטיים ודוחות חודשיים כדי שתהיה תמיד מעודכן.',
+    qs_team_label:'הצוות שלנו',qs_team_title:'השותפים מאחורי <em>C·SHUTZ</em>',qs_team_sub:'מומחי אבטחת סייבר עם נוכחות במקסיקו.',qs_founder_role:'שותף מייסד',
+    qs_cta_label:'הצעד הבא',qs_cta_title:'העסק שלך ב<em>סיכון</em>?',
+    qs_cta_sub:'בצע את האבחון החינמי שלנו עם בינה מלאכותית וקבל בדקות דוח סיכונים מותאם אישית.',qs_cta_btn:'אבחון חינמי',
+    footer_desc:'אבטחת סייבר עסקית ברמה עולמית עם שירות אישי במקסיקו. טכנולוגיה אירופאית, תוצאות מובטחות.',
+    footer_empresa:'חברה',footer_soluciones:'פתרונות',footer_contacto:'יצירת קשר',
+    footer_copy:'© 2025 C·SHUTZ. כל הזכויות שמורות.',footer_made:'נוצר עם <span class="footer-accent">אבטחה</span> במקסיקו'
+  }
+};
+function setLang(lang){
+  const t=TRANSLATIONS[lang];if(!t)return;
+  document.documentElement.lang=lang==='he'?'he':lang==='de'?'de':lang==='en'?'en':'es';
+  document.documentElement.dir=lang==='he'?'rtl':'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{if(t[el.dataset.i18n]!==undefined)el.textContent=t[el.dataset.i18n]});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{if(t[el.dataset.i18nHtml]!==undefined)el.innerHTML=t[el.dataset.i18nHtml]});
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.onclick?.toString().includes(`'${lang}'`)));
+  localStorage.setItem('cshutz_lang',lang);
+}
+document.addEventListener('DOMContentLoaded',()=>{setLang(localStorage.getItem('cshutz_lang')||'es')});
 </script>
 </body>
 </html>

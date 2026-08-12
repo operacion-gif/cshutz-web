@@ -791,8 +791,8 @@ body:not(:hover) #cs-cursor,body:not(:hover) #cs-ring{opacity:0}
 }
 .hero-title{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(3rem,8vw,7rem);
-  font-weight:300;line-height:1.05;
+  font-size:clamp(2.8rem,5.5vw,5rem);
+  font-weight:300;line-height:1.1;
   letter-spacing:-0.01em;
   margin-bottom:24px;
   opacity:0;transform:translateY(30px);
@@ -1510,6 +1510,7 @@ footer{
   white-space:nowrap;
 }
 .nav-drop-panel a:hover{background:var(--accent-dim);color:var(--white)}
+.page-glow{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;height:80vh;background:radial-gradient(ellipse 80% 65% at 50% -10%,rgba(46,204,113,0.14) 0%,rgba(46,204,113,0.05) 40%,transparent 70%);pointer-events:none;z-index:0}
 </style>
 </head>
 <body>
@@ -1526,6 +1527,7 @@ footer{
 
 <!-- Scroll progress -->
 <div id="cs-spb"></div>
+<div class="page-glow"></div>
 
 <!-- Nav -->
 <nav id="cs-nav">

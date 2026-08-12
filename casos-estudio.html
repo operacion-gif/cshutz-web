@@ -115,6 +115,10 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 .footer-bottom{max-width:1200px;margin:48px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 .footer-bottom p{font-size:0.78rem;color:var(--muted)}
 .footer-accent{color:var(--accent)}
+.lang-switcher{display:flex;gap:4px;align-items:center;margin-left:12px}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:4px 9px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
+.lang-btn:hover,.lang-btn.active{color:#2ecc71;border-color:#2ecc71;background:rgba(46,204,113,0.1)}
+.page-glow{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;height:80vh;background:radial-gradient(ellipse 80% 65% at 50% -10%,rgba(46,204,113,0.14) 0%,rgba(46,204,113,0.05) 40%,transparent 70%);pointer-events:none;z-index:0}
 </style>
 </head>
 <body>
@@ -124,6 +128,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <div id="cs-ring"></div>
 <div id="cs-spb"></div>
 <canvas id="page-canvas"></canvas>
+<div class="page-glow"></div>
 
 <!-- WA float -->
 <a class="wa-float" href="https://wa.me/525510532492" target="_blank" title="WhatsApp C·SHUTZ">
@@ -134,29 +139,35 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <nav id="cs-nav">
   <a href="index.html" class="nav-logo">C<span>·</span>SHUTZ</a>
   <div class="nav-links">
-    <a href="quienes-somos.html">Quiénes Somos</a>
-    <a href="que-hacemos.html">Qué Hacemos</a>
-    <a href="casos-estudio.html">Casos de Estudio</a>
-    <a href="sostenibilidad.html">Sostenibilidad</a>
-    <a href="diagnostico.html" class="nav-cta">Diagnóstico Gratuito</a>
+    <a href="quienes-somos.html" data-i18n="nav_qs">Quiénes Somos</a>
+    <a href="que-hacemos.html" data-i18n="nav_qh">Qué Hacemos</a>
+    <a href="casos-estudio.html" data-i18n="nav_ce">Casos de Estudio</a>
+    <a href="sostenibilidad.html" data-i18n="nav_sos">Sostenibilidad</a>
+    <a href="diagnostico.html" class="nav-cta" data-i18n="nav_diag">Diagnóstico Gratuito</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('he')">HE</button>
   </div>
   <button class="nav-burger" id="nav-burger" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- Mobile menu -->
 <div id="cs-mobile-menu">
-  <a href="quienes-somos.html" class="menu-link">Quiénes Somos</a>
-  <a href="que-hacemos.html" class="menu-link">Qué Hacemos</a>
-  <a href="casos-estudio.html" class="menu-link">Casos de Estudio</a>
-  <a href="sostenibilidad.html" class="menu-link">Sostenibilidad</a>
-  <a href="diagnostico.html" class="menu-link">Diagnóstico</a>
+  <a href="quienes-somos.html" class="menu-link" data-i18n="nav_qs">Quiénes Somos</a>
+  <a href="que-hacemos.html" class="menu-link" data-i18n="nav_qh">Qué Hacemos</a>
+  <a href="casos-estudio.html" class="menu-link" data-i18n="nav_ce">Casos de Estudio</a>
+  <a href="sostenibilidad.html" class="menu-link" data-i18n="nav_sos">Sostenibilidad</a>
+  <a href="diagnostico.html" class="menu-link" data-i18n="mob_diag">Diagnóstico</a>
 </div>
 
 <!-- Hero -->
 <div class="page-hero">
-  <div class="page-eyebrow">Investigación y conocimiento</div>
-  <h1 class="page-title">Casos de<br><em>Estudio</em></h1>
-  <p class="page-sub">Análisis econométrico riguroso aplicado a la ciberseguridad empresarial. Investigación original para entender el riesgo digital con herramientas cuantitativas.</p>
+  <div class="page-eyebrow" data-i18n="ce_eyebrow">Investigación y conocimiento</div>
+  <h1 class="page-title" data-i18n-html="ce_title">Casos de<br><em>Estudio</em></h1>
+  <p class="page-sub" data-i18n="ce_sub">Análisis econométrico riguroso aplicado a la ciberseguridad empresarial. Investigación original para entender el riesgo digital con herramientas cuantitativas.</p>
 </div>
 
 <div class="section-divider"></div>
@@ -165,31 +176,31 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <div class="about-section">
   <div class="about-box">
     <div class="about-main">
-      <div class="about-label">Sobre el departamento</div>
-      <h2 class="about-heading">Ciberseguridad con fundamento económico</h2>
-      <p class="about-body">El Departamento Académico de C·SHUTZ es el espacio donde la econometría y la ciberseguridad convergen. Publicamos investigación original que cuantifica el riesgo digital, modela el impacto económico de los ciberataques y evalúa la efectividad de las soluciones de seguridad en contextos empresariales reales.<br><br>Nuestro objetivo es llenar el vacío entre la práctica de seguridad y el análisis cuantitativo riguroso — generando evidencia que ayude a las empresas a tomar mejores decisiones sobre inversión en ciberseguridad.</p>
+      <div class="about-label" data-i18n="ce_about_label">Sobre el departamento</div>
+      <h2 class="about-heading" data-i18n="ce_about_heading">Ciberseguridad con fundamento económico</h2>
+      <p class="about-body" data-i18n-html="ce_about_body">El Departamento Académico de C·SHUTZ es el espacio donde la econometría y la ciberseguridad convergen. Publicamos investigación original que cuantifica el riesgo digital, modela el impacto económico de los ciberataques y evalúa la efectividad de las soluciones de seguridad en contextos empresariales reales.<br><br>Nuestro objetivo es llenar el vacío entre la práctica de seguridad y el análisis cuantitativo riguroso — generando evidencia que ayude a las empresas a tomar mejores decisiones sobre inversión en ciberseguridad.</p>
     </div>
     <div class="about-author">
       <div class="author-avatar">PP</div>
       <div class="author-name">Patricio Perez</div>
       <div class="author-role">Socio Co-fundador · Investigador</div>
-      <p class="author-desc">Especialista en economía cuantitativa y ciberseguridad empresarial. Aplica modelos econométricos al análisis del riesgo digital.</p>
+      <p class="author-desc" data-i18n="ce_author_desc">Especialista en economía cuantitativa y ciberseguridad empresarial. Aplica modelos econométricos al análisis del riesgo digital.</p>
     </div>
   </div>
 </div>
 
 <!-- Blog -->
 <div class="blog-section">
-  <div class="section-label">Publicaciones</div>
-  <h2 class="section-heading">Investigación<br><em>reciente</em></h2>
-  <p class="section-sub">Artículos, papers y análisis cuantitativos sobre ciberseguridad, economía del riesgo y seguridad empresarial.</p>
+  <div class="section-label" data-i18n="ce_pubs_label">Publicaciones</div>
+  <h2 class="section-heading" data-i18n-html="ce_pubs_heading">Investigación<br><em>reciente</em></h2>
+  <p class="section-sub" data-i18n="ce_pubs_sub">Artículos, papers y análisis cuantitativos sobre ciberseguridad, economía del riesgo y seguridad empresarial.</p>
 
   <div class="blog-empty">
     <div class="blog-empty-icon">
       <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
     </div>
-    <h3>Próximamente</h3>
-    <p>El primer artículo académico está en preparación. Regresa pronto para leer investigación original sobre econometría aplicada a la ciberseguridad.</p>
+    <h3 data-i18n="ce_soon_h">Próximamente</h3>
+    <p data-i18n="ce_soon_body">El primer artículo académico está en preparación. Regresa pronto para leer investigación original sobre econometría aplicada a la ciberseguridad.</p>
   </div>
 </div>
 
@@ -197,10 +208,10 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="brand-logo">C<span>·</span>SHUTZ</div>
-      <p>Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
+      <p data-i18n="footer_desc">Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
     </div>
     <div class="footer-col">
-      <h4>Empresa</h4>
+      <h4 data-i18n="footer_empresa">Empresa</h4>
       <ul>
         <li><a href="quienes-somos.html">Quiénes Somos</a></li>
         <li><a href="que-hacemos.html">Qué Hacemos</a></li>
@@ -209,7 +220,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Soluciones</h4>
+      <h4 data-i18n="footer_soluciones">Soluciones</h4>
       <ul>
         <li><a href="que-hacemos.html">Hornetsecurity</a></li>
         <li><a href="que-hacemos.html">G DATA</a></li>
@@ -218,7 +229,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer_contacto">Contacto</h4>
       <ul>
         <li><a href="mailto:operacion@cshutz.net">operacion@cshutz.net</a></li>
         <li><a href="mailto:patricio@cshutz.net">patricio@cshutz.net</a></li>
@@ -227,8 +238,8 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 C·SHUTZ. Todos los derechos reservados.</p>
-    <p>Hecho con <span class="footer-accent">seguridad</span> en México</p>
+    <p data-i18n="footer_copy">© 2025 C·SHUTZ. Todos los derechos reservados.</p>
+    <p data-i18n-html="footer_made">Hecho con <span class="footer-accent">seguridad</span> en México</p>
   </div>
 </footer>
 
@@ -258,6 +269,75 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   }
   draw();
 })();
+// LANG SWITCHER
+const TRANSLATIONS={
+  es:{
+    nav_qs:'Quiénes Somos',nav_qh:'Qué Hacemos',nav_ce:'Casos de Estudio',nav_sos:'Sostenibilidad',nav_diag:'Diagnóstico Gratuito',mob_diag:'Diagnóstico',
+    ce_eyebrow:'Investigación y conocimiento',ce_title:'Casos de<br><em>Estudio</em>',
+    ce_sub:'Análisis econométrico riguroso aplicado a la ciberseguridad empresarial. Investigación original para entender el riesgo digital con herramientas cuantitativas.',
+    ce_about_label:'Sobre el departamento',ce_about_heading:'Ciberseguridad con fundamento económico',
+    ce_about_body:'El Departamento Académico de C·SHUTZ es el espacio donde la econometría y la ciberseguridad convergen. Publicamos investigación original que cuantifica el riesgo digital, modela el impacto económico de los ciberataques y evalúa la efectividad de las soluciones de seguridad en contextos empresariales reales.<br><br>Nuestro objetivo es llenar el vacío entre la práctica de seguridad y el análisis cuantitativo riguroso — generando evidencia que ayude a las empresas a tomar mejores decisiones sobre inversión en ciberseguridad.',
+    ce_author_desc:'Especialista en economía cuantitativa y ciberseguridad empresarial. Aplica modelos econométricos al análisis del riesgo digital.',
+    ce_pubs_label:'Publicaciones',ce_pubs_heading:'Investigación<br><em>reciente</em>',
+    ce_pubs_sub:'Artículos, papers y análisis cuantitativos sobre ciberseguridad, economía del riesgo y seguridad empresarial.',
+    ce_soon_h:'Próximamente',ce_soon_body:'El primer artículo académico está en preparación. Regresa pronto para leer investigación original sobre econometría aplicada a la ciberseguridad.',
+    footer_desc:'Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.',
+    footer_empresa:'Empresa',footer_soluciones:'Soluciones',footer_contacto:'Contacto',
+    footer_copy:'© 2025 C·SHUTZ. Todos los derechos reservados.',footer_made:'Hecho con <span class="footer-accent">seguridad</span> en México'
+  },
+  en:{
+    nav_qs:'Who We Are',nav_qh:'What We Do',nav_ce:'Case Studies',nav_sos:'Sustainability',nav_diag:'Free Diagnosis',mob_diag:'Diagnosis',
+    ce_eyebrow:'Research & Knowledge',ce_title:'Case<br><em>Studies</em>',
+    ce_sub:'Rigorous econometric analysis applied to enterprise cybersecurity. Original research to understand digital risk with quantitative tools.',
+    ce_about_label:'About the department',ce_about_heading:'Cybersecurity with economic foundations',
+    ce_about_body:'C·SHUTZ\'s Academic Department is where econometrics and cybersecurity converge. We publish original research that quantifies digital risk, models the economic impact of cyberattacks and evaluates the effectiveness of security solutions in real business contexts.<br><br>Our goal is to fill the gap between security practice and rigorous quantitative analysis — generating evidence that helps companies make better investment decisions in cybersecurity.',
+    ce_author_desc:'Specialist in quantitative economics and enterprise cybersecurity. Applies econometric models to digital risk analysis.',
+    ce_pubs_label:'Publications',ce_pubs_heading:'Recent<br><em>research</em>',
+    ce_pubs_sub:'Articles, papers and quantitative analyses on cybersecurity, risk economics and enterprise security.',
+    ce_soon_h:'Coming Soon',ce_soon_body:'The first academic article is in preparation. Come back soon to read original research on econometrics applied to cybersecurity.',
+    footer_desc:'World-class enterprise cybersecurity with personalized service in Mexico. European technology, guaranteed results.',
+    footer_empresa:'Company',footer_soluciones:'Solutions',footer_contacto:'Contact',
+    footer_copy:'© 2025 C·SHUTZ. All rights reserved.',footer_made:'Made with <span class="footer-accent">security</span> in Mexico'
+  },
+  de:{
+    nav_qs:'Wer Wir Sind',nav_qh:'Was Wir Tun',nav_ce:'Fallstudien',nav_sos:'Nachhaltigkeit',nav_diag:'Kostenlose Diagnose',mob_diag:'Diagnose',
+    ce_eyebrow:'Forschung & Wissen',ce_title:'Fall<br><em>studien</em>',
+    ce_sub:'Rigorose ökonometrische Analyse angewandt auf Unternehmens-Cybersicherheit. Originalforschung zum Verständnis digitaler Risiken mit quantitativen Werkzeugen.',
+    ce_about_label:'Über die Abteilung',ce_about_heading:'Cybersicherheit mit wirtschaftlichem Fundament',
+    ce_about_body:'Die Akademische Abteilung von C·SHUTZ ist der Ort, wo Ökonometrie und Cybersicherheit konvergieren. Wir veröffentlichen Originalforschung, die digitales Risiko quantifiziert, die wirtschaftlichen Auswirkungen von Cyberangriffen modelliert und die Wirksamkeit von Sicherheitslösungen bewertet.<br><br>Unser Ziel ist es, die Lücke zwischen Sicherheitspraxis und rigoroser Quantitativanalyse zu schließen — und Unternehmen zu helfen, bessere Investitionsentscheidungen in Cybersicherheit zu treffen.',
+    ce_author_desc:'Spezialist für quantitative Wirtschaftswissenschaften und Unternehmens-Cybersicherheit. Wendet ökonometrische Modelle auf die digitale Risikoanalyse an.',
+    ce_pubs_label:'Veröffentlichungen',ce_pubs_heading:'Aktuelle<br><em>Forschung</em>',
+    ce_pubs_sub:'Artikel, Papers und quantitative Analysen zu Cybersicherheit, Risikowirtschaft und Unternehmenssicherheit.',
+    ce_soon_h:'Demnächst',ce_soon_body:'Der erste akademische Artikel ist in Vorbereitung. Kommen Sie bald zurück, um Originalforschung zur Ökonometrie angewandt auf Cybersicherheit zu lesen.',
+    footer_desc:'Erstklassige Unternehmens-Cybersicherheit mit personalisiertem Service in Mexiko. Europäische Technologie, garantierte Ergebnisse.',
+    footer_empresa:'Unternehmen',footer_soluciones:'Lösungen',footer_contacto:'Kontakt',
+    footer_copy:'© 2025 C·SHUTZ. Alle Rechte vorbehalten.',footer_made:'Gemacht mit <span class="footer-accent">Sicherheit</span> in Mexiko'
+  },
+  he:{
+    nav_qs:'מי אנחנו',nav_qh:'מה אנחנו עושים',nav_ce:'מקרי מחקר',nav_sos:'קיימות',nav_diag:'אבחון חינמי',mob_diag:'אבחון',
+    ce_eyebrow:'מחקר וידע',ce_title:'מקרי<br><em>מחקר</em>',
+    ce_sub:'ניתוח אקונומטרי קפדני המיושם על אבטחת סייבר עסקית. מחקר מקורי להבנת הסיכון הדיגיטלי עם כלים כמותיים.',
+    ce_about_label:'על המחלקה',ce_about_heading:'אבטחת סייבר עם בסיס כלכלי',
+    ce_about_body:'המחלקה האקדמית של C·SHUTZ היא המקום שבו אקונומטריה ואבטחת סייבר מתלכדות. אנו מפרסמים מחקר מקורי המכמת את הסיכון הדיגיטלי, מדגם את ההשפעה הכלכלית של מתקפות סייבר ומעריך את יעילות פתרונות האבטחה בהקשרים עסקיים אמיתיים.<br><br>מטרתנו היא לגשר על הפער בין פרקטיקת האבטחה לניתוח כמותי קפדני — ולייצר ראיות שיסייעו לעסקים לקבל החלטות השקעה טובות יותר באבטחת סייבר.',
+    ce_author_desc:'מומחה בכלכלה כמותית ואבטחת סייבר עסקית. מיישם מודלים אקונומטריים לניתוח סיכונים דיגיטליים.',
+    ce_pubs_label:'פרסומים',ce_pubs_heading:'מחקר<br><em>עדכני</em>',
+    ce_pubs_sub:'מאמרים, ניירות עמדה וניתוחים כמותיים על אבטחת סייבר, כלכלת סיכונים ואבטחה עסקית.',
+    ce_soon_h:'בקרוב',ce_soon_body:'המאמר האקדמי הראשון בהכנה. חזור בקרוב לקרוא מחקר מקורי על אקונומטריה מיושמת על אבטחת סייבר.',
+    footer_desc:'אבטחת סייבר עסקית ברמה עולמית עם שירות אישי במקסיקו. טכנולוגיה אירופאית, תוצאות מובטחות.',
+    footer_empresa:'חברה',footer_soluciones:'פתרונות',footer_contacto:'יצירת קשר',
+    footer_copy:'© 2025 C·SHUTZ. כל הזכויות שמורות.',footer_made:'נוצר עם <span class="footer-accent">אבטחה</span> במקסיקו'
+  }
+};
+function setLang(lang){
+  const t=TRANSLATIONS[lang];if(!t)return;
+  document.documentElement.lang=lang==='he'?'he':lang==='de'?'de':lang==='en'?'en':'es';
+  document.documentElement.dir=lang==='he'?'rtl':'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{if(t[el.dataset.i18n]!==undefined)el.textContent=t[el.dataset.i18n]});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{if(t[el.dataset.i18nHtml]!==undefined)el.innerHTML=t[el.dataset.i18nHtml]});
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.onclick?.toString().includes(`'${lang}'`)));
+  localStorage.setItem('cshutz_lang',lang);
+}
+document.addEventListener('DOMContentLoaded',()=>{setLang(localStorage.getItem('cshutz_lang')||'es')});
 </script>
 </body>
 </html>

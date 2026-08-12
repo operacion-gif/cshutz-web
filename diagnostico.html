@@ -181,6 +181,10 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 #form-error p{font-size:0.85rem;color:var(--muted-2);margin-bottom:24px}
 .btn-retry{padding:11px 24px;border:1px solid var(--accent);border-radius:980px;color:var(--accent);font-size:0.85rem;font-weight:500;transition:background var(--dur),color var(--dur)}
 .btn-retry:hover{background:var(--accent);color:var(--ink)}
+.lang-switcher{display:flex;gap:4px;align-items:center;margin-left:12px}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:4px 9px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
+.lang-btn:hover,.lang-btn.active{color:#2ecc71;border-color:#2ecc71;background:rgba(46,204,113,0.1)}
+.page-glow{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;height:80vh;background:radial-gradient(ellipse 80% 65% at 50% -10%,rgba(46,204,113,0.14) 0%,rgba(46,204,113,0.05) 40%,transparent 70%);pointer-events:none;z-index:0}
 </style>
 </head>
 <body>
@@ -189,6 +193,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <div id="cs-ring"></div>
 <div id="cs-spb"></div>
 <canvas id="page-canvas"></canvas>
+<div class="page-glow"></div>
 
 <!-- WA float -->
 <a class="wa-float" href="https://wa.me/525510532492" target="_blank" title="WhatsApp C·SHUTZ">
@@ -199,56 +204,62 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <nav id="cs-nav">
   <a href="index.html" class="nav-logo">C<span>·</span>SHUTZ</a>
   <div class="nav-links">
-    <a href="quienes-somos.html">Quiénes Somos</a>
-    <a href="que-hacemos.html">Qué Hacemos</a>
-    <a href="casos-estudio.html">Casos de Estudio</a>
-    <a href="sostenibilidad.html">Sostenibilidad</a>
-    <a href="diagnostico.html" class="nav-cta">Diagnóstico Gratuito</a>
+    <a href="quienes-somos.html" data-i18n="nav_qs">Quiénes Somos</a>
+    <a href="que-hacemos.html" data-i18n="nav_qh">Qué Hacemos</a>
+    <a href="casos-estudio.html" data-i18n="nav_ce">Casos de Estudio</a>
+    <a href="sostenibilidad.html" data-i18n="nav_sos">Sostenibilidad</a>
+    <a href="diagnostico.html" class="nav-cta" data-i18n="nav_diag">Diagnóstico Gratuito</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('he')">HE</button>
   </div>
   <button class="nav-burger" id="nav-burger" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- Mobile menu -->
 <div id="cs-mobile-menu">
-  <a href="quienes-somos.html" class="menu-link">Quiénes Somos</a>
-  <a href="que-hacemos.html" class="menu-link">Qué Hacemos</a>
-  <a href="casos-estudio.html" class="menu-link">Casos de Estudio</a>
-  <a href="sostenibilidad.html" class="menu-link">Sostenibilidad</a>
-  <a href="diagnostico.html" class="menu-link">Diagnóstico</a>
+  <a href="quienes-somos.html" class="menu-link" data-i18n="nav_qs">Quiénes Somos</a>
+  <a href="que-hacemos.html" class="menu-link" data-i18n="nav_qh">Qué Hacemos</a>
+  <a href="casos-estudio.html" class="menu-link" data-i18n="nav_ce">Casos de Estudio</a>
+  <a href="sostenibilidad.html" class="menu-link" data-i18n="nav_sos">Sostenibilidad</a>
+  <a href="diagnostico.html" class="menu-link" data-i18n="mob_diag">Diagnóstico</a>
 </div>
 
 <div class="page-intro">
-  <div class="page-eyebrow">Diagnóstico IA</div>
-  <h1 class="page-heading">Conoce el nivel de riesgo de tu <em>empresa</em></h1>
-  <p class="page-sub">Responde 6 preguntas y nuestra IA analiza tu situación actual. Recibirás un reporte personalizado en minutos — completamente gratis.</p>
+  <div class="page-eyebrow" data-i18n="diag_eyebrow">Diagnóstico IA</div>
+  <h1 class="page-heading" data-i18n-html="diag_heading">Conoce el nivel de riesgo de tu <em>empresa</em></h1>
+  <p class="page-sub" data-i18n="diag_sub">Responde 6 preguntas y nuestra IA analiza tu situación actual. Recibirás un reporte personalizado en minutos — completamente gratis.</p>
 </div>
 
 <section id="diagnostico">
   <div class="diag-inner">
     <div class="diag-left reveal">
-      <div class="section-label">Diagnóstico IA</div>
-      <h2 class="section-title">Conoce el nivel de riesgo de tu <em>empresa</em></h2>
-      <p class="section-sub" style="margin:20px 0 40px">Responde 6 preguntas y nuestra IA analiza tu situación actual. Recibirás un reporte personalizado en minutos — completamente gratis.</p>
+      <div class="section-label" data-i18n="diag_eyebrow">Diagnóstico IA</div>
+      <h2 class="section-title" data-i18n-html="diag_heading">Conoce el nivel de riesgo de tu <em>empresa</em></h2>
+      <p class="section-sub" style="margin:20px 0 40px" data-i18n="diag_sub">Responde 6 preguntas y nuestra IA analiza tu situación actual. Recibirás un reporte personalizado en minutos — completamente gratis.</p>
       <div class="diag-benefits">
         <div class="diag-benefit">
           <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M12 11V7"/><circle cx="12" cy="5" r="2"/><path d="M8 15h.01M16 15h.01"/></svg></div>
           <div class="benefit-text">
-            <h4>Análisis con Inteligencia Artificial</h4>
-            <p>Claude AI analiza tu perfil de riesgo y genera recomendaciones específicas para tu industria y tamaño de empresa.</p>
+            <h4 data-i18n="diag_b1_title">Análisis con Inteligencia Artificial</h4>
+            <p data-i18n="diag_b1_body">Claude AI analiza tu perfil de riesgo y genera recomendaciones específicas para tu industria y tamaño de empresa.</p>
           </div>
         </div>
         <div class="diag-benefit">
           <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></div>
           <div class="benefit-text">
-            <h4>Reporte en tu correo</h4>
-            <p>Recibes el diagnóstico detallado en tu email para compartirlo con tu equipo directivo y consejo.</p>
+            <h4 data-i18n="diag_b2_title">Reporte en tu correo</h4>
+            <p data-i18n="diag_b2_body">Recibes el diagnóstico detallado en tu email para compartirlo con tu equipo directivo y consejo.</p>
           </div>
         </div>
         <div class="diag-benefit">
           <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
           <div class="benefit-text">
-            <h4>Seguimiento personalizado</h4>
-            <p>Un especialista te contactará para resolver dudas y presentar soluciones adaptadas a tu empresa.</p>
+            <h4 data-i18n="diag_b3_title">Seguimiento personalizado</h4>
+            <p data-i18n="diag_b3_body">Un especialista te contactará para resolver dudas y presentar soluciones adaptadas a tu empresa.</p>
           </div>
         </div>
       </div>
@@ -256,8 +267,8 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 
     <div class="diag-form-wrap reveal">
       <div class="form-header">
-        <h3>Diagnóstico de Seguridad</h3>
-        <p>Análisis personalizado impulsado por IA · 3 minutos</p>
+        <h3 data-i18n="diag_form_title">Diagnóstico de Seguridad</h3>
+        <p data-i18n="diag_form_sub">Análisis personalizado impulsado por IA · 3 minutos</p>
       </div>
       <div class="step-indicator" id="step-indicator">
         <div class="step-dot active" id="dot-1">1</div>
@@ -269,83 +280,83 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       <div class="form-body">
         <div class="form-step active" id="step-1">
           <div class="field">
-            <label>Nombre completo</label>
+            <label data-i18n="diag_lbl_name">Nombre completo</label>
             <input type="text" id="f-name" placeholder="Tu nombre">
           </div>
           <div class="field">
-            <label>Correo electrónico</label>
+            <label data-i18n="diag_lbl_email">Correo electrónico</label>
             <input type="email" id="f-email" placeholder="tu@empresa.com">
           </div>
           <div class="field-row">
             <div class="field">
-              <label>Empresa</label>
+              <label data-i18n="diag_lbl_company">Empresa</label>
               <input type="text" id="f-company" placeholder="Nombre de tu empresa">
             </div>
             <div class="field">
-              <label>Teléfono</label>
+              <label data-i18n="diag_lbl_phone">Teléfono</label>
               <input type="tel" id="f-phone" placeholder="+52 55 0000 0000">
             </div>
           </div>
           <div class="form-nav">
             <button class="btn-next" onclick="nextStep(1)">
-              Continuar
+              <span data-i18n="diag_btn_continue">Continuar</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
         </div>
         <div class="form-step" id="step-2">
           <div class="field">
-            <label>Sector / Industria</label>
+            <label data-i18n="diag_lbl_sector">Sector / Industria</label>
             <select id="f-sector">
               <option value="" disabled selected>Selecciona tu sector</option>
               <option>Manufactura</option><option>Servicios Financieros</option><option>Salud / Clínicas</option><option>Legal / Despacho</option><option>Retail / Comercio</option><option>Tecnología</option><option>Educación</option><option>Gobierno / Público</option><option>Logística / Transporte</option><option>Otro</option>
             </select>
           </div>
           <div class="field">
-            <label>Número de empleados</label>
+            <label data-i18n="diag_lbl_size">Número de empleados</label>
             <select id="f-size">
               <option value="" disabled selected>Tamaño de la empresa</option>
               <option>1–10 empleados</option><option>11–50 empleados</option><option>51–200 empleados</option><option>201–500 empleados</option><option>Más de 500</option>
             </select>
           </div>
           <div class="field">
-            <label>¿Tienen antivirus o protección activa?</label>
+            <label data-i18n="diag_lbl_antivirus">¿Tienen antivirus o protección activa?</label>
             <select id="f-antivirus">
               <option value="" disabled selected>Selecciona una opción</option>
               <option>Sí, solución empresarial</option><option>Sí, pero gratuita o básica</option><option>No tenemos</option><option>No sé / No estoy seguro</option>
             </select>
           </div>
           <div class="form-nav">
-            <button class="btn-prev" onclick="prevStep(2)">Atrás</button>
+            <button class="btn-prev" onclick="prevStep(2)" data-i18n="diag_btn_back">Atrás</button>
             <button class="btn-next" onclick="nextStep(2)">
-              Continuar
+              <span data-i18n="diag_btn_continue">Continuar</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
         </div>
         <div class="form-step" id="step-3">
           <div class="field">
-            <label>¿Han tenido incidentes de seguridad?</label>
+            <label data-i18n="diag_lbl_incidents">¿Han tenido incidentes de seguridad?</label>
             <select id="f-incidents">
               <option value="" disabled selected>Selecciona una opción</option>
               <option>Sí, en el último año</option><option>Sí, hace más de un año</option><option>No que sepamos</option><option>Preferimos no decir</option>
             </select>
           </div>
           <div class="field">
-            <label>¿Tienen trabajo remoto o híbrido?</label>
+            <label data-i18n="diag_lbl_remote">¿Tienen trabajo remoto o híbrido?</label>
             <select id="f-remote">
               <option value="" disabled selected>Selecciona una opción</option>
               <option>Sí, la mayoría trabaja remoto</option><option>Sí, modelo híbrido</option><option>No, todos en oficina</option>
             </select>
           </div>
           <div class="field">
-            <label>¿Cuál es tu mayor preocupación? (opcional)</label>
+            <label data-i18n="diag_lbl_concern">¿Cuál es tu mayor preocupación? (opcional)</label>
             <textarea id="f-concern" placeholder="Ej: proteger el correo, evitar ransomware, cumplimiento legal..."></textarea>
           </div>
           <div class="form-nav">
-            <button class="btn-prev" onclick="prevStep(3)">Atrás</button>
+            <button class="btn-prev" onclick="prevStep(3)" data-i18n="diag_btn_back">Atrás</button>
             <button class="btn-submit" onclick="submitDiagnosis()">
-              Analizar con IA
+              <span data-i18n="diag_btn_submit">Analizar con IA</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l6 6-6 6M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
@@ -355,18 +366,18 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
         <div class="analyzing-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4v4M14 20v4M4 14H8M20 14h4M6.34 6.34l2.83 2.83M18.83 18.83l2.83 2.83M6.34 21.66l2.83-2.83M18.83 9.17l2.83-2.83" stroke="#2ecc71" stroke-width="2" stroke-linecap="round"/></svg>
         </div>
-        <h3>Analizando tu empresa<span class="analyzing-dots"></span></h3>
-        <p>La IA está procesando tu perfil de riesgo.<br>Esto tomará unos segundos.</p>
+        <h3 data-i18n-html="diag_analyzing_h">Analizando tu empresa<span class="analyzing-dots"></span></h3>
+        <p data-i18n-html="diag_analyzing_body">La IA está procesando tu perfil de riesgo.<br>Esto tomará unos segundos.</p>
       </div>
       <div id="form-result">
         <div class="result-body" id="result-text"></div>
-        <p class="result-note">Hemos enviado este reporte a tu correo.<br>Un especialista de C·SHUTZ se pondrá en contacto contigo en las próximas 24 horas.</p>
+        <p class="result-note" data-i18n-html="diag_result_note">Hemos enviado este reporte a tu correo.<br>Un especialista de C·SHUTZ se pondrá en contacto contigo en las próximas 24 horas.</p>
       </div>
       <div id="form-error">
         <div class="error-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-        <h3>Algo salió mal</h3>
-        <p id="error-msg">Hubo un error al procesar tu diagnóstico. Por favor intenta de nuevo.</p>
-        <button class="btn-retry" onclick="resetForm()">Intentar de nuevo</button>
+        <h3 data-i18n="diag_error_title">Algo salió mal</h3>
+        <p id="error-msg" data-i18n="diag_error_body">Hubo un error al procesar tu diagnóstico. Por favor intenta de nuevo.</p>
+        <button class="btn-retry" onclick="resetForm()" data-i18n="diag_btn_retry">Intentar de nuevo</button>
       </div>
     </div>
   </div>
@@ -376,10 +387,10 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="brand-logo">C<span>·</span>SHUTZ</div>
-      <p>Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
+      <p data-i18n="footer_desc">Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.</p>
     </div>
     <div class="footer-col">
-      <h4>Empresa</h4>
+      <h4 data-i18n="footer_empresa">Empresa</h4>
       <ul>
         <li><a href="quienes-somos.html">Quiénes Somos</a></li>
         <li><a href="que-hacemos.html">Qué Hacemos</a></li>
@@ -388,7 +399,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Soluciones</h4>
+      <h4 data-i18n="footer_soluciones">Soluciones</h4>
       <ul>
         <li><a href="que-hacemos.html">Hornetsecurity</a></li>
         <li><a href="que-hacemos.html">G DATA</a></li>
@@ -397,7 +408,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer_contacto">Contacto</h4>
       <ul>
         <li><a href="mailto:operacion@cshutz.net">operacion@cshutz.net</a></li>
         <li><a href="mailto:patricio@cshutz.net">patricio@cshutz.net</a></li>
@@ -406,8 +417,8 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 C·SHUTZ. Todos los derechos reservados.</p>
-    <p>Hecho con <span class="footer-accent">seguridad</span> en México</p>
+    <p data-i18n="footer_copy">© 2025 C·SHUTZ. Todos los derechos reservados.</p>
+    <p data-i18n-html="footer_made">Hecho con <span class="footer-accent">seguridad</span> en México</p>
   </div>
 </footer>
 
@@ -509,6 +520,95 @@ function resetForm(){document.getElementById('form-error').style.display='none';
   }
   draw();
 })();
+// LANG SWITCHER
+const TRANSLATIONS={
+  es:{
+    nav_qs:'Quiénes Somos',nav_qh:'Qué Hacemos',nav_ce:'Casos de Estudio',nav_sos:'Sostenibilidad',nav_diag:'Diagnóstico Gratuito',mob_diag:'Diagnóstico',
+    diag_eyebrow:'Diagnóstico IA',diag_heading:'Conoce el nivel de riesgo de tu <em>empresa</em>',
+    diag_sub:'Responde 6 preguntas y nuestra IA analiza tu situación actual. Recibirás un reporte personalizado en minutos — completamente gratis.',
+    diag_b1_title:'Análisis con Inteligencia Artificial',diag_b1_body:'Claude AI analiza tu perfil de riesgo y genera recomendaciones específicas para tu industria y tamaño de empresa.',
+    diag_b2_title:'Reporte en tu correo',diag_b2_body:'Recibes el diagnóstico detallado en tu email para compartirlo con tu equipo directivo y consejo.',
+    diag_b3_title:'Seguimiento personalizado',diag_b3_body:'Un especialista te contactará para resolver dudas y presentar soluciones adaptadas a tu empresa.',
+    diag_form_title:'Diagnóstico de Seguridad',diag_form_sub:'Análisis personalizado impulsado por IA · 3 minutos',
+    diag_lbl_name:'Nombre completo',diag_lbl_email:'Correo electrónico',diag_lbl_company:'Empresa',diag_lbl_phone:'Teléfono',
+    diag_lbl_sector:'Sector / Industria',diag_lbl_size:'Número de empleados',diag_lbl_antivirus:'¿Tienen antivirus o protección activa?',
+    diag_lbl_incidents:'¿Han tenido incidentes de seguridad?',diag_lbl_remote:'¿Tienen trabajo remoto o híbrido?',diag_lbl_concern:'¿Cuál es tu mayor preocupación? (opcional)',
+    diag_btn_continue:'Continuar',diag_btn_back:'Atrás',diag_btn_submit:'Analizar con IA',
+    diag_analyzing_h:'Analizando tu empresa<span class="analyzing-dots"></span>',diag_analyzing_body:'La IA está procesando tu perfil de riesgo.<br>Esto tomará unos segundos.',
+    diag_result_note:'Hemos enviado este reporte a tu correo.<br>Un especialista de C·SHUTZ se pondrá en contacto contigo en las próximas 24 horas.',
+    diag_error_title:'Algo salió mal',diag_error_body:'Hubo un error al procesar tu diagnóstico. Por favor intenta de nuevo.',diag_btn_retry:'Intentar de nuevo',
+    footer_desc:'Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.',
+    footer_empresa:'Empresa',footer_soluciones:'Soluciones',footer_contacto:'Contacto',
+    footer_copy:'© 2025 C·SHUTZ. Todos los derechos reservados.',footer_made:'Hecho con <span class="footer-accent">seguridad</span> en México'
+  },
+  en:{
+    nav_qs:'Who We Are',nav_qh:'What We Do',nav_ce:'Case Studies',nav_sos:'Sustainability',nav_diag:'Free Diagnosis',mob_diag:'Diagnosis',
+    diag_eyebrow:'AI Diagnosis',diag_heading:'Know your <em>company\'s</em> risk level',
+    diag_sub:'Answer 6 questions and our AI analyzes your current situation. You\'ll receive a personalized report in minutes — completely free.',
+    diag_b1_title:'Artificial Intelligence Analysis',diag_b1_body:'Claude AI analyzes your risk profile and generates specific recommendations for your industry and company size.',
+    diag_b2_title:'Report in your inbox',diag_b2_body:'Receive the detailed diagnosis in your email to share with your executive team and board.',
+    diag_b3_title:'Personalized follow-up',diag_b3_body:'A specialist will contact you to resolve questions and present solutions tailored to your company.',
+    diag_form_title:'Security Diagnosis',diag_form_sub:'AI-powered personalized analysis · 3 minutes',
+    diag_lbl_name:'Full name',diag_lbl_email:'Email address',diag_lbl_company:'Company',diag_lbl_phone:'Phone',
+    diag_lbl_sector:'Sector / Industry',diag_lbl_size:'Number of employees',diag_lbl_antivirus:'Do you have antivirus or active protection?',
+    diag_lbl_incidents:'Have you had security incidents?',diag_lbl_remote:'Do you have remote or hybrid work?',diag_lbl_concern:'What is your main concern? (optional)',
+    diag_btn_continue:'Continue',diag_btn_back:'Back',diag_btn_submit:'Analyze with AI',
+    diag_analyzing_h:'Analyzing your company<span class="analyzing-dots"></span>',diag_analyzing_body:'The AI is processing your risk profile.<br>This will take a few seconds.',
+    diag_result_note:'We have sent this report to your email.<br>A C·SHUTZ specialist will contact you within the next 24 hours.',
+    diag_error_title:'Something went wrong',diag_error_body:'There was an error processing your diagnosis. Please try again.',diag_btn_retry:'Try again',
+    footer_desc:'World-class enterprise cybersecurity with personalized service in Mexico. European technology, guaranteed results.',
+    footer_empresa:'Company',footer_soluciones:'Solutions',footer_contacto:'Contact',
+    footer_copy:'© 2025 C·SHUTZ. All rights reserved.',footer_made:'Made with <span class="footer-accent">security</span> in Mexico'
+  },
+  de:{
+    nav_qs:'Wer Wir Sind',nav_qh:'Was Wir Tun',nav_ce:'Fallstudien',nav_sos:'Nachhaltigkeit',nav_diag:'Kostenlose Diagnose',mob_diag:'Diagnose',
+    diag_eyebrow:'KI-Diagnose',diag_heading:'Kennen Sie das Risikoniveau Ihres <em>Unternehmens</em>',
+    diag_sub:'Beantworten Sie 6 Fragen und unsere KI analysiert Ihre aktuelle Situation. Sie erhalten in Minuten einen personalisierten Bericht — völlig kostenlos.',
+    diag_b1_title:'Analyse mit Künstlicher Intelligenz',diag_b1_body:'Claude AI analysiert Ihr Risikoprofil und generiert spezifische Empfehlungen für Ihre Branche und Unternehmensgröße.',
+    diag_b2_title:'Bericht in Ihrer E-Mail',diag_b2_body:'Sie erhalten die detaillierte Diagnose per E-Mail, um sie mit Ihrem Führungsteam und Vorstand zu teilen.',
+    diag_b3_title:'Persönliche Nachverfolgung',diag_b3_body:'Ein Spezialist wird sich mit Ihnen in Verbindung setzen, um Fragen zu klären und auf Ihr Unternehmen zugeschnittene Lösungen vorzustellen.',
+    diag_form_title:'Sicherheitsdiagnose',diag_form_sub:'KI-gestützte personalisierte Analyse · 3 Minuten',
+    diag_lbl_name:'Vollständiger Name',diag_lbl_email:'E-Mail-Adresse',diag_lbl_company:'Unternehmen',diag_lbl_phone:'Telefon',
+    diag_lbl_sector:'Sektor / Branche',diag_lbl_size:'Anzahl der Mitarbeiter',diag_lbl_antivirus:'Haben Sie Antivirus oder aktiven Schutz?',
+    diag_lbl_incidents:'Hatten Sie Sicherheitsvorfälle?',diag_lbl_remote:'Haben Sie Remote- oder Hybridarbeit?',diag_lbl_concern:'Was ist Ihr größtes Anliegen? (optional)',
+    diag_btn_continue:'Weiter',diag_btn_back:'Zurück',diag_btn_submit:'Mit KI analysieren',
+    diag_analyzing_h:'Analysiere Ihr Unternehmen<span class="analyzing-dots"></span>',diag_analyzing_body:'Die KI verarbeitet Ihr Risikoprofil.<br>Dies dauert einige Sekunden.',
+    diag_result_note:'Wir haben diesen Bericht an Ihre E-Mail gesendet.<br>Ein C·SHUTZ-Spezialist wird sich innerhalb der nächsten 24 Stunden mit Ihnen in Verbindung setzen.',
+    diag_error_title:'Etwas ist schiefgelaufen',diag_error_body:'Bei der Verarbeitung Ihrer Diagnose ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',diag_btn_retry:'Erneut versuchen',
+    footer_desc:'Erstklassige Unternehmens-Cybersicherheit mit personalisiertem Service in Mexiko. Europäische Technologie, garantierte Ergebnisse.',
+    footer_empresa:'Unternehmen',footer_soluciones:'Lösungen',footer_contacto:'Kontakt',
+    footer_copy:'© 2025 C·SHUTZ. Alle Rechte vorbehalten.',footer_made:'Gemacht mit <span class="footer-accent">Sicherheit</span> in Mexiko'
+  },
+  he:{
+    nav_qs:'מי אנחנו',nav_qh:'מה אנחנו עושים',nav_ce:'מקרי מחקר',nav_sos:'קיימות',nav_diag:'אבחון חינמי',mob_diag:'אבחון',
+    diag_eyebrow:'אבחון בינה מלאכותית',diag_heading:'הכר את רמת הסיכון של <em>החברה שלך</em>',
+    diag_sub:'ענה על 6 שאלות והבינה המלאכותית שלנו תנתח את המצב הנוכחי שלך. תקבל דוח מותאם אישית תוך דקות — בחינם לחלוטין.',
+    diag_b1_title:'ניתוח עם בינה מלאכותית',diag_b1_body:'Claude AI מנתח את פרופיל הסיכון שלך ומייצר המלצות ספציפיות לתעשייה ולגודל החברה שלך.',
+    diag_b2_title:'דוח לתיבת הדואר שלך',diag_b2_body:'קבל את האבחון המפורט באימייל שלך לשיתוף עם הצוות הניהולי ומועצת המנהלים.',
+    diag_b3_title:'מעקב אישי',diag_b3_body:'מומחה יצור איתך קשר לפתרון שאלות והצגת פתרונות המותאמים לחברה שלך.',
+    diag_form_title:'אבחון אבטחה',diag_form_sub:'ניתוח מותאם אישית מבוסס בינה מלאכותית · 3 דקות',
+    diag_lbl_name:'שם מלא',diag_lbl_email:'כתובת אימייל',diag_lbl_company:'חברה',diag_lbl_phone:'טלפון',
+    diag_lbl_sector:'מגזר / תעשייה',diag_lbl_size:'מספר עובדים',diag_lbl_antivirus:'האם יש לכם אנטי-וירוס או הגנה פעילה?',
+    diag_lbl_incidents:'האם היו לכם אירועי אבטחה?',diag_lbl_remote:'האם יש לכם עבודה מרחוק או היברידית?',diag_lbl_concern:'מה הדאגה הגדולה ביותר שלך? (אופציונלי)',
+    diag_btn_continue:'המשך',diag_btn_back:'חזרה',diag_btn_submit:'נתח עם בינה מלאכותית',
+    diag_analyzing_h:'מנתח את החברה שלך<span class="analyzing-dots"></span>',diag_analyzing_body:'הבינה המלאכותית מעבדת את פרופיל הסיכון שלך.<br>זה ייקח כמה שניות.',
+    diag_result_note:'שלחנו את הדוח הזה לאימייל שלך.<br>מומחה C·SHUTZ ייצור איתך קשר תוך 24 השעות הקרובות.',
+    diag_error_title:'משהו השתבש',diag_error_body:'אירעה שגיאה בעת עיבוד האבחון שלך. אנא נסה שנית.',diag_btn_retry:'נסה שנית',
+    footer_desc:'אבטחת סייבר עסקית ברמה עולמית עם שירות אישי במקסיקו. טכנולוגיה אירופאית, תוצאות מובטחות.',
+    footer_empresa:'חברה',footer_soluciones:'פתרונות',footer_contacto:'יצירת קשר',
+    footer_copy:'© 2025 C·SHUTZ. כל הזכויות שמורות.',footer_made:'נוצר עם <span class="footer-accent">אבטחה</span> במקסיקו'
+  }
+};
+function setLang(lang){
+  const t=TRANSLATIONS[lang];if(!t)return;
+  document.documentElement.lang=lang==='he'?'he':lang==='de'?'de':lang==='en'?'en':'es';
+  document.documentElement.dir=lang==='he'?'rtl':'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{if(t[el.dataset.i18n]!==undefined)el.textContent=t[el.dataset.i18n]});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{if(t[el.dataset.i18nHtml]!==undefined)el.innerHTML=t[el.dataset.i18nHtml]});
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.onclick?.toString().includes(`'${lang}'`)));
+  localStorage.setItem('cshutz_lang',lang);
+}
+document.addEventListener('DOMContentLoaded',()=>{setLang(localStorage.getItem('cshutz_lang')||'es')});
 </script>
 </body>
 </html>
