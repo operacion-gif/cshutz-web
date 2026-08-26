@@ -92,9 +92,7 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 /* Packages */
 #packages{background:var(--ink);padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px)}
 .packages-inner{max-width:1200px;margin:0 auto}
-.packages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-@media(max-width:1100px){.packages-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.packages-grid{grid-template-columns:1fr}}
+.packages-grid{display:grid;grid-template-columns:1fr;gap:12px;max-width:600px;margin:0 auto}
 .pkg-card{padding:clamp(24px,3vw,36px);border:1px solid var(--border);border-radius:var(--r-md);background:var(--surface);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--dur),transform var(--dur)}
 .pkg-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--accent);transition:height 0.4s}
 .pkg-card:hover{border-color:rgba(46,204,113,0.3);transform:translateY(-6px)}
@@ -144,60 +142,26 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 
 <div class="page-intro">
   <div class="page-eyebrow">Paquetes</div>
-  <h1 class="page-heading">Protección diseñada para<br><em>cada empresa</em></h1>
-  <p class="page-sub">Desde protección básica hasta seguridad total. Todos los paquetes incluyen soporte en español y configuración inicial.</p>
+  <h1 class="page-heading">Un servicio, infinitas<br><em>configuraciones</em></h1>
+  <p class="page-sub">El Paquete Gestionado se diseña alrededor de tu empresa — no al revés. El diagnóstico de vulnerabilidades es el punto de partida.</p>
 </div>
 
 <section id="packages">
   <div class="packages-inner">
     <div class="packages-grid">
-      <div class="pkg-card reveal">
-        <div class="pkg-name">Escudo<br>Email</div>
-        <p class="pkg-desc">Protección de correo corporativo contra phishing, spam y ransomware. El primer paso esencial para cualquier empresa.</p>
-        <div class="pkg-features">
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Security</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Filtrado anti-spam y anti-phishing con IA</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Protección contra ransomware en email</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Continuidad de correo 99.99% uptime</div>
-        </div>
-        <a href="diagnostico.html" class="pkg-cta">Solicitar Información</a>
-      </div>
       <div class="pkg-card featured reveal">
-        <div class="pkg-badge">Popular</div>
-        <div class="pkg-name">Paquete<br>Empresarial</div>
-        <p class="pkg-desc">Email + protección de dispositivos. La solución más completa para PYMEs mexicanas que manejan información sensible.</p>
-        <div class="pkg-features">
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Security</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Endpoint Protection (antivirus)</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Mobile Device Management</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Security Awareness Training (Hornetsecurity)</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Consola de gestión centralizada</div>
-        </div>
-        <a href="diagnostico.html" class="pkg-cta">Solicitar Información</a>
-      </div>
-      <div class="pkg-card reveal">
-        <div class="pkg-name">Paquete<br>Ejecutivo</div>
-        <p class="pkg-desc">Suite avanzada para empresas que requieren máxima protección, cumplimiento normativo y visibilidad total de amenazas.</p>
-        <div class="pkg-features">
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Advanced Threat Protection</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Endpoint Detection &amp; Response (EDR)</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Archiving 10 años</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Patch Management</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reportes ejecutivos mensuales</div>
-        </div>
-        <a href="diagnostico.html" class="pkg-cta">Solicitar Información</a>
-      </div>
-      <div class="pkg-card reveal">
+        <div class="pkg-badge">Nuestro Servicio</div>
         <div class="pkg-name">Paquete<br>Gestionado</div>
-        <p class="pkg-desc">Un servicio completamente a la medida de tu empresa. El paso 1 es un análisis y diagnóstico de vulnerabilidades de tu infraestructura — sin compromisos.</p>
+        <p class="pkg-desc">Un servicio de ciberseguridad completamente a la medida de tu empresa. El punto de partida es un diagnóstico de vulnerabilidades — una prueba técnica que simula un ataque real con herramientas ESET para identificar brechas exactas en tu infraestructura. A partir de ahí, diseñamos el alcance del servicio contigo.<br><br>Si tu empresa cuenta con equipo de TI interno, ofrecemos una vía de distribución de software solamente, con capacitación incluida para tu equipo. Si no, operamos el servicio de forma completamente gestionada.</p>
         <div class="pkg-features">
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Análisis de vulnerabilidades inicial</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity + G DATA según necesidad</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Gestión activa y monitoreo continuo</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reuniones de seguimiento periódicas</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Soporte dedicado</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Diagnóstico de vulnerabilidades con hackeo simulado (ESET)</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Track A: distribución de software + capacitación a tu equipo de TI</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Track B: distribución + servicio gestionado completo 24/7</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity + G DATA según resultados del diagnóstico</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reporte ejecutivo de una página — no 50 páginas de tecnicismos</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Soporte dedicado con respuesta garantizada en 4 horas</div>
         </div>
-        <a href="diagnostico.html" class="pkg-cta">Agendar Diagnóstico</a>
+        <a href="diagnostico.html" class="pkg-cta">Agendar Diagnóstico Gratuito</a>
       </div>
     </div>
   </div>
@@ -219,10 +183,8 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
     <div class="footer-col">
       <h4>Paquetes</h4>
       <ul>
-        <li><a href="paquetes.html">Escudo Email</a></li>
-        <li><a href="paquetes.html">Paquete Empresarial</a></li>
-        <li><a href="paquetes.html">Paquete Ejecutivo</a></li>
         <li><a href="paquetes.html">Paquete Gestionado</a></li>
+        <li><a href="diagnostico.html">Agendar Diagnóstico</a></li>
       </ul>
     </div>
     <div class="footer-col">
