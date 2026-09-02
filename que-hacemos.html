@@ -83,8 +83,30 @@ body:not(:hover) #cs-cursor,body:not(:hover) #cs-ring{opacity:0}
 #vendors{background:var(--surface);padding:clamp(80px,8vw,120px) clamp(20px,5vw,80px)}
 .vendors-inner{max-width:1200px;margin:0 auto}
 .vendors-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:clamp(40px,6vw,80px);gap:24px;flex-wrap:wrap}
-.vendors-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.vendors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:1000px){.vendors-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.vendors-grid{grid-template-columns:1fr}}
+/* Consultoría Gestionada */
+#consultoria{background:var(--surface);padding:clamp(80px,8vw,120px) clamp(20px,5vw,80px)}
+.consultoria-inner{max-width:1200px;margin:0 auto}
+.consultoria-header{margin-bottom:clamp(40px,6vw,80px)}
+.partner-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid rgba(46,204,113,0.3);border-radius:980px;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.consult-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:1100px){.consult-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.consult-grid{grid-template-columns:1fr}}
+.consult-card{padding:clamp(20px,2.5vw,32px);border:1px solid var(--border);border-radius:var(--r-md);background:var(--ink);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--dur),transform var(--dur)}
+.consult-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
+.consult-card:hover{border-color:rgba(46,204,113,0.35);transform:translateY(-6px)}
+.consult-card:hover::after{transform:scaleX(1)}
+.consult-icon{width:40px;height:40px;background:var(--accent-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;flex-shrink:0}
+.consult-icon svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.consult-type{font-size:0.67rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.consult-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,1.8vw,1.25rem);font-weight:400;margin-bottom:12px;line-height:1.2}
+.consult-desc{font-size:0.82rem;color:var(--muted-2);line-height:1.6;flex:1}
+.consult-eset-note{margin-top:48px;padding:24px 32px;border:1px solid rgba(46,204,113,0.2);border-radius:var(--r-md);background:var(--accent-dim);display:flex;align-items:flex-start;gap:20px}
+.consult-eset-note svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px}
+.consult-eset-note p{font-size:0.9rem;color:rgba(255,255,255,0.7);line-height:1.65}
+.consult-eset-note strong{color:var(--white)}
 .vendor-card{padding:clamp(28px,4vw,48px);border:1px solid var(--border);border-radius:var(--r-lg);background:var(--ink-2);position:relative;overflow:hidden;transition:border-color var(--dur),box-shadow var(--dur)}
 .vendor-card:hover{border-color:rgba(46,204,113,0.25);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
 .vendor-tag{display:inline-block;padding:4px 12px;border:1px solid var(--border);border-radius:980px;font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
@@ -227,6 +249,20 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
           <div class="vendor-feat">Módulo de control de aplicaciones</div>
         </div>
       </div>
+      <div class="vendor-card reveal">
+        <div class="vendor-logo-wrap">
+          <img src="imagenes/logo-eset.svg" alt="ESET" style="height:36px;width:auto">
+        </div>
+        <div class="vendor-tag" data-i18n="qh_eset_tag">Consultoría &amp; MDR</div>
+        <h3 class="vendor-name">ESET</h3>
+        <p class="vendor-desc" data-i18n="qh_eset_desc">Plataforma unificada de ciberseguridad XDR con más de 30 años en el mercado. Detección y respuesta gestionada 24/7, certificada ISO 27001 y presente en 176 países.</p>
+        <div class="vendor-features">
+          <div class="vendor-feat" data-i18n="qh_eset_f1">MDR 24/7 — respuesta en 20 minutos</div>
+          <div class="vendor-feat" data-i18n="qh_eset_f2">Pentest de caja blanca, gris y negra</div>
+          <div class="vendor-feat" data-i18n="qh_eset_f3">XDR — Extended Detection &amp; Response</div>
+          <div class="vendor-feat" data-i18n="qh_eset_f4">Threat Intelligence y feeds APT</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -235,25 +271,128 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 <section id="packages">
   <div class="packages-inner">
     <div class="packages-header reveal">
-      <div class="section-label" data-i18n="qh_pkgs_label">Nuestro Servicio</div>
-      <h2 class="section-title" data-i18n-html="qh_pkgs_title">Un servicio, infinitas <em>configuraciones</em></h2>
-      <p class="section-sub" style="margin-top:16px" data-i18n="qh_pkgs_sub">El Paquete Gestionado se diseña alrededor de tu empresa. Comenzamos con un diagnóstico técnico real y construimos desde ahí.</p>
+      <div class="section-label" data-i18n="qh_pkgs_label">Paquetes</div>
+      <h2 class="section-title" data-i18n-html="qh_pkgs_title">Protección diseñada para <em>cada empresa</em></h2>
+      <p class="section-sub" style="margin-top:16px" data-i18n="qh_pkgs_sub">Desde protección básica hasta seguridad total. Todos los paquetes incluyen soporte en español y configuración inicial.</p>
     </div>
-    <div class="packages-grid" style="grid-template-columns:1fr;max-width:600px">
-      <div class="pkg-card featured reveal">
-        <div class="pkg-badge">Nuestro Servicio</div>
-        <div class="pkg-name">Paquete<br>Gestionado</div>
-        <p class="pkg-desc" data-i18n="qh_pkg4_desc">Un servicio de ciberseguridad completamente a la medida de tu empresa. El punto de partida es un diagnóstico de vulnerabilidades — una prueba técnica que simula un ataque real para identificar brechas exactas en tu infraestructura. Si cuentas con equipo de TI, ofrecemos distribución de software + capacitación. Si no, operamos el servicio de forma completamente gestionada.</p>
+    <div class="packages-grid">
+      <div class="pkg-card reveal">
+        <div class="pkg-name">Escudo<br>Email</div>
+        <p class="pkg-desc" data-i18n="qh_pkg1_desc">Protección de correo corporativo contra phishing, spam y ransomware. El primer paso esencial para cualquier empresa.</p>
         <div class="pkg-features">
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Diagnóstico de vulnerabilidades con hackeo simulado</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Track A: distribución de software + capacitación a tu equipo de TI</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Track B: distribución + servicio gestionado completo 24/7</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity + G DATA según resultados del diagnóstico</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reporte ejecutivo de una página — no 50 páginas de tecnicismos</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Soporte dedicado con respuesta garantizada en 4 horas</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Security</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Filtrado anti-spam y anti-phishing con IA</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Protección contra ransomware en email</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Continuidad de correo 99.99% uptime</div>
         </div>
-        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg4_cta">Agendar Diagnóstico Gratuito</a>
+        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg_cta">Solicitar Información</a>
       </div>
+      <div class="pkg-card featured reveal">
+        <div class="pkg-badge">Popular</div>
+        <div class="pkg-name">Paquete<br>Empresarial</div>
+        <p class="pkg-desc" data-i18n="qh_pkg2_desc">Email + protección de dispositivos. La solución más completa para PYMEs mexicanas que manejan información sensible.</p>
+        <div class="pkg-features">
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Security</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Endpoint Protection (antivirus)</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Mobile Device Management</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Security Awareness Training</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Consola de gestión centralizada</div>
+        </div>
+        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg_cta">Solicitar Información</a>
+      </div>
+      <div class="pkg-card reveal">
+        <div class="pkg-name">Paquete<br>Ejecutivo</div>
+        <p class="pkg-desc" data-i18n="qh_pkg3_desc">Suite avanzada para empresas que requieren máxima protección, cumplimiento normativo y visibilidad total de amenazas.</p>
+        <div class="pkg-features">
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Advanced Threat Protection</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Endpoint Detection &amp; Response</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Archiving 10 años</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Patch Management</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reportes ejecutivos mensuales</div>
+        </div>
+        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg_cta">Solicitar Información</a>
+      </div>
+      <div class="pkg-card reveal">
+        <div class="pkg-name">Paquete<br>Gestionado</div>
+        <p class="pkg-desc" data-i18n="qh_pkg4_desc">Un servicio completamente a la medida de tu empresa. El paso 1 es un análisis y diagnóstico de vulnerabilidades de tu infraestructura — sin compromisos.</p>
+        <div class="pkg-features">
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Análisis de vulnerabilidades inicial</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity + G DATA según necesidad</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Gestión activa y monitoreo continuo</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reuniones de seguimiento periódicas</div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Soporte dedicado</div>
+        </div>
+        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg4_cta">Agendar Diagnóstico</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Consultoría Gestionada -->
+<section id="consultoria">
+  <div class="consultoria-inner">
+    <div class="consultoria-header reveal">
+      <div class="partner-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span data-i18n="qh_consult_partner">Partner oficial ESET</span>
+      </div>
+      <div class="section-label" data-i18n="qh_consult_label">Consultoría Gestionada</div>
+      <h2 class="section-title" data-i18n-html="qh_consult_title">Seguridad ofensiva y defensiva.<br><em>Todo como servicio.</em></h2>
+      <p class="section-sub" style="margin-top:16px" data-i18n="qh_consult_sub">A través de nuestra alianza con ESET, ofrecemos el portafolio más completo de consultoría de ciberseguridad. Nosotros lo gestionamos; tú te dedicas a tu negocio.</p>
+    </div>
+    <div class="consult-grid">
+      <div class="consult-card reveal">
+        <div class="consult-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+        <div class="consult-type" data-i18n="qh_c1_type">Evaluación</div>
+        <div class="consult-name" data-i18n="qh_c1_name">Diagnóstico de Vulnerabilidades</div>
+        <p class="consult-desc" data-i18n="qh_c1_desc">Evaluación técnica exhaustiva de tu superficie de ataque: redes, aplicaciones, endpoints y configuraciones. Identificamos brechas antes que los atacantes.</p>
+      </div>
+      <div class="consult-card reveal">
+        <div class="consult-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>
+        <div class="consult-type" data-i18n="qh_c2_type">Pentest</div>
+        <div class="consult-name" data-i18n="qh_c2_name">Pentest Caja Blanca</div>
+        <p class="consult-desc" data-i18n="qh_c2_desc">Prueba de penetración con acceso completo a documentación e infraestructura. Máxima profundidad técnica para identificar vulnerabilidades críticas de forma exhaustiva.</p>
+      </div>
+      <div class="consult-card reveal">
+        <div class="consult-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="consult-type" data-i18n="qh_c3_type">Pentest</div>
+        <div class="consult-name" data-i18n="qh_c3_name">Pentest Caja Gris</div>
+        <p class="consult-desc" data-i18n="qh_c3_desc">Prueba con información parcial que simula un atacante interno o proveedor con acceso limitado. Equilibrio entre profundidad técnica y escenarios realistas.</p>
+      </div>
+      <div class="consult-card reveal">
+        <div class="consult-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="consult-type" data-i18n="qh_c4_type">Pentest</div>
+        <div class="consult-name" data-i18n="qh_c4_name">Pentest Caja Negra</div>
+        <p class="consult-desc" data-i18n="qh_c4_desc">Prueba sin información previa que replica un ataque externo real. La perspectiva del atacante para descubrir vectores de entrada que no son evidentes internamente.</p>
+      </div>
+      <div class="consult-card reveal">
+        <div class="consult-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div class="consult-type" data-i18n="qh_c5_type">Detección y Respuesta</div>
+        <div class="consult-name" data-i18n="qh_c5_name">MDR 24/7</div>
+        <p class="consult-desc" data-i18n="qh_c5_desc">Managed Detection &amp; Response con monitoreo continuo y tiempo de respuesta garantizado de 20 minutos. Sin necesidad de equipo interno de seguridad dedicado.</p>
+      </div>
+      <div class="consult-card reveal">
+        <div class="consult-icon"><svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/></svg></div>
+        <div class="consult-type" data-i18n="qh_c6_type">Visibilidad Extendida</div>
+        <div class="consult-name" data-i18n="qh_c6_name">XDR — Extended Detection</div>
+        <p class="consult-desc" data-i18n="qh_c6_desc">Visibilidad total de la cadena de ataque con análisis de causa raíz y correlación entre endpoints, red y nube. Respuesta coordinada en toda la infraestructura.</p>
+      </div>
+      <div class="consult-card reveal">
+        <div class="consult-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="consult-type" data-i18n="qh_c7_type">Inteligencia de Amenazas</div>
+        <div class="consult-name" data-i18n="qh_c7_name">Threat Intelligence</div>
+        <p class="consult-desc" data-i18n="qh_c7_desc">Informes APT y feeds de inteligencia en tiempo real. Anticipa ataques dirigidos a tu industria antes de que impacten tu organización con datos contextuales accionables.</p>
+      </div>
+      <div class="consult-card reveal">
+        <div class="consult-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="consult-type" data-i18n="qh_c8_type">Gestión Continua</div>
+        <div class="consult-name" data-i18n="qh_c8_name">Gestión de Parches</div>
+        <p class="consult-desc" data-i18n="qh_c8_desc">Identificación, priorización y remediación automatizada de vulnerabilidades en endpoints y servidores. Mantén tu infraestructura actualizada sin interrupciones operativas.</p>
+      </div>
+    </div>
+    <div class="consult-eset-note reveal">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <p data-i18n-html="qh_consult_note"><strong>Powered by ESET PROTECT Platform</strong> — Más de 30 años de experiencia en ciberseguridad, certificación ISO 27001, calificación AV-TEST AAA, presencia en 176 países y más de 1,000 millones de usuarios protegidos. C·SHUTZ es el canal gestionado de ESET en México.</p>
     </div>
   </div>
 </section>
@@ -278,8 +417,9 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
       <ul>
         <li><a href="que-hacemos.html">Hornetsecurity</a></li>
         <li><a href="que-hacemos.html">G DATA</a></li>
-        <li><a href="paquetes.html">Paquete Gestionado</a></li>
-        <li><a href="diagnostico.html">Agendar Diagnóstico</a></li>
+        <li><a href="que-hacemos.html#consultoria">Consultoría Gestionada</a></li>
+        <li><a href="que-hacemos.html">Paquete Empresarial</a></li>
+        <li><a href="que-hacemos.html">Paquete Ejecutivo</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -334,10 +474,27 @@ const TRANSLATIONS={
     qh_vendors_sub:'Representamos las mejores marcas de ciberseguridad de Europa, certificadas y probadas en miles de empresas globales.',
     qh_hornet_desc:'Protección avanzada de correo electrónico basada en IA. Filtra spam, phishing, malware y ataques de ransomware antes de que lleguen a tu bandeja de entrada.',
     qh_gdata_desc:'Antivirus y seguridad endpoint de origen alemán. Protección multicapa con análisis de comportamiento y respuesta automática ante amenazas.',
-    qh_pkgs_label:'Nuestro Servicio',qh_pkgs_title:'Un servicio, infinitas <em>configuraciones</em>',
-    qh_pkgs_sub:'El Paquete Gestionado se diseña alrededor de tu empresa. Comenzamos con un diagnóstico técnico real y construimos desde ahí.',
-    qh_pkg4_desc:'Un servicio de ciberseguridad completamente a la medida de tu empresa. El punto de partida es un diagnóstico de vulnerabilidades — una prueba técnica que simula un ataque real para identificar brechas exactas en tu infraestructura. Si cuentas con equipo de TI, ofrecemos distribución de software + capacitación. Si no, operamos el servicio de forma completamente gestionada.',
-    qh_pkg4_cta:'Agendar Diagnóstico Gratuito',
+    qh_pkgs_label:'Paquetes',qh_pkgs_title:'Protección diseñada para <em>cada empresa</em>',
+    qh_pkgs_sub:'Desde protección básica hasta seguridad total. Todos los paquetes incluyen soporte en español y configuración inicial.',
+    qh_pkg1_desc:'Protección de correo corporativo contra phishing, spam y ransomware. El primer paso esencial para cualquier empresa.',
+    qh_pkg2_desc:'Email + protección de dispositivos. La solución más completa para PYMEs mexicanas que manejan información sensible.',
+    qh_pkg3_desc:'Suite avanzada para empresas que requieren máxima protección, cumplimiento normativo y visibilidad total de amenazas.',
+    qh_pkg4_desc:'Un servicio completamente a la medida de tu empresa. El paso 1 es un análisis y diagnóstico de vulnerabilidades — sin compromisos.',
+    qh_pkg_cta:'Solicitar Información',qh_pkg4_cta:'Agendar Diagnóstico',
+    qh_eset_tag:'Consultoría & MDR',qh_eset_desc:'Plataforma unificada de ciberseguridad XDR con más de 30 años en el mercado. Detección y respuesta gestionada 24/7, certificada ISO 27001 y presente en 176 países.',
+    qh_eset_f1:'MDR 24/7 — respuesta en 20 minutos',qh_eset_f2:'Pentest de caja blanca, gris y negra',qh_eset_f3:'XDR — Extended Detection & Response',qh_eset_f4:'Threat Intelligence y feeds APT',
+    qh_consult_partner:'Partner oficial ESET',qh_consult_label:'Consultoría Gestionada',
+    qh_consult_title:'Seguridad ofensiva y defensiva.<br><em>Todo como servicio.</em>',
+    qh_consult_sub:'A través de nuestra alianza con ESET, ofrecemos el portafolio más completo de consultoría de ciberseguridad. Nosotros lo gestionamos; tú te dedicas a tu negocio.',
+    qh_c1_type:'Evaluación',qh_c1_name:'Diagnóstico de Vulnerabilidades',qh_c1_desc:'Evaluación técnica exhaustiva de tu superficie de ataque: redes, aplicaciones, endpoints y configuraciones. Identificamos brechas antes que los atacantes.',
+    qh_c2_type:'Pentest',qh_c2_name:'Pentest Caja Blanca',qh_c2_desc:'Prueba de penetración con acceso completo a documentación e infraestructura. Máxima profundidad técnica para identificar vulnerabilidades críticas de forma exhaustiva.',
+    qh_c3_type:'Pentest',qh_c3_name:'Pentest Caja Gris',qh_c3_desc:'Prueba con información parcial que simula un atacante interno o proveedor con acceso limitado. Equilibrio entre profundidad técnica y escenarios realistas.',
+    qh_c4_type:'Pentest',qh_c4_name:'Pentest Caja Negra',qh_c4_desc:'Prueba sin información previa que replica un ataque externo real. La perspectiva del atacante para descubrir vectores de entrada que no son evidentes internamente.',
+    qh_c5_type:'Detección y Respuesta',qh_c5_name:'MDR 24/7',qh_c5_desc:'Managed Detection & Response con monitoreo continuo y tiempo de respuesta garantizado de 20 minutos. Sin necesidad de equipo interno de seguridad dedicado.',
+    qh_c6_type:'Visibilidad Extendida',qh_c6_name:'XDR — Extended Detection',qh_c6_desc:'Visibilidad total de la cadena de ataque con análisis de causa raíz y correlación entre endpoints, red y nube. Respuesta coordinada en toda la infraestructura.',
+    qh_c7_type:'Inteligencia de Amenazas',qh_c7_name:'Threat Intelligence',qh_c7_desc:'Informes APT y feeds de inteligencia en tiempo real. Anticipa ataques dirigidos a tu industria antes de que impacten tu organización con datos contextuales accionables.',
+    qh_c8_type:'Gestión Continua',qh_c8_name:'Gestión de Parches',qh_c8_desc:'Identificación, priorización y remediación automatizada de vulnerabilidades en endpoints y servidores. Mantén tu infraestructura actualizada sin interrupciones operativas.',
+    qh_consult_note:'<strong>Powered by ESET PROTECT Platform</strong> — Más de 30 años de experiencia en ciberseguridad, certificación ISO 27001, calificación AV-TEST AAA, presencia en 176 países y más de 1,000 millones de usuarios protegidos. C·SHUTZ es el canal gestionado de ESET en México.',
     footer_desc:'Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.',
     footer_empresa:'Empresa',footer_soluciones:'Soluciones',footer_contacto:'Contacto',
     footer_copy:'© 2025 C·SHUTZ. Todos los derechos reservados.',footer_made:'Hecho con <span class="footer-accent">seguridad</span> en México'
@@ -350,10 +507,27 @@ const TRANSLATIONS={
     qh_vendors_sub:'We represent Europe\'s best cybersecurity brands, certified and proven across thousands of global companies.',
     qh_hornet_desc:'Advanced AI-powered email protection. Filters spam, phishing, malware and ransomware attacks before they reach your inbox.',
     qh_gdata_desc:'German-made antivirus and endpoint security. Multilayer protection with behavioral analysis and automatic threat response.',
-    qh_pkgs_label:'Our Service',qh_pkgs_title:'One service, infinite <em>configurations</em>',
-    qh_pkgs_sub:'The Managed Package is designed around your company. We start with a real technical diagnosis and build from there.',
-    qh_pkg4_desc:'A cybersecurity service completely tailored to your company. The starting point is a vulnerability diagnosis — a technical test that simulates a real attack to identify exact gaps in your infrastructure. If you have an IT team, we offer software distribution + training. If not, we operate the service as a fully managed solution.',
-    qh_pkg4_cta:'Schedule Free Diagnosis',
+    qh_pkgs_label:'Packages',qh_pkgs_title:'Protection designed for <em>every company</em>',
+    qh_pkgs_sub:'From basic protection to total security. All packages include Spanish support and initial setup.',
+    qh_pkg1_desc:'Essential email protection against phishing, spam and ransomware. The first step for any company.',
+    qh_pkg2_desc:'Email + device protection. The most complete solution for Mexican SMEs handling sensitive information.',
+    qh_pkg3_desc:'Advanced suite for companies requiring maximum protection, regulatory compliance and full threat visibility.',
+    qh_pkg4_desc:'A service completely tailored to your company. Step 1 is a vulnerability analysis of your infrastructure — no strings attached.',
+    qh_pkg_cta:'Request Information',qh_pkg4_cta:'Schedule Diagnosis',
+    qh_eset_tag:'Consulting & MDR',qh_eset_desc:'Unified XDR cybersecurity platform with 30+ years in the market. 24/7 managed detection and response, ISO 27001 certified, present in 176 countries.',
+    qh_eset_f1:'MDR 24/7 — 20-minute response guarantee',qh_eset_f2:'White, grey, and black-box pentesting',qh_eset_f3:'XDR — Extended Detection & Response',qh_eset_f4:'Threat Intelligence and APT feeds',
+    qh_consult_partner:'Official ESET Partner',qh_consult_label:'Managed Consulting',
+    qh_consult_title:'Offensive and defensive security.<br><em>Everything as a service.</em>',
+    qh_consult_sub:'Through our ESET alliance, we offer the most complete cybersecurity consulting portfolio. We manage it all; you focus on your business.',
+    qh_c1_type:'Assessment',qh_c1_name:'Vulnerability Assessment',qh_c1_desc:'Comprehensive technical evaluation of your attack surface: networks, applications, endpoints, and configurations. We find gaps before attackers do.',
+    qh_c2_type:'Pentest',qh_c2_name:'White-Box Pentest',qh_c2_desc:'Penetration test with full access to documentation and infrastructure. Maximum technical depth to exhaustively identify critical vulnerabilities.',
+    qh_c3_type:'Pentest',qh_c3_name:'Grey-Box Pentest',qh_c3_desc:'Partial-information test simulating an internal attacker or limited-access vendor. Ideal balance between technical depth and realistic scenarios.',
+    qh_c4_type:'Pentest',qh_c4_name:'Black-Box Pentest',qh_c4_desc:'No prior information test that replicates a real external attack. The attacker\'s perspective to discover non-obvious entry vectors.',
+    qh_c5_type:'Detection & Response',qh_c5_name:'MDR 24/7',qh_c5_desc:'Managed Detection & Response with continuous monitoring and a guaranteed 20-minute response time. No dedicated internal security team needed.',
+    qh_c6_type:'Extended Visibility',qh_c6_name:'XDR — Extended Detection',qh_c6_desc:'Full visibility of the attack chain with root-cause analysis and correlation across endpoints, network, and cloud. Coordinated response across the whole infrastructure.',
+    qh_c7_type:'Threat Intelligence',qh_c7_name:'Threat Intelligence',qh_c7_desc:'APT reports and real-time intelligence feeds. Anticipate targeted attacks on your industry before they impact your organization with actionable contextual data.',
+    qh_c8_type:'Continuous Management',qh_c8_name:'Patch Management',qh_c8_desc:'Automated identification, prioritization, and remediation of vulnerabilities across endpoints and servers. Keep your infrastructure current without operational disruptions.',
+    qh_consult_note:'<strong>Powered by ESET PROTECT Platform</strong> — 30+ years of cybersecurity expertise, ISO 27001 certification, AV-TEST AAA rating, presence in 176 countries, and over 1 billion users protected. C·SHUTZ is ESET\'s managed channel in Mexico.',
     footer_desc:'World-class enterprise cybersecurity with personalized service in Mexico. European technology, guaranteed results.',
     footer_empresa:'Company',footer_soluciones:'Solutions',footer_contacto:'Contact',
     footer_copy:'© 2025 C·SHUTZ. All rights reserved.',footer_made:'Made with <span class="footer-accent">security</span> in Mexico'
@@ -366,10 +540,27 @@ const TRANSLATIONS={
     qh_vendors_sub:'Wir vertreten Europas beste Cybersicherheitsmarken, zertifiziert und bewährt in tausenden von Unternehmen weltweit.',
     qh_hornet_desc:'Fortschrittlicher KI-gestützter E-Mail-Schutz. Filtert Spam, Phishing, Malware und Ransomware-Angriffe, bevor sie Ihren Posteingang erreichen.',
     qh_gdata_desc:'Deutsches Antivirus und Endpoint-Sicherheit. Mehrschichtiger Schutz mit Verhaltensanalyse und automatischer Bedrohungsreaktion.',
-    qh_pkgs_label:'Unser Service',qh_pkgs_title:'Ein Service, unendliche <em>Konfigurationen</em>',
-    qh_pkgs_sub:'Das Managed Package wird um Ihr Unternehmen herum konzipiert. Wir beginnen mit einer echten technischen Diagnose und bauen darauf auf.',
-    qh_pkg4_desc:'Ein vollständig auf Ihr Unternehmen zugeschnittener Cybersicherheitsservice. Der Ausgangspunkt ist eine Schwachstellendiagnose — ein technischer Test, der einen echten Angriff simuliert, um genaue Lücken in Ihrer Infrastruktur zu identifizieren. Wenn Sie ein IT-Team haben, bieten wir Softwareverteilung + Schulung. Wenn nicht, betreiben wir den Service als vollständig verwaltete Lösung.',
-    qh_pkg4_cta:'Kostenlose Diagnose vereinbaren',
+    qh_pkgs_label:'Pakete',qh_pkgs_title:'Schutz für <em>jedes Unternehmen</em>',
+    qh_pkgs_sub:'Von Basisschutz bis zu totaler Sicherheit. Alle Pakete beinhalten Support auf Spanisch und Ersteinrichtung.',
+    qh_pkg1_desc:'Wesentlicher E-Mail-Schutz gegen Phishing, Spam und Ransomware. Der erste Schritt für jedes Unternehmen.',
+    qh_pkg2_desc:'E-Mail + Geräteschutz. Die vollständigste Lösung für mexikanische KMU, die sensible Informationen verwalten.',
+    qh_pkg3_desc:'Erweiterte Suite für Unternehmen, die maximalen Schutz, Compliance und vollständige Bedrohungstransparenz benötigen.',
+    qh_pkg4_desc:'Ein vollständig auf Ihr Unternehmen zugeschnittener Service. Schritt 1 ist eine Schwachstellenanalyse Ihrer Infrastruktur — ohne Verpflichtungen.',
+    qh_pkg_cta:'Informationen anfordern',qh_pkg4_cta:'Diagnose vereinbaren',
+    qh_eset_tag:'Beratung & MDR',qh_eset_desc:'Einheitliche XDR-Cybersicherheitsplattform mit 30+ Jahren Erfahrung. 24/7 MDR, ISO 27001 zertifiziert, in 176 Ländern präsent.',
+    qh_eset_f1:'MDR 24/7 — Reaktionszeit 20 Minuten',qh_eset_f2:'Pentest Whitebox, Greybox, Blackbox',qh_eset_f3:'XDR — Extended Detection & Response',qh_eset_f4:'Threat Intelligence und APT-Feeds',
+    qh_consult_partner:'Offizieller ESET-Partner',qh_consult_label:'Managed Consulting',
+    qh_consult_title:'Offensive und defensive Sicherheit.<br><em>Alles als Service.</em>',
+    qh_consult_sub:'Durch unsere ESET-Partnerschaft bieten wir das vollständigste Beratungsportfolio für Cybersicherheit. Wir verwalten alles; Sie konzentrieren sich auf Ihr Geschäft.',
+    qh_c1_type:'Bewertung',qh_c1_name:'Schwachstellenbewertung',qh_c1_desc:'Umfassende technische Bewertung Ihrer Angriffsoberfläche: Netzwerke, Anwendungen, Endpunkte und Konfigurationen.',
+    qh_c2_type:'Pentest',qh_c2_name:'Whitebox-Pentest',qh_c2_desc:'Penetrationstest mit vollständigem Zugang zu Dokumentation und Infrastruktur. Maximale technische Tiefe zur umfassenden Identifizierung kritischer Schwachstellen.',
+    qh_c3_type:'Pentest',qh_c3_name:'Greybox-Pentest',qh_c3_desc:'Test mit Teilinformationen, der einen internen Angreifer oder Lieferanten mit begrenztem Zugang simuliert.',
+    qh_c4_type:'Pentest',qh_c4_name:'Blackbox-Pentest',qh_c4_desc:'Test ohne Vorinformationen, der einen realen externen Angriff repliziert. Angreiferperspektive zur Entdeckung nicht offensichtlicher Einstiegsvektoren.',
+    qh_c5_type:'Erkennung & Reaktion',qh_c5_name:'MDR 24/7',qh_c5_desc:'Managed Detection & Response mit kontinuierlichem Monitoring und garantierter 20-minütiger Reaktionszeit. Kein internes Sicherheitsteam erforderlich.',
+    qh_c6_type:'Erweiterte Sichtbarkeit',qh_c6_name:'XDR — Extended Detection',qh_c6_desc:'Vollständige Sichtbarkeit der Angriffskette mit Root-Cause-Analyse über Endpunkte, Netzwerk und Cloud.',
+    qh_c7_type:'Bedrohungsintelligenz',qh_c7_name:'Threat Intelligence',qh_c7_desc:'APT-Berichte und Echtzeit-Intelligenz-Feeds. Gezielte Angriffe auf Ihre Branche antizipieren, bevor sie Ihre Organisation treffen.',
+    qh_c8_type:'Kontinuierliches Management',qh_c8_name:'Patch-Management',qh_c8_desc:'Automatisierte Identifizierung, Priorisierung und Behebung von Schwachstellen in Endpunkten und Servern.',
+    qh_consult_note:'<strong>Powered by ESET PROTECT Platform</strong> — 30+ Jahre Cybersicherheitserfahrung, ISO 27001, AV-TEST AAA, 176 Länder, über 1 Milliarde geschützte Nutzer. C·SHUTZ ist der verwaltete ESET-Kanal in Mexiko.',
     footer_desc:'Erstklassige Unternehmens-Cybersicherheit mit personalisiertem Service in Mexiko. Europäische Technologie, garantierte Ergebnisse.',
     footer_empresa:'Unternehmen',footer_soluciones:'Lösungen',footer_contacto:'Kontakt',
     footer_copy:'© 2025 C·SHUTZ. Alle Rechte vorbehalten.',footer_made:'Gemacht mit <span class="footer-accent">Sicherheit</span> in Mexiko'
@@ -382,10 +573,27 @@ const TRANSLATIONS={
     qh_vendors_sub:'אנו מייצגים את מותגי אבטחת הסייבר הטובים ביותר של אירופה, מוסמכים ומוכחים באלפי חברות ברחבי העולם.',
     qh_hornet_desc:'הגנת אימייל מתקדמת מבוססת בינה מלאכותית. מסנן ספאם, פישינג, תוכנות זדוניות ומתקפות כופרה לפני שהן מגיעות לתיבת הדואר שלך.',
     qh_gdata_desc:'אנטי-וירוס ואבטחת קצה ממקור גרמני. הגנה רב-שכבתית עם ניתוח התנהגות ותגובה אוטומטית לאיומים.',
-    qh_pkgs_label:'השירות שלנו',qh_pkgs_title:'שירות אחד, הגדרות <em>אינסופיות</em>',
-    qh_pkgs_sub:'החבילה המנוהלת מתוכננת סביב החברה שלך. אנו מתחילים באבחון טכני אמיתי ובונים משם.',
-    qh_pkg4_desc:'שירות אבטחת סייבר המותאם לחלוטין לחברה שלך. נקודת ההתחלה היא אבחון פגיעויות — מבחן טכני המדמה מתקפה אמיתית לזיהוי פרצות מדויקות בתשתית שלך. אם יש לך צוות IT, אנו מציעים הפצת תוכנה + הכשרה. אם לא, אנו מפעילים את השירות כפתרון מנוהל לחלוטין.',
-    qh_pkg4_cta:'תאם אבחון חינמי',
+    qh_pkgs_label:'חבילות',qh_pkgs_title:'הגנה מתוכננת ל<em>כל חברה</em>',
+    qh_pkgs_sub:'מהגנה בסיסית ועד אבטחה מלאה. כל החבילות כוללות תמיכה בספרדית והתקנה ראשונית.',
+    qh_pkg1_desc:'הגנת אימייל חיונית מפני פישינג, ספאם וכופרה. הצעד הראשון לכל חברה.',
+    qh_pkg2_desc:'אימייל + הגנת מכשירים. הפתרון המקיף ביותר לעסקים קטנים ובינוניים המטפלים במידע רגיש.',
+    qh_pkg3_desc:'חבילה מתקדמת לחברות הדורשות הגנה מרבית, ציות לתקינה ונראות מלאה של איומים.',
+    qh_pkg4_desc:'שירות המותאם לחלוטין לחברה שלך. שלב 1 הוא ניתוח פגיעויות ואבחון התשתית שלך — ללא התחייבות.',
+    qh_pkg_cta:'בקש מידע',qh_pkg4_cta:'תאם אבחון',
+    qh_eset_tag:'ייעוץ ו-MDR',qh_eset_desc:'פלטפורמת אבטחת סייבר מאוחדת XDR עם 30+ שנות ניסיון. MDR 24/7, מוסמכת ISO 27001, נוכחות ב-176 מדינות.',
+    qh_eset_f1:'MDR 24/7 — תגובה תוך 20 דקות',qh_eset_f2:'פנטסט תיבה לבנה, אפורה ושחורה',qh_eset_f3:'XDR — Extended Detection & Response',qh_eset_f4:'Threat Intelligence ו-APT feeds',
+    qh_consult_partner:'שותף רשמי ESET',qh_consult_label:'ייעוץ מנוהל',
+    qh_consult_title:'אבטחה התקפית והגנתית.<br><em>הכל כשירות.</em>',
+    qh_consult_sub:'דרך הברית שלנו עם ESET, אנו מציעים את תיק הייעוץ המקיף ביותר באבטחת סייבר. אנחנו מנהלים הכל; אתה מתמקד בעסק שלך.',
+    qh_c1_type:'הערכה',qh_c1_name:'אבחון פגיעויות',qh_c1_desc:'הערכה טכנית מקיפה של משטח התקיפה שלך: רשתות, יישומים, נקודות קצה וקונפיגורציות.',
+    qh_c2_type:'פנטסט',qh_c2_name:'פנטסט תיבה לבנה',qh_c2_desc:'מבחן חדירה עם גישה מלאה לתיעוד ותשתית. עומק טכני מקסימלי לזיהוי פגיעויות קריטיות.',
+    qh_c3_type:'פנטסט',qh_c3_name:'פנטסט תיבה אפורה',qh_c3_desc:'מבחן עם מידע חלקי המדמה תוקף פנימי או ספק עם גישה מוגבלת.',
+    qh_c4_type:'פנטסט',qh_c4_name:'פנטסט תיבה שחורה',qh_c4_desc:'מבחן ללא מידע מוקדם המשכפל מתקפה חיצונית אמיתית. נקודת המבט של התוקף לגילוי וקטורי כניסה.',
+    qh_c5_type:'זיהוי ותגובה',qh_c5_name:'MDR 24/7',qh_c5_desc:'Managed Detection & Response עם ניטור רציף וזמן תגובה מובטח של 20 דקות. ללא צורך בצוות אבטחה פנימי.',
+    qh_c6_type:'נראות מורחבת',qh_c6_name:'XDR — Extended Detection',qh_c6_desc:'נראות מלאה של שרשרת התקיפה עם ניתוח סיבת שורש ומתאם בין נקודות קצה, רשת וענן.',
+    qh_c7_type:'מודיעין איומים',qh_c7_name:'Threat Intelligence',qh_c7_desc:'דוחות APT ו-feeds מודיעיניים בזמן אמת. צפה מתקפות ממוקדות בענף שלך לפני שהן פוגעות בארגון.',
+    qh_c8_type:'ניהול רציף',qh_c8_name:'ניהול תיקונים',qh_c8_desc:'זיהוי, תעדוף ותיקון אוטומטי של פגיעויות בנקודות קצה ושרתים. שמור על תשתית מעודכנת ללא הפרעות תפעוליות.',
+    qh_consult_note:'<strong>Powered by ESET PROTECT Platform</strong> — 30+ שנות ניסיון באבטחת סייבר, ISO 27001, AV-TEST AAA, 176 מדינות, מעל מיליארד משתמשים מוגנים. C·SHUTZ הוא הערוץ המנוהל של ESET במקסיקו.',
     footer_desc:'אבטחת סייבר עסקית ברמה עולמית עם שירות אישי במקסיקו. טכנולוגיה אירופאית, תוצאות מובטחות.',
     footer_empresa:'חברה',footer_soluciones:'פתרונות',footer_contacto:'יצירת קשר',
     footer_copy:'© 2025 C·SHUTZ. כל הזכויות שמורות.',footer_made:'נוצר עם <span class="footer-accent">אבטחה</span> במקסיקו'

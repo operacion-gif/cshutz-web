@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" width="220" height="80">
+  <!-- Badge shape -->
+  <rect x="2" y="2" width="140" height="56" rx="14" ry="14" fill="#3BA8A4"/>
+  <!-- Vertical divider -->
+  <rect x="71" y="10" width="2" height="40" fill="white" opacity="0.7"/>
+  <!-- "es" text -->
+  <text x="38" y="41" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-1">es</text>
+  <!-- "et" text -->
+  <text x="107" y="41" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-1">et</text>
+  <!-- Dot top-right of badge -->
+  <circle cx="135" cy="14" r="5" fill="white"/>
+  <!-- Tagline -->
+  <text x="0" y="72" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" fill="#444444" letter-spacing="0.3">Progress. Protected.</text>
+</svg>
