@@ -122,9 +122,8 @@ body:not(:hover) #cs-cursor,body:not(:hover) #cs-ring{opacity:0}
 #packages{background:var(--ink);padding:clamp(80px,8vw,120px) clamp(20px,5vw,80px)}
 .packages-inner{max-width:1200px;margin:0 auto}
 .packages-header{margin-bottom:clamp(40px,6vw,80px)}
-.packages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-@media(max-width:1100px){.packages-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.packages-grid{grid-template-columns:1fr}}
+.packages-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:640px){.packages-grid{grid-template-columns:1fr}}
 .pkg-card{padding:clamp(24px,3vw,36px);border:1px solid var(--border);border-radius:var(--r-md);background:var(--surface);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--dur),transform var(--dur)}
 .pkg-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--accent);transition:height 0.4s}
 .pkg-card:hover{border-color:rgba(46,204,113,0.3);transform:translateY(-6px)}
@@ -277,42 +276,6 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
     </div>
     <div class="packages-grid">
       <div class="pkg-card reveal">
-        <div class="pkg-name">Escudo<br>Email</div>
-        <p class="pkg-desc" data-i18n="qh_pkg1_desc">Protección de correo corporativo contra phishing, spam y ransomware. El primer paso esencial para cualquier empresa.</p>
-        <div class="pkg-features">
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Security</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Filtrado anti-spam y anti-phishing con IA</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Protección contra ransomware en email</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Continuidad de correo 99.99% uptime</div>
-        </div>
-        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg_cta">Solicitar Información</a>
-      </div>
-      <div class="pkg-card featured reveal">
-        <div class="pkg-badge">Popular</div>
-        <div class="pkg-name">Paquete<br>Empresarial</div>
-        <p class="pkg-desc" data-i18n="qh_pkg2_desc">Email + protección de dispositivos. La solución más completa para PYMEs mexicanas que manejan información sensible.</p>
-        <div class="pkg-features">
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Security</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Endpoint Protection (antivirus)</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Mobile Device Management</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Security Awareness Training</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Consola de gestión centralizada</div>
-        </div>
-        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg_cta">Solicitar Información</a>
-      </div>
-      <div class="pkg-card reveal">
-        <div class="pkg-name">Paquete<br>Ejecutivo</div>
-        <p class="pkg-desc" data-i18n="qh_pkg3_desc">Suite avanzada para empresas que requieren máxima protección, cumplimiento normativo y visibilidad total de amenazas.</p>
-        <div class="pkg-features">
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Advanced Threat Protection</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Endpoint Detection &amp; Response</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Hornetsecurity Email Archiving 10 años</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>G DATA Patch Management</div>
-          <div class="pkg-feat"><span class="pkg-feat-dot"></span>Reportes ejecutivos mensuales</div>
-        </div>
-        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg_cta">Solicitar Información</a>
-      </div>
-      <div class="pkg-card reveal">
         <div class="pkg-name">Paquete<br>Gestionado</div>
         <p class="pkg-desc" data-i18n="qh_pkg4_desc">Un servicio completamente a la medida de tu empresa. El paso 1 es un análisis y diagnóstico de vulnerabilidades de tu infraestructura — sin compromisos.</p>
         <div class="pkg-features">
@@ -323,6 +286,20 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
           <div class="pkg-feat"><span class="pkg-feat-dot"></span>Soporte dedicado</div>
         </div>
         <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_pkg4_cta">Agendar Diagnóstico</a>
+      </div>
+      <div class="pkg-card featured reveal">
+        <div class="pkg-badge" data-i18n="qh_diag_badge">ESET Partner</div>
+        <div class="pkg-name" data-i18n="qh_diag_name">Consultoría<br>Especializada</div>
+        <p class="pkg-desc" data-i18n="qh_diag_desc">Servicios de ciberseguridad ofensiva y defensiva a través de nuestra alianza con ESET. Desde el diagnóstico hasta la respuesta activa 24/7.</p>
+        <div class="pkg-features">
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_diag_f1">Diagnóstico de vulnerabilidades</span></div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_diag_f2">Pentest caja blanca, gris y negra</span></div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_diag_f3">MDR 24/7 — respuesta en 20 minutos</span></div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_diag_f4">XDR — Extended Detection &amp; Response</span></div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_diag_f5">Threat Intelligence y feeds APT</span></div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_diag_f6">Gestión de vulnerabilidades y parches</span></div>
+        </div>
+        <a href="que-hacemos.html#consultoria" class="pkg-cta" data-i18n="qh_diag_cta">Ver servicios</a>
       </div>
     </div>
   </div>
@@ -481,6 +458,12 @@ const TRANSLATIONS={
     qh_pkg3_desc:'Suite avanzada para empresas que requieren máxima protección, cumplimiento normativo y visibilidad total de amenazas.',
     qh_pkg4_desc:'Un servicio completamente a la medida de tu empresa. El paso 1 es un análisis y diagnóstico de vulnerabilidades — sin compromisos.',
     qh_pkg_cta:'Solicitar Información',qh_pkg4_cta:'Agendar Diagnóstico',
+    qh_diag_badge:'ESET Partner',qh_diag_name:'Consultoría\nEspecializada',
+    qh_diag_desc:'Servicios de ciberseguridad ofensiva y defensiva a través de nuestra alianza con ESET. Desde el diagnóstico hasta la respuesta activa 24/7.',
+    qh_diag_f1:'Diagnóstico de vulnerabilidades',qh_diag_f2:'Pentest caja blanca, gris y negra',
+    qh_diag_f3:'MDR 24/7 — respuesta en 20 minutos',qh_diag_f4:'XDR — Extended Detection & Response',
+    qh_diag_f5:'Threat Intelligence y feeds APT',qh_diag_f6:'Gestión de vulnerabilidades y parches',
+    qh_diag_cta:'Ver servicios',
     qh_eset_tag:'Consultoría & MDR',qh_eset_desc:'Plataforma unificada de ciberseguridad XDR con más de 30 años en el mercado. Detección y respuesta gestionada 24/7, certificada ISO 27001 y presente en 176 países.',
     qh_eset_f1:'MDR 24/7 — respuesta en 20 minutos',qh_eset_f2:'Pentest de caja blanca, gris y negra',qh_eset_f3:'XDR — Extended Detection & Response',qh_eset_f4:'Threat Intelligence y feeds APT',
     qh_consult_partner:'Partner oficial ESET',qh_consult_label:'Consultoría Gestionada',
@@ -514,6 +497,12 @@ const TRANSLATIONS={
     qh_pkg3_desc:'Advanced suite for companies requiring maximum protection, regulatory compliance and full threat visibility.',
     qh_pkg4_desc:'A service completely tailored to your company. Step 1 is a vulnerability analysis of your infrastructure — no strings attached.',
     qh_pkg_cta:'Request Information',qh_pkg4_cta:'Schedule Diagnosis',
+    qh_diag_badge:'ESET Partner',qh_diag_name:'Specialized\nConsulting',
+    qh_diag_desc:'Offensive and defensive cybersecurity services through our ESET alliance. From diagnosis to 24/7 active response.',
+    qh_diag_f1:'Vulnerability assessment',qh_diag_f2:'White, grey and black-box pentest',
+    qh_diag_f3:'MDR 24/7 — 20-minute response',qh_diag_f4:'XDR — Extended Detection & Response',
+    qh_diag_f5:'Threat Intelligence and APT feeds',qh_diag_f6:'Vulnerability and patch management',
+    qh_diag_cta:'View services',
     qh_eset_tag:'Consulting & MDR',qh_eset_desc:'Unified XDR cybersecurity platform with 30+ years in the market. 24/7 managed detection and response, ISO 27001 certified, present in 176 countries.',
     qh_eset_f1:'MDR 24/7 — 20-minute response guarantee',qh_eset_f2:'White, grey, and black-box pentesting',qh_eset_f3:'XDR — Extended Detection & Response',qh_eset_f4:'Threat Intelligence and APT feeds',
     qh_consult_partner:'Official ESET Partner',qh_consult_label:'Managed Consulting',
