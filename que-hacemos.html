@@ -122,8 +122,9 @@ body:not(:hover) #cs-cursor,body:not(:hover) #cs-ring{opacity:0}
 #packages{background:var(--ink);padding:clamp(80px,8vw,120px) clamp(20px,5vw,80px)}
 .packages-inner{max-width:1200px;margin:0 auto}
 .packages-header{margin-bottom:clamp(40px,6vw,80px)}
-.packages-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media(max-width:640px){.packages-grid{grid-template-columns:1fr}}
+.packages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:960px){.packages-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.packages-grid{grid-template-columns:1fr}}
 .pkg-card{padding:clamp(24px,3vw,36px);border:1px solid var(--border);border-radius:var(--r-md);background:var(--surface);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--dur),transform var(--dur)}
 .pkg-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--accent);transition:height 0.4s}
 .pkg-card:hover{border-color:rgba(46,204,113,0.3);transform:translateY(-6px)}
@@ -315,6 +316,20 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
         </div>
         <a href="que-hacemos.html#consultoria" class="pkg-cta" data-i18n="qh_diag_cta">Ver servicios</a>
       </div>
+      <div class="pkg-card reveal">
+        <div class="pkg-badge" data-i18n="qh_vpn_badge">NCP + G DATA</div>
+        <div class="pkg-name" data-i18n="qh_vpn_name">Protección<br>Portátil</div>
+        <p class="pkg-desc" data-i18n="qh_vpn_desc">Conectividad segura para equipos en movilidad y trabajo remoto. VPN enterprise con NCP y cifrado de navegación con G DATA — donde sea que estén tus colaboradores.</p>
+        <div class="pkg-features">
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_vpn_f1">VPN enterprise NCP con gestión centralizada</span></div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_vpn_f2">Acceso remoto seguro para equipos en movilidad</span></div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_vpn_f3">Firewall personal integrado en cliente VPN</span></div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_vpn_f4">G DATA VPN — cifrado en redes Wi-Fi públicas</span></div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_vpn_f5">Autenticación multifactor con NCP Authenticator</span></div>
+          <div class="pkg-feat"><span class="pkg-feat-dot"></span><span data-i18n="qh_vpn_f6">Compatible con SASE, SD-WAN y Zero Trust</span></div>
+        </div>
+        <a href="diagnostico.html" class="pkg-cta" data-i18n="qh_vpn_cta">Agendar Diagnóstico</a>
+      </div>
     </div>
   </div>
 </section>
@@ -478,6 +493,12 @@ const TRANSLATIONS={
     qh_diag_f3:'MDR 24/7 — respuesta en 20 minutos',qh_diag_f4:'XDR — Extended Detection & Response',
     qh_diag_f5:'Threat Intelligence y feeds APT',qh_diag_f6:'Gestión de vulnerabilidades y parches',
     qh_diag_cta:'Ver servicios',
+    qh_vpn_badge:'NCP + G DATA',qh_vpn_name:'Protección<br>Portátil',
+    qh_vpn_desc:'Conectividad segura para equipos en movilidad y trabajo remoto. VPN enterprise con NCP y cifrado de navegación con G DATA — donde sea que estén tus colaboradores.',
+    qh_vpn_f1:'VPN enterprise NCP con gestión centralizada',qh_vpn_f2:'Acceso remoto seguro para equipos en movilidad',
+    qh_vpn_f3:'Firewall personal integrado en cliente VPN',qh_vpn_f4:'G DATA Total Security — cifrado en redes Wi-Fi',
+    qh_vpn_f5:'Autenticación multifactor con NCP Authenticator',qh_vpn_f6:'Compatible con SASE, SD-WAN y Zero Trust',
+    qh_vpn_cta:'Agendar Diagnóstico',
     qh_eset_tag:'Consultoría & MDR',qh_eset_desc:'Plataforma unificada de ciberseguridad XDR con más de 30 años en el mercado. Detección y respuesta gestionada 24/7, certificada ISO 27001 y presente en 176 países.',
     qh_eset_f1:'MDR 24/7 — respuesta en 20 minutos',qh_eset_f2:'Pentest de caja blanca, gris y negra',qh_eset_f3:'XDR — Extended Detection & Response',qh_eset_f4:'Threat Intelligence y feeds APT',
     qh_ncp_tag:'VPN & Acceso Remoto',qh_ncp_desc:'Soluciones enterprise de VPN y acceso remoto seguro. Arquitectura Zero Trust con gestión centralizada, compatible con SASE, SD-WAN y autenticación multifactor.',
@@ -519,6 +540,12 @@ const TRANSLATIONS={
     qh_diag_f3:'MDR 24/7 — 20-minute response',qh_diag_f4:'XDR — Extended Detection & Response',
     qh_diag_f5:'Threat Intelligence and APT feeds',qh_diag_f6:'Vulnerability and patch management',
     qh_diag_cta:'View services',
+    qh_vpn_badge:'NCP + G DATA',qh_vpn_name:'Portable<br>Protection',
+    qh_vpn_desc:'Secure connectivity for remote teams and mobile workers. Enterprise VPN with NCP and encrypted browsing with G DATA — wherever your employees are.',
+    qh_vpn_f1:'NCP enterprise VPN with centralized management',qh_vpn_f2:'Secure remote access for mobile employees',
+    qh_vpn_f3:'Integrated personal firewall in VPN client',qh_vpn_f4:'G DATA Total Security — encrypted Wi-Fi browsing',
+    qh_vpn_f5:'Multi-factor authentication with NCP Authenticator',qh_vpn_f6:'SASE, SD-WAN and Zero Trust compatible',
+    qh_vpn_cta:'Schedule Diagnosis',
     qh_eset_tag:'Consulting & MDR',qh_eset_desc:'Unified XDR cybersecurity platform with 30+ years in the market. 24/7 managed detection and response, ISO 27001 certified, present in 176 countries.',
     qh_eset_f1:'MDR 24/7 — 20-minute response guarantee',qh_eset_f2:'White, grey, and black-box pentesting',qh_eset_f3:'XDR — Extended Detection & Response',qh_eset_f4:'Threat Intelligence and APT feeds',
     qh_ncp_tag:'VPN & Remote Access',qh_ncp_desc:'Enterprise VPN and secure remote access solutions. Zero Trust architecture with centralized management, compatible with SASE, SD-WAN, and multifactor authentication.',
@@ -558,6 +585,12 @@ const TRANSLATIONS={
     qh_eset_f1:'MDR 24/7 — Reaktionszeit 20 Minuten',qh_eset_f2:'Pentest Whitebox, Greybox, Blackbox',qh_eset_f3:'XDR — Extended Detection & Response',qh_eset_f4:'Threat Intelligence und APT-Feeds',
     qh_ncp_tag:'VPN & Fernzugriff',qh_ncp_desc:'Enterprise-VPN- und sicherer Fernzugriffslösungen. Zero-Trust-Architektur mit zentralem Management, kompatibel mit SASE, SD-WAN und MFA.',
     qh_ncp_f1:'Enterprise-VPN mit zentralem Management',qh_ncp_f2:'Zero Trust und SASE-Architektur',qh_ncp_f3:'Multi-Faktor-Authentifizierung (MFA)',qh_ncp_f4:'SD-WAN, SSE und IPsec/IKEv2-Unterstützung',
+    qh_vpn_badge:'NCP + G DATA',qh_vpn_name:'Mobiler<br>Schutz',
+    qh_vpn_desc:'Sichere Konnektivität für mobile Teams und Remote-Arbeit. Enterprise-VPN mit NCP und verschlüsseltes Surfen mit G DATA — überall, wo Ihre Mitarbeiter sind.',
+    qh_vpn_f1:'NCP Enterprise-VPN mit zentralem Management',qh_vpn_f2:'Sicherer Fernzugriff für mobile Mitarbeiter',
+    qh_vpn_f3:'Persönliche Firewall im VPN-Client integriert',qh_vpn_f4:'G DATA Total Security — WLAN-Verschlüsselung',
+    qh_vpn_f5:'Multi-Faktor-Authentifizierung mit NCP Authenticator',qh_vpn_f6:'SASE, SD-WAN und Zero Trust kompatibel',
+    qh_vpn_cta:'Diagnose vereinbaren',
     qh_consult_partner:'Offizieller ESET-Partner',qh_consult_label:'Managed Consulting',
     qh_consult_title:'Offensive und defensive Sicherheit.<br><em>Alles als Service.</em>',
     qh_consult_sub:'Durch unsere ESET-Partnerschaft bieten wir das vollständigste Beratungsportfolio für Cybersicherheit. Wir verwalten alles; Sie konzentrieren sich auf Ihr Geschäft.',
@@ -593,6 +626,12 @@ const TRANSLATIONS={
     qh_eset_f1:'MDR 24/7 — תגובה תוך 20 דקות',qh_eset_f2:'פנטסט תיבה לבנה, אפורה ושחורה',qh_eset_f3:'XDR — Extended Detection & Response',qh_eset_f4:'Threat Intelligence ו-APT feeds',
     qh_ncp_tag:'VPN וגישה מרחוק',qh_ncp_desc:'פתרונות VPN ארגוניים וגישה מרחוק מאובטחת. ארכיטקטורת Zero Trust עם ניהול מרכזי, תואם SASE, SD-WAN ואימות רב-גורמי.',
     qh_ncp_f1:'VPN ארגוני עם ניהול מרכזי',qh_ncp_f2:'Zero Trust וארכיטקטורת SASE',qh_ncp_f3:'אימות רב-גורמי (MFA)',qh_ncp_f4:'תמיכה ב-SD-WAN, SSE ו-IPsec/IKEv2',
+    qh_vpn_badge:'NCP + G DATA',qh_vpn_name:'הגנה<br>ניידת',
+    qh_vpn_desc:'קישוריות מאובטחת לצוותים ניידים ועבודה מרחוק. VPN ארגוני עם NCP והצפנת גלישה עם G DATA — בכל מקום שבו נמצאים העובדים שלך.',
+    qh_vpn_f1:'NCP VPN ארגוני עם ניהול מרכזי',qh_vpn_f2:'גישה מרחוק מאובטחת לעובדים ניידים',
+    qh_vpn_f3:'חומת אש אישית משולבת בלקוח VPN',qh_vpn_f4:'G DATA Total Security — הצפנה ברשתות Wi-Fi',
+    qh_vpn_f5:'אימות רב-גורמי עם NCP Authenticator',qh_vpn_f6:'תואם SASE, SD-WAN ו-Zero Trust',
+    qh_vpn_cta:'תאם אבחון',
     qh_consult_partner:'שותף רשמי ESET',qh_consult_label:'ייעוץ מנוהל',
     qh_consult_title:'אבטחה התקפית והגנתית.<br><em>הכל כשירות.</em>',
     qh_consult_sub:'דרך הברית שלנו עם ESET, אנו מציעים את תיק הייעוץ המקיף ביותר באבטחת סייבר. אנחנו מנהלים הכל; אתה מתמקד בעסק שלך.',
