@@ -157,6 +157,19 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
 .lang-switcher{display:flex;gap:4px;align-items:center;margin-left:12px}
 .lang-btn{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:4px 9px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
 .lang-btn:hover,.lang-btn.active{color:#2ecc71;border-color:#2ecc71;background:rgba(46,204,113,0.1)}
+
+/* ── DIFERENCIADORES ── */
+#diferenciadores{background:var(--ink);padding:clamp(80px,8vw,120px) clamp(20px,5vw,80px)}
+.dif-inner{max-width:1200px;margin:0 auto}
+.dif-header{margin-bottom:clamp(40px,5vw,64px)}
+.dif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden}
+.dif-card{background:var(--surface);padding:clamp(28px,3vw,40px);transition:background var(--dur)}
+.dif-card:hover{background:var(--surface-2)}
+.dif-num{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:300;color:var(--accent);opacity:0.22;line-height:1;margin-bottom:14px;letter-spacing:-0.02em}
+.dif-name{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:10px;line-height:1.3}
+.dif-desc{font-size:0.88rem;color:var(--muted-2);line-height:1.65}
+@media(max-width:768px){.dif-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.dif-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -403,6 +416,47 @@ footer{padding:clamp(60px,8vw,100px) clamp(20px,5vw,80px);border-top:1px solid v
   </div>
 </section>
 
+<section id="diferenciadores">
+  <div class="dif-inner">
+    <div class="dif-header reveal">
+      <div class="section-label" data-i18n="dif_label">Lo que nos hace diferentes</div>
+      <h2 class="section-title" data-i18n-html="dif_title">Tu CISO, <em>sin nómina</em></h2>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-card reveal">
+        <div class="dif-num">01</div>
+        <div class="dif-name" data-i18n="dif_1_name">Tu CISO Virtual</div>
+        <p class="dif-desc" data-i18n="dif_1_desc">Actuamos como tu director de seguridad externo — sin el costo de una contratación de tiempo completo. Asesoría estratégica, toma de decisiones y gestión de incidentes: siempre disponibles.</p>
+      </div>
+      <div class="dif-card reveal">
+        <div class="dif-num">02</div>
+        <div class="dif-name" data-i18n="dif_2_name">Especialistas en tu sector</div>
+        <p class="dif-desc" data-i18n="dif_2_desc">Trabajamos con PyMEs en México. Conocemos los riesgos reales del mercado local y diseñamos soluciones que se ajustan a tu tamaño, presupuesto y operación.</p>
+      </div>
+      <div class="dif-card reveal">
+        <div class="dif-num">03</div>
+        <div class="dif-name" data-i18n="dif_3_name">Respuesta garantizada en 4 horas</div>
+        <p class="dif-desc" data-i18n="dif_3_desc">Nos comprometemos a respuesta humana en menos de 4 horas ante cualquier incidente o consulta. No bots, no tickets: personas reales que conocen tu empresa.</p>
+      </div>
+      <div class="dif-card reveal">
+        <div class="dif-num">04</div>
+        <div class="dif-name" data-i18n="dif_4_name">Claridad ejecutiva</div>
+        <p class="dif-desc" data-i18n="dif_4_desc">Cada diagnóstico y reporte cabe en una página. Traducimos el lenguaje técnico a decisiones de negocio — para que el consejo entienda y actúe sin necesitar un intérprete.</p>
+      </div>
+      <div class="dif-card reveal">
+        <div class="dif-num">05</div>
+        <div class="dif-name" data-i18n="dif_5_name">Cultura de seguridad medible</div>
+        <p class="dif-desc" data-i18n="dif_5_desc">Medimos el impacto real de la capacitación de tu equipo con métricas de comportamiento. La ciberseguridad no es un producto — es un hábito organizacional que se construye.</p>
+      </div>
+      <div class="dif-card reveal">
+        <div class="dif-num">06</div>
+        <div class="dif-name" data-i18n="dif_6_name">Tecnología europea certificada</div>
+        <p class="dif-desc" data-i18n="dif_6_desc">Representamos ESET, Hornetsecurity, G DATA y NCP Engineering — las plataformas más confiables de Europa, certificadas y auditadas en miles de empresas globales. Sin marcas oscuras ni software de dudosa procedencia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -515,6 +569,13 @@ const TRANSLATIONS={
     qh_c7_type:'Inteligencia de Amenazas',qh_c7_name:'Threat Intelligence',qh_c7_desc:'Informes APT y feeds de inteligencia en tiempo real. Anticipa ataques dirigidos a tu industria antes de que impacten tu organización con datos contextuales accionables.',
     qh_c8_type:'Gestión Continua',qh_c8_name:'Gestión de Parches',qh_c8_desc:'Identificación, priorización y remediación automatizada de vulnerabilidades en endpoints y servidores. Mantén tu infraestructura actualizada sin interrupciones operativas.',
     qh_consult_note:'<strong>Powered by ESET PROTECT Platform</strong> — Más de 30 años de experiencia en ciberseguridad, certificación ISO 27001, calificación AV-TEST AAA, presencia en 176 países y más de 1,000 millones de usuarios protegidos. C·SHUTZ es el canal gestionado de ESET en México.',
+    dif_label:'Lo que nos hace diferentes',dif_title:'Tu CISO, <em>sin nómina</em>',
+    dif_1_name:'Tu CISO Virtual',dif_1_desc:'Actuamos como tu director de seguridad externo — sin el costo de una contratación de tiempo completo. Asesoría estratégica, toma de decisiones y gestión de incidentes: siempre disponibles.',
+    dif_2_name:'Especialistas en tu sector',dif_2_desc:'Trabajamos con PyMEs en México. Conocemos los riesgos reales del mercado local y diseñamos soluciones que se ajustan a tu tamaño, presupuesto y operación.',
+    dif_3_name:'Respuesta garantizada en 4 horas',dif_3_desc:'Nos comprometemos a respuesta humana en menos de 4 horas ante cualquier incidente o consulta. No bots, no tickets: personas reales que conocen tu empresa.',
+    dif_4_name:'Claridad ejecutiva',dif_4_desc:'Cada diagnóstico y reporte cabe en una página. Traducimos el lenguaje técnico a decisiones de negocio — para que el consejo entienda y actúe sin necesitar un intérprete.',
+    dif_5_name:'Cultura de seguridad medible',dif_5_desc:'Medimos el impacto real de la capacitación de tu equipo con métricas de comportamiento. La ciberseguridad no es un producto — es un hábito organizacional que se construye.',
+    dif_6_name:'Tecnología europea certificada',dif_6_desc:'Representamos ESET, Hornetsecurity, G DATA y NCP Engineering — las plataformas más confiables de Europa, certificadas y auditadas en miles de empresas globales. Sin marcas oscuras ni software de dudosa procedencia.',
     footer_desc:'Ciberseguridad empresarial de clase mundial con servicio personalizado en México. Tecnología europea, resultados garantizados.',
     footer_empresa:'Empresa',footer_soluciones:'Soluciones',footer_contacto:'Contacto',
     footer_copy:'© 2025 C·SHUTZ. Todos los derechos reservados.',footer_made:'Hecho con <span class="footer-accent">seguridad</span> en México'
@@ -562,6 +623,13 @@ const TRANSLATIONS={
     qh_c7_type:'Threat Intelligence',qh_c7_name:'Threat Intelligence',qh_c7_desc:'APT reports and real-time intelligence feeds. Anticipate targeted attacks on your industry before they impact your organization with actionable contextual data.',
     qh_c8_type:'Continuous Management',qh_c8_name:'Patch Management',qh_c8_desc:'Automated identification, prioritization, and remediation of vulnerabilities across endpoints and servers. Keep your infrastructure current without operational disruptions.',
     qh_consult_note:'<strong>Powered by ESET PROTECT Platform</strong> — 30+ years of cybersecurity expertise, ISO 27001 certification, AV-TEST AAA rating, presence in 176 countries, and over 1 billion users protected. C·SHUTZ is ESET\'s managed channel in Mexico.',
+    dif_label:'What makes us different',dif_title:'Your CISO, <em>without payroll</em>',
+    dif_1_name:'Your Virtual CISO',dif_1_desc:'We act as your external security director — without the cost of a full-time hire. Strategic advisory, decision-making and incident management: always available.',
+    dif_2_name:'Specialists in your sector',dif_2_desc:'We work with SMEs in Mexico. We know the real risks of the local market and design solutions tailored to your size, budget and operation.',
+    dif_3_name:'4-hour guaranteed response',dif_3_desc:'We commit to a human response within 4 hours to any incident or inquiry. No bots, no tickets: real people who know your company.',
+    dif_4_name:'Executive clarity',dif_4_desc:'Every diagnosis and report fits on one page. We translate technical language into business decisions — so leadership understands and acts without needing an interpreter.',
+    dif_5_name:'Measurable security culture',dif_5_desc:'We measure the real impact of your team\'s training with behavioral metrics. Cybersecurity is not a product — it\'s an organizational habit that is built.',
+    dif_6_name:'Certified European technology',dif_6_desc:'We represent ESET, Hornetsecurity, G DATA and NCP Engineering — Europe\'s most trusted platforms, certified and audited across thousands of global companies. No obscure brands, no questionable software.',
     footer_desc:'World-class enterprise cybersecurity with personalized service in Mexico. European technology, guaranteed results.',
     footer_empresa:'Company',footer_soluciones:'Solutions',footer_contacto:'Contact',
     footer_copy:'© 2025 C·SHUTZ. All rights reserved.',footer_made:'Made with <span class="footer-accent">security</span> in Mexico'
@@ -603,6 +671,13 @@ const TRANSLATIONS={
     qh_c7_type:'Bedrohungsintelligenz',qh_c7_name:'Threat Intelligence',qh_c7_desc:'APT-Berichte und Echtzeit-Intelligenz-Feeds. Gezielte Angriffe auf Ihre Branche antizipieren, bevor sie Ihre Organisation treffen.',
     qh_c8_type:'Kontinuierliches Management',qh_c8_name:'Patch-Management',qh_c8_desc:'Automatisierte Identifizierung, Priorisierung und Behebung von Schwachstellen in Endpunkten und Servern.',
     qh_consult_note:'<strong>Powered by ESET PROTECT Platform</strong> — 30+ Jahre Cybersicherheitserfahrung, ISO 27001, AV-TEST AAA, 176 Länder, über 1 Milliarde geschützte Nutzer. C·SHUTZ ist der verwaltete ESET-Kanal in Mexiko.',
+    dif_label:'Was uns unterscheidet',dif_title:'Ihr CISO, <em>ohne Lohnkosten</em>',
+    dif_1_name:'Ihr virtueller CISO',dif_1_desc:'Wir agieren als externer Sicherheitsdirektor — ohne die Kosten einer Vollzeitstelle. Strategische Beratung, Entscheidungsfindung und Incident-Management: immer verfügbar.',
+    dif_2_name:'Spezialisten in Ihrer Branche',dif_2_desc:'Wir arbeiten mit KMU in Mexiko. Wir kennen die realen Risiken des lokalen Marktes und entwickeln Lösungen, die zu Ihrer Größe, Ihrem Budget und Betrieb passen.',
+    dif_3_name:'Garantierte 4-Stunden-Reaktion',dif_3_desc:'Wir verpflichten uns zu einer menschlichen Reaktion innerhalb von 4 Stunden auf jeden Vorfall. Keine Bots, keine Tickets: echte Menschen, die Ihr Unternehmen kennen.',
+    dif_4_name:'Führungsklarheit',dif_4_desc:'Jede Diagnose und jeder Bericht passt auf eine Seite. Wir übersetzen technische Sprache in Geschäftsentscheidungen — damit die Führung versteht und handelt.',
+    dif_5_name:'Messbare Sicherheitskultur',dif_5_desc:'Wir messen den tatsächlichen Einfluss der Schulung Ihres Teams anhand von Verhaltensmetriken. Cybersicherheit ist kein Produkt — es ist eine organisationale Gewohnheit.',
+    dif_6_name:'Zertifizierte europäische Technologie',dif_6_desc:'Wir vertreten ESET, Hornetsecurity, G DATA und NCP Engineering — Europas vertrauenswürdigste Plattformen, in tausenden Unternehmen weltweit zertifiziert und geprüft.',
     footer_desc:'Erstklassige Unternehmens-Cybersicherheit mit personalisiertem Service in Mexiko. Europäische Technologie, garantierte Ergebnisse.',
     footer_empresa:'Unternehmen',footer_soluciones:'Lösungen',footer_contacto:'Kontakt',
     footer_copy:'© 2025 C·SHUTZ. Alle Rechte vorbehalten.',footer_made:'Gemacht mit <span class="footer-accent">Sicherheit</span> in Mexiko'
@@ -644,6 +719,13 @@ const TRANSLATIONS={
     qh_c7_type:'מודיעין איומים',qh_c7_name:'Threat Intelligence',qh_c7_desc:'דוחות APT ו-feeds מודיעיניים בזמן אמת. צפה מתקפות ממוקדות בענף שלך לפני שהן פוגעות בארגון.',
     qh_c8_type:'ניהול רציף',qh_c8_name:'ניהול תיקונים',qh_c8_desc:'זיהוי, תעדוף ותיקון אוטומטי של פגיעויות בנקודות קצה ושרתים. שמור על תשתית מעודכנת ללא הפרעות תפעוליות.',
     qh_consult_note:'<strong>Powered by ESET PROTECT Platform</strong> — 30+ שנות ניסיון באבטחת סייבר, ISO 27001, AV-TEST AAA, 176 מדינות, מעל מיליארד משתמשים מוגנים. C·SHUTZ הוא הערוץ המנוהל של ESET במקסיקו.',
+    dif_label:'מה מייחד אותנו',dif_title:'ה-CISO שלך, <em>ללא שכר</em>',
+    dif_1_name:'ה-CISO הווירטואלי שלך',dif_1_desc:'אנו פועלים כמנהל האבטחה החיצוני שלך — ללא עלות של גיוס במשרה מלאה. ייעוץ אסטרטגי, קבלת החלטות וניהול אירועים: תמיד זמינים.',
+    dif_2_name:'מומחים בתחום שלך',dif_2_desc:'אנו עובדים עם עסקים קטנים ובינוניים במקסיקו. אנו מכירים את הסיכונים האמיתיים של השוק המקומי ומתאימים פתרונות לגודל, לתקציב ולפעילות שלך.',
+    dif_3_name:'תגובה מובטחת תוך 4 שעות',dif_3_desc:'אנו מתחייבים לתגובה אנושית תוך 4 שעות לכל אירוע. לא בוטים, לא כרטיסים: אנשים אמיתיים שמכירים את החברה שלך.',
+    dif_4_name:'בהירות ניהולית',dif_4_desc:'כל אבחון ודוח נכנס לעמוד אחד. אנו מתרגמים שפה טכנית להחלטות עסקיות — כדי שההנהלה תבין ותפעל ללא צורך במתורגמן.',
+    dif_5_name:'תרבות אבטחה מדידה',dif_5_desc:'אנו מודדים את ההשפעה האמיתית של הכשרת הצוות שלך עם מדדי התנהגות. אבטחת סייבר אינה מוצר — היא הרגל ארגוני שנבנה.',
+    dif_6_name:'טכנולוגיה אירופאית מוסמכת',dif_6_desc:'אנו מייצגים ESET, Hornetsecurity, G DATA ו-NCP Engineering — הפלטפורמות האמינות ביותר של אירופה, מוסמכות ומבוקרות באלפי חברות ברחבי העולם.',
     footer_desc:'אבטחת סייבר עסקית ברמה עולמית עם שירות אישי במקסיקו. טכנולוגיה אירופאית, תוצאות מובטחות.',
     footer_empresa:'חברה',footer_soluciones:'פתרונות',footer_contacto:'יצירת קשר',
     footer_copy:'© 2025 C·SHUTZ. כל הזכויות שמורות.',footer_made:'נוצר עם <span class="footer-accent">אבטחה</span> במקסיקו'
